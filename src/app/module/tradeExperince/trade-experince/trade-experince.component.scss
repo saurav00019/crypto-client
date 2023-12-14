@@ -1,0 +1,40 @@
+.exp-tit{
+    font-size: 14px;
+    font-weight: 600;
+    color: #3259c7;
+}
+
+
+
+  .radio-like-btn{
+    display: inline-block;
+    margin-right: 10px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #5c5c5c;
+  }
+  .radio-like-btn:hover input{
+        cursor: pointer;
+    }
+  .radio-like-btn input[type=radio] {
+      display: none;
+    }
+    .radio-like-btn input[type=radio] + label {
+      padding: 4px 16px;
+      border-radius: 50px;
+      border: 1px solid #ddd;
+   
+    }
+   .radio-like-btn input[type=radio] + label:hover {
+    border: 1px solid #4071ff;
+    background: #4071ff;
+    color: #fff;
+    cursor: pointer;
+    }
+    .radio-like-btn input[type=radio]:checked + label {
+        border: 1px solid #4071ff;
+        background: #4071ff;
+        color: #fff;
+        
+    }

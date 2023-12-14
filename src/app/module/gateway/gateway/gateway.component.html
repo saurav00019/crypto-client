@@ -1,0 +1,107 @@
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white p-two-p-height-scroll">
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3">
+                <div class="col-md-6">
+                    <h2 class="pageheading"> Payment Gateway </h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-3 mb-3">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12" *ngFor=" let data of checkboxes">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" [checked]="data.flag" (change)="onCheckboxChange(data.Gateway, $event)">{{data.Gateway}}</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            </div>
+                        <!-- <div class="row">
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3"   (change)="onCheckboxChange('Razorpay', $event)">Razorpay</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('UPI', $event)" >UPI</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('PHONE PE', $event)">PHONE PE</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('Paypal', $event)">Paypal</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('Bhartipay', $event)">Bhartipay</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('Perfect Money', $event)">Perfect Money</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('RTGS', $event)">RTGS</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('Coinpayment', $event)">Coinpayment</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('IMPS', $event)">IMPS</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('Google Pay', $event)">Google Pay</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('IMPS', $event)">IMPS</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                <div class="card my-3">
+                                    <label class="d-flex"><input type="checkbox" class="me-3" (change)="onCheckboxChange('NEFT', $event)">NEFT</label>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                            </div>
+    
+    
+                            <div class="col-12">
+                                <button type="button" class="btn btn-success submit">Submit</button>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

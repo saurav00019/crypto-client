@@ -1,0 +1,1899 @@
+<div class="p2p  p-tow-p-padding">
+    <div class="row">
+        <div class="col-12">
+            <div class="p2p-holder">
+                <div class="d-flex buy-sell align-items-center justify-content-between">
+                    <ul class=" d-flex">
+                        <li class="btn-buy  " [ngClass]="{'active': currentTab == 'tab1'}" (click)="nvatabc ('tab1')">
+                            <button class="btn">Buy</button>
+                        </li>
+                        <li class="btn-sell active " [ngClass]="{'active': currentTab == 'tab2'}"
+                            (click)="nvatabc ('tab2')">
+                            <button class="btn">Sell</button>
+                        </li>
+
+                    </ul>
+                    <ul class=" d-flex crypto">
+                        <li class="btn-crypto active" [ngClass]="{'active': currentTab == 'tab3'}"
+                            (click)="nvatabc ('tab3')">
+                            <button class="btn">BTC</button>
+                        </li>
+                        <li class="btn-crypto " [ngClass]="{'active': currentTab == 'tab4'}" (click)="nvatabc ('tab4')">
+                            <button class="btn">ETH</button>
+                        </li>
+                        <li class="btn-crypto " [ngClass]="{'active': currentTab == 'tab5'}" (click)="nvatabc ('tab5')">
+                            <button class="btn">USDT</button>
+                        </li>
+                        <li class="btn-crypto " [ngClass]="{'active': currentTab == 'tab6'}" (click)="nvatabc ('tab6')">
+                            <button class="btn">TRX</button>
+                        </li>
+                    </ul>
+                    <ul class="d-flex cur-amnt">
+                        <li>
+                            <div class="currency">
+                                <select>
+                                    <option> INR</option>
+                                    <option> USD</option>
+                                    <option> YEN</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingInput" placeholder="Amount">
+                                <label for="floatingInput">Amount</label>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="postAdd">
+                        <button (click)="open(content)"><a><i class="fa-solid fa-circle-plus"></i> Post An
+                                Add</a></button>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end align-items-center data mt-3">
+                    <button class="m-2 active" (click)="toggleContent(0)"><img src="assets\images\0symbol-list.png" width="16">
+                        <!-- User Data -->
+                    </button>
+                    <button class="m-2" (click)="toggleContent(1)"><img src="assets\images\symbol-list.png" width="16">
+                        <!-- Symbol Data -->
+                    </button>
+                </div>
+                <div class="singleData" *ngIf="this.activeClass==0" id="single">
+                    <div *ngIf="currentTab == 'tab1'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Posted by
+                                        </th>
+                                        <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                                class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                        <th>Quantity</th>
+                                        <th>Payment</th>
+                                        <th>Order Limit</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Nobody</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td class="action-links buy-btn" style="cursor: pointer;">
+                                            <a (click)="openModalWithClass(template)">Buy BTC</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td class="action-links buy-btn" style="cursor: pointer;">
+                                            <a (click)="openModalWithClass(template)">Buy BTC</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab2'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Posted by
+                                        </th>
+                                        <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                                class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                        <th>Quantity</th>
+                                        <th>Payment</th>
+                                        <th>Order Limit</th>
+                                        <th>Validity</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Anurag</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td>
+                                            08/10/2023
+                                        </td>
+                                        <td class="action-links">
+                                            <button class="btn btnsell1" (click)="openModalWithClass(template)">Sell
+                                                BTC</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td>
+                                            17/11/2023
+                                        </td>
+                                        <td class="action-links">
+                                            <button class="btn btnsell1" (click)="openModalWithClass(template)">Sell
+                                                BTC</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab3'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Posted by
+                                        </th>
+                                        <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                                class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                        <th>Quantity</th>
+                                        <th>Payment</th>
+                                        <th>Order Limit</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Sonu</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td class="action-links">
+                                            <a (click)="openModalWithClass(template)">Sell BTC</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td class="action-links">
+                                            <a (click)="openModalWithClass(template)">Sell BTC</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab4'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>Posted by</th>
+                                        <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                                class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                        <th>Quantity</th>
+                                        <th>Payment</th>
+                                        <th>Order Limit</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6" class="text-center">
+                                            <img src="assets\images\nodatafound1.png" class="my-5">
+                                            <h4 class="text-center">No data available</h4>
+                                            <small class="text-center d-block mt-2 mb-4">There is no data available to
+                                                show.<br>
+                                                Please choose different filters and try again.</small>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab5'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Posted by
+                                        </th>
+                                        <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                                class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                        <th>Quantity</th>
+                                        <th>Payment</th>
+                                        <th>Order Limit</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Sourav</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td class="action-links">
+                                            <a href="">Sell BTC</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td class="action-links">
+                                            <a (click)="openModalWithClass(template)">Sell BTC</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab6'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Posted by
+                                        </th>
+                                        <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                                class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                        <th>Quantity</th>
+                                        <th>Payment</th>
+                                        <th>Order Limit</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Vikas.</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td class="action-links">
+                                            <a (click)="openModalWithClass(template)">Sell BTC</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">S</div>
+                                            <div>
+                                                <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td class="inr">
+                                            990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                        </td>
+                                        <td class="action-links">
+                                            <a (click)="openModalWithClass(template)">Sell BTC</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="allData" *ngIf="this.activeClass==1" id="Multiple">
+                    <div *ngIf="currentTab == 'tab1'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Symbol
+                                        </th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Min</th>
+                                        <th>Max</th>
+                                        <th>Payment</th>
+                                        <th>User</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\BTC.png"
+                                                    alt="img"></div>
+                                            <p>Bitcoin</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            192.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            10,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td>
+                                            152.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            199.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            Method
+                                        </td>
+                                        <td class="action-links buy-btn">
+                                            <a  (click)="openModalWithClass(template)">Buy BTC</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\BNB.png"
+                                                    alt="img"></div>
+                                            <p>BNB</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            <span class="howuser" (click)="openUser(content2)"> 5 users</span>
+                                        </td>
+                                        <td class="action-links buy-btn">
+                                            <a (click)="openModalWithClass(template)">Buy BTC</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab2'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Symbol
+                                        </th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Min</th>
+                                        <th>Max</th>
+                                        <th>Payment</th>
+                                        <th>User</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <ng-container *ngFor="let row of data">
+                                        <tr>
+                                          
+                                          <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\DOGE.png"
+                                                    alt="img"></div>
+                                            <p>Dogecoin</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td >
+                                            <span class="howuser">2 users
+                                                
+                                            </span>
+                                        </td>
+                                        <td class="action-links sell-btn" (click)="row.isExpand = !row.isExpand">
+                                            <a >View user
+                                                <i *ngIf="!row.isExpand" class="bi-chevron-right"></i>
+                                            <i *ngIf="row.isExpand" class="bi-chevron-up"></i>
+                                            </a>
+                                        </td>
+                                        </tr>
+                                        <tr *ngIf="row.isExpand">
+                                          <td colspan="8">
+                                            <table class="table table-sm">
+                                              <thead>
+                                                <tr>
+                                                    <th>
+                                                        Posted by
+                                                    </th>
+                                                    <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                                            class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                                    <th>Quantity</th>
+                                                    <th>Payment</th>
+                                                    <th>Order Limit</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                
+                                                <tr *ngFor="let row2 of row.address">
+                                                    <td class="withname d-flex align-items-center">
+                                                        <div class="firstLetter">S</div>
+                                                        <div>
+                                                            <span>Nobody</span><small>0 Trades | 0% Completion rate</small>
+                                                        </div>
+                                                    </td>
+                                                    <td class="inr">
+                                                        89.5 <span> INR</span>
+                                                    </td>
+                    
+                                                    <td class="inr">
+                                                        5,000 <span class="bitcoin"> BTC</span>
+                                                    </td>
+                                                    <td class="payment-method">
+                                                        <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                            style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                            style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                            style="color: rgb(45, 169, 79);">UPI</span>
+                                                    </td>
+                                                    <td class="inr">
+                                                        990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                                    </td>
+                                                   
+                                                    <td class="action-links buy-btn">
+                                                        <a href="javascript:void(0)" (click)="openModalWithClass(template)">Buy BTC</a>
+                                                    </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </ng-container>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\DOGE.png"
+                                                    alt="img"></div>
+                                            <p>Dogecoin</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            <span class="howuser" (click)="openUser(content2)">2 users</span>
+                                        </td>
+                                        <td class="action-links sell-btn">
+                                            <a (click)="openModalWithClass(template)">Sell Doge</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\DOT.png"
+                                                    alt="img"></div>
+                                            <p>DOT</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> DOT</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            <span class="howuser" (click)="openUser(content2)">3 users</span>
+                                        </td>
+                                        <td class="action-links sell-btn">
+                                            <a (click)="openModalWithClass(template)">Sell DOT</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab3'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Symbol
+                                        </th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Min</th>
+                                        <th>Max</th>
+                                        <th>Payment</th>
+                                        <th>User</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\ETH.png"
+                                                    alt="img"></div>
+                                            <p>ETH</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> ETH</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            <span class="howuser" (click)="openUser(content2)">3 users</span>
+                                        </td>
+                                        <td class="action-links sell-btn">
+                                            <a (click)="openModalWithClass(template)">Sell ETH</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\BTC.png"
+                                                    alt="img"></div>
+                                            <p>Bitcoin</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            <span class="howuser" (click)="openUser(content2)">3 users</span>
+                                        </td>
+                                        <td class="action-links buy-btn">
+                                            <a >Buy BTC</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab4'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Symbol
+                                        </th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Min</th>
+                                        <th>Max</th>
+                                        <th>Payment</th>
+                                        <th>User</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8" class="text-center">
+                                            <img src="assets\images\nodatafound1.png" class="my-5">
+                                            <h4 class="text-center">No data available</h4>
+                                            <small class="text-center d-block mt-2 mb-4">There is no data available to
+                                                show.<br>
+                                                Please choose different filters and try again.</small>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab5'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Symbol
+                                        </th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Min</th>
+                                        <th>Max</th>
+                                        <th>Payment</th>
+                                        <th>User</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\LINK.png"
+                                                    alt="img"></div>
+                                            <p>LINK</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> LINK</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            <span class="howuser">5 users</span>
+                                        </td>
+                                        <td class="action-links buy-btn">
+                                            <a >Buy BTC</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\TRX.png"
+                                                    alt="img"></div>
+                                            <p>TRX</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> TRX</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            <span class="howuser">10 users</span>
+                                        </td>
+                                        <td class="action-links buy-btn">
+                                            <a (click)="openModalWithClass(template)">Buy BTC</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div *ngIf="currentTab == 'tab6'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Symbol
+                                        </th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Min</th>
+                                        <th>Max</th>
+                                        <th>Payment</th>
+                                        <th>Add Payment Method</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\UMC.png"
+                                                    alt="img"></div>
+                                            <p>UMC</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> UMC</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            <span class="howuser">2 users</span>
+                                        </td>
+                                        <td class="action-links buy-btn">
+                                            <a (click)="openModalWithClass(template)" >Buy BTC</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter symbl"><img src="assets\images\ikons\BTC.png"
+                                                    alt="img"></div>
+                                            <p>Bitcoin</p>
+
+                                        </td>
+                                        <td class="inr">
+                                            89.5 <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                            5,000 <span class="bitcoin"> BTC</span>
+                                        </td>
+                                        <td>
+                                            80.5 <span> INR</span>
+                                        </td>
+                                        <td>
+                                            91F.5 <span> INR</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                                style="color: rgb(239, 127, 28);">IMPS</span><span
+                                                style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                                style="color: rgb(45, 169, 79);">UPI</span>
+                                        </td>
+                                        <td>
+                                            <span class="howuser">4 users</span>
+                                        </td>
+                                        <td class="action-links buy-btn">
+                                            <a >Buy BTC</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-12 d-none   ">
+            <div class="">
+                <div class="table-responsive form-table ">
+                    <table class="table table-striped table-hover" id="deposit">
+                        <thead>
+                            <tr>
+                                <th>Symbol </th>
+                                <th>Unit</th>
+                                <th>Price</th>
+                                <th>Order Limit</th>
+                                <th>Payment Method</th>
+                                <th>Valid upto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="infoTable">
+                            <tr>
+                                <td class="withname ">
+                                    <img src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    July 31, 2023. 5:00:05 PM
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname"><img src="assets\images\ikons\BNB.png"><span>BNB</span></td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BNB</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    July 31, 2023. 5:00:05 PM
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname">
+                                    <img src="assets\images\ikons\DOT.png"><span>DOT</span>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> DOT</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    July 31, 2023. 5:00:05 PM
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname">
+                                    <img src="assets\images\ikons\ETH.png"><span>ETH</span>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> ETH</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    July 31, 2023. 5:00:05 PM
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname ">
+                                    <img src="assets\images\ikons\LTC.png"><span>LTC</span>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> LTC</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    July 31, 2023. 5:00:05 PM
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname ">
+                                    <img src="assets\images\ikons\BTC.png">
+
+                                    <span>BTC</span>
+
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    July 31, 2023. 5:00:05 PM
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">USDT</h4>
+        <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <form action="">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="modal-symbol-img mb-4">
+                            <div>
+                                <img src="assets\images\ikons\USDT.png">
+                            </div>
+                            <div>
+                                <p>USDT</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 ab-input-decor ppfloat">
+                        <div class="form-floating mb-4">
+                            <input type="number" class="form-control " placeholder=".">
+                            <label>Quantity</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 ab-input-decor ppfloat">
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control " placeholder=".">
+                            <label>Price</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="m-pay">Place Order</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- after make payment  -->
+        <div>
+            <form action="">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="modal-symbol-img mb-4">
+                            <div>
+                                <img src="assets\images\ikons\USDT.png">
+                            </div>
+                            <div>
+                                <p>USDT</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="broker">
+                        <div class="brokerage">
+                            <div class="t-pay">
+                                <p>Total Payment</p>
+                                <p>10% Brokerage </p>
+                            </div>
+                            <div class="amnt">
+                                <p>2,12,123</p>
+                                <p>2122.30</p>
+                            </div>
+                        </div>
+                        <div class="brokerage broker2">
+                            <div class="t-pay t-bill">
+                                <p>Total Bill </p>
+                                <small>(Tax included)</small>
+                            </div>
+                            <div class="amnt">
+                                <p>2,50,331</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="chcbx">
+                        <label><input type="checkbox">We will be holding your amount for maximum 2 hours.</label>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="m-pay">Make Payment</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- after make payment  -->
+
+        <div>
+            <form action="">
+                <div class="row d-none">
+                    <div class="col-md-12">
+                        <div class="modal-symbol-img mb-4">
+                            <div>
+                                <img src="assets\images\ikons\USDT.png">
+                            </div>
+                            <div>
+                                <p>USDT</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 ab-input-decor ppfloat">
+                        <div class="form-floating mb-4">
+                            <input type="number" class="form-control " placeholder=".">
+                            <label>Quantity</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 ab-input-decor ppfloat">
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control " placeholder=".">
+                            <label>Price</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
+
+<div class="col-12 my-5 d-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 form">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form class="form form-details">
+                            <div class="col-md-6 my-3 px-3">
+                                <p>Symbol</p>
+                                <select>
+                                    <option value="">BTC</option>
+                                    <option value="">LTC</option>
+                                    <option value="">USDT</option>
+                                    <option value="">TRX</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 my-3 px-3">
+                                <p>Payment Mode</p>
+                                <select>
+                                    <option value="">IMPS</option>
+                                    <option value="">PayTM</option>
+                                    <option value="">PhonePe</option>
+                                    <option value="">GooglePay</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 my-3 px-3">
+                                <p>Unit</p>
+                                <input type="number" id="unit">
+                            </div>
+                            <div class="col-md-2 my-3 px-3">
+                                <p>Price</p>
+                                <input type="number" id="price">
+                            </div>
+                            <div class="col-md-2 my-3 px-3">
+                                <p>Min </p>
+                                <input type="number" id="min">
+                            </div>
+                            <div class="col-md-2 my-3 px-3">
+                                <p>Max </p>
+                                <input type="number" id="max">
+                            </div>
+                            <div class="col-md-4 my-3 px-3">
+                                <p>Validity</p>
+                                <input type="date" id="unit">
+                            </div>
+                            <div class="col-md-2  my-3 px-3">
+                                <button><a href="" class="formBtn">Submit</a></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Post an ad</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form form-details ordermodal">
+                            <div class="row">
+                                <div class="col-md-6 my-3">
+                                    <p>Symbol</p>
+                                    <select>
+                                        <option value="">BTC</option>
+                                        <option value="">LTC</option>
+                                        <option value="">USDT</option>
+                                        <option value="">TRX</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 my-3">
+                                    <!-- <p>Payment Mode</p>
+                                    <select>
+                                        <option value="">IMPS</option>
+                                        <option value="">PayTM</option>
+                                        <option value="">PhonePe</option>
+                                        <option value="">GooglePay</option>
+                                    </select> -->
+                                    <p>Validity</p>
+                                <input type="date" id="unit">
+                                </div>
+                                <div class="col-md-3 my-3">
+                                    <div class="myfloating">
+                                        <div class="form-floating ">
+                                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                                            <label for="email">Unit</label>
+                                          </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-3 my-3">
+                                    <!-- <p>Price</p>
+                                    <input type="number" id="price"> -->
+                                    <div class="myfloating">
+                                        <div class="form-floating ">
+                                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                                            <label for="email">Price</label>
+                                          </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-3 my-3">
+                                    <!-- <p>Min </p>
+                                    <input type="number" id="min"> -->
+                                    <div class="myfloating">
+                                        <div class="form-floating ">
+                                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                                            <label for="email">Min</label>
+                                          </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-3 my-3">
+                                    <!-- <p>Max </p>
+                                    <input type="number" id="max"> -->
+                                    <div class="myfloating">
+                                        <div class="form-floating ">
+                                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                                            <label for="email">Max</label>
+                                          </div>
+                                      </div>
+                                </div>
+                                <!-- <div class="col-md-6 my-3 px-3">
+                                    <p>Validity</p>
+                                    <input type="date" id="unit">
+                                </div> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="border-top: 1px dotted #858585;">
+        <button type="button" class="btn btn-outline-dark formBtn" (click)="c('Save click')">Submit</button>
+    </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Aggregated View</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <div class="singleData"  id="single">
+            <div *ngIf="currentTab == 'tab1'">
+                <div class="table-responsive">
+                    <table class="table" id="deposit">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Posted by
+                                </th>
+                                <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                        class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                <th>Quantity</th>
+                                <th>Payment</th>
+                                <th>Order Limit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="infoTable">
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Nobody</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                               
+                                <td class="action-links buy-btn">
+                                    <a href="">Buy BTC</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                
+                                <td class="action-links buy-btn">
+                                    <a href="">Sell BTC</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="currentTab == 'tab2'">
+                <div class="table-responsive">
+                    <table class="table" id="deposit">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Posted by
+                                </th>
+                                <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                        class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                <th>Quantity</th>
+                                <th>Payment</th>
+                                <th>Order Limit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="infoTable">
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Anurag</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="action-links">
+                                    <button class="btn btnsell1" (click)="openModalWithClass(template)">Sell
+                                        BTC</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="action-links">
+                                    <button class="btn btnsell1" (click)="openModalWithClass(template)">Sell
+                                        BTC</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="currentTab == 'tab3'">
+                <div class="table-responsive">
+                    <table class="table" id="deposit">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Posted by
+                                </th>
+                                <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                        class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                <th>Quantity</th>
+                                <th>Payment</th>
+                                <th>Order Limit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="infoTable">
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Sonu</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="action-links">
+                                    <a href="">Sell BTC</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="action-links">
+                                    <a href="">Sell BTC</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="currentTab == 'tab4'">
+                <div class="table-responsive">
+                    <table class="table" id="deposit">
+                        <thead>
+                            <tr>
+                                <th>Posted by</th>
+                                <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                        class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                <th>Quantity</th>
+                                <th>Payment</th>
+                                <th>Order Limit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <img src="assets\images\nodatafound1.png" class="my-5">
+                                    <h4 class="text-center">No data available</h4>
+                                    <small class="text-center d-block mt-2 mb-4">There is no data available to
+                                        show.<br>
+                                        Please choose different filters and try again.</small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="currentTab == 'tab5'">
+                <div class="table-responsive">
+                    <table class="table" id="deposit">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Posted by
+                                </th>
+                                <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                        class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                <th>Quantity</th>
+                                <th>Payment</th>
+                                <th>Order Limit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="infoTable">
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Sourav</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="action-links">
+                                    <a href="">Sell BTC</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="action-links">
+                                    <a href="">Sell BTC</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="currentTab == 'tab6'">
+                <div class="table-responsive">
+                    <table class="table" id="deposit">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Posted by
+                                </th>
+                                <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                        class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                <th>Quantity</th>
+                                <th>Payment</th>
+                                <th>Order Limit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="infoTable">
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Vikas.</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="action-links">
+                                    <a href="">Sell BTC</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Shivam</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    89.5 <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(103, 57, 183);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                                <td class="action-links">
+                                    <a href="">Sell BTC</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

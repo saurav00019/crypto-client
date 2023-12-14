@@ -1,0 +1,683 @@
+<div class="p2p  p-tow-p-padding">
+    <div class="row">
+        <div class="col-12">
+            <div class="p2p-holder">
+                <div class="d-flex-1  align-items-center justify-content-between">
+                    <div class="d-flex-2 ">
+                        <div class="buy-sell">
+                            <ul class="buy-sell d-flex">
+                                <li class="btn-buy  " [ngClass]="{'active': currentTab == 'tab1'}" (click)="nvatabc ('tab1')">
+                                    <button class="btn">Buy</button>
+                                </li>
+                                <li class="btn-sell active " [ngClass]="{'active': currentTab == 'tab2'}"
+                                    (click)="nvatabc('tab2')">
+                                    <button class="btn">Sell</button>
+                                </li>
+                             </ul>
+                        </div>
+                         <ul class="buy-sell2 d-flex ms-md-5">
+                            <li class="tabfilter" *ngFor="let data1 of crypto; let i = index">
+                                <input type="radio" class="btn-check" name="options-outlined" (click)="symbolChange(data1.Crypto, data1.oInfo.CryptoID)" [id]="'crypto' + i" [autocomplete]="i === 0 ? 'on' : 'off'" [checked]="i === 0">
+                                <label class="btn btn-outline-success" [for]="'crypto' + i">{{data1.Crypto}}</label>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                   
+                    <div class="postAdd">
+                        <button (click)="open(content)"><a><i class="fa-solid fa-circle-plus"></i> Make New Order</a></button>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end align-items-center data mt-3">
+                    <button class="m-2 active" (click)="toggleContent(0)"><img src="assets\images\0symbol-list.png" width="16">
+                        <!-- User Data -->
+                    </button>
+                    <button class="m-2" (click)="toggleContent(1)"><img src="assets\images\symbol-list.png" width="16">
+                        <!-- Symbol Data -->
+                    </button>
+                </div>
+                <div class="singleData" *ngIf="this.activeClass==0" id="single">
+                    
+                   <!-- Seller table start -->
+                     <div *ngIf="currentTab == 'tab2'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Posted by
+                                        </th>
+                                        <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                                class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                        <th>Quantity</th>
+                                        <th>Payment</th>
+                                        <th>Order Limit</th>
+                                        <th>Validity</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable" *ngIf="this.showNoData == 1">
+                                    
+                                    <tr *ngFor="let data of pageOfItems let i=index">
+                                        <td class="withname d-flex align-items-center">
+                                            <div class="firstLetter">{{(data.Name).charAt(0).toUpperCase() }}</div>
+                                            <div>
+                                                <span>{{data.Name}}</span>
+                                            </div>
+                                        </td>
+                                        <td class="inr">
+                                            {{data.Price}} <span> INR</span>
+                                        </td>
+
+                                        <td class="inr">
+                                           {{data.Qty}}<span class="bitcoin"> {{data.Crypto}}</span>
+                                        </td>
+                                        <td class="payment-method">
+                                            
+                                            <span  [ngClass]="{'INSTAMOJO': gateway.Gateway === 'INSTAMOJO',
+                                            'PAYG': gateway.Gateway === 'PAYG',
+                                            'PHONEPE': gateway.Gateway === 'PHONEPE',
+                                            'SABPAISA': gateway.Gateway === 'SABPAISA'}"
+                                            *ngFor="let gateway of ListofGateways">
+                                                <img style="width:20px; margin-right: 5px;" src="assets\images\gateway\{{gateway.Gateway}}.png" alt="img"> {{gateway.Gateway}}
+                                                </span>
+                                            <p *ngIf="ListofGateways.length == 0" style="color: #F1B435;">{{gateTextError}}</p>
+                        
+                                        </td>
+                                        
+                                    
+                                        <td class="inr">
+                                            {{data.Min_Qty}} ~ {{data.Max_Qty}}<span class="bitcoin"> Limit</span>
+                                        </td>
+                                        <td>
+                                           {{data.dtValidUpto}}
+                                        </td>
+                                        <td class="action-links">
+                                            <button class="btn btnsell1" (click)="openModalWithClass(template,data)">Sell
+                                                {{data.Crypto}}</button>
+                                              
+                                        </td>
+                                    </tr>
+                                  
+                                </tbody>
+                                <tbody id="infoTable" *ngIf="this.showNoData == 0">
+                                   <tr >
+                                        <td colspan="7"> <div style="text-align: center;
+                                            padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-3" *ngIf="this.showNoData == 1">
+                        <div class="col-md-12 p-two-p-page">
+                           
+                        <app-pagination [items]="orderList"  (changePage)="onChangePage($event)"></app-pagination>
+                    </div>
+                    </div>
+                   <!-- Seller table end -->
+                </div>
+                <!-- Buyer table start  -->
+                <div class="allData" *ngIf="this.activeClass==1" id="Multiple">
+                    
+                     <div *ngIf="currentTab == 'tab2'">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Symbol
+                                        </th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Min</th>
+                                        <th>Max</th>
+                                        <th>Payment </th>
+                                        <th>User</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable" *ngIf="this.showNoData1 == 1">
+
+
+                                    <ng-container *ngFor="let row of pageOfItems1">
+                                        <ng-container *ngFor="let row1 of row?.lstPrice_Ord">
+
+                                            
+
+                                        <tr>
+                                            <td class="withname d-flex align-items-center">
+                                                <div class="firstLetter symbl"><img src="assets\images\ikons\{{ row.Crypto }}.png"
+                                                        alt="img"></div>
+                                                <p>{{ row.Crypto }}</p>
+                                            </td>
+                                            <td class="inr">
+                                                {{ row1?.OrderAgrre.Price }} INR
+                                            </td>
+                                            <td class="inr">
+                                                {{  row1?.OrderAgrre.Qty }} {{ row.Crypto }}
+                                            </td>
+                                            <td>
+                                                {{  row1?.OrderAgrre.Min_Qty }} Qty
+                                            </td>
+                                            <td>
+                                                {{ row1?.OrderAgrre.Max_Qty }} Qty
+                                            </td>
+                                            <td class="payment-method">
+                                                <span  [ngClass]="{'INSTAMOJO': gateway.Gateway === 'INSTAMOJO',
+                                                'PAYG': gateway.Gateway === 'PAYG',
+                                                'PHONEPE': gateway.Gateway === 'PHONEPE',
+                                                'SABPAISA': gateway.Gateway === 'SABPAISA'}"
+                                                *ngFor="let gateway of ListofGateways">
+                                                    <img style="width:20px; margin-right: 5px;" src="assets\images\gateway\{{gateway.Gateway}}.png" alt="img"> {{gateway.Gateway}}
+                                                    </span>
+                                                <p *ngIf="ListofGateways.length == 0" style="color: #F1B435;">{{gateTextError}}</p>
+                                            </td>
+                                            <td>
+                                                <span class="howuser"> {{  row1?.OrderAgrre.TotalOrder }} users</span>
+                                            </td>
+                                            <td class="action-links sell-btn" (click)=" row1.isExpand = !row1.isExpand">
+                                                <a style="cursor: pointer;">View user
+                                                    <i *ngIf="!row.isExpand" class="bi-chevron-right"></i>
+                                                    <i *ngIf="row.isExpand" class="bi-chevron-up"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="row1.isExpand">
+                                            <td colspan="8" id="innertable1">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Posted by
+                                                            </th>
+                                                            <th>Unit Price <i class="fa-solid fa-arrow-up"
+                                                                    style="cursor: pointer;"></i><i class="fa-solid fa-arrow-down d-none"
+                                                                    style="cursor: pointer;"></i></th>
+                                                            <th>Quantity</th>
+                                                            <th>Payment</th>
+                                                            <th>Order Limit</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                   <tbody>
+                                                        <ng-container *ngFor="let row2 of row1?.lstOrderPos">
+                                                            <tr>
+                                                                <td class="withname d-flex align-items-center">
+                                                                    <div class="firstLetter">{{(row2.Name).charAt(0).toUpperCase() }}</div>
+                                                                    <div>
+                                                                        <span>{{row2.Name}}</span>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="inr">
+                                                                    {{ row2.Price }} INR
+                                                                </td>
+                                                                <td class="inr">
+                                                                    {{ row2.Qty }} {{row.Crypto}}
+                                                                </td>
+                                                                <td class="payment-method">
+                                                                    <span  [ngClass]="{'INSTAMOJO': gateway.Gateway === 'INSTAMOJO',
+                                                                    'PAYG': gateway.Gateway === 'PAYG',
+                                                                    'PHONEPE': gateway.Gateway === 'PHONEPE',
+                                                                    'SABPAISA': gateway.Gateway === 'SABPAISA'}"
+                                                                    *ngFor="let gateway of ListofGateways">
+                                                                        <img style="width:20px; margin-right: 5px;" src="assets\images\gateway\{{gateway.Gateway}}.png" alt="img"> {{gateway.Gateway}}
+                                                                        </span>
+                                                                    <p *ngIf="ListofGateways.length == 0" style="color: #F1B435;">{{gateTextError}}</p>
+                                                                </td>
+                                                                <td class="inr">
+                                                                    {{ row2.Min_Qty }} ~ {{ row2.Max_Qty }}
+                                                                    <span class="bitcoin"> Limit</span>
+                                                                </td>
+                                                                <td class="action-links buy-btn">
+                                                                    <a href="javascript:void(0)"
+                                                                        (click)="openModalWithClass(template, row2)">Sell {{ row.Crypto }}</a>
+                                                                </td>
+                                                            </tr>
+                                                        </ng-container>
+                                                    </tbody> 
+                                                </table>
+                                            </td>
+                                        </tr> 
+                                       
+                                    
+                                    
+                                    </ng-container>
+                                    </ng-container>
+
+                                </tbody>
+                                <tbody id="infoTable" *ngIf="this.showNoData1 == 0">
+                                    <ng-container >
+                                        
+                                            <tr >
+                                                <td colspan="8"> <div style="text-align: center;
+                                                    padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                                            </tr>
+                                      
+                                        
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-3" *ngIf="this.showNoData1 == 1">
+                        <div class="col-md-12 p-two-p-page">
+                          
+                        <app-pagination [items]="orderAggList"  (changePage)="onChangePage1($event)"></app-pagination>
+                    </div>
+                </div>
+                <!-- Buyer table end   -->
+            </div>
+        </div>
+
+
+
+     
+    </div>
+</div>
+
+
+
+<ng-template #template let-c="close" >
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{listData.Crypto}}</h4>
+        <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="closeModel2()" >
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+       
+            <form [formGroup]="makePayment">
+                <div *ngIf="t1 == 0" class="first-div">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="modal-symbol-img mb-4">
+                                <div>
+                                    <img src="assets\images\ikons\{{listData.Crypto}}.png" alt="img">
+                                </div>
+                                <div>
+                                    <p>{{listData.Crypto}}</p>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-12 ab-input-decor ppfloat">
+                            <div class="form-floating mb-4">
+                                <input type="number" class="form-control " (keypress)="numberOnly($event)" formControlName="quant" placeholder="." >
+                                <label>Quantity</label>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-12 ab-input-decor ppfloat">
+                            <div class="form-floating mb-4">
+                                <input type="text" class="form-control " [value]="listData.Price" placeholder="." readonly>
+                                <label>Price</label>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                          <div class="broker">
+                            <div class="brokerage">
+                                <div class="t-pay">
+                                    <p>Total Payment</p>
+                                    <p>Fee</p>
+                                    <p>TDS</p>
+                                </div>
+                                <div class="amnt">
+                                    <p>{{makePayment.value.quant*listData.Price}}</p>
+                                    <p>{{makePayment.value.quant*listData.Price*this.fees}} </p>
+                                    <p>{{this.tds*makePayment.value.quant*listData.Price}} </p>
+                                </div>
+                            </div>
+                            <div class="brokerage broker2">
+                                <div class="t-pay t-bill">
+                                    <p>Total Bill </p>
+                                    <small>(Tax included)</small>
+                                </div>
+                                <div class="amnt">
+                                    <p>{{makePayment.value.quant*listData.Price +(this.tds*makePayment.value.quant*listData.Price)}}</p>
+                                </div>
+                            </div>
+    
+                        </div>
+                        
+                        <div class="d-flex justify-content-center">
+                            <button class="m-pay" style="width: 100%;" (click)="makeTrades()">Continue</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="t1 == 1">
+                <div  class="secand-div">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-end">
+                                <p class="" style="font-size: 13px; color: #858585;" ngbTooltip="Allow to partial payment & Amount holding." [openDelay]="300" [closeDelay]="500">
+                                    You have basic plan, Upgrade your plan <i class="fa-solid fa-circle-exclamation"></i>
+                                </p>
+                        </div>
+                    </div>
+                </div>
+                    <div class="newc-card">
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="paywind">
+                                    <p class="ttil">Order Reference</p>
+                                    <p class="vval">{{this.listData.OrderRef}}</p>
+                                </div>
+                                <div class="paywind">
+                                    <p class="ttil">Total Amount To Pay</p>
+                                    <input  style="height: 42px;  color:#fff" (keypress)="numberOnly($event)" formControlName="totalAmount" [ngClass]="classNoDrop"  type="text" f class="form-control "  [disabled]="!showPartial" id="email" name="email">
+                                    <!-- <p class="vval">{{this.total_payment}}</p> -->
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-end">
+                                    <div class="paywind">
+                                        <p class="ttil">Payment Window</p>
+                                        <p class="vval2">{{showPaymentWindowT}} Minute</p>
+                                    </div>
+                                </div>
+                                <div style="display: grid;
+                                justify-content: end;">
+                                    <div class="chcbx mt-3">
+                                        <label style="font-size: 13px; color:#bebebf"><input type="checkbox"  (change)="paymentToggle('full')" [checked]="payType === 'full'">Full Payment</label>
+                                    </div>
+                                    <div class="chcbx d-flex align-items-center" *ngIf="showValidatity">
+                                        <label class="mb-0" style="font-size: 13px; color:#bebebf"><input type="checkbox"   (change)="paymentToggle('partial')" [checked]="payType === 'partial'">Partial Payment</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-4" *ngIf="showValidatity">
+                                <div class="chcbx d-flex align-items-center">
+                                    <label class="mb-0" style="font-size: 13px;
+                                    color: #a7a7a7;
+                                    background: #2a3050;
+                                    padding: 5px;
+                                    border-radius: 8px;">Your holding time will be {{days}} days {{minn}} minutes for this trade. you can make payments within this time. </label>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="newc-card mt-2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="paywind">
+                                    <div style="cursor: pointer;" class="d-flex justify-content-between align-items-center"  (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                        <p class="ttil mb-0">Payment Mode</p>
+                                        <p class="ttil mb-0"><i class="fa-solid fa-angle-down"></i></p>
+                                    </div>
+                                    <div class="payment-method mt-2" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" >
+                                       
+                                        <div class="d-flex00">
+                                            <div class="payment-method pay-mod">
+                                                <div class="setactive" *ngFor="let gateway of ListofGateways" style="cursor: pointer;"  [class.active]="selected === gateway.GatewayID"
+                                                (click)="getChangePayment(gateway.GatewayID)">
+                                                    <img style="width:36px" src="assets\images\gateway\{{gateway.Gateway}}.png">
+                                                <div  class="l-label">
+                                                {{ gateway.Gateway }}
+                                              </div>
+                                                </div>
+                                              </div>
+                                              <div *ngIf="ListofGateways.length == 0">
+                                               <p style="color: #F1B435;">{{gateError}}</p>
+                                              </div>
+            
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="newc-card mt-2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="">
+                                   <div style="cursor: pointer;" class="d-flex justify-content-between align-items-center"  (click)="collapse2.toggle()" [attr.aria-expanded]="!isCollapsed2" aria-controls="collapseExample">
+                                    <label style="font-size: 13px; color:#bebebf" for="email" class="form-label mb-0" >Remarks:</label>
+                                    <p class="ttil mb-0"><i class="fa-solid fa-angle-down"></i></p>
+                                   </div>
+                                    <input #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2" style="height: 42px; color:#fff" type="text" formControlName="remarkss" class="form-control" id="email"  name="email">
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="d-flex justify-content-center mt-4">
+                        <button class="m-pay" style="width: 100%;" (click)="MAKEPAYM()">Make Payment</button>
+                    </div>
+                    
+                  </div>
+                  </div>
+                
+            </form>
+
+        </div>
+
+</ng-template>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Make New Order</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="c('Save click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="makeOrders" >
+            <div class="row makeneworder-modal form-details ordermodal">
+                <div class="col-md-12">
+                    <div class="row mb-4 align-items-center">
+                        <div class="col-md-3"><p class="ordmod-lab">Symbol<sup>*</sup></p></div>
+                        <div class="col-md-9">
+                            <select   formControlName="crypt"  (change)="selectSymbols($event)" >
+                                <option [ngValue]="null">Select symbols</option>
+                                <option *ngFor="let data1 of crypto"  [value]="data1.oInfo.CryptoID" >{{data1.Crypto}}</option>
+                            </select>
+                        
+                            <div class="my-error">
+                                <div *ngIf="makeOrders.controls['crypt'].invalid && (makeOrders.controls['crypt'].dirty || makeOrders.controls['crypt'].touched)" class="text-danger">
+                                    <div *ngIf="makeOrders.controls['crypt'].errors.required">Please select symbol!</div>  
+                                   
+                                  </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                    <div class="row mb-4 align-items-center0">
+                        <div class="col-md-3 pt-3"><p class="ordmod-lab">Validity<sup>*</sup></p></div>
+                       
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex" >
+                                        <input style="color-scheme: dark ;" type="datetime-local"id="meeting-time"name="meeting-time" [min]="previousDate" formControlName="Validity"  (change)="date_data1($event)"  id="unit">
+                                        <!-- <input style="width:50%; border:none !important" type="date" formControlName="Validity"  (change)="date_data1($event)"  id="unit">
+                                        <input style="width:50%; border:none !important; padding-left: 55px;" type="time" formControlName="time" (change)="time_data1($event)" id="unit" value="00:00"> -->
+                                    </div>
+                                    
+                                </div>
+                                <div class="">
+                                    <!-- <input type="time" formControlName="time" (change)="time_data1($event)" id="unit" value="00:00"> -->
+                                    <div class="my-error">
+                                    <div *ngIf="makeOrders.controls['time'].invalid && (makeOrders.controls['time'].dirty || makeOrders.controls['time'].touched)" class="text-danger">
+                                        <div *ngIf="makeOrders.controls['time'].errors.required">Please select time!</div>  
+                                    </div>
+                                    <div *ngIf="makeOrders.controls['Validity'].invalid && (makeOrders.controls['Validity'].dirty || makeOrders.controls['Validity'].touched)" class="text-danger">
+                                        <div  *ngIf="makeOrders.controls['Validity'].errors.required">Please select date!</div>  
+                                      
+                                        <div *ngIf="makeOrders.controls['Validity'].errors.invalidDate">Please select a next date</div>
+                                    </div>
+                                    </div>
+                                    <!-- <div class="my-error">
+                                        
+                                        </div> -->
+                                </div>
+                            </div>
+                          
+                        </div>
+                       
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="myfloating">
+                                <div class="form-floating ">
+                                    <input type="text" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="unit_price" placeholder="Enter email" name="email">
+                                    <label for="email">Unit Price<sup>*</sup></label>
+                                  </div>
+                                  <div class="my-error">
+                                  <div *ngIf="makeOrders.controls['unit_price'].invalid && (makeOrders.controls['unit_price'].dirty || makeOrders.controls['unit_price'].touched)" class="text-danger">
+                                    <div *ngIf="makeOrders.controls['unit_price'].errors.required">Please enter unit price</div>  
+                                   
+                                  </div>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="myfloating">
+                                <div class="form-floating ">
+                                    <input type="text" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="total_qty" placeholder="Enter email" name="email">
+                                    <label for="email">Total Quantity<sup>*</sup></label>
+                                  </div>
+                                  <div class="my-error">
+                                  <div *ngIf="makeOrders.controls['total_qty'].invalid && (makeOrders.controls['total_qty'].dirty || makeOrders.controls['total_qty'].touched)" class="text-danger">
+                                    <div *ngIf="makeOrders.controls['total_qty'].errors.required">Please enter total quantity</div>  
+                                   
+                                  </div>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="myfloating">
+                                <div class="form-floating ">
+                                    <input type="text" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="min_qty" placeholder="Enter email" name="email">
+                                    <label for="email">Min. Quantity<sup>*</sup></label>
+                                  </div>
+                              </div>
+                              <div class="my-error">
+                              <div *ngIf="makeOrders.controls['min_qty'].invalid && (makeOrders.controls['min_qty'].dirty || makeOrders.controls['min_qty'].touched)" class="text-danger">
+                                <div *ngIf="makeOrders.controls['min_qty'].errors.required">Please enter min quantity</div> 
+                               
+                              </div>
+                              </div>
+                        </div>
+                       
+                        <div class="col-md-6">
+                            <div class="myfloating">
+                                        <div class="form-floating ">
+                                            <input type="text" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="max_qty" placeholder="Enter email" name="email">
+                                            <label for="email">Max. Quantity<sup>*</sup></label>
+                                          </div>
+                                      </div>
+                                      <div class="my-error">
+                                       <div *ngIf="makeOrders.controls['min_qty'].invalid && (makeOrders.controls['min_qty'].dirty || makeOrders.controls['min_qty'].touched)" class="text-danger">
+                                <div *ngIf="makeOrders.controls['min_qty'].errors.required">Please enter max quantity</div>  
+                                <div></div>
+                               </div>
+                              </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top: -18px;">
+                            <div class="my-error">
+                                <div *ngIf="minMaxQuantityValidator() && (makeOrders.controls['min_qty'].dirty || makeOrders.controls['max_qty'].dirty)" class="text-danger">
+                                    Min Quantity should not be greater than Max Quantity
+                                  </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="myfloating">
+                                <div class="form-floating ">
+                                
+                                    <input type="text" class="form-control" id="email" formControlName="remarks" placeholder="Enter email" name="email">
+                                    <label for="email">Remarks</label>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border-top: 1px dotted #858585;">
+                    <!-- <button type="submit" (click)="makeOrder()">Submit</button> -->
+                    <button style="width:100%; background: #F1B435; color: #000;"  [disabled]="makeOrders.invalid"  type="submit" (click)="makeOrder()" class="btn btn-outline-dark formBtn">Submit</button>
+                </div>
+            </div>
+
+        </form>
+        
+    </div>
+  
+</ng-template>
+
+<ng-template #content2 let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Aggregated View</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <div class="singleData"  id="single">
+            <div *ngIf="currentTab == 'tab1'">
+                <div class="table-responsive">
+                    <table class="table" id="deposit">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Posted by
+                                </th>
+                                <th>Unit Price <i class="fa-solid fa-arrow-up" style="cursor: pointer;"></i><i
+                                        class="fa-solid fa-arrow-down d-none" style="cursor: pointer;"></i></th>
+                                <th>Quantity</th>
+                                <th>Payment</th>
+                                <th>Order Limit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="infoTable">
+                            <tr  *ngFor="let data of orderList">
+                                <td class="withname d-flex align-items-center">
+                                    <div class="firstLetter">S</div>
+                                    <div>
+                                        <span>Nobody</span><small>0 Trades | 0% Completion rate</small>
+                                    </div>
+                                </td>
+                                <td class="inr">
+                                    {{data.price}} <span> INR</span>
+                                </td>
+
+                                <td class="inr">
+                                    5,000 <span class="bitcoin"> BTC</span>
+                                </td>
+                                <td class="payment-method">
+                                    <span style="color: rgb(58, 129, 241);">GOOGLEPAY</span><span
+                                        style="color: rgb(239, 127, 28);">IMPS</span><span
+                                        style="color: rgb(149, 121, 199);">PHONEPE</span><span
+                                        style="color: rgb(45, 169, 79);">UPI</span>
+                                </td>
+                                <td class="inr">
+                                    990.0 ~ 49,995.03333<span class="bitcoin"> INR</span>
+                                </td>
+                               
+                                <td class="action-links buy-btn">
+                                    <a href="">Buy BTC</a>
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+           
+         </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

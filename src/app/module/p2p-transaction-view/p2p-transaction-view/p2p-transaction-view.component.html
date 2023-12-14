@@ -1,0 +1,223 @@
+<section class=" p-tow-p-padding" style="overflow: hidden;">
+    <div class="row pt-5">
+        <div class="col-md-3">
+            <div class="card-p">
+                <div class="d-flex align-items-center">
+                    <div class="iarea" style="background:none">
+                        <!-- <i class="fa-solid fa-calculator"></i> -->
+                        <img class="img-fluid" src="assets/images/ikons/fake-crypto.png">
+                    </div>
+                    <div style="width:85%">
+                        <p class="tit-p1"> Total Crypto</p>
+                        <div class="mngd-flex">
+                            <div><p class="tit-p2">58544622</p></div>
+                            <div><a class="tit-url mb-0">View all</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-p">
+                <div class="d-flex align-items-center">
+                    <div class="iarea" style="background:none">
+                        <img class="img-fluid" src="assets/images/ikons/bank-68.png">
+                    </div>
+                    <div style="width:85%">
+                        <p class="tit-p1"> Total Order</p>
+                        <div class="mngd-flex">
+                            <div><p class="tit-p2">100</p></div>
+                            <div><a class="tit-url mb-0">View all</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-p">
+                <a routerLink="/p2p-pending-order" class="d-flex align-items-center">
+                    <div class="iarea">
+                        <img class="img-fluid" src="assets/images/ikons/sand-tym.png">
+                    </div>
+                    <div>
+                        <p class="tit-p1"> Pending Order</p>
+                        <p class="tit-p2">5</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-p">
+                <div class="d-flex align-items-center">
+                    <div class="iarea">
+                        <i style="color:#f1b435" class="fa-solid fa-circle-plus"></i>
+                    </div>
+                    <div>
+                        <!-- <p class="tit-p1"> New Order</p> -->
+                        <a routerLink="/p2p" class="tit-p2">Place New Order</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center  mt-5">
+        <div class="col-md-6"><h2 class="titleheading1">Last Transaction</h2></div>
+        <div class="col-md-6">
+            <div class="text-end">
+                <a class="tran-view-all">View all transaction</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mt-2">
+            <div class="table-responsive">
+                <table class="table" id="deposit">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Symbol</th>
+                            <th>Txn Id</th>
+                            <th>Challan Id</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Payment Mode</th>
+                            <th>Payment Status</th>
+                            <th>Remaining Amount</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="infoTable">
+                        <tr>
+                            <td>16/07/2023 - 2:24 pm</td>
+                            <td><img style="width:25px; margin-right: 6px;" src="assets/images/ikons/USDT.png">USDT</td>
+                            <td>Tnx-2587412369</td>
+                            <td>CHLN-25684153</td>
+                            <td>2000</td>
+                            <td>180200</td>
+                            <td class="payment-method">
+                               <span >PHONEPEY</span>
+                            </td>
+                            <td><span style="">Success</span></td>
+                            <td><span style="color:#ff3c3c">25000</span></td>
+                            <td><span style="color:#ff3c3c">18/07/2023</span></td>
+                        </tr>
+                        <tr>
+                            <td>16/07/2023 - 2:24 pm</td>
+                            <td><img style="width:25px; margin-right: 6px;" src="assets/images/ikons/ETH.png">ETH</td>
+                            <td>Tnx-2587412369</td>
+                            <td>CHLN-25684153</td>
+                            <td>2000</td>
+                            <td>180200</td>
+                            <td class="payment-method">
+                                <span >IMPS</span>
+                            </td>
+                            <td><span >Success</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>16/07/2023 - 2:24 pm</td>
+                            <td><img style="width:25px; margin-right: 6px;" src="assets/images/ikons/ETH.png">ETH</td>
+                            <td>Tnx-2587412369</td>
+                            <td>CHLN-25684153</td>
+                            <td>2000</td>
+                            <td>180200</td>
+                            <td class="payment-method">
+                                <span >IMPS</span>
+                            </td>
+                            <td><span style="color: rgb(239, 127, 28);">Pending</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>16/07/2023 - 2:24 pm</td>
+                            <td><img style="width:25px; margin-right: 6px;" src="assets/images/ikons/USDT.png">USDT</td>
+                            <td>Tnx-2587412369</td>
+                            <td>CHLN-25684153</td>
+                            <td>2000</td>
+                            <td>180200</td>
+                            <td class="payment-method">
+                               <span >PHONEPEY</span>
+                            </td>
+                            <td><span style="">Success</span></td>
+                            <td><span style="color:#ff3c3c">25000</span></td>
+                            <td><span style="color:#ff3c3c">18/07/2023</span></td>
+                        </tr>
+                        <tr>
+                            <td>16/07/2023 - 2:24 pm</td>
+                            <td><img style="width:25px; margin-right: 6px;" src="assets/images/ikons/ETH.png">ETH</td>
+                            <td>Tnx-2587412369</td>
+                            <td>CHLN-25684153</td>
+                            <td>2000</td>
+                            <td>180200</td>
+                            <td class="payment-method">
+                                <span >IMPS</span>
+                            </td>
+                            <td><span >Success</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>16/07/2023 - 2:24 pm</td>
+                            <td><img style="width:25px; margin-right: 6px;" src="assets/images/ikons/ETH.png">ETH</td>
+                            <td>Tnx-2587412369</td>
+                            <td>CHLN-25684153</td>
+                            <td>2000</td>
+                            <td>180200</td>
+                            <td class="payment-method">
+                                <span >IMPS</span>
+                            </td>
+                            <td><span style="color: rgb(239, 127, 28);">Pending</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>16/07/2023 - 2:24 pm</td>
+                            <td><img style="width:25px; margin-right: 6px;" src="assets/images/ikons/USDT.png">USDT</td>
+                            <td>Tnx-2587412369</td>
+                            <td>CHLN-25684153</td>
+                            <td>2000</td>
+                            <td>180200</td>
+                            <td class="payment-method">
+                               <span >PHONEPEY</span>
+                            </td>
+                            <td><span style="">Success</span></td>
+                            <td><span style="color:#ff3c3c">25000</span></td>
+                            <td><span style="color:#ff3c3c">18/07/2023</span></td>
+                        </tr>
+                        <tr>
+                            <td>16/07/2023 - 2:24 pm</td>
+                            <td><img style="width:25px; margin-right: 6px;" src="assets/images/ikons/ETH.png">ETH</td>
+                            <td>Tnx-2587412369</td>
+                            <td>CHLN-25684153</td>
+                            <td>2000</td>
+                            <td>180200</td>
+                            <td class="payment-method">
+                                <span >IMPS</span>
+                            </td>
+                            <td><span >Success</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>16/07/2023 - 2:24 pm</td>
+                            <td><img style="width:25px; margin-right: 6px;" src="assets/images/ikons/ETH.png">ETH</td>
+                            <td>Tnx-2587412369</td>
+                            <td>CHLN-25684153</td>
+                            <td>2000</td>
+                            <td>180200</td>
+                            <td class="payment-method">
+                                <span >IMPS</span>
+                            </td>
+                            <td><span style="color: rgb(239, 127, 28);">Pending</span></td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </section>

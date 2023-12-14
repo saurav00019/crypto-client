@@ -1,0 +1,80 @@
+.card-p{
+    background: #272C4B;
+    padding:15px;
+    border-radius: 15px;
+    .iarea{
+        width: 50px;
+    height: 50px;
+    border-radius: 75%;
+    background: #000;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+            i{
+                font-size: 20px;
+                color:#a3a3a3;
+            }
+    }
+    .tit-p1{
+        font-size: 14px;
+        margin-bottom: 0px;
+        color:#a3a3a3;
+    }
+    .tit-p2{
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 0px;
+        color:#fff;
+    }
+}
+.mngd-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.tit-url{
+    font-size: 12px;
+    color: #2196F3;
+}
+
+.table tr td {
+    color: var(--light-gray);
+}
+
+.table tr th {
+    padding: 1rem 1rem !important;
+    font-size: 14px;
+    font-weight: 500;
+    color: #b1b1b1;
+}
+
+#deposit tr td,
+#deposit tr th {
+    padding: 8px 1rem;
+    border-bottom: 1px solid #333 !important;
+    white-space: nowrap;
+}
+
+#deposit tr th {
+    background-color: #28304E !important;
+    border-bottom: 1px solid #686868 !important;
+}
+.btn-dl1 {
+    background: #9579c759;
+    color: #fff;
+    border: solid 1px #9579c7;
+    font-size: 11px;
+}
+.btn-dl1:hover {
+    background: #9579c7;
+    
+}
+.titleheading1{
+    color: #919191;
+    font-size: 20px;
+}
+.tran-view-all{
+    font-size: 14px;
+    margin-right: 15px;
+}
+

@@ -1,0 +1,24 @@
+<div class="accounts p-3">
+    <div class="row">
+        <div class="col-xxl-12 col-xl-10 col-md-10 col-12">
+            <ul class="d-flex ">
+                <li class="mx-3 "><a [routerLink]="['/account/myaccount']" class="active">My
+                        account</a></li>
+                <li class="mx-3"><a [routerLink]="['/account/kyc']">Update
+                        KYC <small>(Not Verified)</small></a></li>
+                <li class="mx-3"><a [routerLink]="['/account/login_history']">Login History</a></li>
+                <li class="mx-3"><a [routerLink]="['/account/authenticator']">Security</a></li>
+                <li class="mx-3"><a [routerLink]="['/account/api']">API</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-xxl-10 col-xl-10 col-lg-9 col-12">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-xxl-2 col-xl-2 col-md-3  col-12 right-side d-lg-block d-none">
+            <div> <app-order-place></app-order-place> </div>
+
+        </div>
+    </div>
+</div>

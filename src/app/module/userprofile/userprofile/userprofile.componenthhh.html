@@ -1,0 +1,673 @@
+<section class="page-padding p-tow-p-padding" style="overflow: hidden;">
+    <div class="row pt-5">
+        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3">
+            <div class="profile-box">
+                <div class="d-flex  mb-4">
+                    <div class="avt me-3" *ngIf="((profileImg==='') || (profileImg==='assets/images/demouser.png'))">
+                        <div class="circle">
+                            <img class="profile_pic" src="assets/images/demouser.png">
+                        </div>
+                        <div class="p-image">
+                            <i class="fa fa-camera upload-button"></i>
+                            <input class="file-upload" type="file" accept="image/*" (change)="onFileSelected($event)"
+                                #file />
+                        </div>
+                    </div>
+                    <div class="avt me-3" *ngIf="profileImg!=''">
+                        <div class="circle">
+                            <img class="profile_pic" src={{profileImg}}>
+                        </div>
+                        <div class="p-image">
+                            <i class="fa fa-camera upload-button"></i>
+                            <input class="file-upload" type="file" accept="image/*" (change)="onFileSelected($event)"
+                                #file />
+                        </div>
+                    </div>
+                    <div class="dsection1">
+                        <p class="">{{first}} {{last}}</p>
+                        <div class="d-flex">
+                            <p class="p-label">Pan:</p>
+                            <p>XXXXXXXXXXX</p>
+                        </div>
+                        <div class="d-flex">
+                            <p class="p-label">DOB:</p>
+                            <p>{{this.date}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- tabnav  -->
+                <div class="tabnavc">
+                    <ul class="tabnavc-ul">
+                        <li [ngClass]="{'active': currentTab == 'tab1'}" (click)="nvatabc ('tab1')">
+                            <div class="tabnavc-a ">
+                                <div><span class="tabnavc-txt">Personal Details</span></div>
+                                <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                            </div>
+                        </li>
+                        <li [ngClass]="{'active': currentTab == 'tab2'}" (click)="nvatabc ('tab2')">
+                            <div class="tabnavc-a">
+                                <div><span class="tabnavc-txt">Bank Details</span></div>
+                                <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                            </div>
+                        </li>
+                        <li [ngClass]="{'active': currentTab == 'tab5'}" (click)="nvatabc ('tab5')">
+                            <div class="tabnavc-a">
+                                <div><span class="tabnavc-txt">Documents</span></div>
+                                <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                            </div>
+                        </li>
+                        <li [ngClass]="{'active': currentTab == 'tab3'}" (click)="nvatabc ('tab3')">
+                            <div class="tabnavc-a">
+                                <div><span class="tabnavc-txt">Change Password</span></div>
+                                <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                            </div>
+                        </li>
+                        
+                        <li style="visibility: hidden;" [ngClass]="{'active': currentTab == 'tab4'}"
+                            (click)="nvatabc ('tab4')">
+                            <div class="tabnavc-a">
+                                <div><span class="tabnavc-txt">Nominee Details</span></div>
+                                <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg-8 col-xl-8 col-xxl-9 navtab-height">
+            <div class="profile-box">
+                <div class="add-class-for-show-and-hide" *ngIf="currentTab == 'tab1'">
+                    <div>
+                        <h5 class="profile-bold-text "> Personal details</h5>
+                    </div>
+                    <form [formGroup]="personalForm">
+                        <div class="row">
+
+                            <div class="col-md-12 boder-b1">
+                                <div class="pro-personal-val ">
+                                    <div>
+                                        <div class="personal-label"><i class="fa fa-mobile me-2" aria-hidden="true"></i>
+                                            <span>Mobile</span></div>
+                                        <p class="mb-0">{{ phone }}</p>
+                                    </div>
+                                    <div>
+                                        <!-- <button class="btn btn-link btn-sm">Edit</button> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 boder-b1">
+                                <div class="pro-personal-val ">
+                                    <div>
+                                        <div class="personal-label"><i class="fa fa-envelope-o me-2"
+                                                aria-hidden="true"></i> <span>Email id</span></div>
+                                        <p class="mb-0">{{ email }}</p>
+                                    </div>
+                                    <div>
+                                        <!-- <button class="btn btn-link btn-sm">Edit</button> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 boder-b1">
+                                <div class="row ">
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>Gender</span></div>
+                                                <p class="mb-0">{{ personalForm.get('gender').value === 1 ? 'Male' :
+                                                    personalForm.get('gender').value === 2 ? 'Female' :
+                                                    personalForm.get('gender').value === 3 ? 'Others' : 'Unknown' }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>Marital Status</span></div>
+                                                <p class="mb-0">{{ personalForm.get('maritalStatus').value === 1 ?
+                                                    'Married' : 'Unmarried' }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>Qualification</span></div>
+                                                <p class="mb-0">{{ personalForm.get('qualification').value === 1 ?
+                                                    "Bachelor's Degree" :
+                                                    personalForm.get('qualification').value === 2 ? "Vocational
+                                                    Qualification" :
+                                                    personalForm.get('qualification').value === 3 ? "Master's Degree" :
+                                                    personalForm.get('qualification').value === 4 ? "Doctorate or
+                                                    higher" :
+                                                    personalForm.get('qualification').value === 5 ? "Primary School" :
+                                                    personalForm.get('qualification').value === 6 ? "High School" :
+                                                    "Unknown" }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>Occupation</span></div>
+                                                <p class="mb-0">{{ personalForm.get('occupation').value === 1 ? "Private
+                                                    Sector" :
+                                                    personalForm.get('occupation').value === 2 ? "Government Service" :
+                                                    personalForm.get('occupation').value === 3 ? "Public Sector" :
+                                                    personalForm.get('occupation').value === 4 ? "Agriculturist" :
+                                                    personalForm.get('occupation').value === 5 ? "Professional" :
+                                                    personalForm.get('occupation').value === 6 ? "Business" :
+                                                    personalForm.get('occupation').value === 7 ? "Housewife" :
+                                                    personalForm.get('occupation').value === 8 ? "Retired" :
+                                                    personalForm.get('occupation').value === 9 ? "Student" :"Unknown" }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 boder-b1">
+                                <div class="row ">
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>Annual Income (in Lakhs)</span></div>
+                                                <p class="mb-0">{{ personalForm.get('annualIncome').value }} Lakhs</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>Stack Market Exp.</span></div>
+                                                <p class="mb-0">{{ personalForm.get('stockMarketExp').value }} Years</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>Net Worth (in Lakhs)</span></div>
+                                                <p class="mb-0">{{ personalForm.get('netWorth').value }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"><i class="fa fa-map-marker me-2"
+                                                aria-hidden="true"></i> <span>Address</span></div>
+                                        <p class="mb-0">{{ address }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="add-class-for-show-and-hide" *ngIf="currentTab == 'tab2'">
+                    
+                    <div>
+                        <h5 class="profile-bold-text "> Banking details</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="bankcard cardhover  mt-4">
+                                <div class="d-flex justify-content-between align-items-center ps-5 pe-5 pt-4 pb-3">
+                                    <div><p class="bankname-txt" style="font-size: 18px; color:#fff">{{bankName}}</p></div>
+                                    <div class="chipicon"><img src="assets/images/chip.png" alt="chip"></div>
+                                </div>
+                               
+                                <div class=" text-center">
+                                   <p class="" style="color:#fff; font-size: 20px; letter-spacing: 5px;"><span class="personal-label me-2" style="color:#fff; font-size: 13px;">Bank Account Number</span><br><b>{{maskedValue}}</b></p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center  ps-5 pe-5 pt-4 pb-3">
+                                    <div>
+                                        <div>
+                                            <div class="personal-label"> <span style="color:#fff; font-size: 13px; font-weight: 300;">Account Name Holder</span></div>
+                                            <p class="mb-0" style="color:#fff">{{accountName}}</p>
+                                        </div>
+                                    </div>
+                                   
+                                    <div>
+                                        <div class=" text-end"> <span class="text-end" style="color:#fff; font-size: 13px; font-weight: 300;">IFSC Code</span></div>
+                                        <p class="mb-0 text-end" style="color:#fff">{{ifsc}}</p>
+                                    </div>
+                                </div>
+                                <div class="ring"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-md-12">
+                            <div class="row default-bank-checked">
+                                <div class="col-md-12">
+                                    <div class="pro-personal-val2 ">
+                                        <div>
+                                            <p class="bankname-txt">{{bankName}}</p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="pro-personal-val2 ">
+                                        <div>
+                                            <p class=""><span class="personal-label me-2">Bank Account
+                                                    Number</span>{{maskedValue}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="pro-personal-val boder-b1">
+                                        <div>
+                                            <div class="personal-label"> <span>Account Name Holder</span></div>
+                                            <p class="mb-0">{{accountName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="pro-personal-val boder-b1">
+                                        <div>
+                                            <div class="personal-label"> <span>IFSC Code</span></div>
+                                            <p class="mb-0">{{ifsc}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="add-class-for-show-and-hide" *ngIf="currentTab == 'tab5'">
+                    
+                    
+                    <div class="row">
+                        
+
+                        <div  class="col-md-6">
+                            <div><h5 class="profile-bold-text mb-5" >Pan Details</h5></div>
+                            <div class="row pan-div pan-bg cardhover hovershow" style="position: relative;">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div>
+                                                <img style="height: 46px; filter: drop-shadow(2px 0px 5px red);" src="assets/images/india-tax.png">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="text-end">
+                                                <img style="height: 46px; filter: drop-shadow(2px 0px 5px red);" src="assets/images/ogvt-ind.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <div class=" ">
+                                        <div class="mt-5 pantext1">
+                                            <p class="" style="color:#000"><span class=" me-2">Name</span><b>{{first}} {{last}}</b></p>
+                                        </div>
+                                     </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class=" ">
+                                        <div class=" pantext1">
+                                            <p class="" style="color:#000"><span class=" me-2">DOB</span><b>{{this.date}}</b></p>
+                                        </div>
+                                     </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class=" mb-5">
+                                        <div class=" pantext1">
+                                            <p class="" style="color:#000"><span class=" me-2">Pan Number</span><br><b>XXXXXXXX78A</b></p>
+                                        </div>
+                                     </div>
+                                </div>
+                                <div class="hover-show-1">
+                                    <div class="ringicon"><i class="fa-solid fa-magnifying-glass-plus"  (click)="viewPen(content4,panImage)"> </i> </div>
+                                    <p class="pretext">Preview</p>
+                                </div>
+                            </div>
+                            
+                       </div>
+                     
+
+                       <div  class="col-md-6">
+                        <div><h5 class="profile-bold-text mb-5" >Aadhar Details</h5></div>
+                        <div class="row pan-div aadhar-bg cardhover hovershow" style="position: relative;">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div>
+                                            <img style="height: 40px;" src="assets/images/india-gov-logo.png">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-end">
+                                            <img style="width: 100%;" src="assets/images/aadhar-strip1.png">
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="text-end">
+                                            <img style="height: 40px;" src="assets/images/Aadhaar_Logo.svg.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class=" ">
+                                    <div class="mt-5 pantext1">
+                                        <p class="" style="color:#000"><span class=" me-2">Name</span><b>{{first}} {{last}}</b></p>
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class=" ">
+                                    <div class=" pantext1">
+                                        <p class="" style="color:#000"><span class=" me-2">Gender</span><b>
+                                          {{ personalForm.get('gender').value === 1 ? 'Male' :
+                                                personalForm.get('gender').value === 2 ? 'Female' :
+                                                personalForm.get('gender').value === 3 ? 'Others' : 'Unknown' }}
+                                        </b></p>
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class=" mb-5">
+                                    <div class=" pantext1">
+                                        <p class="" style="color:#000"><span class=" me-2">Aadhar Number</span><br><b>xxxxxxxx5878</b></p>
+                                    </div>
+                                 </div>
+                            </div>
+
+                            <div class="hover-show-1">
+                                <div class="ringicon"><i class="fa-solid fa-magnifying-glass-plus" style="cursor: pointer;" (click)="viewAadhar(content5, aadharImage)"></i></div>
+                                <p class="pretext">Preview</p>
+                            </div>
+                        </div>
+                       
+                        </div>
+
+                        <div *ngIf="panImage != null" class="col-md-6" >
+                            <div><h5 class="profile-bold-text mb-5" >Pan Details</h5></div>
+                            <div class="row pan-div-maual1 aadhar-bg cardhover" style="background:#24273B">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img style="width: 100%;height: 240px; border-radius: 8px; text-align: center;margin: 0 auto;" [src]="panImage">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hover-show-btn1">
+                                    <div class="ringicon"><i class="fa-solid fa-magnifying-glass-plus" style="cursor: pointer;" (click)="viewPen(content4,panImage)"></i></div>
+                                    <p class="pretext">Preview</p>
+                                </div>
+                            </div>
+                        </div>
+                           <div *ngIf="aadharImage != null" class="col-md-6" >
+                            <div><h5 class="profile-bold-text mb-5" >Aadhar Details</h5></div>
+                            <div class="row pan-div-maual2 aadhar-bg cardhover" style="background:#24273B">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <pdf-viewer [src]=aadharImage
+                                                [rotation]="0"
+                                                [original-size]="false"
+                                                [show-all]="false"
+                                                [fit-to-page]="true"
+                                                [zoom]="0.4"
+                                                [zoom-scale]="'page-width'"
+                                                [stick-to-page]="false"
+                                                [render-text]="false"
+                                                [external-link-target]="'blank'"
+                                                [autoresize]="true"
+                                                [show-borders]="true"
+                                                style="width: 100%; height: 240px; margin:0 auto; overflow: hidden !important;"></pdf-viewer>
+                                     
+                                    </div>
+                                </div>
+                                <div class="hover-show-btn2">
+                                    <div class="ringicon"><i class="fa-solid fa-magnifying-glass-plus" style="cursor: pointer;" (click)="viewAadhar(content5, aadharImage)"></i></div>
+                                    <p class="pretext">Preview</p>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="add-class-for-show-and-hide" *ngIf="currentTab == 'tab3'">
+                    <div>
+                        <h5 class="profile-bold-text mb-5">Change Password</h5>
+                    </div>
+                    <form [formGroup]="passwordForm" >
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row ">
+                                    <div class="col-md-8 m-auto">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="pro-personal-val2 w-100">
+                                                    <div class="form-floating mb-4 w-100">
+                                                        <input formControlName="oldPassword" class="form-control ab-border0" style="color:#fff" [type]="password" placeholder="." readonly onfocus="this.removeAttribute('readonly');">
+                                                            
+                                                        
+                                                        <label> Old password </label>
+
+                                                        <div (click)="oldPassword()">
+                                                            <i  class="fa fa-eye" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  *ngIf="!show"> </i> 
+                                                            <i  class="fa fa-eye-slash" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  *ngIf="show"> </i> 
+                                                        </div>
+                                                        
+                                                         
+                                                         <div class="text-danger" *ngIf="f['oldPassword'].invalid && (f['oldPassword'].dirty || f['oldPassword'].touched)"
+                                                          >Please insert old password</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="pro-personal-val2 w-100">
+                                                    <div class="form-floating mb-4 w-100">
+                                                        <input formControlName="newPassword" class="form-control ab-border0"
+                                                            style="color:#fff" [type]="newPassword" placeholder="." readonly onfocus="this.removeAttribute('readonly');">
+                                                        <label>New password</label>
+                                                        <div (click)="newPassword()">
+                                                            <i  class="fa fa-eye" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  *ngIf="!newP"></i> 
+                                                            <i  class="fa fa-eye-slash" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  *ngIf="newP"></i> 
+                                                        </div>
+
+                                                        <div class="text-danger" *ngIf="f['newPassword'].invalid && (f['newPassword'].dirty || f['newPassword'].touched)"
+                                                        >
+                                                        <div class="text-danger" *ngIf="f['newPassword']errors['pattern']">Minimum 8-digit password: Alphanumeric & Special character required. </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="pro-personal-val2 w-100">
+                                                    <div class="form-floating mb-4 w-100">
+                                                        <input formControlName="confirmPassword" class="form-control ab-border0"
+                                                            style="color:#fff" [type]="confirmPass" placeholder="." readonly onfocus="this.removeAttribute('readonly');">
+                                                        <label>Confirm password</label>
+                                                        <div (click)="confirmPassword()">
+                                                            <i  class="fa fa-eye" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  *ngIf="!confirmP"></i> 
+                                                            <i  class="fa fa-eye-slash" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  *ngIf="confirmP"></i> 
+                                                        </div>
+                                                        <i  class="fa fa-eye" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;cursor: pointer;"></i>
+
+                                                        <div class="text-danger" *ngIf="f['confirmPassword'].invalid && (f['confirmPassword'].dirty || f['confirmPassword'].touched)"
+                                                          >Please insert confirm password</div>
+
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+
+                                   
+
+                                            <div class="col-md-12" *ngIf="otpSent">
+                                                <div class="pro-personal-val2 w-100">
+                                                    <div class="form-floating mb-4 w-100">
+                                                        <input style="letter-spacing: 22px;" formControlName="otp"
+                                                            class="form-control ab-border0" style="color:#fff"
+                                                            type="text" placeholder=".">
+                                                        <label>Enter your OTP</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="float-end">
+                                                        <button class="btn btn-sm btn-outline-primary"
+                                                            (click)="changePassword()">VERIFY OTP</button>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-12">
+                                                <div class="float-end">
+                                                    <button class="btn btn-sm btn-outline-primary"
+                                                    (click)="changePassword()" [disabled]="passwordForm.invalid" style="border: 1px solid #f1b435; color: #f1b435;">Change Password</button>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-12" *ngIf="successMsg">
+                                            <div class="success-div">
+                                                <div><img style="width: 144px;" src="assets/images/reset-successfully.png"></div>
+                                                <div>
+                                                    <h5>Congrats!!.</h5>
+                                                    <p>Your Password has been changed Successfully.</p>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="add-class-for-show-and-hide" *ngIf="currentTab == 'tab4'">
+                    <div>
+                        <h5 class="profile-bold-text "> Nominee details</h5>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <div class="mb-2 mt-2 d-grid" *ngIf="nomineeForm.disabled">
+                                <button class="btn btn-black btn-slide-login btn-block">Edit Nominee Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <form [formGroup]="nomineeForm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-4">
+                                            <input class="form-control ab-border0" formControlName="name" type="text"
+                                                placeholder=".">
+                                            <label>Name</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-floating width-64 mb-4">
+                                            <select class="form-select ab-border0" id="sel3"
+                                                formControlName="relationship" style="font-size: 14px;">
+                                                <option value="">--Select--</option>
+                                                <option [value]="1"
+                                                    [selected]="nomineeForm.get('relationship').value === 1">Son
+                                                </option>
+                                                <option [value]="2"
+                                                    [selected]="nomineeForm.get('relationship').value === 2">Daughter
+                                                </option>
+                                                <option [value]="3"
+                                                    [selected]="nomineeForm.get('relationship').value === 3">Father
+                                                </option>
+                                                <option [value]="4"
+                                                    [selected]="nomineeForm.get('relationship').value === 4">Mother
+                                                </option>
+                                                <option [value]="5"
+                                                    [selected]="nomineeForm.get('relationship').value === 5">Grand Son
+                                                </option>
+                                                <option [value]="6"
+                                                    [selected]="nomineeForm.get('relationship').value === 6">Grand
+                                                    Daughter</option>
+                                            </select>
+                                            <label for="sel3" class="form-label">Relationship</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-4">
+                                            <input class="form-control ab-border0" formControlName="dateOfBirth"
+                                                type="date" placeholder=".">
+                                            <label>Date of Birth</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-4">
+                                            <input class="form-control ab-border0" type="text"
+                                                formControlName="panNumber" placeholder=".">
+                                            <label>Pan number</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+<ng-template #content4 let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Pen Card</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<img [src]="this.penUrl" style="width: 100%;" alt="">
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+
+
+
+<ng-template #content5 let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Aadhaar Card</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <pdf-viewer [src]=aadharUrl
+        [rotation]="0"
+        [original-size]="false"
+        [show-all]="false"
+        [fit-to-page]="true"
+        [zoom]="0.4"
+        [zoom-scale]="'page-width'"
+        [stick-to-page]="false"
+        [render-text]="false"
+        [external-link-target]="'blank'"
+        [autoresize]="true"
+        [show-borders]="true"
+        style="width: 100%; height: 240px; margin:0 auto; overflow: hidden !important;"></pdf-viewer>
+		
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

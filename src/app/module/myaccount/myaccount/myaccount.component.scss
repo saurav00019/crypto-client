@@ -1,0 +1,19 @@
+.my-account{background-color: var(--black);min-height: 100vh;color: var(--white);}
+.left-side{background: #212741;padding: 1rem 2rem;border-radius: 2px;min-height: 94vh;}
+.left-side h6{border-bottom: 1px solid #4e4c4c;margin-bottom: 1rem;padding: 1rem 0 ;}
+.link{background: #151C2E;padding: 12px 16px;border-radius: 4px;display: flex; justify-content: space-between; align-items: center;}
+.link span{font-size: 14px;color: var(--white);}
+.link span i{color: #5bd6ec;font-size: 16px;}
+.referal{color: var(--light-gray);margin-top: 1rem;}
+.referal h5{font-size: 14px;}
+.password input{background: #151C2E;border: none;color: var(--white);font-size: 14px;padding: 12px 16px;}
+.form-control:focus{box-shadow: none;}
+.pass-btn{font-size: 14px;margin: 2rem 0;}
+.pass-btn a{background: #5bd6ec;padding: 8px 12px;color: var(--black);border-radius: 4px;font-weight: 600;}
+.pass-btn a:hover{background: #9feaf7}
+.pass-btn a:first-child{background: #f05a24 ;color: var(--white);}
+.pass-btn a:first-child:hover{background-color: #ff6730;}
+.nav-tabs .nav-link.active{background-color: transparent;color:#5bd6ec ;border-bottom: 1px solid;}
+.nav-tabs .nav-link{margin: 0;border: none;}
+.nav-link{color: var(--light-gray);}
+.nav-tabs{border-bottom: 1px solid #666;}

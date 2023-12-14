@@ -1,0 +1,135 @@
+
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white p-two-p-height-scroll">
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3">
+                <div class="col-md-6">
+                    <h2 class="pageheading">Challan Details</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-3 mb-3">
+                <div class="col-md-12">
+                    <div class="card pt-4">
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Challan No:-</div>
+                                    <div class="bdval1">CHLN-125478</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Created on:-</div>
+                                    <div class="bdval1">01-Aug-2023</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Order id:-</div>
+                                    <div class="bdval1">ODR-256894</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Name:-</div>
+                                    <div class="bdval1">Yendra Narayan Verma</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="filter d-flex align-items-center mb-2 justify-content-end">
+                                    <div ngbDropdown class="d-inline-block me-2">
+                                        <button style="font-size: 14px;" type="button" class="btn btn-outline-primary btn-sm" id="dropdownBasic1" ngbDropdownToggle>
+                                            Take Action
+                                        </button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                            <a ngbDropdownItem><i class="fa-regular fa-envelope me-2"></i> Send Mail</a>
+                                            <a ngbDropdownItem routerLink="/risk-module"><i class="fa-solid fa-triangle-exclamation me-2"></i> Send Message</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-success btn-sm" style="font-size: 14px;"><i  class="fa-regular fa-file-excel me-1"></i> Download</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive tradebook-tbl">
+                            <table id="statsTable" class="table" style="margin-bottom: 2px;">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>
+                                            <div class="chln-tbl-tit">Email</div>
+                                            <div class="chln-tbl-val">yendranarayanverma@gmail.com</div>
+                                        </th>
+                                        <th>
+                                            <div class="chln-tbl-tit">Total Amount</div>
+                                            <div class="chln-tbl-val">80,00000</div>
+                                        </th>
+                                        <th>
+                                            <div class="chln-tbl-tit">Remaining Amount</div>
+                                            <div class="chln-tbl-val remaining-red">30,00000</div>
+                                        </th>
+                                        <th>
+                                            <div class="chln-tbl-tit">Status</div>
+                                            <div class="chln-tbl-val"><i class="fa-solid fa-circle me-2 text-warning"></i> Pending</div>
+                                        </th>
+                                     </tr>
+                                </thead>
+                               
+                            </table>
+                        </div>
+                        <div class="table-responsive tradebook-tbl">
+                            <table id="statsTable" class="table">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>
+                                            <div class="chln-tbl-tit">Timestamp</div>
+                                        </th>
+                                        <th>
+                                            <div class="chln-tbl-tit">Tnx id</div>
+                                        </th>
+                                        <th>
+                                            <div class="chln-tbl-tit">Payment mode</div>
+                                        </th>
+                                        <th>
+                                            <div class="chln-tbl-tit text-end me-5">Amount</div>
+                                        </th>
+                                     </tr>
+                                </thead>
+                                <tbody id="withdrawTable">
+                                    <tr>
+                                        <td>01-Aug-2023 - 6:40pm</td>
+                                        <td><span>Tnx-2568545695</span></td>
+                                        <td><span>Bank Transfer</span></td>
+                                        <td class="text-end "><span class="me-5">26,000</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>04-Aug-2023 - 8:20am</td>
+                                        <td><span>Tnx-58469587</span></td>
+                                        <td><span>UPI</span></td>
+                                        <td class="text-end "><span class="me-5">30,000</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>05-Aug-2023 - 10:25am</td>
+                                        <td><span>Tnx-58460000</span></td>
+                                        <td><span>IMPS</span></td>
+                                        <td class="text-end "><span class="me-5">25,000</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>05-Aug-2023 - 10:40am</td>
+                                        <td><span>Tnx-254712587</span></td>
+                                        <td><span>UPI</span></td>
+                                        <td class="text-end "><span class="me-5">11,0000</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-end"></td>
+                                        <td class="text-end ">Total: <span class="me-5" style="font-weight: 600;">50,00000</span></td>
+                                      </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+</div>

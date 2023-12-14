@@ -1,0 +1,12 @@
+.card{box-shadow:0 2px 8px 1px rgba(64,60,67,.34);}
+.subs div{display: flex; background: #F1F0F5    ; padding: 4px 32px 4px 4px; border-radius: 30px; width: fit-content; }
+.subs i{border: 1px solid;border-radius: 50%; background: #fff; font-size: 8px; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; }
+// .qua div{display: flex; background: #ababab; padding: 4px 32px 4px 4px; border-radius: 30px; width: fit-content; }
+// .qua img{border: 1px solid;border-radius: 50%; background: #fff; font-size: 8px; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; }
+.view-more a{background: #153729; color: #fff; padding: 4px; border-radius: 4px;border: 1px solid transparent; transition: .5s;font-size: 12px;white-space: nowrap;}
+.view-more a:hover{color:#153729 ;background: #fff;border: 1px solid #153729;}
+.table tr th, .table tr td{white-space: nowrap;}
+.buy span{ color: green; text-transform: uppercase;}
+.sell span{ color: red; text-transform: uppercase;}
+.filter label{display: flex;margin-right: 8px;}
+.filter div{border: 1px solid #bbb; padding: 4px 8px; border-radius: 24px;}

@@ -1,0 +1,89 @@
+.padmng5{
+  padding:0px 5%;
+}
+.tcard{
+  
+    /* border-radius: 8px; */
+    // border: solid 1px #e1e1e1;
+    border-radius: 8px;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.07);
+      .tcard-body{
+        padding:45px 15px;
+          .tflex{
+            display: flex;
+            align-items: center;
+              .mean-icon{
+                width: 48px;
+                height: 48px;
+                margin-right: 10px;
+              }
+              .tcard-tit{
+                font-size: 22px;
+                font-weight: 600;
+                margin-bottom: 0px;
+              }
+              .tcard-val{
+                font-size: 13px;
+                font-weight: 500;
+                margin-bottom: 0px;
+              }
+          }
+      }
+      .tcard-footer{
+        border-top: solid 1px #d1d1d1;
+        padding: 0px 15px;
+        text-align: center;
+       .tfooter-tit{
+        font-size: 12px;
+        font-weight: 300;
+        color: #757575;
+        margin-bottom: 0px;
+        }
+        .tfooter-val{
+          font-size: 14px;
+            font-weight: 600;
+          color:#000;
+          margin-bottom: 0px;
+        }
+        .border-r{
+          border-right: solid 1px #d1d1d1;
+        }
+      }
+}
+
+.tc-bg1{
+  background: #4b7ef214;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.tc-bg2 {
+  background: #e6720a1c;
+  border-radius: 0px 0px 8px 8px;
+}
+
+.tc-bg3 {
+  background: #65af451a;
+  border-radius: 0px 0px 8px 8px;
+}
+
+.p-dash-card-bg1{
+  background: url(../../../../assets/images/p2p-dash-img-all.png) no-repeat bottom;
+ max-height: calc(100vh - 92px);
+  overflow: auto;
+  background-size: cover;
+  border-radius: 8px;
+}
+
+
+
+.tcard.mycolor1 {
+  background: #5787f370;
+}
+
+.tcard.mycolor2 {
+  background: #e6720a70;
+}
+
+.tcard.mycolor3 {
+  background: #65af456b;
+}

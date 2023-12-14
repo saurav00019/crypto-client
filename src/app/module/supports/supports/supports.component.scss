@@ -1,0 +1,15 @@
+.support{background:var(--black);color: var(--white);min-height: 100vh;}
+p, h6{margin-bottom:1rem ;}
+.nav-tabs{border: none;}
+.table{white-space: nowrap;}
+.nav-tabs .nav-item{position: relative;}
+.nav-tabs .nav-item .nav-link span{position: absolute;top: 10%;left: 90%;background: #00f986;border-radius: 50%;color: var(--black);width: 15px;text-align: center;height: 15px;font-size: 10px;}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{ color: #79eef3;padding: 8px 12px; font-size: 13px; border-radius: 4px;background: transparent; }
+.nav-tabs .nav-link{color: var(--light-gray);border: none;font-size: 13px;padding: 8px 12px;font-weight: 600;}
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus{border: none;}
+.ticket{background-color: var(--dark-blue);padding: 1rem;}
+.ticket p{margin: 2rem 0;color: #ff5d5d;border:1px solid #ff5d5d;padding: 8px; }
+.new-ticket a{background: #79eef3;color: var(--black);padding: 8px;font-size: 14px;border-radius: 4px;font-weight: 500;}
+.table tr td{color: var(--light-gray);}
+.clr-sky{color: #79eef3;}
+span{font-size: 12px;}

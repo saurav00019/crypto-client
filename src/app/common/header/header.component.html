@@ -1,0 +1,141 @@
+<!-- <section class="topbgcolor top-nav-shadow navbar-top-fix" (click)="closeDropdown()">
+  <div class="container-fluid">
+    <div class="row topbgcolor">
+      <div class="col-md-12">
+        <div class="cnav-bar">
+          <div class="d-flex align-items-center">
+            <img class="nav-logo" src="assets/images/white-logo.png" />
+            <div class="nav-toggle-b" (click)="toggleSidebar()"><i class="fa fa-bars" aria-hidden="true"></i></div>
+          </div>
+          <div class="hide-992">
+            <div class="input-group mycustom-search">
+              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Search" aria-describedby="inputGroupPrepend2" required>
+              <div class="input-group-prepend">
+                <button type="submit" class="btn btn-primary" id="inputGroupPrepend2"><i class="fa fa-search" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex">
+            <div class="bd-highlight">
+              <div class="user-box dropdown px-3 hide-992">
+                <a class="d-flex align-items-center nav-link dropdown-toggle0 gap-1 dropdown-toggle-nocaret0" role="button" (click)="notificationBoolean=!notificationBoolean" aria-expanded="false">
+                  <div class="nav-notify">
+                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                  </div>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end right" [ngClass]="{'show':notificationBoolean}">
+                  <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="fa fa-user-o"></i><span>Profile</span></a></li>
+                  <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="fa fa-cog"></i><span>Settings</span></a></li>
+                  <li><div class="dropdown-divider mb-0"></div></li>
+                  <li (click)="logout()"><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="fa fa-power-off"></i><span>Logout</span></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bd-highlight dropdown" (click)="stopPropagation($event)">
+              <div class="user-box dropdown px-3">
+                <a class="d-flex align-items-center nav-link dropdown-toggle gap-1 dropdown-toggle-nocaret" role="button" (click)="toggleDropdown()" aria-expanded="false">
+                  <img src="assets/images/avatar-default.png" class="user-img" alt="user avatar">
+                  <div class="user-info hide-992">
+                    <p class="user-name mb-0">{{first}} {{last}}</p>
+                    <p class="designattion mb-0">{{email}}</p>
+                  </div>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end right" [ngClass]="{'show': menuBoolean}">
+                  <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="fa fa-user-o"></i><span>Profile</span></a></li>
+                  <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="fa fa-cog"></i><span>Settings</span></a></li>
+                  <li><div class="dropdown-divider mb-0"></div></li>
+                  <li (click)="logout()"><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="fa fa-power-off"></i><span>Logout</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<header class="">
+
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container-fluid">
+      <span class="navbar-brand">
+        <div class="header-logo-flex">
+          <div class="pp2-logo">
+              <img class="pp-logo" src="assets/images/ce-logo2.png">
+          </div>
+          <div>
+              <div class="switch-dash">
+                  <a   (click)="navigate('exchange')" class="active-pp" style=" cursor: pointer;">Exchange </a>
+                  <a   (click)="navigate('p2p')" class="active-ex" style=" cursor: pointer;">P2P trading</a>
+              </div>
+          </div>
+      </div>
+      </span>
+      <button class="navbar-toggler bg-white" type="button" aria-controls="navbarContent"
+        [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" (click)="navigate('exchange')" tabindex="0" style=" cursor: pointer;" id="navbarDropdown1" role="button">
+              Exchange
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  (click)="navigate('deposit')" tabindex="0" style="cursor: pointer;" id="navbarDropdown2" role="button">
+              Deposit
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" tabindex="0" style="cursor: pointer;"  (click)="navigate('withdraw')" id="navbarDropdown2" role="button">
+              Withdraw
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-md-none d-block" tabindex="0" style="cursor: pointer;"  (click)="navigate('wallet')" id="navbarDropdown2" role="button">
+              Wallet
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-md-none d-block" tabindex="0" style="cursor: pointer;"  (click)="navigate('invite-earn')" id="navbarDropdown2" role="button">
+              Invite & Earn
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-md-none d-block" tabindex="0" style="cursor: pointer;" (click)="navigate('account/myaccount')" id="navbarDropdown2" role="button">
+              My account
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-md-none d-block" tabindex="0" style="cursor: pointer;"   (click)="navigate('supports')" id="navbarDropdown2" role="button">
+              Support
+            </a>
+          </li>
+
+          <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+            <a class="nav-link d-md-block d-none" tabindex="0" style="cursor: pointer;" ngbDropdownToggle id="navbarDropdown3" role="button">
+              <i class="fa-solid fa-user "></i>
+            </a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu user-list">
+              <p>Devesh</p>
+              <ul>
+                <li><a routerLink="wallet">Wallet</a></li>
+                <li><a routerLink="invite-earn" ngbDropdownItem (click)="$event.preventDefault()">Invite & Earn</a></li>
+                <li><a routerLink="account/myaccount" ngbDropdownItem (click)="$event.preventDefault()">My account</a>
+                </li>
+                <li><a routerLink="supports" ngbDropdownItem (click)="$event.preventDefault()">Support</a></li>
+                <li (click)="logout()"><a class="dropdown-item d-flex align-items-center" style="cursor: pointer;">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,264 @@
+<div class=" ">
+  <div class="row middle">
+      <div class="col-xxl-12 col-xl-12 col-md-12 col-12 left-side ordertrade-book-h3">
+        <div class="table-responsive">
+            <table class="table" id="deposit">
+                <thead>
+                    <tr>
+                      
+                        <th>Symbol</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                     </tr>
+                </thead>
+                <tbody id="infoTable">
+                    <tr>
+                        <td class="tbl-img">
+                            <div class="d-flex align-items-center">
+                                <div><img class="watch-img" src="assets\images\ikons\BTC.png"></div>
+                                <div>
+                                    <div>BTC</div>
+                                    <div style="font-size: 10px;">23/10/2023: 10:40AM</div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td><span class="cl-type-buy">Buy</span></td>
+                        <td>≈ 0.0000 </td>
+                        <td>5941.16 INR </td>
+                        <td class="ms-3">
+                            <div ngbDropdown class="d-inline-block ms-3" container="body">
+                                <button type="button" class="btn mmbtn-dd" id="dropdownBasic1" ngbDropdownToggle>
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button class="btn-modify" (click)="openLg(content)" ngbDropdownItem> <i class="fa-solid fa-screwdriver-wrench me-2"></i> Modify</button>
+                                    <button class="btn-cancelord" ngbDropdownItem><i class="fa-solid fa-trash me-2"></i> Cancel</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tbl-img">
+                            <div class="d-flex align-items-center">
+                                <div><img class="watch-img" src="assets\images\ikons\BTC.png"></div>
+                                <div>
+                                    <div>BTC</div>
+                                    <div style="font-size: 10px;">23/10/2023: 10:40AM</div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td><span class="cl-type-sell">Sell</span></td>
+                        <td>≈ 0.0000 </td>
+                        <td>5941.16 INR </td>
+                        <td class="ms-3">
+                            <div ngbDropdown class="d-inline-block ms-3" container="body">
+                                <button type="button" class="btn mmbtn-dd" id="dropdownBasic1" ngbDropdownToggle>
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button class="btn-modify" (click)="openLg(content)" ngbDropdownItem> <i class="fa-solid fa-screwdriver-wrench me-2"></i> Modify</button>
+                                    <button class="btn-cancelord" ngbDropdownItem><i class="fa-solid fa-trash me-2"></i> Cancel</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tbl-img">
+                            <div class="d-flex align-items-center">
+                                <div><img class="watch-img" src="assets\images\ikons\BTC.png"></div>
+                                <div>
+                                    <div>BTC</div>
+                                    <div style="font-size: 10px;">23/10/2023: 10:40AM</div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td><span class="cl-type-buy">Buy</span></td>
+                        <td>≈ 0.0000 </td>
+                        <td>5941.16 INR </td>
+                        <td class="ms-3">
+                            <div ngbDropdown class="d-inline-block ms-3" container="body">
+                                <button type="button" class="btn mmbtn-dd" id="dropdownBasic1" ngbDropdownToggle>
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button class="btn-modify" (click)="openLg(content)" ngbDropdownItem> <i class="fa-solid fa-screwdriver-wrench me-2"></i> Modify</button>
+                                    <button class="btn-cancelord" ngbDropdownItem><i class="fa-solid fa-trash me-2"></i> Cancel</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="tbl-img">
+                            <div class="d-flex align-items-center">
+                                <div><img class="watch-img" src="assets\images\ikons\BTC.png"></div>
+                                <div>
+                                    <div>BTC</div>
+                                    <div style="font-size: 10px;">23/10/2023: 10:40AM</div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td><span class="cl-type-sell">Sell</span></td>
+                        <td>≈ 0.0000 </td>
+                        <td>5941.16 INR </td>
+                        <td class="ms-3">
+                            <div ngbDropdown class="d-inline-block ms-3" container="body">
+                                <button type="button" class="btn mmbtn-dd" id="dropdownBasic1" ngbDropdownToggle>
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button class="btn-modify" (click)="openLg(content)" ngbDropdownItem> <i class="fa-solid fa-screwdriver-wrench me-2"></i> Modify</button>
+                                    <button class="btn-cancelord" ngbDropdownItem><i class="fa-solid fa-trash me-2"></i> Cancel</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+          <!-- <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+              <li [ngbNavItem]="1">
+                  <button ngbNavLink>Order</button>
+                  <ng-template ngbNavContent>
+                      
+                  </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                  <button ngbNavLink>Closed Order</button>
+                  <ng-template ngbNavContent>
+                      <div class="table-responsive">
+                          <table class="table" id="deposit">
+                              <thead>
+                                  <tr>
+                                      <th>
+                                          <p class="mb-0 ms-3">Timestamp</p>
+                                      </th>
+                                      <th>Symbol</th>
+                                      <th>Type</th>
+                                      <th>Quantity</th>
+                                      <th>Price</th>
+                                      <th>Status</th>
+                                   </tr>
+                              </thead>
+                              <tbody id="infoTable">
+                                  <tr>
+                                      <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                      <td class="tbl-img">
+                                          <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                      </td>
+                                      <td><span class="cl-type-buy">Buy</span></td>
+                                      <td>≈ 0.0000 </td>
+                                      <td>5941.16 INR </td>
+                                      <td><span class="status-cancel">Closed</span></td>
+                                  </tr>
+                                  <tr>
+                                      <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                      <td class="tbl-img">
+                                          <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                      </td>
+                                      <td><span class="cl-type-buy">Buy</span></td>
+                                      <td>≈ 0.0000 </td>
+                                      <td>5941.16 INR </td>
+                                      <td><span class="status-cancel">Closed</span></td>
+                                  </tr>
+                                  <tr>
+                                      <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                      <td class="tbl-img">
+                                          <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                      </td>
+                                      <td><span class="cl-type-buy">Buy</span></td>
+                                      <td>≈ 0.0000 </td>
+                                      <td>5941.16 INR </td>
+                                      <td><span class="status-cancel">Closed</span></td>
+                                  </tr>
+                                  <tr>
+                                      <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                      <td class="tbl-img">
+                                          <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                      </td>
+                                      <td><span class="cl-type-buy">Buy</span></td>
+                                      <td>≈ 0.0000 </td>
+                                      <td>5941.16 INR </td>
+                                      <td><span class="status-cancel">Closed</span></td>
+                                  </tr>
+                                  <tr>
+                                      <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                      <td class="tbl-img">
+                                          <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                      </td>
+                                      <td><span class="cl-type-buy">Buy</span></td>
+                                      <td>≈ 0.0000 </td>
+                                      <td>5941.16 INR </td>
+                                      <td><span class="status-cancel">Closed</span></td>
+                                  </tr>
+                                  <tr>
+                                      <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                      <td class="tbl-img">
+                                          <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                      </td>
+                                      <td><span class="cl-type-buy">Buy</span></td>
+                                      <td>≈ 0.0000 </td>
+                                      <td>5941.16 INR </td>
+                                      <td><span class="status-cancel">Closed</span></td>
+                                  </tr>
+                                 
+                              </tbody>
+                          </table>
+                      </div>
+                  </ng-template>
+              </li>
+             
+          </ul> -->
+          
+          <!-- <div [ngbNavOutlet]="nav" class="mt-2"></div> -->
+
+</div>
+      <!-- <div class="col-xxl-2 col-xl-2 col-md-2  col-12 right-side d-lg-block d-none">
+        <div> <app-order-place> </app-order-place> </div>
+      </div> -->
+  </div>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Modify Your Order </h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<div class="mb-4">
+            <div class="form-group-custom d-flex">
+                <h6>Price</h6>
+                <input  (keypress)="numberOnly($event)" autocomplete="off" class="form-control" id="price_buy"
+                   type="text" />
+                <span>BTC</span>
+              </div>
+        </div>
+        <div class="mb-4">
+            <div class="form-group-custom d-flex">
+                <h6>Quantity</h6>
+                <input  (keypress)="numberOnly($event)" autocomplete="off" class="form-control" id="price_buy"
+                   type="text" />
+                <span>BTC</span>
+              </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button class="btn btn-success " style="width:100%">Submit</button>
+            </div>
+        </div>
+	</div>
+	<!-- <div class="modal-footer">
+		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+	</div> -->
+</ng-template>

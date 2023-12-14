@@ -1,0 +1,140 @@
+<div class="s-card scard-shadow">
+    <div class="scard-header">
+       <h2>Please fill your banking details</h2>
+    </div>
+   <form [formGroup]="bankdetform">
+    <div class="scard-body">
+       <div class="row pt-3">
+          <!-- <div class="col-md-4">
+            <div class="form-floating mb-3">
+               <input  class="form-control"  type="text" placeholder="Enter your bank Name" [ngClass]="{ 'is-invalid': submitted && f['bname'].errors }" formControlName="bname">
+               <label for="floatingInput">Bank Name <span class="text-danger">*</span></label>
+               <div *ngIf="submitted && f['bname'].errors" class="invalid-feedback">
+                  <div *ngIf="f['bname'].errors['required']">Bank Name is required</div>
+                  <div *ngIf="f['bname'].errors['pattern']">Bank Name is invalid</div>
+               </div>
+             </div>
+          
+          </div> -->
+          <div class="col-md-4">
+           
+            <div class="form-floating  mb-3">
+              <input class="form-control"  type="text" placeholder="Enter your account holder name" (keypress)="keyPressAlphaNumeric($event)" [ngClass]="{ 'is-invalid': submitted && f['aname'].errors }" formControlName="aname"/>
+              <label for="floatingInput">Account Holder Name <span class="text-danger">*</span></label>
+              <div *ngIf="submitted && f['aname'].errors" class="invalid-feedback">
+                 <div *ngIf="f['aname'].errors['required']">Account Holder's Name is required</div>
+                 <!-- <div *ngIf="f['aname'].errors['pattern']">Account Holder's Name should be in alphabets</div> -->
+              </div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            
+            <div class="form-floating  mb-3">
+              <input class="form-control"  type="text" placeholder="Enter your bank aacount nubmer"  [ngClass]="{ 'is-invalid': submitted && f['accnum'].errors }" onpaste="return false" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode)) && event.keyCode !== 32) return false;"
+               formControlName="accnum" />
+              <label for="floatingInput">Account Number <span class="text-danger">*</span></label>
+              <div *ngIf="submitted && f['accnum'].errors" class="invalid-feedback">
+                 <div *ngIf="f['accnum'].errors['required']">Account Number is required</div>
+                 <div *ngIf="f['accnum'].errors['pattern']">Account Number is invalid</div>
+                 
+              </div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            
+            <div class="form-floating  mb-3">
+              <input class="form-control"  type="text" placeholder="Enter your bank aacount nubmer" [ngClass]="{ 'is-invalid': submitted && f['confaccnum'].errors}" onpaste="return false" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode)) && event.keyCode !== 32) return false;"
+               formControlName="confaccnum" (blur)="validateAccountNumberMatch()"/>                                                                                                                   
+              <label for="floatingInput">Confirm Account Number <span class="text-danger">*</span></label>
+              <div *ngIf="submitted && f['confaccnum'].errors" class="invalid-feedback">
+                 <div *ngIf="f['confaccnum'].errors['required']">Account Number is required</div>
+                 <div *ngIf="f['confaccnum'].errors['pattern']">Account Number is invalid</div>
+                 
+              </div>
+              <div *ngIf="!isAccountNumberMismatch" class="customError">Account Numbers do not match</div>
+            </div>
+         </div>
+      
+          
+          <div class="col-md-4">
+           
+             <div class="form-floating  mb-3">
+               <input class="form-control"  type="text" placeholder="Enter your ifsc code" [ngClass]="{ 'is-invalid': submitted && f['bcode'].errors }" formControlName="bcode" (blur)="getIfscdetails($event)"/>
+               <label for="floatingInput">IFSC Code <span class="text-danger">*</span></label>
+               <div *ngIf="submitted && f['bcode'].errors" class="invalid-feedback">
+                  <div *ngIf="f['bcode'].errors['required']">IFSC Code is required</div>
+                  <div *ngIf="f['bcode'].errors['pattern']">IFSC Code is invalid</div>
+               </div>
+             </div>
+          </div>
+          <div class="col-md-4">
+            
+             <div class="form-floating mb-3">
+               <!-- <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px!important" [ngClass]="{ 'is-invalid': submitted && f['bkadd'].errors }"
+                formControlName="bkadd"></textarea> -->
+                <input type="text" class="form-control nodrop" placeholder="Leave a comment here" id="floatingTextarea2"  [ngClass]="{ 'is-invalid': submitted && f['bkadd'].errors }"
+                formControlName="bkadd" readonly>
+               <label for="floatingTextarea2" >Bank Name<span class="text-danger">*</span></label>
+               <div *ngIf="submitted && f['bkadd'].errors" class="invalid-feedback">
+                  <div *ngIf="f['bkadd'].errors['required']">Bank Name is required</div>
+                  
+               </div>
+             </div>
+          </div>
+          <div class="col-md-4">
+           
+            <div class="form-floating  mb-3">
+              <input class="form-control"  type="text" placeholder="Enter your mobile number" maxlength="10" [ngClass]="{ 'is-invalid': submitted && f['mobNo'].errors }" formControlName="mobNo"/>
+              <label for="floatingInput">Mobile Number <span class="text-danger">*</span></label>
+              <div *ngIf="submitted && f['mobNo'].errors" class="invalid-feedback">
+                 <div *ngIf="f['mobNo'].errors['required']">Mobile number is required</div>
+                 <div *ngIf="f['mobNo'].errors['pattern']">Mobile number is invalid</div>
+              </div>
+            </div>
+         </div>
+
+
+
+          <div class="col-md-12">
+            
+            <div class="form-floating">
+              <!-- <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px!important" [ngClass]="{ 'is-invalid': submitted && f['bkadd'].errors }"
+               formControlName="bkadd"></textarea> -->
+               <!-- <input type="text" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"  [ngClass]="{ 'is-invalid': submitted && f['bankaddress'].errors }"
+               formControlName="bankaddress"> -->
+           
+                  <textarea  class="form-control nodrop" formControlName="bankaddress"  id="address2" name="bankaddress" style="height: 100px!important" placeholder="." readonly></textarea>
+                 
+               
+              <label for="floatingTextarea2" >Bank Address<span class="text-danger">*</span></label>
+              <div *ngIf="submitted && f['bankaddress'].errors" class="invalid-feedback">
+                 <div *ngIf="f['bankaddress'].errors['required']">Bank Name is required</div>
+                 
+              </div>
+            </div>
+         </div>
+       </div>
+    </div>
+    <!-- <div class="scard-footer">
+       <div class="row justify-content-between">
+          <div class="col-3">
+            
+          </div>
+          <div class="col-3">
+             <button type="button" class="btn btn-light next-btn width-100" (click)="onSubmit()" >Proceed to next</button>
+          </div>
+       </div>
+    </div> -->
+    <div class="scard-footer">
+      <div class="row justify-content-between00">
+         <!-- <div class="col-3">
+            <button type="button" class="btn btn-light back-btn width-100" routerLink="/onboading-kyc/personal-detail">Back to step</button>
+         </div> -->
+         <div class="col-md-6 m-auto">
+            <button type="button" class="btn btn-light next-btn btn-slide width-100" (click)="onSubmit()" >Proceed to next</button>
+         </div>
+      </div>
+   </div>
+   </form> 
+ </div>
+ 

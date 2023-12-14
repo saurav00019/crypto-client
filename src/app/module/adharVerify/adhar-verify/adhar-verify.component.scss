@@ -1,0 +1,321 @@
+.file-area input[type=file] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-area .file-dummy {
+  width: 100%;
+  padding: 15px;
+  background: #f8e5f1;
+  border: 2px dashed #5a5a5a;
+  text-align: center;
+  transition: background 0.3s ease-in-out;
+}
+
+.upload_file h5 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000
+}
+
+.m-auto.col.position-relative.text-center.text-success {
+  top: 14px;
+  font-weight: 600;
+  color: #000 !important;
+}
+
+.file-area {
+  width: 100%;
+  position: relative;
+}
+
+.file-area input[type=file] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-area .file-dummy {
+  width: 100%;
+  padding: 70px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  text-align: center;
+  transition: background 0.3s ease-in-out;
+}
+
+.file-area .file-dummy .success {
+  display: none;
+}
+
+.file-area:hover .file-dummy {
+  background: #DCE5F4;
+}
+
+.file-area input[type=file]:focus+.file-dummy {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.file-area input[type=file]:valid+.file-dummy {
+  border-color: #042e6b;
+  background-color: #d8e8ff;
+}
+
+.file-area input[type=file]:valid+.file-dummy .success {
+  display: inline-block;
+}
+
+.file-area input[type=file]:valid+.file-dummy .default {
+  display: none;
+}
+
+.file-area {
+  width: 100%;
+  position: relative;
+}
+
+.file-area .file-dummy {
+  width: 100%;
+  padding: 15px;
+  background: #f3f7ff;
+  border: 2px dashed #cbcbcb;
+  text-align: center;
+  transition: background .3s ease-in-out;
+  border-radius: 1rem;
+}
+
+.upload-decor {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px dashed rgb(177 177 177);
+  text-align: center;
+  border-radius: 1rem;
+  width: fit-content;
+  margin: auto;
+}
+
+.fake-aadhar-height {
+  height: 170px;
+}
+
+.setupload {
+  left: 43%;
+  cursor: pointer;
+  z-index: 100;
+  background: #1db4a3;
+  padding: 11px;
+  top: 60px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.has-float-label {
+  display: block;
+  position: relative;
+}
+
+.has-float-label label,
+.has-float-label>span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: text;
+  font-size: 75%;
+  opacity: 1;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: -.5em;
+  left: 0.75rem;
+  z-index: 3;
+  line-height: 1;
+  padding: 0 1px;
+}
+
+.has-float-label label::after,
+.has-float-label>span::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  background: white;
+  height: 2px;
+  top: 50%;
+  left: -.2em;
+  right: -.2em;
+  z-index: -1;
+}
+
+.has-float-label .form-control::-webkit-input-placeholder {
+  opacity: 1;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.has-float-label .form-control::-moz-placeholder {
+  opacity: 1;
+  transition: all .2s;
+}
+
+.has-float-label .form-control:-ms-input-placeholder {
+  opacity: 1;
+  transition: all .2s;
+}
+
+.has-float-label .form-control::placeholder {
+  opacity: 1;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.has-float-label .form-control:placeholder-shown:not(:focus)::-moz-placeholder {
+  opacity: 0;
+}
+
+.has-float-label .form-control:placeholder-shown:not(:focus):-ms-input-placeholder {
+  opacity: 0;
+}
+
+.has-float-label .form-control:placeholder-shown:not(:focus)::placeholder {
+  opacity: 0;
+}
+
+.has-float-label .form-control:placeholder-shown:not(:focus)+* {
+  font-size: 1rem;
+  opacity: 0.5;
+  top: 0.6em;
+}
+
+.input-group .has-float-label {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  margin-bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.input-group .has-float-label .form-control {
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+.input-group .has-float-label:not(:last-child),
+.input-group .has-float-label:not(:last-child) .form-control {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-right: 0;
+}
+
+.input-group .has-float-label:not(:first-child),
+.input-group .has-float-label:not(:first-child) .form-control {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+
+.digilockerlogo {
+  width: 232px;
+}
+
+.d-benefits-card {
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #b7b7b7;
+}
+
+.d-benefits-card2 {
+  background: #1db46721;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.set-p {
+  padding-top: 30px;
+}
+
+
+
+// .firstform-decor {
+//   background: #fff;
+//   border-radius: 1rem;
+//   box-shadow: 0px 0px 4px 0 rgb(0 0 0 / 0%), 0px 0px 15px 0 rgb(0 0 0 / 8%);
+// }
+
+label {
+  font-size: 13px;
+
+}
+
+.form-label {
+  margin-bottom: 0.1rem;
+}
+
+.shade {
+  box-shadow: 0px 0px 4px 0 rgb(0 0 0 / 0%), 0px 0px 15px 0 rgb(0 0 0 / 8%);
+}
+
+sup {
+  color: red
+}
+
+.f13 {
+  font-size: 13px;
+}
+
+.btn-border-h-fill {
+  border: solid 1px #c9c9c9;
+  border-radius: 50px;
+  width: 100%;
+  color: #c9c9c9;
+  font-size: 14px;
+}
+
+.btn-border-h-fill:hover {
+  background: #524dc3;
+  color: #fff;
+}
+
+.s-card {
+  background: #151C2E;
+}
+
+.scard-header h2,
+.scard-header .h2 {
+  color: var(--white);
+}
+
+.btn-slide {
+  background: #212741 !important;
+  color: #FFF !important;
+  border: 1px solid #858585 !important;
+}

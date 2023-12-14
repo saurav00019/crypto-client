@@ -1,0 +1,249 @@
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white p-two-p-height-scroll">
+        <!-- <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3">
+                <div class="col-md-6">
+                    <h2 class="pageheading">Trasaction History</h2>
+                </div>
+            </div>
+        </div> -->
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-3 mb-3">
+                <div class="col-md-12">
+                    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                        <li [ngbNavItem]="1">
+                            <button ngbNavLink>Open Ticket</button>
+                            <ng-template ngbNavContent>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card ">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-9">
+                                                    <h2 class="pageheading" style="font-size: 22px;">Open Ticket</h2>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" style="background: transparent;
+                                                        border-right: none;"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                                        <input type="text" class="form-control" style="border-left:none" placeholder="Search By Name">
+                                                        <button class="btn btn-primary" style="background: #8692ff; border-color: #8692ff;" type="submit">Go</button>
+                                                      </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive tradebook-tbl">
+                                                <table id="statsTable" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Timestamp</th>
+                                                            <th>Subject</th>
+                                                            <th>Created By</th>
+                                                            <th>Priority</th>
+                                                            <th>View Details</th>
+                                                            <th>Close ticket</th>
+                                                         </tr>
+                                                    </thead>
+                                                    <tbody id="withdrawTable">
+                                                        <ng-container *ngFor="let index of [1, 2, 3, 4, 5, 6]">
+                                                            <tr>
+                                                                <td><span>01-Aug-2023</span></td>
+                                                                 <td><span>Subject here</span></td>
+                                                                 <td><div>Anurag Singh</div><div class="mailtxt">anurag.singh@marketwicks.com</div></td>
+                                                                 <td><span class="badge bg-warning">MI</span></td>
+                                                                 <td>
+                                                                     <button (click)="openLg(content)" class="btn btn-outline-primary btn-sm" style="font-size: 12px;">
+                                                                         <i class="fa-regular fa-eye me-1"></i> View </button>
+                                                                 </td>
+                                                                 <td>
+                                                                     <button class="btn btn-outline-danger btn-sm" style="font-size: 12px;">
+                                                                         <i class="fa-solid fa-circle-xmark me-1"></i> Close </button>
+                                                                 </td>
+                                                              </tr>
+                                                        </ng-container>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <ul class="pagination pagination-sm justify-content-end mt-2">
+                                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </li>
+                        <li [ngbNavItem]="2">
+                            <button ngbNavLink>Close Ticket</button>
+                            <ng-template ngbNavContent>
+                                <div class="col-md-12">
+                                    <div class="card ">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-9"> <h2 class="pageheading" style="font-size: 22px;">Close Ticket</h2></div>
+                                            <div class="col-md-3">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" style="background: transparent;
+                                                    border-right: none;"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                                    <input type="text" class="form-control" style="border-left:none" placeholder="Search By Name">
+                                                    <button class="btn btn-primary" style="background: #8692ff; border-color: #8692ff;" type="submit">Go</button>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive tradebook-tbl">
+                                            <table id="statsTable" class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Timestamp</th>
+                                                        <th>Subject</th>
+                                                        <th>Created By</th>
+                                                        <th>Priority</th>
+                                                        <th>View Details</th>
+                                                     </tr>
+                                                </thead>
+                                                <tbody id="withdrawTable">
+                                                    <ng-container *ngFor="let index of [1, 2, 3, 4, 5, 6]">
+                                                        <tr>
+                                                            <td><span>01-Aug-2023</span></td>
+                                                             <td><span>Subject here</span></td>
+                                                             <td><div>Anurag Singh</div><div class="mailtxt">anurag.singh@marketwicks.com</div></td>
+                                                             <td><span class="badge bg-warning">MI</span></td>
+                                                             <td>
+                                                                 <button (click)="openLg(content)" class="btn btn-outline-primary btn-sm" style="font-size: 12px;">
+                                                                     <i class="fa-regular fa-eye me-1"></i> View </button>
+                                                             </td>
+                                                            
+                                                          </tr>
+                                                    </ng-container>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <ul class="pagination pagination-sm justify-content-end mt-2">
+                                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </li>
+                    </ul>
+                </div>
+                
+                
+                <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                
+            </div>
+        </div>
+    
+    </section>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">
+            <div class="d-flex align-items-center">
+                
+                <div class="flex-grow-1 ms-3">
+                    <h3 style="font-size: 18px; margin-bottom: 0px;">Mehedi Hasan</h3>
+                    <p style="font-size: 14px; margin-bottom: 0px;">front end developer</p>
+                </div>
+            </div>
+        </h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+            <div class="col-md-12">
+                <div class="chatting-box-height">
+                    <div class="chat-area">
+              
+                        <div class="chatbox">
+                            <div class="modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="msg-head">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+        
+        
+                                    <div class="modal-body">
+                                        <div class="msg-body">
+                                            <ul>
+                                                <li class="sender">
+                                                    <p> Hey, Are you there? </p>
+                                                    <span class="time">10:06 am</span>
+                                                </li>
+                                                <li class="sender">
+                                                    <p> Hey, Are you there? </p>
+                                                    <span class="time">10:16 am</span>
+                                                </li>
+                                                <li class="repaly">
+                                                    <p>yes!</p>
+                                                    <span class="time">10:20 am</span>
+                                                </li>
+                                                <li class="sender">
+                                                    <p> Hey, Are you there? </p>
+                                                    <span class="time">10:26 am</span>
+                                                </li>
+                                                <li class="sender">
+                                                    <p> Hey, Are you there? </p>
+                                                    <span class="time">10:32 am</span>
+                                                </li>
+                                                <li class="repaly">
+                                                    <p>How are you?</p>
+                                                    <span class="time">10:35 am</span>
+                                                </li>
+                                                <li>
+                                                    <div class="divider">
+                                                        <h6>Today</h6>
+                                                    </div>
+                                                </li>
+        
+                                                <li class="repaly">
+                                                    <p> yes, tell me</p>
+                                                    <span class="time">10:36 am</span>
+                                                </li>
+                                                <li class="repaly">
+                                                    <p>yes... on it</p>
+                                                    <span class="time">junt now</span>
+                                                </li>
+        
+                                            </ul>
+                                        </div>
+                                    </div>
+        
+        
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="modal-footer" style="justify-content: left;">
+		<div class="send-box" style="width:100%">
+            <form action="">
+                <input type="text" class="form-control" aria-label="message…" placeholder="Write message…">
+
+                <button type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</button>
+            </form>
+        </div>
+	</div>
+</ng-template>
+
+
+

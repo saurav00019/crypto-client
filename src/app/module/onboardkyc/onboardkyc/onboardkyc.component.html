@@ -1,0 +1,51 @@
+
+
+<section class="sbg00 page-padding blue-bg-img">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-10 m-auto sbg-sec">
+            <div class="col-lg-10 m-auto width-78">
+               <div class="col-lg-8 m-auto ">
+                  <div class="sheading text-center">
+                     
+                     <h1>Hello ! & Welcome to KYC Verification Process</h1>
+                     <p>Easiest 6 STEPS for Account Opening Process</p>
+                  </div>
+               </div>
+               <div class="ab-stepper">
+                  <ul id="progressbar">
+                     
+                      <li class="active panv" [ngClass]="{'postactive tickright': clVal11 > 0}"><fieldset [disabled]="clVal || !clVal1">
+                        <button class="disbaledClass" [routerLink]="['/onboading-kyc/pan-varify']" routerLinkActive="router-link-active">
+                          <span>Pan Verification</span>
+                        </button></fieldset>
+                      </li>
+
+                     
+
+                      <li class="aadhaarv" [ngClass]="{'active': clVal11 > 0}" [ngClass]="{'addClass, postactive tickright': clVal11 > 1}"><fieldset [disabled]="clVal11 || !clVal2"><button class="disbaledClass" [routerLink]="['/onboading-kyc/adhar-verify']" routerLinkActive="router-link-active" ><span>Aadhaar Verification</span></button ></fieldset></li>
+
+                    
+                     <li class="personald" [ngClass]="{'active': clVal11 > 1}" [ngClass]="{'addClass, postactive tickright': clVal11 > 2}"><fieldset [disabled]="clVal2 || !clVal1"><button class="disbaledClass" [routerLink]="['/onboading-kyc/personal-detail']"  routerLinkActive="router-link-active" ><span>Personal Details</span></button></fieldset></li>
+                     
+                     <li class="bankd" [ngClass]="{'active': clVal11 > 2}" [ngClass]="{'addClass, postactive tickright': clVal11 > 3}"><fieldset [disabled]="clVal3 || !clVal2"><button class="disbaledClass" [routerLink]="['/onboading-kyc/bank-detail']"  routerLinkActive="router-link-active"><span>Bank Details</span></button></fieldset></li>
+                    
+                      <li class="videod" [ngClass]="{'active': clVal11 > 3}" [ngClass]="{'addClass, postactive tickright': clVal11 > 4}"><fieldset [disabled]="clVal4 || !clVal3"><button class="disbaledClass" [routerLink]="['/onboading-kyc/video-verify']"  routerLinkActive="router-link-active"><span>Video Verification</span></button></fieldset></li>
+
+                      <li class="esign"  [ngClass]="{'active': clVal11 > 4}"><fieldset [disabled]="clVal5 || !clVal4"><button class="disbaledClass" [routerLink]="['/onboading-kyc/esign']"  routerLinkActive="router-link-active"><span>E-Signature</span></button></fieldset></li>
+                     
+                      <!-- <li class="" [ngClass]="{'active':addClass4,'postactive': clVal5, 'tickright': clVal5}"><fieldset [disabled]="clVal5 || !clVal4"><button class="disbaledClass" [routerLink]="['/onboading-kyc/trade']"  routerLinkActive="router-link-active"><span>Trade Experience</span></button></fieldset></li> -->
+                  </ul>
+              </div>
+              <router-outlet></router-outlet>
+               
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+</section>
+
+

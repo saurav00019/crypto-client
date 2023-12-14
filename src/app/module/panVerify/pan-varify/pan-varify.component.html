@@ -1,0 +1,145 @@
+<form [formGroup]="veryFyPenNo" autocomplete="off">
+   <div class="s-card scard-shadow">
+      <div class="scard-header">
+         <h2>Please Upload your PAN Card below</h2>
+        
+      </div>
+      <div class="scard-body">
+      <fieldset [disabled]="statusCheck">
+         <div class="row firstform-decor pt-4">
+            <div class="col-md-6 m-auto">
+               <div class="row">
+
+                  <div class="col-md-12">
+
+                   
+                     <div class="card-box text-center">
+                        <div *ngIf="((PANimg==='') || (PANimg==='assets/images/pancard-dummy.png')) && (!uploadImgCont)">
+                           <div class="image-upload-wrap0 file-area upload-decor mb-2" >
+                              <input accept="image/*" type="file" accept=" .jpg, .jpeg, .png, .gif,image/*,.pdf" single=""
+                                 class="file-upload-input" (change)="onFileSelected($event)" #file>
+                              <div class="">
+                                 <img src="assets/images/identityi.png">.
+
+                              
+                                 <p style="font-size: 12px; color: #8d8d8d;">Please upload Pan card</p>
+                                 <div class="text-center mt-3">
+                                    <div class="like-btn-border-h-fill"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload</div>
+                                    <div class="sup-file">File Supports: JPG, JPEG, PNG, PDF max-size 2MB</div>
+                                 </div>
+                              </div>
+                            </div>
+                            <p style="font-size: 12px; color: red;" class="mb-0" >*Please click
+                              on image to upload your PAN card.</p>
+                        </div>
+
+                         <div class="image-upload-wrap0 file-area upload-decor mb-2" *ngIf="PANimg !=''">
+                           <input accept="image/*" type="file" accept=" .jpg, .jpeg, .png, .gif,image/*,.pdf" single=""
+                              class="file-upload-input" (change)="onFileSelected($event)" #file>
+                              <div class="deletepdf2" (click)="removePDF()">
+                                 <i class="fa fa-times" aria-hidden="true"></i> 
+                              </div>  
+                              <div>
+                              <img src={{PANimg}} class="fake-aadhar-height">
+                           </div>
+                              
+                             
+                           </div>
+
+                           <div class="col-md-6 m-auto">
+                              <!-- PDF viewer section -->
+                              <div style="position: relative;" class="text-center" *ngIf="uploadImgCont" >
+                                <div class="upload-decor" style="position: relative;">
+                                 <pdf-viewer [src]=pdfUrlpath
+                                            [rotation]="0"
+                                            [original-size]="false"
+                                            [show-all]="false"
+                                            [fit-to-page]="true"
+                                            [zoom]="0.4"
+                                            [zoom-scale]="'page-width'"
+                                            [stick-to-page]="false"
+                                            [render-text]="false"
+                                            [external-link-target]="'blank'"
+                                            [autoresize]="true"
+                                            [show-borders]="true"
+                                            style="width: 294px; height: 163px; overflow: hidden !important;"></pdf-viewer>
+                                            <div class="deletepdf2" (click)="removePDF()">
+                                             <i class="fa fa-times" aria-hidden="true"></i> 
+                                          </div>  
+                                </div>
+                              </div>
+                            </div>
+                       
+                       
+                     
+                          
+                        <!-- <p>{{fileError}}</p> -->
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 " *ngIf="showInputTags">
+               <div class="row">
+                 
+                  <div class="col-md-12">
+
+                     
+                     
+                     <div class="form-floating mb-3">
+                        <input id="penno" type="text" placeholder="Enter your PAN number" formControlName="penNo" maxlength="10"
+                         style="text-transform: uppercase;"  class="form-control" placeholder="." readonly>
+                        <label>PAN Number:<sup>*</sup></label>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+
+                     <div class="form-floating mb-3">
+                        <input  class="form-control " id="dob" type="text" formControlName="pandob" 
+                         placeholder="." readonly>
+                        <label>Your Name:<sup>*</sup></label>
+                      </div>
+                                  
+                  </div>
+
+                  <div class="col-md-12">
+
+                     <div class="form-floating mb-3">
+                        <input  class="form-control " id="dob" type="text"  formControlName="fname" 
+                         placeholder="." readonly>
+                        <label>Father's Name:<sup>*</sup></label>
+                      </div>
+                                  
+                  </div>
+
+
+
+               </div>
+
+            </div>
+         
+         
+         </div>
+      </fieldset>
+      </div>
+
+
+     <div class="row">
+      
+     </div>
+     
+      <div class="scard-footer">
+         <div class="row justify-content-between00">
+           
+   
+            <div class="col-md-6 m-auto">
+               <button type="button" class="btn btn-light next-btn width-100 btn-slide" [disabled]="isNextButtonDisabled" (click)="navigate() ">Proceed to
+                  next</button>
+            </div>
+         </div>
+   
+      </div>
+   </div>
+   
+</form>

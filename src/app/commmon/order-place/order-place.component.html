@@ -1,0 +1,425 @@
+<div class="last-block">
+    <div class="d-flex flex-column">
+      <div class="buy-sell-wlt">
+        <div class="trading_book_section sellorder">
+          <div class="d-block market-pair" id="accordian-2">
+            <div ngbAccordion>
+              <div ngbAccordionItem [collapsed]="false">
+                <h2 class="panel-m-hd pt-2">
+                  Place Order
+                </h2>
+                <div ngbAccordionCollapse class="watchlist-balance">
+                  <div ngbAccordionBody>
+                    <ng-template>
+                      <div id="page-content" style="padding: 0rem 0; min-height: 296px">
+                        <div class="buy-sell px-3 py-2">
+                          <ul ngbNav #nav="ngbNav" [(activeId)]="active1" class="nav-tabs">
+                            <li [ngbNavItem]="4" class="active buy">
+                              <!-- <button ngbNavLink class="buys" style="border-bottom: none !important;border-radius: 4px !important;">Buy555</button> 
+                               <button ngbNavLink class="sells">Sell222</button>  -->
+
+                              <ng-template ngbNavContent>
+                                <ul ngbNav #nav2="ngbNav" [(activeId)]="active" class="nav-tabs px-2">
+                                  <li [ngbNavItem]="1">
+                                    <button class="mb-2" (click)="clear()" ngbNavLink>Market</button>
+                                    <ng-template ngbNavContent>
+                                      
+                                      <div>
+                                        <form id="limit-form" [formGroup]="makeOrders">
+                                          <div class="form-group-custom d-flex mb-3 mt-3">
+                                            <h6>Price</h6>
+                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                               placeholder="Price" readonly type="text" data-ordertype="market"
+                                              [value]="placeOrderData?.oQuote?.L" />
+                                            <span>{{placeOrderData?.Quote}}</span>
+                                          </div>
+                                          <div class="form-group-custom d-flex mb-3">
+                                            <h6>Quantity</h6>
+                                            <input  autocomplete="off" value="Quantity" (input)="qunty()" formControlName="Quantity" class="form-control" id="price_buy"
+                                            type="number" data-ordertype="market" />
+                                            <span>{{placeOrderData?.Base}}</span>
+                                          </div>
+                                          <div  *ngIf="flag1">
+                                            <!-- <span *ngIf="!quantValue">Total : ~ 0.0000000  {{placeOrderData?.Quote}}</span> -->
+                                         
+                                            <div class="form-group-custom0 d-flex justify-content-between mb-2" *ngIf="!quantValue">
+                                              <div class="mylbl">Total :</div>
+                                               <div class="myf-13">~ 0.0000000  {{placeOrderData?.Quote}}</div>
+                                            </div>
+                                            <div class="form-group-custom0 d-flex justify-content-between mb-2" *ngIf="quantValue">
+                                             <div class="mylbl"> Total :</div>
+                                              <div class="myf-13">~ {{getNumber(placeOrderData?.oQuote?.L, makeOrders.value.Quantity)}}   {{placeOrderData?.Quote}}</div>
+                                             </div>
+                                        
+                                          </div>
+                                        
+                                         
+                                          <div  class="d-flex justify-content-between mt-3 mb-2">
+                                            <button (click)="placeOrder(1,'Market')" [disabled]="!placeOrderButton" class="btn btn-success n-btn-buy"  >
+                                              BUY   {{placeOrderData?.Base}} 
+                                            </button>
+
+                                        
+                                            <button (click)="placeOrder(2,'Market')" [disabled]="!placeOrderButton" class="btn btn-danger n-btn-sell" >
+                                                SELL   {{placeOrderData?.Base}}
+                                              </button>
+
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </ng-template>
+                                  </li>
+                                  <li [ngbNavItem]="2">
+                                    <button class="mb-2" (click)="clear()" ngbNavLink>Limit</button>
+                                    <ng-template ngbNavContent>
+                                   
+                                      <div>
+                                        <form id="limit-form" [formGroup]="makeOrdersLimit">
+                                          <div class="form-group-custom d-flex">
+                                            <h6>Price</h6>
+                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                            type="text" data-ordertype="market"  formControlName="price"
+                                              />
+                                            <span>{{placeOrderData?.Quote}}</span>
+                                          </div>
+                                          <div class="form-group-custom d-flex">
+                                            <h6>SL</h6>
+                                            <input autocomplete="off" formControlName="sl" class="form-control" id="price_buy"
+                                              type="number" data-ordertype="market" />
+                                            
+                                          </div>
+
+                                          <div class="form-group-custom d-flex">
+                                            <h6>Quantity</h6>
+                                            <input autocomplete="off" (input)="qunty1()" formControlName="QuantityL" class="form-control" id="price_buy"
+                                              type="number" data-ordertype="market" />
+                                            <span>{{placeOrderData?.Base}}</span>
+                                          </div>
+                                         <div *ngIf="flag2">
+                                          <div class="form-group-custom0 d-flex justify-content-between mb-2" *ngIf="!quantValue">
+                                            <div class="mylbl">Total :</div>
+                                             <div class="myf-13">~ 0.0000000  {{placeOrderData?.Quote}}</div>
+                                          </div>
+                                          <div class="form-group-custom0 d-flex justify-content-between mb-2" *ngIf="quantValue">
+                                           <div class="mylbl"> Total :</div>
+                                            <div class="myf-13">~ {{getNumber1(makeOrdersLimit.value.price, makeOrdersLimit.value.QuantityL)}}   {{placeOrderData?.Quote}}</div>
+                                           </div>
+                                         </div>
+                                          <div  class="d-flex justify-content-between mt-3 mb-2">
+                                            <button  (click)="placeOrderLimit(1,'Limit')" [disabled]="!placeOrderButtonLimit" class="btn btn-success n-btn-buy">
+                                              BUY  {{placeOrderData?.Base}}
+                                            </button>
+                                            <button  (click)="placeOrderLimit(2,'Limit')" [disabled]="!placeOrderButtonLimit" class="btn btn-danger n-btn-sell">
+                                                SELL  {{placeOrderData?.Base}}
+                                              </button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </ng-template>
+                                  </li>
+                                 
+                                </ul>
+                                <div [ngbNavOutlet]="nav2" class="mt-2 px-2"></div>
+                              </ng-template>
+                            </li>
+                            <li [ngbNavItem]="5" class="sell">
+                              
+                              <ng-template ngbNavContent>
+                                <ul ngbNav #nav2="ngbNav" [(activeId)]="active" class="nav-tabs px-2">
+                                  <li [ngbNavItem]="1">
+                                    <button ngbNavLink>Market</button>
+                                    <ng-template ngbNavContent>
+                                      <div class="d-flex avl-bl justify-content-between">
+                                        <p>Avl Bal.</p>
+                                        <p>0.00000000 BTC</p>
+                                      </div>
+                                      <div>
+                                        <form id="limit-form">
+                                          <div class="form-group-custom d-flex">
+                                            <h6>Price</h6>
+                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                              readonly="" placeholder="Price" type="text" data-ordertype="market"
+                                              value="17113.60000000" />
+                                            <span>USDT</span>
+                                          </div>
+                                          <div class="form-group-custom d-flex">
+                                            <h6>Quantity</h6>
+                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                              type="number" data-ordertype="market" />
+                                            <span>BTC</span>
+                                          </div>
+                                          <div class="summary">
+                                            17113.60000000
+                                          </div>
+                                          <div class="getbulkprice">
+                                            <a href="javascript:void(0);" onclick="bypercentage(25,'buy');">25%</a>
+                                            <a href="javascript:void(0);" onclick="bypercentage(50,'buy');">50%</a>
+                                            <a href="javascript:void(0);" onclick="bypercentage(75,'buy');">75%</a>
+                                            <a href="javascript:void(0);"
+                                              onclick="bypercentage(100,'buy');">100%</a>
+                                          </div>
+                                          <div>
+                                            <button class="btn text-white buy-now sell-now">
+                                              SELL BTC
+                                            </button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </ng-template>
+                                  </li>
+                                  <li [ngbNavItem]="2">
+                                    <button ngbNavLink>Limit</button>
+                                    <ng-template ngbNavContent>
+                                      <div class="d-flex avl-bl justify-content-between">
+                                        <p>Avl Bal.</p>
+                                        <p>0.00000000 BTC</p>
+                                      </div>
+                                      <div>
+                                        <form id="limit-form">
+                                          <div class="form-group-custom d-flex">
+                                            <h6>Price</h6>
+                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                              placeholder="Price" type="text" data-ordertype="market"
+                                              value="17113.60000000" />
+                                            <span>USDT</span>
+                                          </div>
+                                          <div class="form-group-custom d-flex">
+                                            <h6>Quantity</h6>
+                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                              type="number" data-ordertype="market" />
+                                            <span>BTC</span>
+                                          </div>
+                                          <div class="summary">
+                                            17113.60000000
+                                          </div>
+                                          <div class="getbulkprice">
+                                            <a href="javascript:void(0);"
+                                              onclick="bypercentage(100,'buy');">100%</a>
+                                          </div>
+                                          <div>
+                                            <button class="btn text-white buy-now sell-now">
+                                              SELL BTC
+                                            </button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </ng-template>
+                                  </li>
+                                  <li [ngbNavItem]="3">
+                                    <button ngbNavLink>Quick Buy</button>
+                                    <ng-template ngbNavContent>
+                                      <div class="d-flex avl-bl justify-content-between">
+                                        <p>Avl Bal.</p>
+                                        <p>0.00000000 BTC</p>
+                                      </div>
+                                      <div>
+                                        <form id="limit-form">
+                                          <div class="form-group-custom d-flex">
+                                            <h6>Amount</h6>
+                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                              placeholder="Price" type="text" data-ordertype="market" value="1" />
+                                            <span>USDT</span>
+                                          </div>
+                                          <div class="d-flex justify-content-end">
+                                            <span class="summary-1">100%</span>
+                                          </div>
+                                          <div class="form-group-custom d-flex">
+                                            <h6>Volume</h6>
+                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                              value="0.00005841" type="number" data-ordertype="market" />
+                                            <span>BTC</span>
+                                          </div>
+                                          <div>
+                                            <button class="btn text-white buy-now sell-now">
+                                              SELL BTC
+                                            </button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </ng-template>
+                                  </li>
+                                </ul>
+                                <div [ngbNavOutlet]="nav2" class="mt-2 px-2"></div>
+                              </ng-template>
+                            </li>
+                          </ul>
+                          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="balanceslist">
+          <div ngbAccordion>
+            <div ngbAccordionItem [collapsed]="false">
+              
+              <div ngbAccordionHeader class="d-flex justify-content-between align-items-center">
+                <h2 class="panel-m-hd pt-2">
+                  Funds
+                </h2>
+                <select>
+                  <option value="1" style="background-color: transparent">
+                    Show All Coins With Balances
+                  </option>
+
+                  <option value="2" style="background-color: transparent">
+                    Show All Coins
+                  </option>
+                </select>
+              </div>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ng-template>
+                    <div class="exchange_balance d-flex justify-content-between">
+                      <a class="greybtn" routerLink="/deposit"
+                        style="border-bottom: 1px solid #f7b543; color: #f7b543;">Deposit</a>
+                      <a class="greybtn" routerLink="/withdraw">Withdraw</a>
+                      <a class="greybtn">Transfer</a>
+                    </div>
+                    <div class="d-flex justify-content-between total d-none">
+                      <p>Total</p>
+                      <p>0.00 USDT</p>
+                    </div>
+                    <div class="exchange_balance table-responsive customtable scroll">
+                      <table class="table" style="display: none">
+                        <tbody></tbody>
+                        <tfoot>
+                          <tr>
+                            <td>Total</td>
+                            <td>
+                              <span class="total_estimated_fiat">0.00 USDT</span>
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                      <table class="table" id="my_balance">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\BTC.png" height="20" width="20" class="watch-img" />BTC
+                            </td>
+                            <td>
+                              0.00000000<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\ETH.png" height="20" width="20" class="watch-img" />ETH
+                            </td>
+                            <td>
+                              0.00000000<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\LTC.png" height="20" width="20" class="watch-img" />LTC
+                            </td>
+                            <td>
+                              0.00000000<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\XRP.png" height="20" width="20" class="watch-img" />XRP
+                            </td>
+                            <td>
+                              0.00<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\USDT.png" height="20" width="20"
+                                class="watch-img" />USDT
+                            </td>
+                            <td>
+                              0<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\TRX.png" height="20" width="20" class="watch-img" />TRX
+                            </td>
+                            <td>
+                              0.00<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\YFI.png" height="20" width="20" class="watch-img" />YFI
+                            </td>
+                            <td>
+                              0.00000000<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\LINK.png" height="20" width="20"
+                                class="watch-img" />LINK
+                            </td>
+                            <td>
+                              0.00000000<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\DOGE.png" height="20" width="20"
+                                class="watch-img" />DOGE
+                            </td>
+                            <td>
+                              0.00000<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\DOT.png" height="20" width="20" class="watch-img" />DOT
+                            </td>
+                            <td>
+                              0.0000<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\BNB.png" height="20" width="20" class="watch-img" />BNB
+                            </td>
+                            <td>
+                              0.00000000<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\UMC.png" height="20" width="20" class="watch-img" />UMC
+                            </td>
+                            <td>
+                              0.0000<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="assets\images\ikons\SPT.png" height="20" width="20" class="watch-img" />SPT
+                            </td>
+                            <td>
+                              0<span class="estimated_fiat">≈ 0.0000 USDT</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tfoot class="total_estimated_fiat">
+                          <tr>
+                            <td>Total</td>
+                            <td><span>0.00 USDT</span></td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

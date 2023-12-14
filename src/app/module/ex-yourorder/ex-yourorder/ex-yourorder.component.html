@@ -1,0 +1,248 @@
+<div class="deposit p-3">
+    <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-md-12 col-12 left-side">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                <li [ngbNavItem]="1">
+                    <button ngbNavLink>Order</button>
+                    <ng-template ngbNavContent>
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <p class="mb-0 ms-3">Timestamp</p>
+                                        </th>
+                                        <th>Symbol</th>
+                                        <th>Type</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                     </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td>
+                                            <button    (click)="openLg(content)" class="btn btn-warning btn-sm me-2">Modify</button>
+                                            <button class="btn btn-danger btn-sm">Closed</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td>
+                                            <button (click)="openLg(content)" class="btn btn-warning btn-sm me-2">Modify</button>
+                                            <button class="btn btn-danger btn-sm">Closed</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td>
+                                            <button (click)="openLg(content)" class="btn btn-warning btn-sm me-2">Modify</button>
+                                            <button class="btn btn-danger btn-sm">Closed</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td>
+                                            <button (click)="openLg(content)" class="btn btn-warning btn-sm me-2">Modify</button>
+                                            <button class="btn btn-danger btn-sm">Closed</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td>
+                                            <button (click)="openLg(content)" class="btn btn-warning btn-sm me-2">Modify</button>
+                                            <button class="btn btn-danger btn-sm">Closed</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <button ngbNavLink>Closed Order</button>
+                    <ng-template ngbNavContent>
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <p class="mb-0 ms-3">Timestamp</p>
+                                        </th>
+                                        <th>Symbol</th>
+                                        <th>Type</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                     </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td><span class="status-cancel">Closed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td><span class="status-cancel">Closed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td><span class="status-cancel">Closed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td><span class="status-cancel">Closed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td><span class="status-cancel">Closed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="mb-0 ms-3">23/10/2023: 10:40AM</div></td>
+                                        <td class="tbl-img">
+                                            <img class="watch-img" src="assets\images\ikons\BTC.png"><span>BTC</span>
+                                        </td>
+                                        <td><span class="cl-type-buy">Buy</span></td>
+                                        <td>≈ 0.0000 </td>
+                                        <td>5941.16 INR </td>
+                                        <td><span class="status-cancel">Closed</span></td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                </li>
+               
+            </ul>
+            
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        </div>
+        <!-- <div class="col-xxl-2 col-xl-2 col-md-2  col-12 right-side d-lg-block d-none">
+          <div> <app-order-place> </app-order-place> </div>
+        </div> -->
+    </div>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Modify Your Trade </h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<div class="mb-4">
+            <div class="form-group-custom d-flex">
+                <h6>Price</h6>
+                <input (keypress)="numberOnly($event)" autocomplete="off" class="form-control" id="price_buy"
+                   type="text" />
+                <span>BTC</span>
+              </div>
+        </div>
+        <div class="mb-4">
+            <div class="form-group-custom d-flex">
+                <h6>Quantity</h6>
+                <input (keypress)="numberOnly($event)" autocomplete="off" class="form-control" id="price_buy"
+                   type="text" />
+                <span>BTC</span>
+              </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button class="btn btn-success " style="width:100%">Submit</button>
+            </div>
+        </div>
+	</div>
+	<!-- <div class="modal-footer">
+		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+	</div> -->
+</ng-template>

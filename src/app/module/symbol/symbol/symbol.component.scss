@@ -1,0 +1,49 @@
+.add{color: #fff;display: flex;justify-content: end;}
+.add h6{background: #5fefb1; border-radius: 4px; color: #000; padding: 14px 16px;font-weight: 600;cursor: pointer;}
+.add h6:hover{background: #97ffd2;}
+.form input{border: 1px solid #a1a1a1;background: #fff; color: #000;padding: 12px 16px;}
+::placeholder{color: #707070;}
+.form .form-group{margin: 1rem 0;padding: 0 2rem;}
+.form .form-group label{font-size: 16px;color: #707070; font-weight: 500;}
+.package{border: 1px solid #c1bfbf; border-radius: 4px;}
+.package h6{border-bottom: 1px solid #a1a1a1;padding: 1rem 2rem;font-size: 20px; font-weight: 600;background: #e6e3ff; }
+.upload-img-show{
+    padding:10px;
+    border:solid 1px #ededed;
+    border-radius: 8px;
+    img{
+        width:50px;
+        height: 50px;
+    }
+}
+.upload-img-show2{
+    img{
+        width:40px;
+        height: 40px;
+    } 
+}
+
+
+// .mc-upload::-webkit-file-upload-button {
+//     background: #2F70FF;
+//     color: #fff;
+//   }
+//   .mc-upload:hover::-webkit-file-upload-button {
+//     background: #ff2fee;
+//     color: #fff;
+//   }
+
+ 
+
+input[type="file"]::file-selector-button {
+    
+    background-color: #2F70FF;
+    color:#fff;
+    transition: 1s;
+  }
+
+  input[type="file"]::file-selector-button:hover {
+    background-color: #81ecec!important;
+   
+  }
+

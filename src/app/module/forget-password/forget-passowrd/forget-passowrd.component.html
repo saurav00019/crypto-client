@@ -1,0 +1,151 @@
+<section class="height-vh100-none h-00vh100 bgImages blue-bg-img" style="overflow-x: hidden;">
+  <div class="container align-items-center d-flex " style="height: 100vh;">
+    <div class="row w-100">
+      <div class="col-md-4 m-auto">
+        <div class="row row-decor00 card-box">
+
+          <div class="col-md-12 my-pad-lr-50">
+            <div class="row">
+              <div class="col-md-12">
+                <img class="form-logo" src="assets/images/ce-logo2.png">
+              </div>
+            </div>
+
+            <div class="row login-area" style="height: 80%;">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-12 mb-4">
+
+                    <p class="formtit-1 mb-0">Forgot Password</p>
+                    <p class="formtit-2">Please Enter the Email on which OTP will be sent</p>
+                  </div>
+
+                </div>
+                <div class="login-area000">
+                  <ng-container>
+
+                    <form [formGroup]="forgotForm">
+
+                      <div class="row firstform-decor000">
+                        <div class="col-md-6">
+
+
+                        </div>
+                        <div class="col-md-6">
+
+
+
+
+
+
+                        </div>
+
+                        <div *ngIf="resetWithEmail">
+                          <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                              <input type="email" name="email" formControlName="email" class="form-control ab-border0"
+                                placeholder=".">
+                              <label>Email:<sup>*</sup></label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div *ngIf="resetWithMobile">
+                          <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                              <input type="number" name="mobile" formControlName="mobile"
+                                class="form-control ab-border0" placeholder=".">
+                              <label>Mobile:<sup>*</sup></label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+
+                        </div>
+
+                        <!-- <div class="col-md-12 pt-4 pb-4" style="text-align: center;
+                              position: relative;">
+                          <div style="background: #2d54a1;
+                                width: fit-content;
+                                margin: 0 auto;
+                                z-index: 22;
+                                position: relative;
+                                /* padding: 2px 10px; */
+                                width: 25px;
+                                height: 25px;
+                                font-size: 12px;
+                                border-radius: 50px;
+                                color: #fff;
+                                padding: 1px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                
+                                ">
+                            OR
+                          </div>
+                          <div style="position: relative;
+                                margin-top: -30px;">
+                            <hr style="border-color: #cbcbcb;">
+                          </div>
+                        </div> -->
+
+                        <!-- <div class="col-md-12 text-center mb-4">
+                          <div>
+                            <button *ngIf="resetWithEmail" class="btn btn-sm btn-light"
+                              (click)="showMobileInput()">Reset with Mobile</button>
+                          </div>
+                          <div>
+                            <button *ngIf="resetWithMobile" class="btn btn-sm btn-light"
+                              (click)="showEmailInput()">Reset with E-Mail</button>
+                          </div>
+                        </div>
+ -->
+
+                        <div class="col-md-12 mb-2 mt-2 d-grid">
+                          <button class="btn btn-black btn-slide-login btn-block" (click)="onSendOTP()">Forgot
+                            Password</button>
+                        </div>
+
+                      </div>
+                    </form>
+                    <div>
+                      <a style="font-size: 13px;" routerLink="/signup" (click)="hideClick()"><span
+                          style="color:#787878">Remember Password?</span>LOG IN</a>
+                    </div>
+
+                  </ng-container>
+                  <ng-container>
+
+
+                    <div class="row firstform-decor00 pt-3">
+
+                      <div class="col-md-12">
+
+
+
+                        <div>
+
+                        </div>
+
+
+                      </div>
+
+
+                    </div>
+
+
+                  </ng-container>
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

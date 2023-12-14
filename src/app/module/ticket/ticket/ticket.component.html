@@ -1,0 +1,167 @@
+<section class=" p-tow-p-padding" style="overflow: hidden;">
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6"></div>
+    </div>
+   
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+            <button ngbNavLink>Open Tickets <span class="badge bg-success">10</span></button>
+            <ng-template ngbNavContent>
+                <div class="row">
+                    <div class="col-md-12 mt-2">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>Requested By</th>
+                                        <th>Department</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Priority</th>
+                                        <th>Status</th>
+                                        <th>Created Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                       <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-img me-2"><img src="assets/images/dummy-girl.png"></div>
+                                            <div>Anurag Singh</div>
+                                        </div>
+                                       </td>
+                                       <td><div>Technical</div></td>
+                                       <td><div>Subject1</div></td>
+                                       <td><div>MessageMessage Message MessageMessageMessage Message</div></td>
+                                       <td><div>High</div></td>
+                                       <td><div class="badge bg-success">Open</div></td>
+                                       <td><div>12/11/2023</div></td>
+                                       <td>
+                                        <div>
+                                            <a class="btn btn-outline-warning btn-sm me-3" (click)="navigate(1)"><i class="fa-regular fa-eye me-2"></i>View</a>
+                                            <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                       </div>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                         <div class="d-flex align-items-center">
+                                             <div class="user-img me-2"><img src="assets/images/dummy-girl.png"></div>
+                                             <div>Anurag Singh</div>
+                                         </div>
+                                        </td>
+                                        <td><div>Technical</div></td>
+                                        <td><div>Subject1</div></td>
+                                        <td><div>MessageMessage Message MessageMessageMessage Message</div></td>
+                                        <td><div>High</div></td>
+                                        <td><div class="badge bg-success">Open</div></td>
+                                        <td><div>12/11/2023</div></td>
+                                        <td>
+                                         <div>
+                                             <a class="btn btn-outline-warning btn-sm me-3" (click)="navigate(1)"><i class="fa-regular fa-eye me-2"></i>View</a>
+                                             <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                        </div>
+                                     </td>
+                                     </tr>
+                                   
+                                </tbody>
+                                <!-- <tbody id="infoTable" >
+                                    <tr >
+                                        <td colspan="8"> <div style="text-align: center;
+                                            padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                                    </tr>
+                                </tbody> -->
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+            <button ngbNavLink>Close Tickets <span class="badge bg-danger">12</span></button>
+            <ng-template ngbNavContent>
+                <div class="row">
+                    <div class="col-md-12 mt-2">
+                        <div class="table-responsive">
+                            <table class="table" id="deposit">
+                                <thead>
+                                    <tr>
+                                        <th>Requested By</th>
+                                        <th>Department</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Priority</th>
+                                        <th>Status</th>
+                                        <th>Created Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="infoTable">
+                                    <tr>
+                                       <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-img me-2"><img src="assets/images/dummy-girl.png"></div>
+                                            <div>Anurag Singh</div>
+                                        </div>
+                                       </td>
+                                       <td><div>Technical</div></td>
+                                       <td><div>Subject1</div></td>
+                                       <td><div>MessageMessage Message MessageMessageMessage Message</div></td>
+                                       <td><div>High</div></td>
+                                       <td><div class="badge bg-danger">Close</div></td>
+                                       <td><div>12/11/2023</div></td>
+                                       <td>
+                                        <div>
+                                            <a class="btn btn-outline-warning btn-sm me-3" (click)="navigate(1)"><i class="fa-regular fa-eye me-2"></i>View</a>
+                                            <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                       </div>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                         <div class="d-flex align-items-center">
+                                             <div class="user-img me-2"><img src="assets/images/dummy-girl.png"></div>
+                                             <div>Anurag Singh</div>
+                                         </div>
+                                        </td>
+                                        <td><div>Technical</div></td>
+                                        <td><div>Subject1</div></td>
+                                        <td><div>MessageMessage Message MessageMessageMessage Message</div></td>
+                                        <td><div>High</div></td>
+                                        <td><div class="badge bg-danger">Close</div></td>
+                                        <td><div>12/11/2023</div></td>
+                                        <td>
+                                         <div>
+                                             <a class="btn btn-outline-warning btn-sm me-3" (click)="navigate(1)"><i class="fa-regular fa-eye me-2"></i>View</a>
+                                             <button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                        </div>
+                                     </td>
+                                     </tr>
+                                   
+                                </tbody>
+                                <!-- <tbody id="infoTable" >
+                                    <tr >
+                                        <td colspan="8"> <div style="text-align: center;
+                                            padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                                    </tr>
+                                </tbody> -->
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </li>
+       
+    </ul>
+    
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+
+   
+  
+</section>

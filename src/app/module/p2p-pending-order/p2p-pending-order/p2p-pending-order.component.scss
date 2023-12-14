@@ -1,0 +1,150 @@
+.card-p{
+    background: #272C4B;
+    padding:15px;
+    border-radius: 15px;
+    .iarea{
+        width: 50px;
+    height: 50px;
+    border-radius: 75%;
+    background: #000;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+            i{
+                font-size: 20px;
+                color:#a3a3a3;
+            }
+    }
+    .tit-p1{
+        font-size: 14px;
+        margin-bottom: 0px;
+        color:#a3a3a3;
+    }
+    .tit-p2{
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 0px;
+        color:#fff;
+    }
+}
+.mngd-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.tit-url{
+    font-size: 12px;
+    color: #2196F3;
+}
+
+.table tr td {
+    color: var(--light-gray);
+    font-size: 14px;
+}
+
+.table tr th {
+    padding: 1rem 1rem !important;
+    font-size: 14px;
+    font-weight: 500;
+    color: #b1b1b1;
+}
+
+#deposit tr td,
+#deposit tr th {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #333 !important;
+    white-space: nowrap;
+}
+
+#deposit tr th {
+    background-color: #28304E !important;
+    border-bottom: 1px solid #686868 !important;
+}
+.btn-dl1 {
+    color: #9579c7;
+    border: solid 1px #9579c7;
+    font-size: 14px;
+    text-transform: capitalize;
+    
+}
+.btn-dl1:hover {
+    background: #9579c7;
+    color:#fff
+}
+.titleheading1{
+    color: #919191;
+    font-size: 20px;
+}
+.tran-view-all{
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+.makepy{
+    border:solid 1px #21bf73;
+    color:#21bf73;
+    font-size: 14px;
+}
+.makepy:hover{
+    background:  #21bf73;
+    color:#ffffff
+}
+
+.pending-details-modal{
+    .table tr td {
+        color: var(--light-gray);
+        font-size: 14px;
+    }
+    
+    .table tr th {
+        padding: 1rem 1rem !important;
+        font-size: 14px;
+        font-weight: 500;
+        color: #b1b1b1;
+    }
+    
+    #deposit tr td,
+    #deposit tr th {
+        padding: 1rem 1rem;
+        border-bottom: 1px solid #333 !important;
+        white-space: nowrap;
+    }
+    
+    #deposit tr th {
+        background-color: #212741 !important;
+        border-bottom: 1px solid #686868 !important;
+    }
+    
+    .yellow-card {
+        background: #f1b53500;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    .bdtit1 {
+        font-size: 14px;
+        font-weight: 400;
+        color: #a1a1a1;
+        min-width: 100px;
+    }
+    
+    .makepy{
+        background: #21bf73;
+        color:#fff;
+        font-size: 14px;
+    }
+    .makepy:hover{
+        background:  #fff;
+        color:#21bf73
+    }
+    
+    .mytx1 {
+        font-size: 14px;
+        color:#a1a1a1
+    }
+    .mytx2 {
+        font-size: 16px;
+    }
+    
+}
+
+

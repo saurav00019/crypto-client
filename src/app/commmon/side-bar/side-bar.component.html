@@ -1,0 +1,34 @@
+
+
+<div class="sidebar" >
+    
+  <div>
+    <img class="set-logo" src="assets/images/ce-logo.png">
+  </div>
+  <ul class="nav-links navbar-main-ul" id="nav-links">
+    <li *ngFor="let item of menuSidebar" #itemEl routerLinkActive="active">
+      <div *ngIf="item.sub_menu.length == 0" class="dropdown-title">
+        <a [routerLink]="[item.link]">
+          <img [src]="item.path" >
+          <!-- <i [class]="item.icon"></i> -->
+          <span class="link_name">{{item.link_name}}</span>
+        </a>
+      </div>
+      <div *ngIf="item.sub_menu.length > 0" class="dropdown-title" (click)="showSubmenu(itemEl)">
+        <a>
+          <img [src]="item.path" >
+          <!-- <i [class]="item.icon"></i> -->
+          <span class="link_name">{{item.link_name}}</span>
+        </a>
+        <i class='fa fa-angle-down navbar-arrow-color'></i>
+      </div>
+      <ul class="sub-menu" [class.blank]="item.sub_menu.length == 0">
+        <li><a class="link_name">{{item.link_name}}</a></li>
+        <li *ngFor="let item_sub of item.sub_menu" routerLinkActive="active">
+          <a [routerLink]="[item_sub.link]">{{item_sub.link_name}}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+</div>

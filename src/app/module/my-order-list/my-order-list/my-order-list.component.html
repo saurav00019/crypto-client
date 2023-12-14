@@ -1,0 +1,172 @@
+<section class=" p-tow-p-padding" style="overflow: hidden;">
+   
+    
+
+    <div>
+        <div class="table-responsive">
+            <table class="table" id="deposit">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Symbol</th>
+                        <th>Unit Price </th>
+                        <th>Quantity</th>
+                        <th>Order Limit</th>
+                        <th>Validity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="infoTable" *ngIf="this.showNoData == 1">
+                    
+                    <tr *ngFor="let data of pageOfItems">
+                        <td >
+                            <div class="withname d-flex align-items-center"> {{data.dtCreatedOn}}</div>
+                           
+                        </td>
+                        <td class="withname d-flex align-items-center">
+                            <div class="firstLetter symbl"><img src="assets\images\ikons\{{ data.Crypto }}.png"
+                                    alt="img"></div>
+                            <p>{{ data.Crypto }}</p>
+                        </td>
+                        <td class="inr">
+                            {{data.Price}} <span> INR</span>
+                        </td>
+
+                        <td class="inr">
+                           {{data.Qty}}<span class="bitcoin"> {{data.Crypto}}</span>
+                        </td>
+                        <td class="inr">
+                            {{data.Min_Qty}} ~ {{data.Max_Qty}}<span class="bitcoin"> Limit</span>
+                        </td>
+                        <td>
+                           {{data.dtValidUpto}}
+                        </td>
+                        <td>
+                            <a *ngIf="!cancelShow" (click)="openViewTrade(content, data)" class="btn btn-dl1 me-2"><i class="fa-solid fa-pen"></i> Edit</a>
+                            <a *ngIf="!cancelShow"  class="btn btn-dl2" 
+                            (click)="getId(data)"><i class="fa-solid fa-xmark"></i></a>
+                            <a *ngIf="cancelShow"  class="btn btn-dl2" 
+                            ><i class="fa-solid fa-xmark"></i> Cancelled</a>
+                        </td>
+                    </tr>
+                  
+                </tbody>
+                <tbody id="infoTable" *ngIf="this.showNoData == 0">
+                   <tr >
+                        <td colspan="7"> <div style="text-align: center;
+                            padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-3" *ngIf="this.showNoData == 1">
+        <div class="col-md-12 p-two-p-page">
+            <app-pagination [items]="orderList"  (changePage)="onChangePage($event)"></app-pagination>
+        </div>
+    </div>
+    </section>
+
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Modal title</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row pending-details-modal mt-5" style="background: #2E3253; border-radius: 15px; color:#fff">
+                <div class="col-md-12">
+                    <div class="yellow-card">
+                        <div class="row mb-2 align-items-center">
+                            <div class="col-md-3">
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Symbol:-</div>
+                                    <div class="bdval1">{{tradeListData.Crypto}}</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Challan No:-</div>
+                                    <div class="bdval1">CHLN-125478</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Created on:-</div>
+                                    <div class="bdval1">01-Aug-2023</div>
+                                </div>
+                               
+                            </div>
+                            <div class="col-md-3">
+                                <h2 class="mytx1">Total Amount</h2>
+                                <h2 class="mytx2">80,00000</h2>
+                            </div>
+                            <div class="col-md-3">
+                                <h2 class="mytx1">Remaining Amount</h2>
+                                <h2 class="mytx2">30,00000</h2>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="filter d-flex align-items-center mb-2 justify-content-end">
+                                        <button class="btn btn-outline-success btn-sm" style="font-size: 14px;"><i  class="fa-regular fa-file-excel me-1"></i> Download</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <div class="table-responsive">
+                        <table class="table" id="deposit">
+                            <thead>
+                                <tr>
+                                                
+                                    <th>
+                                        <div class="chln-tbl-tit">Timestamp</div>
+                                    </th>
+                                    <th>
+                                        <div class="chln-tbl-tit">Tnx id</div>
+                                    </th>
+                                    <th>
+                                        <div class="chln-tbl-tit">Payment mode</div>
+                                    </th>
+                                    <th>
+                                        <div class="chln-tbl-tit text-end me-5">Amount</div>
+                                    </th>
+                                 </tr>
+                            </thead>
+                            <tbody id="infoTable">
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">8,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">12,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">10,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">10,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-end"></td>
+                                    <td class="text-end">Sum: <span class="me-5" style="font-weight:600">50,00000</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+    </ng-template>

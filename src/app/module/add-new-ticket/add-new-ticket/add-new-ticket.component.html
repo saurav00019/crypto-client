@@ -1,0 +1,66 @@
+<div class="new-ticket p-3">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="ticket">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6>Ticket</h6>
+                    <h6 class="add-ticket"><a href="">+ Add New Ticket</a></h6>
+                </div>
+                <div class="all-tickets">
+                    <ul class="d-flex">
+                        <li class="mx-3"><a href="">All Tickets <span>1</span></a></li>
+                        <li class="mx-3"><a href="">Open <span>1</span></a></li>
+                        <li class="mx-3"><a href="">Closed <span>1</span></a></li>
+                        <li class="mx-3"><a href="">Cancelled <span>1</span></a></li>
+                    </ul>
+                </div>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Your Enquiry</p>
+                            <input type="text" placeholder="Subject" class="mb-3">
+                        </div>
+                        <div class="col-md-6">
+                            <p>Select Department</p>
+                            <select class="mb-3">
+                                <option>GENERAL</option>
+                                <option>FINANCE</option>
+                                <option>KYC</option>
+                                <option>2FA</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Description</p>
+                            <textarea type="text" placeholder="Your message" class="mb-3" rows="7"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Upload Image</p>
+                            <div class="file-upload btn btn-primary">
+
+                                <input type="file" id="upload-btn" class="upload">
+                                <div class="Neon-input-inner">
+                                    <div class="Neon-input-text">
+                                        <p>Drag &amp; Drop files here</p>
+                                        <p class="my-2">or</p>
+                                    </div>
+                                    <a class="greybtn">Browse Files</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12 d-flex justify-content-center my-3 submit">
+                            <button type="submit">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div><app-order-place></app-order-place></div>
+
+        </div>
+    </div>
+</div>

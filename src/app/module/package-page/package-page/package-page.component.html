@@ -1,0 +1,477 @@
+<div class="p-two-p-scroll-design">
+  <section
+    class="setpage p-two-p-section-radius p-two-p-bg-white p-two-p-height-scroll"
+  >
+    <div class="container-fluid padmng">
+      <div class="row dd-top-card pt-4 mb-3 align-items-center">
+        <div class="col-md-6">
+          <h2 class="pageheading">Package</h2>
+        </div>
+        <div class="col-md-6">
+          <div class="add">
+            <h6 (click)="openLg(content, 0)">
+              <button  class="btn" href="">
+                <i class="fa-solid fa-circle-plus"></i> Add Packages
+              </button>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sell Fee : txtbox
+        Buy Fee: txtbox
+        Holding Time : txtbox
+        Holding Price : txtbox -->
+    <div class="container-fluid padmng">
+      <div class="row dd-top-card pt-3 mb-3">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="row">
+              <div class="col-md-4 mb-3" *ngFor="let data of package">
+                <div class="package">
+                  <div>
+                    <div>
+                      <h6>{{ data.Package }}</h6>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div class="form0 p-3">
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <label for="package-name">Fee</label>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <!-- <div class="form-group">
+                                                            <input type="text" class="form-control" id="Sell-Fee" aria-describedby="Sell-Fee" [ngModel]="data.BuyFee" [readOnly]="isReadonly">
+                                                        </div>  -->
+
+                            <div class="myfloating">
+                              <div class="form-floating">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="Sell-Fee"
+                                  aria-describedby="Sell-Fee"
+                                  [ngModel]="data.BuyFee"
+                                  [readOnly]="isReadonly"
+                                />
+                                <label for="email">Buy</label>
+                                <div class="mngpersent">%</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <!-- <div class="form-group">
+                                                            <input type="text" class="form-control" id="Sell-Fee" aria-describedby="Sell-Fee" [ngModel]="data.SellFee" [readOnly]="isReadonly">
+                                                        </div>  -->
+                            <div class="myfloating">
+                              <div class="form-floating">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="Sell-Fee"
+                                  aria-describedby="Sell-Fee"
+                                  [ngModel]="data.SellFee"
+                                  [readOnly]="isReadonly"
+                                />
+                                <label for="email">Sell</label>
+                                <div class="mngpersent">%</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <label for="package-name">Gateway</label>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="Sell-Fee"
+                            aria-describedby="Sell-Fee"
+                            [(ngModel)]="data.lstGateway"
+                            [readOnly]="isReadonly"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-3 mt-4">
+                      <hr />
+                      <div class="col-md-12">
+                        <p
+                          style="
+                            margin-top: -28px;
+                            background: #ffffff;
+                            z-index: 999;
+                            position: absolute;
+                            padding: 1px 8px;
+                            font-size: 12px;
+                            font-weight: 600;
+                          "
+                        >
+                          Holding
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <label for="package-name">Holding Time</label>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="Sell-Fee"
+                            aria-describedby="Sell-Fee"
+                            [ngModel]="data.HoldSec"
+                            [readOnly]="isReadonly"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <label for="package-name">Min. Pay</label>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="Sell-Fee"
+                            aria-describedby="Sell-Fee"
+                            [ngModel]="data.MinPay4Hold"
+                            [readOnly]="isReadonly"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <label for="package-name">Subc. Cost</label>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="Sell-Fee"
+                            aria-describedby="Sell-Fee"
+                            [ngModel]="data.SubscribeCost"
+                            [readOnly]="isReadonly"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="row">
+                                            <div class="col-md-12o">
+                                                <button class="btn btn-success" style="width:100%">Submit</button>
+                                            </div>
+                                        </div> -->
+                    <div class="row">
+                      <div class="col-md-8"></div>
+                      <div class="col-md-4">
+                        <button
+                          class="btn btn-outline-success me-2"
+                          style="font-size: 12px"
+                          (click)="openLg(content, data )" [id]="data.PkgID">
+                          <i class="fa-regular fa-pen-to-square"></i> Edit
+                        </button>
+                        <button
+                          class="btn btn-outline-danger"
+                          style="font-size: 12px"
+                          [id]="data.PkgID"
+                          (click)="getId($event)"
+                        >
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title" style="font-size: 16px" *ngIf="!formType">
+      Create Package
+    </h4>
+    <h4 class="modal-title" id="modal-basic-title" style="font-size: 16px" *ngIf="formType">
+      Update Package
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="package">
+          <!-- <h6>Create Package</h6> -->
+          <form
+            class="form0 p-3"
+            [formGroup]="addPackagess"
+            (ngSubmit)="addPakages()"
+          >
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="package-name">Package Name</label>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="pakage_name"
+                    id="Sell-Fee"
+                    aria-describedby="Sell-Fee"
+                    (keypress)="keyPressAlphaNumeric($event)"
+                    placeholder="Package Name"
+                  />
+                  <div *ngIf="addPackagess.controls['pakage_name'].invalid && (addPackagess.controls['pakage_name'].dirty || addPackagess.controls['pakage_name'].touched)" class="text-danger">
+                    <div *ngIf="addPackagess.controls['pakage_name'].errors.required"> Package name is required</div>  
+                    <!-- <div class="texy-danger" *ngIf="addPackagess.controls['pakage_name'].errors['pattern']">Package name only in Alphabet </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="package-name">Fee</label>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="myfloating">
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="Buy_Fee"
+                          id="email"
+                         (keypress)="numberOnly($event)"
+                          name="email"
+                        />
+                        <div *ngIf="addPackagess.controls['Buy_Fee'].invalid && (addPackagess.controls['Buy_Fee'].dirty || addPackagess.controls['Buy_Fee'].touched)" class="text-danger">
+                          <div *ngIf="addPackagess.controls['Buy_Fee'].errors.required"> Fee is required</div>  
+                          <!-- <div class="texy-danger" *ngIf="addPackagess.controls['Buy_Fee'].errors['pattern']">Fee only in numbers </div> -->
+                        </div>
+                        <label for="email">Buy</label>
+                        <div class="mngpersent">%</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="myfloating">
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="Sell_Fee"
+                          id="email"
+                          (keypress)="numberOnly($event)"
+                          name="email"
+                        />
+                        <div *ngIf="addPackagess.controls['Sell_Fee'].invalid && (addPackagess.controls['Sell_Fee'].dirty || addPackagess.controls['Sell_Fee'].touched)" class="text-danger">
+                          <div *ngIf="addPackagess.controls['Sell_Fee'].errors.required"> Fee is required</div>  
+                          <!-- <div class="texy-danger" *ngIf="addPackagess.controls['Sell_Fee'].errors['pattern']">Fee only in numbers </div> -->
+                        </div>
+                        <label for="email">Sell</label>
+                        <div class="mngpersent">%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="package-name">Gateway</label>
+              </div>
+              <div class="col-md-6">
+               
+
+                <ng-multiselect-dropdown
+                #multiSelect
+                [class.is-invalid]="
+                addPackagess?.gatewayss?.errors?.required && addPackagess?.gatewayss?.touched
+              "
+                [placeholder]="'custom placeholder'"
+                [ngClass]="{'is-invalid': addPackagess.controls['gatewayss'].status==='INVALID'}"
+                [settings]="settings"
+                [data]="dropdownList"
+                formControlName="gatewayss"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                [(ngModel)]="selectedItems"
+                [disabled]="false"
+                (onFilterChange)="onFilterChange($event)"
+                (onDropDownClose)="onDropDownClose($event)"
+               (onDeSelect)="onDeSelect($event)"
+                (onDeSelectAll)="onDeSelectAll($event)"
+              >
+              </ng-multiselect-dropdown>
+
+              <div *ngIf="addPackagess.controls.gatewayss.dirty">
+                <div *ngIf="addPackagess.hasError('required', 'gatewayss')">Required</div>  
+              </div>
+
+              <!-- <div *ngIf="submitted && addPackagess.controls['gatewayss'].invalid" 
+        class="text-danger mt-1">
+      <div *ngIf="addPackagess.controls['gatewayss'].errors.required">
+        Packages Name is required.
+      </div>
+    </div> -->
+
+              <!-- <div *ngIf="submitted && addPackagess.controls['gatewayss'].invalid" class="text-danger mt-1">
+                <div *ngIf="addPackagess.controls['gatewayss'].errors.required"> Gateway is required</div> 
+              </div>   -->
+              
+                <span *ngIf="addPackagess?.gatewayss?.errors?.required && addPackagess?.gatewayss?.touched" style="color: red">
+                  City is required
+                </span>
+<!-- 
+                <br />
+                <br /> -->
+              </div>
+            </div>
+            <div class="row mb-3 mt-4">
+              <hr />
+              <div class="col-md-12">
+                <p
+                  style="
+                    margin-top: -28px;
+                    background: #ffffff;
+                    z-index: 999;
+                    position: absolute;
+                    padding: 1px 8px;
+                    font-size: 12px;
+                    font-weight: 600;
+                  "
+                >
+                  Holding
+                </p>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="package-name">Holding Time</label>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Sell-Fee"
+                    formControlName="Holding_time"
+                    (keypress)="numberOnly($event)"
+                    aria-describedby="Sell-Fee"
+                  />
+                  <div *ngIf="addPackagess.controls['Holding_time'].invalid && (addPackagess.controls['Holding_time'].dirty || addPackagess.controls['Holding_time'].touched)" class="text-danger">
+                    <div *ngIf="addPackagess.controls['Holding_time'].errors.required"> Fee is required</div>  
+                    <!-- <div class="texy-danger" *ngIf="addPackagess.controls['Holding_time'].errors['pattern']">Fee only in numbers </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="package-name">Remark</label>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Sell-Fee"
+                    formControlName="Remark"
+                    aria-describedby="Sell-Fee"
+                  />
+                </div>
+              </div>
+            </div> -->
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="package-name">Min. Pay</label>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="Min_pay"
+                    id="Sell-Fee"
+                    aria-describedby="Sell-Fee"
+                    (keypress)="numberOnly($event)"
+                  />
+                  <div *ngIf="addPackagess.controls['Min_pay'].invalid && (addPackagess.controls['Min_pay'].dirty || addPackagess.controls['Min_pay'].touched)" class="text-danger">
+                    <div *ngIf="addPackagess.controls['Min_pay'].errors.required"> Min. Pay is required</div>  
+                    <!-- <div class="texy-danger" *ngIf="addPackagess.controls['Min_pay'].errors['pattern']">Min. Pay only in numbers </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="package-name">Subc. Cost</label>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Sell-Fee"
+                    formControlName="Subc_cost"
+                    aria-describedby="Sell-Fee"
+                    (keypress)="numberOnly($event)"
+                  />
+                  <div *ngIf="addPackagess.controls['Subc_cost'].invalid && (addPackagess.controls['Subc_cost'].dirty || addPackagess.controls['Subc_cost'].touched)" class="text-danger">
+                    <div *ngIf="addPackagess.controls['Subc_cost'].errors.required"> Subc. Cost is required</div>  
+                    <!-- <div class="texy-danger" *ngIf="addPackagess.controls['Subc_cost'].errors['pattern']">Subc. Cost only in numbers </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12o">
+                <fieldset [disabled]="validArray">
+                <button
+                  class="btn btn-success"
+                  type="submit"
+                  style="width: 100%"
+                  [disabled]="((addPackagess.invalid) || (dropdownData.length==0 ))" *ngIf="!formType"  (click)="modal.dismiss('Cross click')"> Submit</button>
+                </fieldset>
+
+                <button
+                class="btn btn-success"
+                type="submit"
+                style="width: 100%"
+                *ngIf="formType">Update</button>
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

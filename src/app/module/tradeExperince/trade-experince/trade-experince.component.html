@@ -1,0 +1,103 @@
+
+<form [formGroup]="myForm">
+<div class="s-card scard-shadow">
+    <div class="scard-header">
+       <h2>Share a bit about yourself</h2>
+    </div>
+    <div class="scard-body">
+       <div class="row">
+        <div class="col-md-12">
+            <h3 class="exp-tit">Your trading experience</h3>
+        </div>
+            <div class="col-md-12 pt-3 ">
+                <div class="d-flex00">
+                    <div class="radio-like-btn">
+                        <input type="radio" id="ly1" name="trdexp1" formControlName="trdexp1" value="ly1"> <label for="ly1">Less than 1 year</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio" id="ly1-2" name="trdexp2" formControlName="trdexp2" value="ly1-2"> <label for="ly1-2">1-2 years</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="ly2-5" name="trdexp3" formControlName="trdexp3" value="ly2-5"> <label for="ly2-5">2-5 years</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="ly5-10" name="trdexp4" formControlName="trdexp4" value="ly5-10"> <label for="ly5-10">5-10 years</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="lymore10" name="trdexp5" formControlName="trdexp5" value="lymore10"> <label for="lymore10">more than 10</label>
+                    </div>
+                </div>
+            </div>
+       </div>
+       <hr>
+       <div class="row">
+        <div class="col-md-12">
+            <h3 class="exp-tit">Your annual income</h3>
+        </div>
+            <div class="col-md-12 pt-3 ">
+                <div class="d-flex00">
+                    <div class="radio-like-btn">
+                        <input type="radio" id="belowlk1" name="annualincome1" formControlName="ai1" value="belowlk1"> <label for="belowlk1">Below 1 Lakh</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio" id="lk1-5" name="annualincome2" formControlName="ai2" value="lk1-5"> <label for="lk1-5">1L - 5L</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="lk5-10" name="annualincome3" formControlName="ai3" value="lk5-10"> <label for="lk5-10">5L - 10L</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="abovelk10" name="annualincome4" formControlName="ai4" value="abovelk10"> <label for="abovelk10">Above 10L</label>
+                    </div>
+                </div>
+            </div>
+       </div>
+       <hr>
+       <div class="row">
+        <div class="col-md-12">
+            <h3 class="exp-tit">Your occupation</h3>
+        </div>
+            <div class="col-md-12 pt-3 ">
+                <div class="d-flex00">
+                    <div class="radio-like-btn">
+                        <input type="radio" id="private-sector" name="user-occupation" formControlName="uocc1" value="private-sector"> <label for="private-sector">Private sector</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio" id="government-service" name="user-occupation" formControlName="uocc2" value="government-service"> <label for="government-service">Government service</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="pubic-sector" name="user-occupation" formControlName="uocc3" value="pubic-sector"> <label for="pubic-sector">Public sector</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="agriculturist" name="user-occupation" formControlName="uocc4" value="agriculturist"> <label for="agriculturist">Agriculturist</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="professional" name="user-occupation" formControlName="uocc5" value="professional"> <label for="professional">Professional</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="business" name="user-occupation" formControlName="uocc6" value="business"> <label for="business">Business</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="housewife" name="user-occupation" formControlName="uocc7" value="housewife"> <label for="housewife">Housewife</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="retired" name="user-occupation" formControlName="uocc8" value="retired"> <label for="retired">Retired</label>
+                    </div>
+                    <div class="radio-like-btn">
+                        <input type="radio"  id="student" name="user-occupation" formControlName="uocc9" value="student"> <label for="student">Student</label>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+    <div class="scard-footer">
+       <div class="row justify-content-between">
+          <div class="col-3">
+             <!-- <button type="button" class="btn btn-light back-btn width-100">Back to step</button> -->
+          </div>
+          <div class="col-3">
+             <button type="button" class="btn btn-light next-btn width-100" (click)="onSubmit()">Proceed to next</button>
+          </div>
+       </div>
+    </div>
+ </div>
+</form>

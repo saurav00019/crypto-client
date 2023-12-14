@@ -1,0 +1,187 @@
+<div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 navtab-height">
+    <div class="profile-box">
+
+        <div class="add-class-for-show-and-hide" >
+                    
+                    
+            <div class="row">
+                
+
+                <div  class="col-md-6">
+                    <div><h5 class="profile-bold-text mb-5" >Pan Details</h5></div>
+                    <div class="row pan-div pan-bg cardhover hovershow" style="position: relative;">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div>
+                                        <img style="height: 46px; filter: drop-shadow(2px 0px 5px red);" src="assets/images/india-tax.png">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-end">
+                                        <img style="height: 46px; filter: drop-shadow(2px 0px 5px red);" src="assets/images/ogvt-ind.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <div class=" ">
+                                <div class="mt-5 pantext1">
+                                    <p class="" style="color:#000"><span class=" me-2">Name</span><b>{{first}} {{last}}</b></p>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class=" ">
+                                <div class=" pantext1">
+                                    <p class="" style="color:#000"><span class=" me-2">DOB</span><b>{{this.date}}</b></p>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class=" mb-5">
+                                <div class=" pantext1">
+                                    <p class="" style="color:#000"><span class=" me-2">Pan Number</span><br><b>XXXXXXXX78A</b></p>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="hover-show-1">
+                            <div class="ringicon"><i class="fa-solid fa-magnifying-glass-plus" style="cursor: pointer;" (click)="viewPen(content4,panImage)"> </i> </div>
+                            <p class="pretext">Preview</p>
+                        </div>
+                    </div>
+                    
+               </div>
+             
+
+               <div  class="col-md-6">
+                <div><h5 class="profile-bold-text mb-5" >Aadhaar Details</h5></div>
+                <div class="row pan-div aadhar-bg cardhover hovershow" style="position: relative;">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-3">
+                                <div>
+                                    <img style="height: 40px;" src="assets/images/india-gov-logo.png">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-end">
+                                    <img style="width: 100%;" src="assets/images/aadhar-strip1.png">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="text-end">
+                                    <img style="height: 40px;" src="assets/images/Aadhaar_Logo.svg.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class=" ">
+                            <div class="mt-5 pantext1">
+                                <p class="" style="color:#000"><span class=" me-2">Name</span><b>{{first}} {{last}}</b></p>
+                            </div>
+                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class=" ">
+                            <div class=" pantext1">
+                                <p class="" style="color:#000"><span class=" me-2">Gender</span><b>
+                                  {{ personalForm.get('gender').value === 1 ? 'Male' :
+                                        personalForm.get('gender').value === 2 ? 'Female' :
+                                        personalForm.get('gender').value === 3 ? 'Others' : 'Unknown' }}
+                                </b></p>
+                            </div>
+                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class=" mb-5">
+                            <div class=" pantext1">
+                                <p class="" style="color:#000"><span class=" me-2">Aadhaar Number</span><br><b>xxxxxxxx5878</b></p>
+                            </div>
+                         </div>
+                    </div>
+
+                    <div class="hover-show-1" *ngIf="aadharImage != null">
+                        <div class="ringicon"><i class="fa-solid fa-magnifying-glass-plus" style="cursor: pointer;" (click)="viewAadhar(content5, aadharImage)"></i></div>
+                        <p class="pretext">Preview</p>
+                    </div>
+                    <div class="hover-show-1" *ngIf="aadharImage == null">
+                        <div class="ringicon"><i class="fa-solid fa-magnifying-glass-plus" style="cursor: pointer;" (click)="viewAadhar1(content6)"></i></div>
+                        <p class="pretext">Preview</p>
+                    </div>
+                </div>
+               
+                </div>
+
+           
+            </div>
+            
+        </div>
+        </div>
+        </div>
+
+
+        <ng-template #content4 let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title">Pan Card</h4>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+                <img [src]="this.penUrl" style="width: 100%;" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            </div>
+        </ng-template>
+        
+        
+        
+        
+        <ng-template #content5 let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title">Aadhaar Card</h4>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body" >
+                <pdf-viewer *ngIf="showAdhaarview === true" [src]=aadharUrl1
+                [rotation]="0"
+                [original-size]="false"
+                [show-all]="false"
+                [fit-to-page]="true"
+                [zoom]="0.4"
+                [zoom-scale]="'page-width'"
+                [stick-to-page]="false"
+                [render-text]="false"
+                [external-link-target]="'blank'"
+                [autoresize]="true"
+                [show-borders]="true"
+                style="width: 100%; height: 240px; margin:0 auto; overflow: hidden !important;"></pdf-viewer>
+                
+            </div>
+            <div class="modal-body">
+                <div *ngIf="showAdhaarview === false">
+                    <img src="assets/images/p2p-no-datat.png" style="width: 100%;" alt="">
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            </div>
+        </ng-template>
+        
+        
+        <ng-template #content6 let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title">Aadhaar Card</h4>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body" >
+                <img src="assets/images/p2p-no-datat.png" style="width: 100%;" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            </div>
+        </ng-template>

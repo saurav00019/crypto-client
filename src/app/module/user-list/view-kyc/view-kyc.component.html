@@ -1,0 +1,448 @@
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white p-two-p-height-scroll">
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3">
+                <div class="col-md-6">
+                    <h2 class="pageheading">User Details</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-3 mb-3">
+                <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3">
+                    <div class="profile-box">
+                     <div class="d-flex  mb-4">
+                         <div class="avt me-3" >
+                             <div class="circle">
+                                 <img class="profile_pic"
+                                     src="assets/images/fake-user.png">
+                             </div>
+                            
+                         </div>
+                        
+                         <div class="dsection1">
+                            <h5 >{{kycDetail?.First}} {{kycDetail?.Last}}</h5>
+                            <!-- <div class="d-flex">
+                                <p class="p-label">User id:</p><p>XXXXXX</p>
+                            </div> -->
+                            <div class="d-flex">
+                                <p class="p-label">Pan:</p><p>XXXXXXXXXXX</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="p-label">DOB:</p><p>{{kycDetail?.DOB}}</p>
+                            </div>
+                        </div>
+                     </div>
+                     <!-- tabnav  -->
+                     <div class="tabnavc">
+                         <ul class="tabnavc-ul">
+                             <li  [ngClass]="{'active': currentTab == 'tab1'}" (click)="nvatabc ('tab1')">
+                                 <div class="tabnavc-a ">
+                                     <div><span class="tabnavc-txt">Personal Details</span></div>
+                                     <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                 </div>
+                             </li>
+                             <li [ngClass]="{'active': currentTab == 'tab2'}" (click)="nvatabc ('tab2')">
+                                 <div class="tabnavc-a">
+                                     <div><span class="tabnavc-txt">Bank Details</span></div>
+                                     <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                 </div>
+                             </li>
+                             <li [ngClass]="{'active': currentTab == 'tab3'}" (click)="nvatabc ('tab3')">
+                                 <div class="tabnavc-a">
+                                     <div><span class="tabnavc-txt">Documents</span></div>
+                                     <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                 </div>
+                             </li>
+                             <li [ngClass]="{'active': currentTab == 'tab4'}" (click)="nvatabc ('tab4')">
+                                 <div class="tabnavc-a">
+                                     <div><span class="tabnavc-txt">Nominee Details</span></div>
+                                     <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                 </div>
+                             </li>
+                         </ul>
+                     </div>
+                    </div>
+                 </div>
+                 <div class="col-md-8 col-lg-8 col-xl-8 col-xxl-9 navtab-height">
+                     <div class="profile-box">
+                         <div class="add-class-for-show-and-hide amindiv"  *ngIf="currentTab == 'tab1'">
+                             <div><h5 class="profile-bold-text " > Personal details</h5></div>
+                             <form >
+                             <div class="row">
+                               
+                                 <div class="col-md-3 boder-b1">
+                                     <div class="pro-personal-val ">
+                                         <div>
+                                             <div class="personal-label"><i class="fa fa-mobile me-2" aria-hidden="true"></i> <span>Mobile</span></div>
+                                             <p class="mb-0">{{kycDetail?.oContact?.Phone}}</p>
+                                         </div>
+                                         
+                                     </div>
+                                 </div>
+                                 
+                                 <div class="col-md-3 boder-b1">
+                                     <div class="pro-personal-val ">
+                                         <div>
+                                             <div class="personal-label"><i class="fa fa-envelope-o me-2" aria-hidden="true"></i> <span>Email id</span></div>
+                                             <p class="mb-0">{{kycDetail?.oContact?.Email}}</p>
+                                         </div>
+                                         <div>
+                                             <!-- <button class="btn btn-link btn-sm">Edit</button> -->
+                                         </div>
+                                     </div>
+                                 </div>
+         
+                                 <div class="col-md-12 boder-b1">
+                                     <div class="row ">
+                                         <div class="col-md-3">
+                                             <div class="pro-personal-val">
+                                                 <div>
+                                                     <div class="personal-label"> <span>Gender</span></div>
+                                                     <p class="mb-0" *ngIf="persDetail?.GenderID == 1">Male</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.GenderID == 2">Female</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.GenderID == 3">Others</p>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                             <div class="pro-personal-val">
+                                                 <div>
+                                                     <div class="personal-label"> <span>Marital Status</span></div>
+                                                     <p class="mb-0" *ngIf="persDetail?.MartialID == 1">Married</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.MartialID == 2">Unmarried </p>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                             <div class="pro-personal-val">
+                                                 <div>
+                                                     <div class="personal-label"> <span>Qualification</span></div>
+                                                     <p class="mb-0" *ngIf="persDetail?.EducationID == 1">Bachelor's Degree</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.EducationID == 2">Vocational</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.EducationID == 3">Master's Degree</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.EducationID == 4">Doctorate or higher</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.EducationID == 5">Primary School</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.EducationID == 6">High School</p>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                             <div class="pro-personal-val">
+                                                 <div>
+                                                     <div class="personal-label"> <span>Occupation</span></div>
+                                                     <p class="mb-0" *ngIf="persDetail?.OccupationID == 1">Private Sector</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.OccupationID == 2">Government Sector</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.OccupationID == 3">Public Sector</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.OccupationID == 4">Agriculturist</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.OccupationID == 5">Professional</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.OccupationID == 6">Business</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.OccupationID == 7">Housewife</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.OccupationID == 8">Retired</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.OccupationID == 9">Student</p>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+         
+                                 <div class="col-md-12 boder-b1">
+                                     <div class="row ">
+                                         <div class="col-md-3">
+                                             <div class="pro-personal-val">
+                                                 <div>
+                                                     <div class="personal-label"> <span>Annual Income (in Lakhs)</span></div>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 1">0 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 2">1 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 3">3 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 4">5 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 5">8 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 6">10 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 7">15 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 8">20 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 9">25 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 10">35 Lakhs</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.AnnualID == 11">50 Lakhs</p>
+                                                     
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                             <div class="pro-personal-val">
+                                                 <div>
+                                                     <div class="personal-label"> <span>Stack Market Exp.</span></div>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 1">0 Years</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 2">1 Years</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 3">2 Years</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 4">3 Years</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 5">4 Years</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 6">5 Years</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 7">6 Years</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 8">7 Years</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 9">8 Years</p>
+                                                     <p class="mb-0" *ngIf="persDetail?.ExpID == 10">9 Years</p>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                             <div class="pro-personal-val">
+                                                 <div>
+                                                     <div class="personal-label"> <span>Net Worth (in Lakhs)</span></div>
+                                                     <p class="mb-0">{{persDetail?.Worth}}</p>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+         
+                                 <div class="row ">
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>City</span></div>
+                                                <p class="mb-0">{{kycDetail?.oAddr?.City}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>State</span></div>
+                                                <p class="mb-0" >{{kycDetail?.oAddr?.State}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>Country</span></div>
+                                                <p class="mb-0">{{kycDetail?.oAddr?.Country}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pro-personal-val">
+                                            <div>
+                                                <div class="personal-label"> <span>Zipcode</span></div>
+                                                <p class="mb-0" >{{kycDetail?.oAddr?.Zipcode}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                         </form>
+                         </div>
+                         <div class="add-class-for-show-and-hide amindiv" *ngIf="currentTab == 'tab2'">
+                            <div><h5 class="profile-bold-text " > Banking details</h5></div>
+                            
+                            <div class="row" *ngIf="accNumber != null">
+                                <div class="col-md-6">
+                                    <div class="bankcard cardhover  mt-4">
+                                        <div class="d-flex justify-content-between align-items-center p-4">
+                                            <div><p class="bankname-txt" style="font-size: 18px; color:#fff">{{accDetail?.BankName}}</p></div>
+                                            <div class="chipicon"><img src="assets/images/chip.png" alt="chip"></div>
+                                        </div>
+                                       
+                                        <div class=" text-center">
+                                           <p class="" style="color:#fff; font-size: 20px; letter-spacing: 5px;"><span class="personal-label me-2" style="color:#fff; font-size: 13px;">Bank Account Number</span><br><b>{{accNumber}}</b></p>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center p-5">
+                                            <div>
+                                                <div>
+                                                    <div class="personal-label"> <span style="color:#fff; font-size: 13px; font-weight: 300;">Account Name Holder</span></div>
+                                                    <p class="mb-0" style="color:#fff">{{accDetail?.AccountName}}</p>
+                                                </div>
+                                            </div>
+                                           
+                                            <div>
+                                                <div class=" text-end"> <span class="text-end" style="color:#fff; font-size: 13px; font-weight: 300;">IFSC Code</span></div>
+                                                <p class="mb-0 text-end" style="color:#fff">{{accDetail?.IFSC}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="ring"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="accNumber == null">
+                                <div class="col-md-6  ">
+                                    <div class="bankcard cardhover m-auto text-center mt-4">
+                                        <img style="width: 240px;height: 240px; border-radius: 8px; text-align: center;margin: 0 auto; opacity: 0.5;" src="../assets/images/non-doc.png" alt="">
+                                    </div>
+                                    </div>
+                                
+                           
+                            </div>
+                        </div>
+                         <div class="add-class-for-show-and-hide amindiv" *ngIf="currentTab == 'tab3'">
+                             
+                             <form >
+                             <div class="row">
+                             
+                            <div class="col-md-6" *ngIf="panImage != null" >
+                            <div><h5 class="profile-bold-text mb-5" >Pan Details</h5></div>
+                            <div class="row pan-div-maual1 aadhar-bg cardhover"  >
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img style="width: 100%;height: 240px; border-radius: 8px; text-align: center;margin: 0 auto;" [src]="panImage">
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <div class="hover-show-btn1" *ngIf="panImage != null">
+                                    <div class="ringicon" ><i class="fa-solid fa-magnifying-glass-plus" style="cursor: pointer;" (click)="viewPen(content4,panImage)"></i></div>
+                                    <p class="pretext">Preview</p>
+                                </div>
+                            </div>
+                            
+                            </div>
+                            <div class="col-md-6" *ngIf="panImage == null">
+                                <div><h5 class="profile-bold-text mb-5" >Pan Details</h5></div>
+                                <div class="row pan-div-maual1 aadhar-bg cardhover"  >
+                                    <div class="row">
+                                        <div class="col-md-12 m-auto text-center">
+                                            <img style="width: 240px;height: 240px; border-radius: 8px; text-align: center;margin: 0 auto; opacity: 0.5;" [src]="panImage1">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                </div>
+                            <div  class="col-md-6" *ngIf="aadharImage != null">
+                            <div><h5 class="profile-bold-text mb-5" >Aadhar Details</h5></div>
+                            <div class="row pan-div-maual2 aadhar-bg cardhover"  >
+                                <div class="col-md-12" >
+                                    <div class="row">
+                                        <pdf-viewer [src]=aadharImage
+                                                [rotation]="0"
+                                                [original-size]="false"
+                                                [show-all]="false"
+                                                [fit-to-page]="true"
+                                                [zoom]="0.4"
+                                                [zoom-scale]="'page-width'"
+                                                [stick-to-page]="false"
+                                                [render-text]="false"
+                                                [external-link-target]="'blank'"
+                                                [autoresize]="true"
+                                                [show-borders]="true"
+                                                style="width: 100%; height: 240px; margin:0 auto; overflow: hidden !important;"></pdf-viewer>
+                                     
+                                    </div>
+                                </div>
+                               
+                                <div class="hover-show-btn2" *ngIf="aadharImage != null" >
+                                    <div class="ringicon"><i class="fa-solid fa-magnifying-glass-plus" style="cursor: pointer;" (click)="viewAadhar(content5, aadharImage)"></i></div>
+                                    <p class="pretext">Preview</p>
+                                </div>
+                            </div>
+                           
+                            </div>
+                            <div  class="col-md-6" *ngIf="aadharImage == null">
+                                <div><h5 class="profile-bold-text mb-5" >Aadhar Details</h5></div>
+                                <div class="row pan-div-maual2 aadhar-bg cardhover"  >
+                                    <div class="col-md-12 text-center" >
+                                        <div class="row">
+                                           <img style="width: 240px;height: 240px; border-radius: 8px; text-align: center;margin: 0 auto; opacity: 0.5;" [src]="aadharImage1">
+                                         </div>
+                                    </div> 
+                                </div>
+                            </div>
+                             </div>
+                         </form>
+                         </div>
+                         <div class="add-class-for-show-and-hide amindiv" *ngIf="currentTab == 'tab4'">
+                             <div><h5 class="profile-bold-text "> Nominee details</h5></div>
+                             
+                             <form >
+                             <div class="row">
+                                <div class="col-md-12">
+                                     <div class="row">
+                                         <div class="col-md-6">
+                                             <div class="form-floating mb-4">
+                                                <input  class="form-control ab-border0" type="text" placeholder="." [(ngModel)]="persDetail.NominationName" [ngModelOptions]="{standalone: true}" readonly>
+                                                <label>Name</label>
+                                              </div>
+                                          </div>
+                                         
+                                          <div class="col-md-6">
+                                            <div class="form-floating mb-4">
+                                                <!-- <input  class="form-control ab-border0" type="text" placeholder="." [(ngModel)]="marrStatus" [ngModelOptions]="{standalone: true}" readonly> -->
+                                                <span  class="form-control ab-border0 relation" type="text...." *ngIf="persDetail.MartialID === 2">{{marrStatus}}</span>
+                                                <span  class="form-control ab-border0 relation" type="text...." *ngIf="persDetail.MartialID === 1 ">{{marrStatus}}</span>
+                                                <span  class="form-control ab-border0 relation" type="text////" *ngIf="persDetail.MartialID == 0">NA</span>
+                                                <!-- <span *ngIf="!marrStatus">NA</span>
+                                                <span *ngIf="marrStatus">{{marrStatus}}</span> -->
+                                               
+                                                <label for="sel3" class="form-label">Relationship</label>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="form-floating mb-4">
+                                                <input  class="form-control ab-border0"  type="date" placeholder="." [(ngModel)]="persDetail.NomineeDOB" [ngModelOptions]="{standalone: true}" readonly>
+                                                <label>Date of Birth</label>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="form-floating mb-4">
+                                                <input  class="form-control ab-border0"  type="text" placeholder="." [(ngModel)]="persDetail.NominationPan" [ngModelOptions]="{standalone: true}" readonly>
+                                                <label>Pan number</label>
+                                              </div>
+                                          </div>
+                                        
+                                         
+                                     </div>
+                                </div>
+                             </div>
+                         </form>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+<ng-template #content4 let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Pen Card</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<img [src]="this.penUrl" style="width: 100%;" alt="">
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+
+
+
+<ng-template #content5 let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Aadhaar Card</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <pdf-viewer [src]=aadharUrl
+        [rotation]="0"
+        [original-size]="false"
+        [show-all]="false"
+        [fit-to-page]="true"
+        [zoom]="0.4"
+        [zoom-scale]="'page-width'"
+        [stick-to-page]="false"
+        [render-text]="false"
+        [external-link-target]="'blank'"
+        [autoresize]="true"
+        [show-borders]="true"
+        style="width: 100%; height: 240px; margin:0 auto; overflow: hidden !important;"></pdf-viewer>
+		
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

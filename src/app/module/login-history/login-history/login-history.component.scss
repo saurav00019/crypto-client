@@ -1,0 +1,18 @@
+.login-history{background-color: var(--black);min-height: 100vh;color: var(--white);}
+.login-history p{color: var(--light-gray);font-size: 12px;margin-bottom: 8px;}
+select{background:transparent;color: var(--light-gray);font-size: 12px;margin: 0 4px;border-radius: 4px;}
+select option{background: var(--black);}
+.table thead th{background: #28304E;color: var(--light-gray);font-size: 13px;border-bottom: 1px solid #333;padding: 1rem;}
+.table thead th:first-child{border-radius: 16px 0 0 0;}
+.table thead th:last-child{border-radius: 0 16px 0 0;text-align: right;}
+.table tbody {border-radius: 16px 0 0 0;}
+.table td{background:var(--dark-blue) ;color: var(--light-gray);font-size: 13px;border-bottom: 1px solid #333;padding: 1rem;}
+.table tr:last-child td{border-bottom: none;}
+.table tr:last-child td:last-child{border-radius: 0 0 16px 0;}
+.table tr:last-child td:first-child{border-radius: 0 0 0 16px;}
+.table tr td:last-child{text-align: right;}
+.page-item .page-link{color: var(--light-gray);font-size: 13px;}
+.page-item:first-child .page-link{color: #70d6ed;}
+.pagination{--bs-pagination-bg:var(--black);--bs-pagination-border-width:0;margin-bottom: 0;}
+.pagination h6{font-size: 13px;color: var(--light-gray);font-weight: 300;margin-bottom: 0;}
+.page-item .page-link:hover{color: #70d6ed;background: transparent;}
