@@ -6,7 +6,7 @@ export const environment = {
   fileUrl:"",
   redirect:"https://p2p.bitziana.com/#/payment-status" 
 
-  // url:"https://apitest.bitziana.com/Tradersroom_API_bitzianatest/",   //Testing APi
+  // url:"https://apitest.bitziana.com/Tradersroom_API_bitzianatest/",   //Testing APis
   // redirectUrl:"https://test.bitziana.com/#/",
   // fileUrl:"",
   // redirect:"https://test.bitziana.com/#/payment-status"
