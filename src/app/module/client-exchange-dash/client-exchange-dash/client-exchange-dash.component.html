@@ -305,10 +305,8 @@
           <div class="col-md-6 ps-0">
             <div ngbAccordion>
               <div ngbAccordionItem [collapsed]="false">
-                <h2 ngbAccordionHeader>
-                  <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbAccordionButton>
-                    <span class="me-2">Order Book</span> <span> {{ListsocketData1?.Base}}/ {{ListsocketData1?.Quote}}</span>
-                  </button>
+                <h2 class="panel-m-hd pt-2">
+                  <span class="me-2">Order Book</span> <span> {{ListsocketData1?.Base}}/ {{ListsocketData1?.Quote}}</span>
                 </h2>
                 <div ngbAccordionCollapse>
                   <div ngbAccordionBody>
@@ -380,11 +378,10 @@
             <div class="trading_book_section market-pair" id="accordian-1">
               <div ngbAccordion>
                 <div ngbAccordionItem [collapsed]="false">
-                  <h2 ngbAccordionHeader>
-                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbAccordionButton>
-                      <span class="me-2">Trades Book</span> <span> {{ListsocketData1?.Base}}/ {{ListsocketData1?.Quote}}</span>
-                    </button>
+                  <h2 class="panel-m-hd pt-2">
+                    <span class="me-2">Trades Book</span> <span> {{ListsocketData1?.Base}}/ {{ListsocketData1?.Quote}}</span>
                   </h2>
+                  
                   <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
                       <ng-template>
@@ -426,7 +423,7 @@
                                 <div class="set-fake-tab1">
                                   <a routerLink="/ex-all-order">View All Orders</a>
                                 </div>
-                                <app-trade-book-order></app-trade-book-order>
+                                <app-trade-book-order [items3]="listOfFirst2"></app-trade-book-order>
                               </ng-template>
                             </li>
                             <li [ngbNavItem]="10" class="yours">
@@ -435,7 +432,7 @@
                                 <div class="set-fake-tab1">
                                   <a routerLink="/ex-all-trade">View All Trade</a>
                                 </div>
-                                <app-ex-tradebook-trade></app-ex-tradebook-trade>
+                                <app-ex-tradebook-trade ></app-ex-tradebook-trade>
                               </ng-template>
                             </li>
                           </ul>

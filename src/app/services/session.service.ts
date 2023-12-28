@@ -23,7 +23,7 @@ export class SessionService {
   endSession() {
     this.cookieService.delete('session');
     localStorage.clear();
-    sessionStorage.clear();
+    localStorage.clear();
   console.log("END of SESSION");
     this.router.navigate(['/login']);
   }

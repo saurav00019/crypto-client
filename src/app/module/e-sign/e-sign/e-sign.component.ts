@@ -194,7 +194,7 @@ uploadPath: any
     setTimeout(() => {
       Swal.fire('Congratulations!', 'Your Profile has been uploaded and is under verification. You can Re-Login after ! Hour!!!'),
       localStorage.clear();
-       sessionStorage.clear();
+       localStorage.clear();
       this.rout.navigate(['/login']);
     }, 3000);
    
@@ -213,7 +213,7 @@ uploadPath: any
   
   ngOnDestroy(): void {
    
-     sessionStorage.clear();
+     localStorage.clear();
      localStorage.clear();
     
       if(localStorage.getItem("kycValue")=="5"){

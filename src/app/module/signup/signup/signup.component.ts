@@ -81,12 +81,13 @@ export class SignupComponent implements OnInit {
   get f2() { return this.veryFyPenNo.controls; }
   constructor(private formBuilder: FormBuilder, private sharedData:SharedDataService, private services: ApiDataService, private router: Router, private toastrService: ToastrService) { 
 
- this.start(3);
+//  this.start(3);
 
  this.initOtpInputChangeSubscription("eotp");
   }
 
   ngOnInit(): void {
+    
    
     // const formEl = this.myForm.nativeElement;
     // const inputs = formEl.querySelectorAll('input');
@@ -171,39 +172,77 @@ exactLengthValidator(length: number) {
 
 
 
+// start(number: number) {
+//   this.displayTimer = true;
+  
+//     const durationInSeconds = number * 60;
+//     const startTime = performance.now();
+    
+//     const timer = (currentTime: number) => {
+//       const elapsedTime = currentTime - startTime;
+//       const remainingTime = Math.max(0, durationInSeconds - Math.floor(elapsedTime / 1000));
+  
+//       if (remainingTime > 0) {
+//         const minutes = Math.floor(remainingTime / 60);
+//         const seconds = remainingTime % 60;
+//         const prefix = minutes < 10 ? '0' : '';
+//         const display = `${prefix}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  
+       
+//           this.resendOTPemail = false;
+//           this.emailTimer = display;
+//           setTimeout(() => {
+//             this.emailotpSuccess=true;
+//           }, 10000);
+  
+//         requestAnimationFrame(timer);
+        
+//       } else {
+      
+//         this.resendOTPemail = true;
+//         // this.emailotpSuccess=true;
+//         this.displayTimer = false;
+//       }
+//     };
+  
+//     requestAnimationFrame(timer);
+// }
+
 start(number: number) {
   this.displayTimer = true;
   
-    const durationInSeconds = number * 60;
-    const startTime = performance.now();
-    
-    const timer = (currentTime: number) => {
-      const elapsedTime = currentTime - startTime;
-      const remainingTime = Math.max(0, durationInSeconds - Math.floor(elapsedTime / 1000));
+  const durationInSeconds = number * 60;
+  const startTime = performance.now();
   
-      if (remainingTime > 0) {
-        const minutes = Math.floor(remainingTime / 60);
-        const seconds = remainingTime % 60;
-        const prefix = minutes < 10 ? '0' : '';
-        const display = `${prefix}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  
-       
-          this.resendOTPemail = false;
-          this.emailTimer = display;
-        
-  
-        requestAnimationFrame(timer);
-        
-      } else {
-      
-        this.resendOTPemail = true;
-        this.emailotpSuccess=true;
-        this.displayTimer = false;
-      }
-    };
-  
-    requestAnimationFrame(timer);
+  const timer = (currentTime: number) => {
+    const elapsedTime = currentTime - startTime;
+    const remainingTime = Math.max(0, durationInSeconds - Math.floor(elapsedTime / 1000));
+
+    if (remainingTime >= 0) {
+      const minutes = Math.floor(remainingTime / 60);
+      const seconds = remainingTime % 60;
+      const prefix = minutes < 10 ? '0' : '';
+      const display = `${prefix}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+      this.resendOTPemail = false;
+      this.emailTimer = display;
+
+      // Set emailotpSuccess to true after three minutes (180,000 milliseconds)
+      setTimeout(() => {
+        this.emailotpSuccess = true;
+      }, 180000);
+
+      requestAnimationFrame(timer);
+    } else {
+      this.resendOTPemail = true;
+      // this.emailotpSuccess=true;
+      this.displayTimer = false;
+    }
+  };
+
+  requestAnimationFrame(timer);
 }
+
 
 onSubmit() {
   
@@ -290,7 +329,7 @@ GET_PROFILE_OTP_VERIFY_STATUS(){
     else{
       this.emailOTPStat=data.oEmail_Verify;
       this.isEmailOTPValid = true;
-      this.emailotpSuccess= true;
+      // this.emailotpSuccess= true;
      
     }
   //  if(data.oPhone_Verify==1){
@@ -308,7 +347,7 @@ GET_PROFILE_OTP_VERIFY_STATUS(){
 }
 
 SEND_OTP_BY_EMAIL(){
-  this.start(3);
+  // this.start(3);
   let params ={
     
       ProfileId:this.profile,
@@ -473,7 +512,7 @@ navigate(){
   this.sharedData.loader(true);
   this.UPDATE_USER_VERIFY();
   localStorage.clear();
-  sessionStorage.clear();
+  localStorage.clear();
   // this.GET_PROFILE_OTP_VERIFY_STATUS();
   
   

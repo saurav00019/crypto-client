@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component , HostListener,NgZone, AfterViewInit, OnInit } from '@angular/core';
 // import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 import { SharedDataService } from './services/sharedData/shared-data.service';
@@ -11,21 +11,22 @@ import { WebsocketService } from './service/websocket.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent  {
    isloggeding: any
- 
+    isUserActive = false;
   // title ='debugging'
   addClass:boolean=false;
   isLoader:boolean = false;
   isSidebarVisible: any=true;
+  headerFlag: any
+
   
-  constructor(public api: ApiDataService, private web:WebsocketService,private cdr: ChangeDetectorRef, public sharedData:SharedDataService, private toastrService: ToastrService)
+  constructor(private zone: NgZone,public api: ApiDataService, private web:WebsocketService,private cdr: ChangeDetectorRef, public sharedData:SharedDataService, private toastrService: ToastrService)
   {
     this.isloggeding=this.api.isLogin();
-    // console.log("chekkiinnhbhb",this.isloggeding)
-    // console.log("service.isLoggedIn()", service.isLoggedIn())
+  
     if(this.api.isLogin()){
-      this.web.loginConnection()
+      // this.web.loginConnection()
       setTimeout(() => {
         this.web.getLogin()
     
@@ -33,6 +34,7 @@ export class AppComponent {
       
     
     }
+
     this.sharedData.loader(false);
     this.sharedData.selectedloaderValue.subscribe((val:any)=>{
       this.isLoader=val;
@@ -43,7 +45,7 @@ export class AppComponent {
       this.isSidebarVisible = isVisible;
       console.log("sidebar",this.isSidebarVisible)
     });
-    // this.sessionService.setSession('active', 2);
+  
 
     
     this.sharedData.selectedloaderValue.subscribe((val:any)=>{
@@ -51,8 +53,21 @@ export class AppComponent {
        this.cdr.detectChanges()
 
     })
+  
+    this.sharedData.headerLogin$.subscribe((data:any)=>{
+      this.headerFlag=data
+   
+    })
 
-  }
+if(this.headerFlag==undefined){
+
+  this.headerFlag=localStorage.getItem('headerActive')
+}
+
+  
+}
+
+  
 
 
   
@@ -71,5 +86,6 @@ export class AppComponent {
   public showError(): void {
     this.toastrService.error('Message Error!', 'Title Error!');
   }
-  
+
+
 }

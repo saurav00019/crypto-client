@@ -37,6 +37,8 @@ singnup:boolean=false;
     this.visible = !this.visible
   }
   constructor(private services:ApiDataService,private web: WebsocketService,private sessionService: SessionService, private toastrService: ToastrService,private formBuilder: FormBuilder,  private router:Router,public shareService:SharedDataService) { 
+    
+    
     this.shareService.selectedsignupValue.subscribe((res)=>{
       this.singnup=res
           // console.log("this.singnup...........", this.singnup)
@@ -44,9 +46,12 @@ singnup:boolean=false;
   }
 
   ngOnInit(): void {
-    
-    
+    if(this.services.isLogin()){
 
+      this.router.navigateByUrl('/p2p')
+    }
+    
+  
     const rememberMe = localStorage.getItem('rememberMe') === 'true';
   const loginID = localStorage.getItem('loginID') || '';
   const password = localStorage.getItem('password') || '';
@@ -86,7 +91,7 @@ singnup:boolean=false;
   submit(){
     
     let obj={
-      User: this.loginForm.value.userName,
+      User: (this.loginForm.value.userName).trim(),
       Password: this.loginForm.value.password,
       Key:''
     }
@@ -135,14 +140,14 @@ this.shareService.loader(true)
         this.profileID=data.ProfileId,
       
          localStorage.setItem('token',(JSON.stringify(data))),
-        // sessionStorage.setItem('ProfileID',data.Login),
+        // localStorage.setItem('ProfileID',data.Login),
         localStorage.setItem('PkgId',data.PkgId),
-        sessionStorage.setItem('ProfileID',this.profileID),
+        localStorage.setItem('ProfileID',this.profileID),
         localStorage.setItem('isLoggedIn', "true"),
         localStorage.setItem('ProfileID',this.profileID),
         this.getUserInfo(),
         this.getUserStage()
-      
+        this.shareService.loginHeader(true)
        }
        
       }
@@ -187,7 +192,7 @@ this.shareService.loader(true)
   }
 
  logout(){
-  sessionStorage.clear();
+  localStorage.clear();
   this.router.navigateByUrl('login')
 } 
   navigate(){
@@ -208,10 +213,10 @@ getUserInfo(){
   }
   this.services.GET_USER_INFO(params).subscribe((data:any)=>{
     console.log("hellotesting",data);
-    sessionStorage.setItem('First',data.First),
-    sessionStorage.setItem('Last',data.Last),
-    sessionStorage.setItem('Email',data.oContact.Email),
-    sessionStorage.setItem('Phone',data.oContact.Phone),
+    localStorage.setItem('First',data.First),
+    localStorage.setItem('Last',data.Last),
+    localStorage.setItem('Email',data.oContact.Email),
+    localStorage.setItem('Phone',data.oContact.Phone),
     this.shareService.ProfileData(data),
     localStorage.setItem("p2pData", JSON.stringify(data))
    
@@ -247,7 +252,7 @@ getUserStage(){
     Key:''
 }
 this.shareService.loader(true);
-this.web.loginConnection()
+// this.web.loginConnection()
 this.services.GET_USER_STAGE(params).subscribe((data:any)=>{
   console.log("kjhdfkjshtest",data)
 

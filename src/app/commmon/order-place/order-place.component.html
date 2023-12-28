@@ -28,18 +28,18 @@
                                         <form id="limit-form" [formGroup]="makeOrders">
                                           <div class="form-group-custom d-flex mb-3 mt-3">
                                             <h6>Price</h6>
-                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                            <input autocomplete="off" class="form-control" id="price_buy"  [value]="placeOrderData?.oQuote?.L"
                                                placeholder="Price" readonly type="text" data-ordertype="market"
-                                              [value]="placeOrderData?.oQuote?.L" />
+                                                />
                                             <span>{{placeOrderData?.Quote}}</span>
                                           </div>
                                           <div class="form-group-custom d-flex mb-3">
                                             <h6>Quantity</h6>
-                                            <input  autocomplete="off" value="Quantity" (input)="qunty()" formControlName="Quantity" class="form-control" id="price_buy"
+                                            <input  autocomplete="off" value="Quantity" (keypress)="numberOnly($event)" (input)="qunty()" formControlName="Quantity" class="form-control" id="price_buy"
                                             type="number" data-ordertype="market" />
                                             <span>{{placeOrderData?.Base}}</span>
                                           </div>
-                                          <div  *ngIf="flag1">
+                                          <div  >
                                             <!-- <span *ngIf="!quantValue">Total : ~ 0.0000000  {{placeOrderData?.Quote}}</span> -->
                                          
                                             <div class="form-group-custom0 d-flex justify-content-between mb-2" *ngIf="!quantValue">
@@ -77,21 +77,21 @@
                                         <form id="limit-form" [formGroup]="makeOrdersLimit">
                                           <div class="form-group-custom d-flex">
                                             <h6>Price</h6>
-                                            <input autocomplete="off" class="form-control" id="price_buy"
+                                            <input autocomplete="off" (keypress)="numberOnly($event)" [value]="placeOrderData?.oQuote?.L" class="form-control" id="price_buy"
                                             type="text" data-ordertype="market"  formControlName="price"
                                               />
                                             <span>{{placeOrderData?.Quote}}</span>
                                           </div>
                                           <div class="form-group-custom d-flex">
                                             <h6>SL</h6>
-                                            <input autocomplete="off" formControlName="sl" class="form-control" id="price_buy"
+                                            <input autocomplete="off" (keypress)="numberOnly($event)" formControlName="sl" class="form-control" id="price_buy"
                                               type="number" data-ordertype="market" />
                                             
                                           </div>
 
                                           <div class="form-group-custom d-flex">
                                             <h6>Quantity</h6>
-                                            <input autocomplete="off" (input)="qunty1()" formControlName="QuantityL" class="form-control" id="price_buy"
+                                            <input autocomplete="off" (keypress)="numberOnly($event)" (input)="qunty1()" formControlName="QuantityL" class="form-control" id="price_buy"
                                               type="number" data-ordertype="market" />
                                             <span>{{placeOrderData?.Base}}</span>
                                           </div>

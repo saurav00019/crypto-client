@@ -59,7 +59,7 @@ export class PanVarifyComponent {
     });
     this.sharedData.kysStage(0)
 
-  //   const savedPANimg = sessionStorage.getItem('PANimg');
+  //   const savedPANimg = localStorage.getItem('PANimg');
   // if (savedPANimg) {
   //   this.PANimg = savedPANimg;
   // }
@@ -113,7 +113,7 @@ export class PanVarifyComponent {
           }));
             // this.sharedData.loader(false);
            
-            // sessionStorage.setItem('PANimg', this.PANimg);
+            // localStorage.setItem('PANimg', this.PANimg);
             
             // this.panIdentity();
           
@@ -320,7 +320,7 @@ uploadPANdb(val:any,val1:any){
     },
     "Key":""
   }
-  // console.log(sessionStorage.getItem('ProfileID'))
+  // console.log(localStorage.getItem('ProfileID'))
   this.services.UPLOAD_KYC_DOC(obj).subscribe((data:any)=>{
     console.log(data)
    

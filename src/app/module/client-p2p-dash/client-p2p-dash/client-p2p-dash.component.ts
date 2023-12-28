@@ -78,6 +78,7 @@ export class ClientP2pDashComponent implements OnInit {
   }
   // ========================================================================== Min quantity should not be greater than Max quantity ================================================================================================
 
+  minQtyGreaterThanMaxQty: boolean= false
   minMaxQuantityValidator() {
     const minQty = this.makeOrders.value.min_qty;
     const maxQty = this.makeOrders.value.max_qty;
@@ -348,8 +349,8 @@ addTranReqq(){
     AmountRecv:  this.AmountReq,
     OrderID: this.listData.OrderID,
     TradeID:this.tradeId,
-    Trade_Profile: sessionStorage.getItem('ProfileID'),
-    Order_Profile:sessionStorage.getItem('ProfileID')
+    Trade_Profile: localStorage.getItem('ProfileID'),
+    Order_Profile:localStorage.getItem('ProfileID')
     //"dtCreatedOn": "2023-09-15 12:04:20.007
     }
     this.api.addChallen(obj).subscribe({
@@ -738,7 +739,9 @@ let obj ={
   //=========================================================================Make Order==============================================================================================
 
 
+  submitted: boolean= false
   makeOrder() {
+    this.submitted= true
    debugger
     // const rendome = Math.floor(Math.random() * 60) + 1
     let currentDate = new Date();
@@ -761,6 +764,11 @@ let obj ={
       dtUpdatedOn: this.datePipe.transform(formsVal.Validity, 'yyyy-MM-dd HH:mm:ss', 'GMT'),
       dtValidUpto: this.datePipe.transform(formsVal.Validity, 'yyyy-MM-dd HH:mm:ss', 'GMT'),
     }
+
+    if  (obj.MinQty != '' && obj.MaxQty != '' && obj.MinQty > obj.MaxQty) {
+      this.toastrService.error(`MaxQty should be greater then ${this.makeOrders.value.min_qty}`)
+      return;
+    } else {
   
     this.api.makeOrder(obj).subscribe({
       next: (res: any) => {
@@ -777,6 +785,7 @@ let obj ={
      
       },
     });
+  }
   }
 
 
@@ -924,11 +933,11 @@ alphaNewValue(){
 // "transactionId":this.marchantTranAlph,
 "transactionId": this.marchantTranAlph,
 "merchantUserId":this.marchantUserAlph,
-"fName": sessionStorage.getItem('First'),
-"LName":sessionStorage.getItem('Last'),
-"email":sessionStorage.getItem('Email'),
+"fName": localStorage.getItem('First'),
+"LName":localStorage.getItem('Last'),
+"email":localStorage.getItem('Email'),
 "gateWayId":val,
-"mobile":sessionStorage.getItem('Phone'),
+"mobile":localStorage.getItem('Phone'),
 "RequestDateTime":"06232021",
  "redirect":`${this.domain}/payment-status/${this.marchantTranAlph}/${this.selectPaymentGat}`
   }  
@@ -1004,14 +1013,14 @@ alphaNewValue(){
   paymentLink: any
   instamojo() {
 
-    this.fullname = sessionStorage.getItem('First') + "" + sessionStorage.getItem('Last')
+    this.fullname = localStorage.getItem('First') + "" + localStorage.getItem('Last')
     let obj = {
 
       "buyer_name": this.fullname,
       "amount": this.makePayment.value.totalAmount,
       "purpose": "By crypto",
-      "email": sessionStorage.getItem('Email'),
-      "phone": sessionStorage.getItem('Phone'),
+      "email": localStorage.getItem('Email'),
+      "phone": localStorage.getItem('Phone'),
       "redirect_url": environment.redirect
     }
 if(this.makePayment.value.totalAmount > 9){
@@ -1074,10 +1083,10 @@ else{
       "CustomerData": {
         "CustomerId": "4454555",
         "CustomerNotes": "Mens clothing",
-        "FirstName": sessionStorage.getItem('First'),
-        "LastName": sessionStorage.getItem('Last'),
-        "MobileNo": sessionStorage.getItem('Phone'),
-        "email": sessionStorage.getItem("Email"),
+        "FirstName": localStorage.getItem('First'),
+        "LastName": localStorage.getItem('Last'),
+        "MobileNo": localStorage.getItem('Phone'),
+        "email": localStorage.getItem("Email"),
         "EmailReceipt": "true",
         "BillingAddress": "blank add",
         "BillingCity": "Blank city",
@@ -1192,7 +1201,7 @@ veryFyKey: any = ""
     let bodyObj = {
 
 
-      "merchantId": "PGTESTPAYUAT140", "merchantTransactionId": this.marchantTranAlph, "merchantUserId": this.marchantUserAlph, "amount": this.makePayment.value.totalAmount, "redirectUrl": `https://www.marketwicks.com:4000/webhook/payg/100`, "mobileNumber": sessionStorage.getItem('Phone'), "paymentInstrument": { "type": "PAY_PAGE" }
+      "merchantId": "PGTESTPAYUAT140", "merchantTransactionId": this.marchantTranAlph, "merchantUserId": this.marchantUserAlph, "amount": this.makePayment.value.totalAmount, "redirectUrl": `https://www.marketwicks.com:4000/webhook/payg/100`, "mobileNumber": localStorage.getItem('Phone'), "paymentInstrument": { "type": "PAY_PAGE" }
 
     }
 
@@ -1253,11 +1262,11 @@ veryFyKey: any = ""
   transactionIDAlph: any
   subPaisa() {
     // this.transactionIDAlph = this.randomString2
-    this.fullname = sessionStorage.getItem('First') + " " + sessionStorage.getItem('Last')
+    this.fullname = localStorage.getItem('First') + " " + localStorage.getItem('Last')
     let obj = {
       "payerName": this.fullname,
-      "payerEmail":sessionStorage.getItem('Email'),
-      "payerMobile": sessionStorage.getItem('Phone'),
+      "payerEmail":localStorage.getItem('Email'),
+      "payerMobile": localStorage.getItem('Phone'),
       "amount": this.total_payment,
       "TransactionID": this.transactionIDAlph,
       "redirectURL":`http://178.238.234.59:9851/#/payment-status/${this.transactionIDAlph}`,

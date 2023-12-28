@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { GlobalService } from './global.service';
+// import { GlobalService } from './global.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SharedDataService } from './shared-data.service';
 import { Observable, map } from 'rxjs';
@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
     constructor(
       private cookie:CookieService,
         private router: Router,
-        private authenticationService: GlobalService,
+        // private authenticationService: GlobalService,
         private shareData: SharedDataService,
     ) { 
       

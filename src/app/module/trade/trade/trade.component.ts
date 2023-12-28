@@ -124,7 +124,7 @@ export class TradeComponent implements OnInit {
     let obj = {
       "Key": "",
       "Order_Trade": 2, // For Order = 1, Trade = 2
-      "Profile": sessionStorage.getItem("ProfileID")
+      "Profile": localStorage.getItem("ProfileID")
   }
   this.sharedData.loader(true)
     this.api.getTrade(obj).subscribe({
@@ -356,11 +356,11 @@ marchantTranAlph: any
 // "transactionId":this.marchantTranAlph,
 "transactionId":this.marchantTranAlph,
 "merchantUserId":this.marchantUserAlph,
-"fName": sessionStorage.getItem('First'),
-"LName":sessionStorage.getItem('Last'),
-"email":sessionStorage.getItem('Email'),
+"fName": localStorage.getItem('First'),
+"LName":localStorage.getItem('Last'),
+"email":localStorage.getItem('Email'),
 "gateWayId":val,
-"mobile":sessionStorage.getItem('Phone'),
+"mobile":localStorage.getItem('Phone'),
 "RequestDateTime":"06232021",
 "redirect":`http://178.238.234.59:9851/#/payment-status/${this.marchantTranAlph}`
   }

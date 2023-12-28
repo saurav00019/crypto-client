@@ -25,6 +25,8 @@ export class HeaderPtwopComponent  {
   isActive: string = '';
   setTab: any =""
   modalRef?: any;
+ 
+  
   private offcanvasService = inject(NgbOffcanvas);
   constructor(private router: Router, private shared: SharedDataService, private api: ApiDataService, private modalService: NgbModal, private el: ElementRef, private renderer: Renderer2)
   
@@ -41,8 +43,6 @@ this.shared.selectedprofileValue.subscribe((res: any) =>{
 
 this.allData= JSON.parse(localStorage.getItem('p2pData') || '{}')
 
-
-// console.log("localStorage.getItem(", localStorage.getItem("headerActive"))
 if(localStorage.getItem("headerActive")==null){
   
   this.headerActive=false
@@ -111,7 +111,7 @@ gblsdbarcloseNav() {
   logout(){
     // this.cookis.deleteAll();
     
-    // localStorage.clear();s
+    localStorage.clear();
     
     
     swal.fire({
@@ -126,9 +126,10 @@ gblsdbarcloseNav() {
       if (result.isConfirmed) {
       this.headerActive=false
         localStorage.clear();
-       sessionStorage.clear();
+ 
        this.closeSidePanel()
     this.router.navigate(['/login']);
+    this.shared.loginHeader('')
       }
     });
     

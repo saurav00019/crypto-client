@@ -18,6 +18,7 @@ export class OrderPlaceComponent {
   responseData: any
   placeOrderData: any
   @Input() items1?: Array<any>;
+  
   private socket: any = WebSocketSubject;
   makeOrders: any = UntypedFormGroup;
   makeOrdersLimit: any = UntypedFormGroup;
@@ -92,7 +93,7 @@ export class OrderPlaceComponent {
         this.placeOrderButton = false
       }
       else{
-        this.placeOrderButton = false
+        this.placeOrderButton = true
       }
   
 
@@ -112,7 +113,7 @@ export class OrderPlaceComponent {
       this.placeOrderButtonLimit = false
     }
     else{
-      this.placeOrderButtonLimit = false
+      this.placeOrderButtonLimit = true
     }
 
 
@@ -177,6 +178,7 @@ getNumber1(val : any, val2:any){
       // SL: 100000.55,
       C: this.alpha,
     };
+    this.shared.addDataToSharedArray(placeOrderParams);
    this.web.placeOrder(placeOrderParams)
    setTimeout(() => {
     this.clear()
@@ -204,11 +206,13 @@ getNumber1(val : any, val2:any){
         U: 1000,
         Buy_Sell: Number(this.buy_sell),
         T: this.typeOrder,
-        P: this.placeOrderData.oQuote.L,
+        P: Number(this.makeOrdersLimit.value.price),
         L: Number(this.makeOrdersLimit.value.QuantityL),
         SL: Number(this.makeOrdersLimit.value.sl),
         C: this.alpha,
       };
+
+      this.shared.addDataToSharedArray(placeOrderParams);
         
      this.web.placeOrder(placeOrderParams)
      setTimeout(() => {
@@ -233,13 +237,15 @@ getNumber1(val : any, val2:any){
     this.numericMessage = false;
     return true;
   }
- // ========================================================================== Clear form =================================================
+ // ========================================================================== Clear form =====================================================
 
   clear(){
-    // this.placeOrderButton= false
-    // this.placeOrderButtonLimit= false
+    this.placeOrderButton= false
+    this.placeOrderButtonLimit= false
     this.makeOrders.reset();
     this.makeOrdersLimit.reset();
   }
+  
+
   
 }

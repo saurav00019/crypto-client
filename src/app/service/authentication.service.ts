@@ -12,7 +12,7 @@ export class AuthenticationService {
     public currentUser: Observable<any>;
 
     constructor(private http: HttpClient) {
-        this.currentUserSubject = new BehaviorSubject(sessionStorage.getItem('token'));
+        this.currentUserSubject = new BehaviorSubject(localStorage.getItem('token'));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -26,7 +26,7 @@ export class AuthenticationService {
             .pipe(map(user => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
                 // user.authdata = window.btoa(username + ':' + password);
-                sessionStorage.setItem('token',user.data);
+                localStorage.setItem('token',user.data);
                 this.currentUserSubject.next(user);
                 return user;
             }));
@@ -34,7 +34,7 @@ export class AuthenticationService {
   
     logout() {
         // remove user from local storage to log user out
-        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
         this.currentUserSubject.next(null);
     }
 }

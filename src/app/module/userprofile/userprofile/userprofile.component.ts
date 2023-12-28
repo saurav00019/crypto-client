@@ -220,7 +220,7 @@ export class UserprofileComponent implements OnInit {
           }));
             // this.sharedData.loader(false);
            
-            // sessionStorage.setItem('PANimg', this.PANimg);
+            // localStorage.setItem('PANimg', this.PANimg);
             
             // this.panIdentity();
           
@@ -312,7 +312,7 @@ changePassword(){
 this.submitted= true
     let obj = {
           Key:"",
-          LoginID: sessionStorage.getItem('ProfileID'),
+          LoginID: localStorage.getItem('ProfileID'),
           OldPwd: this.passwordForm.value.oldPassword,
           NewPwd: this.passwordForm.value.newPassword
            }

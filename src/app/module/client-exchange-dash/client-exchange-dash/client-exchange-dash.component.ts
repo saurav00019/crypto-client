@@ -23,6 +23,7 @@ export class ClientExchangeDashComponent implements OnInit {
   private socket: any = WebSocketSubject;
   private socket1: any = WebSocketSubject;
   listOfFirst1:any ={}
+  listOfFirst2:any ={}
   ListsocketData1: any = {}
   ListsocketData2: any = {}
   ListsocketData3: any = {}
@@ -45,7 +46,7 @@ export class ClientExchangeDashComponent implements OnInit {
   constructor(private api: GlobalAPIService, private sharedData: SharedDataService, private web: WebsocketService) {
     {
   
-      this.conncetion1();
+      // this.conncetion1();
      
    
   }
@@ -133,6 +134,7 @@ export class ClientExchangeDashComponent implements OnInit {
     this.ListsocketData1 = {}
     this.ListsocketData1 = {}
     this.listOfFirst1=  this.listBygase[val]
+    this.listOfFirst2=  this.listBygase[val]
     this.listOfFirst=this.listBygase[val]
     this.connection = true
     
@@ -169,9 +171,9 @@ export class ClientExchangeDashComponent implements OnInit {
   getMkQuoteBygase(vall: any) {
     // this.sharedData.loader(true);
     let obj = {
-      "Key": "",
+      "Key": "", 
       Base: vall,
-      UserID: 1,
+      UserID: Number(localStorage.getItem('ProfileID')),
       "CallBack": "https://www.marketwicks.com:4000/apiGatway/getCallbackurl"
     }
     this.api.GET_MK_QUOTE_BYBASE(obj).subscribe({

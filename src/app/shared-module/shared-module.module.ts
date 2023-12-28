@@ -9,6 +9,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TradeBookOrderComponent } from '../commmon/trade-book-order/trade-book-order.component';
 import { ExTradebookTradeComponent } from '../commmon/ex-tradebook-trade.component/ex-tradebook-trade.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [PaginationComponent,ChartsComponent,OrderPlaceComponent,TradeBookOrderComponent,ExTradebookTradeComponent],
@@ -18,7 +19,7 @@ import { ExTradebookTradeComponent } from '../commmon/ex-tradebook-trade.compone
     NgbNavModule,
     NgbAccordionModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule, NgbTooltipModule
 
   ],exports: [PaginationComponent,ChartsComponent,OrderPlaceComponent,TradeBookOrderComponent,ExTradebookTradeComponent]
 })

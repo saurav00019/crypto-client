@@ -40,7 +40,28 @@ export class SharedDataService
     private placeOrder: Subject<any> = new Subject<any>();
     placeOrder$: Observable<any> = this.placeOrder.asObservable();
   
+    private headerLogin: Subject<any> = new Subject<any>();
+    headerLogin$: Observable<any> = this.headerLogin.asObservable();
     constructor(public rout:Router) {}
+
+
+    private dataArraySubject = new BehaviorSubject<string[]>([]); // Array of data
+    public dataArray$: Observable<string[]> = this.dataArraySubject.asObservable();
+  
+    addDataToSharedArray(data: any) {
+      const currentDataArray = this.dataArraySubject.getValue();
+      const updatedDataArray = [...currentDataArray, data];
+      this.dataArraySubject.next(updatedDataArray);
+    }
+
+    private dataArraySubject1 = new BehaviorSubject<string[]>([]); // Array of data
+    public dataArray1$: Observable<string[]> = this.dataArraySubject1.asObservable();
+  
+    addDataToSharedArray1(data: any) {
+      const currentDataArray = this.dataArraySubject1.getValue();
+      const updatedDataArray = [...currentDataArray, data];
+      this.dataArraySubject1.next(updatedDataArray);
+    }
 
   kysStage(data: any){
     if(localStorage.getItem("kycValue")=="0"){
@@ -71,7 +92,9 @@ export class SharedDataService
   kycHeader(data: any){
     this.kycData.next(data);
   }
-
+  loginHeader(data: any){
+    this.headerLogin.next(data);
+  }
     signUPData(data: any) {
       this.signupValue.next(data);
     }

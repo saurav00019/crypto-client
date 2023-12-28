@@ -22,6 +22,21 @@ export class ApiDataService {
       return false
     }
   }
+
+
+  header(){
+    if((localStorage.getItem('headerActive'))){
+      return true
+    }
+    else{
+      return false
+    }
+  }
+
+  
+
+
+  
   login(obj:any)
 {
   return this.http.post(this.domain+'test', obj).pipe(map(res =>{return res}));

@@ -153,15 +153,15 @@ getEAadhar(){
         this.toastrService.success('Your Aadhaar has been verified!', 'Aadhaar Verification Done!');
         this.uploadButton=true;
         
-      sessionStorage.setItem('uid',(data.result.uid));
-      sessionStorage.setItem('name',(data.result.name));
-      sessionStorage.setItem('dob',(data.result.dob));
-      sessionStorage.setItem('gender',(data.result.gender));
-      sessionStorage.setItem('address',(data.result.address));
-      sessionStorage.setItem('pincode',(data.result.splitAddress.pincode));
-      sessionStorage.setItem('city',(data.result.splitAddress.city[0]));
-      sessionStorage.setItem('state',(data.result.splitAddress.state[0][0]));
-      sessionStorage.setItem('country',(data.result.splitAddress.country[2]));
+      localStorage.setItem('uid',(data.result.uid));
+      localStorage.setItem('name',(data.result.name));
+      localStorage.setItem('dob',(data.result.dob));
+      localStorage.setItem('gender',(data.result.gender));
+      localStorage.setItem('address',(data.result.address));
+      localStorage.setItem('pincode',(data.result.splitAddress.pincode));
+      localStorage.setItem('city',(data.result.splitAddress.city[0]));
+      localStorage.setItem('state',(data.result.splitAddress.state[0][0]));
+      localStorage.setItem('country',(data.result.splitAddress.country[2]));
       this.getAdharDetails();
       this.updateAddress();
     

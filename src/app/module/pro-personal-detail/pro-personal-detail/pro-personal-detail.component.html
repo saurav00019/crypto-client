@@ -76,8 +76,7 @@
                                 <div class="pro-personal-val">
                                     <div>
                                         <div class="personal-label"> <span>Occupation</span></div>
-                                        <p class="mb-0">{{ personalForm.get('occupation').value === 1 ? "Private
-                                            Sector" :
+                                        <p class="mb-0">{{ personalForm.get('occupation').value === 1 ? "Private Sector" :
                                             personalForm.get('occupation').value === 2 ? "Government Service" :
                                             personalForm.get('occupation').value === 3 ? "Public Sector" :
                                             personalForm.get('occupation').value === 4 ? "Agriculturist" :
@@ -99,7 +98,20 @@
                                 <div class="pro-personal-val">
                                     <div>
                                         <div class="personal-label"> <span>Annual Income (in Lakhs)</span></div>
-                                        <p class="mb-0">{{ personalForm.get('annualIncome').value }} Lakhs</p>
+                                      
+                                        <p class="mb-0">{{ personalForm.get('annualIncome').value === 1 ? "0" :
+                                            personalForm.get('annualIncome').value === 2 ? "1" :
+                                            personalForm.get('annualIncome').value === 3 ? "3" :
+                                            personalForm.get('annualIncome').value === 4 ? "5" :
+                                            personalForm.get('annualIncome').value === 5 ? "8" :
+                                            personalForm.get('annualIncome').value === 6 ? "10" :
+                                            personalForm.get('annualIncome').value === 7 ? "15" :
+                                            personalForm.get('annualIncome').value === 8 ? "20" :
+                                            personalForm.get('annualIncome').value === 9 ? "25" :
+                                            personalForm.get('annualIncome').value === 10 ? "35" :
+                                            personalForm.get('annualIncome').value === 11 ? "50" :"Unknown" }}
+                                        </p>
+
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +119,17 @@
                                 <div class="pro-personal-val">
                                     <div>
                                         <div class="personal-label"> <span>Stock Market Exp.</span></div>
-                                        <p class="mb-0">{{ personalForm.get('stockMarketExp').value }} Years</p>
+                                        <p class="mb-0">{{ personalForm.get('stockMarketExp').value === 1 ? "0" :
+                                            personalForm.get('stockMarketExp').value === 2 ? "1" :
+                                            personalForm.get('stockMarketExp').value === 3 ? "2" :
+                                            personalForm.get('stockMarketExp').value === 4 ? "3" :
+                                            personalForm.get('stockMarketExp').value === 5 ? "4" :
+                                            personalForm.get('stockMarketExp').value === 6 ? "5" :
+                                            personalForm.get('stockMarketExp').value === 7 ? "6" :
+                                            personalForm.get('stockMarketExp').value === 8 ? "7" :
+                                            personalForm.get('stockMarketExp').value === 9 ? "8" :
+                                            personalForm.get('stockMarketExp').value === 10 ? "9" :"Unknown" }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
