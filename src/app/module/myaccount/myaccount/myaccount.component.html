@@ -1,0 +1,131 @@
+<div class="my-account p-3 pt-0">
+    <div class="row">
+        <div class="col-12 left-side">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                <li [ngbNavItem]="1">
+                    <button ngbNavLink>Personal Info</button>
+                    <ng-template ngbNavContent>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="referal">
+                                    <div class="row align-items-center my-2">
+                                        <div class=" col-md-3 col-12">
+                                            <h5>Referral Link</h5>
+                                        </div>
+                                        <div class=" col-md-9 col-12">
+                                            <div class="link ">
+                                                <span>https://crypto-exchange.com/signup/devesh&nbsp;&nbsp;
+                                                </span>
+                                                <span style="cursor:pointer;"> <i class="fa-regular fa-copy"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row align-items-center my-2">
+                                        <div class=" col-md-3 col-12">
+                                            <h5>Referral Code</h5>
+                                        </div>
+                                        <div class="col-md-9 col-12">
+                                            <div class="link ">
+                                                <span>devesh01</span>
+                                                <span style="cursor:pointer;"> <i class="fa-regular fa-copy"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center my-2">
+                                        <div class="col-md-3 col-12">
+                                            <h5>User Name</h5>
+                                        </div>
+                                        <div class="col-md-9 col-12">
+                                            <div class="link ">
+                                                <span style="color: var(--light-gray);">devesh01</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center my-2">
+                                        <div class="col-md-3 col-12">
+                                            <h5>Email</h5>
+                                        </div>
+                                        <div class="col-md-9 col-12">
+                                            <div class="link ">
+                                                <span style="color: var(--light-gray);">anurag.singh1@marketwicks.com
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <button ngbNavLink>Change Password</button>
+                    <ng-template ngbNavContent>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="referal password">
+                                    <div class="row align-items-center my-2">
+                                        <div class="col-md-3 col-12">
+                                            <h5>Old Password</h5>
+                                        </div>
+                                        <div class="col-md-9 col-12">
+                                            <div class="old ">
+                                                <input type="password" class="form-control" id="old-password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center my-2">
+                                        <div class="col-md-3 col-12">
+                                            <h5>New Password</h5>
+                                        </div>
+                                        <div class="col-md-9 col-12">
+                                            <div class="old ">
+                                                <input type="password" class="form-control" id="new-password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center my-2">
+                                        <div class="col-md-3 col-12">
+
+                                            <h5>Confirm Password</h5>
+                                        </div>
+                                        <div class=" col-md-9 col-12">
+                                            <div class="old ">
+                                                <input type="password" class="form-control" id="confirm-password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center my-2">
+                                        <div class="col-md-3 col-12">
+                                        </div>
+                                        <div class="col-md-9 col-12">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 text-center">
+                                <div class="pass-btn">
+                                    <a href="">Cancel</a>
+                                    <a href="" class="mx-2">Validate and Submit</a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 mb-3">
+                                <!-- <div class="mb-2">
+                                  <div id="economicCalendarWidget"></div>
+                                    <app-events-widget></app-events-widget>
+                                </div> -->
+
+
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+    </div>
+</div>

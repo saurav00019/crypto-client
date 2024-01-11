@@ -1,0 +1,83 @@
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white p-two-p-height-scroll">
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3">
+                <div class="col-md-6">
+                    <h2 class="pageheading">Challan List</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-3 mb-3">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="filter d-flex align-items-center mb-2 justify-content-end">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <label>
+                                    <input type="radio" name="buy-sell" id="buy" class="me-1">Pending
+                                </label>
+                                <label>
+                                    <input type="radio" name="buy-sell" id="sell" class="me-1">Completed
+                                </label>
+                            </div>
+                            <div class="dropdown">
+                                <div class="mb-3 mt-3">
+                                   <input type="date" class="form-control" id="email" placeholder="Enter email" name="email">
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive tradebook-tbl">
+                            <table id="statsTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Challan no.</th>
+                                        <th>Created on</th>
+                                        <th>Order id </th>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                     </tr>
+                                </thead>
+                                <tbody id="withdrawTable">
+                                    <tr *ngFor="let data of challenList" >
+                                        <td>{{data.ReceiptRef}}</td>
+                                        <td><span>{{data.dtCreatedOn}}</span></td>
+                                        <td><span>{{data.OrderID}}</span></td>
+                                        <td>
+                                            <div><span class="">Yendra Narayan Verma</span></div>
+                                            <div><span class="bdval">yendranarayanverma@gmail.com</span></div>
+                                        </td>
+                                        <td>
+                                            <div><span class="">{{data.AmountRecv}}</span></div>
+                                            <div><span class="bdvalrem">{{data.AmountReq}}</span></div>
+                                        </td>
+                                        <td>
+                                            <span class="tb-status text-warning" *ngIf="data.Pay_Status== 1"><i class="fa-solid fa-circle me-2 text-warning"></i>PENDING</span>
+                                            <span class="tb-status text-success" *ngIf="data.Pay_Status== 2"><i class="fa-solid fa-circle me-2 text-warning"></i> PARTIAL</span>
+                                            <span class="tb-status text-success" *ngIf="data.Pay_Status== 3"><i class="fa-solid fa-circle me-2 text-warning"></i> FULL</span>
+                                        </td>
+                                        <td>
+                                            <a routerLink="/challan-details" class="btn btn-outline-primary btn-sm" style="font-size: 12px;"><i class="fa-solid fa-plus me-1"></i> View more</a>
+                                        </td>
+                                    </tr>
+                                 
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-12">
+                            <ul class="pagination pagination-sm justify-content-end mt-2">
+                                <li class="page-item"><a class="page-link">Previous</a></li>
+                                <li class="page-item active"><a class="page-link">1</a></li>
+                                <li class="page-item"><a class="page-link">2</a></li>
+                                <li class="page-item"><a class="page-link">3</a></li>
+                                <li class="page-item"><a class="page-link">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+</div>

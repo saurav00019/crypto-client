@@ -1,0 +1,40 @@
+.card{box-shadow:0 2px 8px 1px rgba(64,60,67,.34);}
+.filter .d-flex{border: 1px solid #bbb; padding: 4px 8px; border-radius: 24px;margin-right: 1rem;}
+.filter label{display: flex;margin-right: 4px;}
+
+.bdlab {
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+.bdval {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8094ae;
+}
+.bdvalrem {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    color: red;
+}
+
+
+.bdtit1 {
+    font-size: 14px;
+    font-weight: 400;
+    color: #8094ae;
+    min-width: 100px;
+}
+
+.bdval1 {
+    font-weight: 500;
+}
+
+.btn-outline-primary{
+    border-color: #6576ff;
+}
+.btn-outline-primary:hover{
+    background-color: #8692ff;
+    border-color: #6576ff;
+}

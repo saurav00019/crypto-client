@@ -1,0 +1,53 @@
+.table tr td {
+    color: var(--light-gray);
+    font-size: 14px;
+}
+
+.table tr th {
+    padding: 1rem 1rem !important;
+    font-size: 14px;
+    font-weight: 500;
+    color: #b1b1b1;
+}
+
+#deposit tr td,
+#deposit tr th {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #333 !important;
+    white-space: nowrap;
+}
+
+#deposit tr th {
+    background-color: #212741 !important;
+    border-bottom: 1px solid #686868 !important;
+}
+
+.yellow-card {
+    background: #f1b53500;
+    padding: 15px;
+    border-radius: 15px;
+}
+.bdtit1 {
+    font-size: 14px;
+    font-weight: 400;
+    color: #a1a1a1;
+    min-width: 100px;
+}
+
+.makepy{
+    background: #21bf73;
+    color:#fff;
+    font-size: 14px;
+}
+.makepy:hover{
+    background:  #fff;
+    color:#21bf73
+}
+
+.mytx1 {
+    font-size: 14px;
+    color:#a1a1a1
+}
+.mytx2 {
+    font-size: 16px;
+}

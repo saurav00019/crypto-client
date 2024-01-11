@@ -1,0 +1,11 @@
+
+  .form-control:hover{
+    cursor: no-drop;
+  }
+
+  .btn.disabled, .btn:disabled, fieldset:disabled .btn {
+    color: #000;
+    
+    background-color: #959595;
+    
+}

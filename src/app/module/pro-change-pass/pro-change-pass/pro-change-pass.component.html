@@ -1,0 +1,113 @@
+
+              
+                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 navtab-height">
+                    <div class="profile-box">
+
+                        <div class="add-class-for-show-and-hide" >
+                            <div>
+                                <h5 class="profile-bold-text mb-5">Change Password</h5>
+                            </div>
+                            <form [formGroup]="passwordForm" >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row ">
+                                            <div class="col-md-8 m-auto">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="pro-personal-val2 w-100">
+                                                            <div class="form-floating mb-4 w-100">
+                                                                <input formControlName="oldPassword" class="form-control ab-border0" style="color:#fff" [type]="password" placeholder="." readonly onfocus="this.removeAttribute('readonly');">
+                                                                    
+                                                                
+                                                                <label> Old password </label>
+                                                                    <i  class="fa fa-eye" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;" (click)="oldPassword()" *ngIf="!show"> </i> 
+                                                                    <i  class="fa fa-eye-slash" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;" (click)="oldPassword()"  *ngIf="show"> </i> 
+                                                        
+                                                               
+                                                                <div class="text-danger" *ngIf="f['oldPassword'].invalid && (f['oldPassword'].dirty || f['oldPassword'].touched)">Please enter old password.
+                                                                </div>
+        
+                                                            </div>
+                                                        </div>
+                                                        <div class="pro-personal-val2 w-100">
+                                                            <div class="form-floating mb-4 w-100">
+                                                                <input formControlName="newPassword" class="form-control ab-border0"
+                                                                    style="color:#fff" [type]="newPass" placeholder="." readonly onfocus="this.removeAttribute('readonly');">
+                                                                <label>New password</label>
+                                                             
+                                                                    <i  class="fa fa-eye" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;" (click)="newPassword()" *ngIf="!newP"></i> 
+                                                                    <i  class="fa fa-eye-slash" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;" (click)="newPassword()" *ngIf="newP"></i> 
+                                                
+                                                              
+                                                                    <div class="text-danger" *ngIf="f['newPassword'].invalid && (f['newPassword'].dirty || f['newPassword'].touched)">Please enter new password.
+                                                                    </div>
+            
+                                                               
+                                                            </div>
+                                                        </div>
+                                            
+                                                        <div class="pro-personal-val2 w-100">
+                                                            <div class="form-floating mb-4 w-100">
+                                                                <input formControlName="confirmPassword" class="form-control ab-border0"
+                                                                    style="color:#fff" [type]="confirmPass" placeholder="." readonly onfocus="this.removeAttribute('readonly');">
+                                                                <label>Confirm password</label>
+                                                            
+                                                                    <i  class="fa fa-eye" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  (click)="confirmPassword()" *ngIf="!confirmP"></i> 
+                                                                    <i  class="fa fa-eye-slash" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  (click)="confirmPassword()"  *ngIf="confirmP"></i> 
+                                                             
+        
+                                                                <div class="text-danger" *ngIf="f['confirmPassword'].invalid && (f['confirmPassword'].dirty || f['confirmPassword'].touched)"
+                                                                  >
+                                                                
+                                                                  <div class="text-danger" *ngIf="f['confirmPassword']errors['pattern']">Minimum 8-digit password: Alphanumeric & Special character required. </div>
+                                                                </div>
+        
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+        
+                                           
+        
+                                                    <div class="col-md-12" *ngIf="otpSent">
+                                                        <div class="pro-personal-val2 w-100">
+                                                            <div class="form-floating mb-4 w-100">
+                                                                <input style="letter-spacing: 22px;" formControlName="otp"
+                                                                    class="form-control ab-border0" style="color:#fff"
+                                                                    type="text" placeholder=".">
+                                                                <label>Enter your OTP</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="float-end">
+                                                                <button class="btn btn-sm btn-outline-primary"
+                                                                    (click)="changePassword()">VERIFY OTP</button>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-12">
+                                                        <div class="float-end">
+                                                            <button class="btn btn-sm btn-outline-primary"
+                                                            (click)="changePassword()" [disabled]="passwordForm.invalid" style="border: 1px solid #f1b435; color: #f1b435;">Change Password</button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-md-12" *ngIf="successMsg">
+                                                    <div class="success-div">
+                                                        <div><img style="width: 144px;" src="assets/images/reset-successfully.png"></div>
+                                                        <div>
+                                                            <h5>Congrats!!.</h5>
+                                                            <p>Your Password has been changed Successfully.</p>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                        </div>
+                        </div>
+                        </div>

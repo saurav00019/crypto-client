@@ -1,0 +1,67 @@
+<div class="chat p-3">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="d-flex justify-content-between align-items-center">
+                <h6>Ticket</h6>
+                <h6 class="add-ticket"><a href="">+ Add New Ticket</a></h6>
+            </div>
+            <div class="all-tickets">
+                <ul class="d-flex">
+                    <li class="mx-3"><a href="">All Tickets <span>1</span></a></li>
+                    <li class="mx-3"><a href="">Open <span>1</span></a></li>
+                    <li class="mx-3"><a href="">Closed <span>1</span></a></li>
+                    <li class="mx-3"><a href="">Cancelled <span>1</span></a></li>
+                </ul>
+            </div>
+            <div class="chat-box">
+                <div class="d-flex justify-content-between  align-items-center py-2 mb-3 head">
+                    <h6>Demo <span>Open</span></h6>
+                    <button class="cancel">Cancel</button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-4"></div>
+                    <div class="col-sm-6 col-8">
+                        <div class="reply">
+                            <h6>How is you?</h6>
+                            <div class="time">
+                                <span>on 25/07/2023 14:45:26 </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="comments-img d-sm-flex d-block justify-content-end">
+                    <div class="pull-right">
+                        <label class="mb-2">Attachments <b>(1)</b></label>
+                        <div class="row mail-img d-flex justify-content-end">
+                            <div class="col-sm-4 col-md-3 col-12">
+                                <a href="">
+                                    <img src="https://dukesexchange.com/uploads/ticket_1690276526_BG_1455.png"
+                                        class="img-fluid"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reply-to-us">
+                    <textarea rows="4" placeholder="Reply"></textarea>
+                </div>
+                <div class="attach-img d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6>Attach File</h6>
+                        <div class="file-upload btn btn-primary">
+                            <span>Upload Images</span>
+                            <input type="file" class="upload" id="upload-btn" />
+                        </div>
+                    </div>
+                    <button type="submit" class="submit">Submit</button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-lg-3">
+            <div><app-place-order></app-place-order></div>
+
+        </div>
+    </div>
+</div>

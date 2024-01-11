@@ -1,0 +1,203 @@
+
+  .form-control:hover{
+    cursor: pointer;
+  }
+
+  .btn.disabled, .btn:disabled, fieldset:disabled .btn {
+    color: #000;
+    
+    background-color: #959595;
+    
+}
+
+
+
+::ng-deep {
+  .ngx-slider .ngx-slider-bar {
+    background: #cbcbcb!important;
+    height: 2px!important;
+  }
+   .ngx-slider .ngx-slider-selection {
+    background: #3151B6!important;
+  }
+
+  .ngx-slider .ngx-slider-pointer {
+    width: 8px!important;
+    height: 8px!important;
+    top: auto!important; /* to remove the default positioning */
+    bottom: 0!important;
+    background-color: #3151b6!important;
+    // border-top-left-radius: 3px;
+    // border-top-right-radius: 3px;
+  }
+
+ .ngx-slider .ngx-slider-pointer:after {
+    display: none!important;
+  }
+
+ .ngx-slider .ngx-slider-bubble {
+    bottom: 14px!important;
+  }
+
+  .ngx-slider .ngx-slider-limit {
+    font-weight: bold!important;
+    color: orange!important;
+  }
+
+  .ngx-slider .ngx-slider-tick {
+    width: 1px!important;
+    height: 10px!important;
+    margin-left: 4px!important;
+    border-radius: 0!important;
+    background: #cbcbcb!important;
+    top: -1px!important;
+  }
+
+   .ngx-slider .ngx-slider-tick.ngx-slider-selected {
+    background: #c9c9c9!important;
+  }
+  .ngx-slider .ngx-slider-bubble {
+    cursor: default!important;
+    bottom: 16px!important;
+    padding: 1px 3px!important;
+    color: #55637d!important;
+    font-size: 12px!important;
+}
+.ngx-slider-inner-tooltip {
+  height: 100%!important;
+  font-size: 12px!important;
+  // margin-top: 44px;
+  // margin-bottom: 50px;
+}
+.ngx-slider .ngx-slider-tick-value {
+  position: absolute!important;
+  top: 13px!important;
+  -webkit-transform: translate(-50%,0)!important;
+  transform: translate(-50%,0)!important;
+}
+.ngx-slider {
+  display: inline-block!important;
+  position: relative!important;
+  height: 4px!important;
+  width: 100%!important;
+  margin: 16px 0 36px!important;
+  vertical-align: middle!important;
+  -webkit-user-select: none!important;
+  -moz-user-select: none!important;
+  -ms-user-select: none!important;
+  user-select: none!important;
+  touch-action: pan-y!important;
+}
+.ngx-slider .ngx-slider-pointer {
+  cursor: pointer!important;
+  width: 12px!important;
+  height: 12px!important;
+  top: -4px!important;
+  background-color: #3151b6!important;
+  z-index: 3!important;
+  border-radius: 16px!important;
+  /* left: 209px!important; */
+}
+.ngx-slider .ngx-slider-tick {
+  text-align: center!important;
+  cursor: pointer!important;
+  width: 1px!important;
+  height: 10px!important;
+  background: #d8e0f3!important;
+  border-radius: 50%!important;
+  position: absolute!important;
+  top: 0!important;
+  left: -6px!important;
+margin-left: 11px!important;
+}
+
+.ngx-slider-pointer:focus-visible {
+  outline: -webkit-focus-ring-color auto 0px!important;
+}
+
+.ngx-slider .ngx-slider-tick-legend {
+  position: absolute!important;
+  top: 13px!important;
+  -webkit-transform: translate(-50%,0)!important;
+  transform: translate(-50%,0)!important;
+  max-width: 50px!important;
+  white-space: normal!important;
+  font-size: 12px!important;
+  left: 12px!important;
+  color: darkgrey!important;
+}
+
+}
+
+
+// radio button design
+
+.exp-tit{
+  font-size: 13px;
+    font-weight: 400;
+    color: #8d8d8d;
+}
+
+
+
+.radio-like-btn{
+  display: inline-block;
+  margin-right: 10px;
+  text-transform: capitalize;
+  margin-bottom: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #5c5c5c;
+}
+.radio-like-btn:hover input{
+      cursor: pointer;
+  }
+.radio-like-btn input[type=radio] {
+    display: none;
+  }
+  .radio-like-btn input[type=radio] + label {
+    padding: 2px 16px;
+    border-radius: 50px;
+    border: 1px solid #666;
+    color: #d1d1d1;
+ 
+  }
+ .radio-like-btn input[type=radio] + label:hover {
+  border: 1px solid #F1B435;
+    background: #4F473A;
+    color: #F1B435;
+  cursor: pointer;
+  }
+  .radio-like-btn input[type=radio]:checked + label {
+    border: 1px solid #F1B435;
+    background: #4F473A;
+    color: #F1B435;
+      
+  }
+
+  .set-switch-lable{
+    .form-switch {
+      display: flex !important;
+      flex-direction: row-reverse !important;
+      justify-content: space-between !important;
+    }
+    .form-switch {
+      padding-left: 0em;
+  }
+  .form-check-label{
+    font-size: 13px;
+    color: #8d8d8d;
+  }
+  }
+  .invalid-feedback{
+    font-size: 12px!important;
+  }
+  .p-two-p-modal1 .form-control{
+    padding: auto !important;
+  }
+  .form-control{color: #fff;}
+  label{color: #b1b1b1;}
+  button.btn.btn-sm.btn-primary{opacity: 1;}
+  select{color: #fff;}
+  select > option{background-color: #2a3050;
+    color: #fff !important;}

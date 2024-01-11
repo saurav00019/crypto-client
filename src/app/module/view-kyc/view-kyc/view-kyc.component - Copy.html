@@ -1,0 +1,475 @@
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white p-two-p-height-scroll">
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3">
+                <div class="col-md-6">
+                    <h2 class="pageheading">User Details</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-3 mb-3">
+                <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3">
+                    <div class="profile-box">
+                     <div class="d-flex  mb-4">
+                         <div class="avt me-3" >
+                             <div class="circle">
+                                 <img class="profile_pic"
+                                     src="assets/images/fake-user.png">
+                             </div>
+                            
+                         </div>
+                         
+                         <div class="dsection1">
+                             <h5>{{first}} {{last}}</h5>
+                             <div class="d-flex">
+                                 <p class="p-label">User id:</p><p>XXXXXX</p>
+                             </div>
+                             <div class="d-flex">
+                                 <p class="p-label">Pan:</p><p>XXXXXXXXXXX</p>
+                             </div>
+                             <div class="d-flex">
+                                 <p class="p-label">DOB:</p><p>dfasdfasdf</p>
+                             </div>
+                         </div>
+                     </div>
+                     <!-- tabnav  -->
+                     <div class="tabnavc">
+                         <ul class="tabnavc-ul">
+                             <li  [ngClass]="{'active': currentTab == 'tab1'}" (click)="nvatabc ('tab1')">
+                                 <div class="tabnavc-a ">
+                                     <div><span class="tabnavc-txt">Personal Details</span></div>
+                                     <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                 </div>
+                             </li>
+                             <li [ngClass]="{'active': currentTab == 'tab2'}" (click)="nvatabc ('tab2')">
+                                 <div class="tabnavc-a">
+                                     <div><span class="tabnavc-txt">Bank Details</span></div>
+                                     <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                 </div>
+                             </li>
+                             <li [ngClass]="{'active': currentTab == 'tab3'}" (click)="nvatabc ('tab3')">
+                                 <div class="tabnavc-a">
+                                     <div><span class="tabnavc-txt">Change Password</span></div>
+                                     <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                 </div>
+                             </li>
+                             <li [ngClass]="{'active': currentTab == 'tab4'}" (click)="nvatabc ('tab4')">
+                                 <div class="tabnavc-a">
+                                     <div><span class="tabnavc-txt">Nominee Details</span></div>
+                                     <div><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                 </div>
+                             </li>
+                         </ul>
+                     </div>
+                    </div>
+                 </div>
+                 <div class="col-md-8 col-lg-8 col-xl-8 col-xxl-9 navtab-height">
+                    <div class="profile-box">
+                        <div class="add-class-for-show-and-hide" *ngIf="currentTab == 'tab1'">
+                            <div><h5 class="profile-bold-text "> Personal details</h5></div>
+                            <form [formGroup]="personalForm">
+                            <div class="row">
+                              
+                                <div class="col-md-12 boder-b1">
+                                    <div class="pro-personal-val ">
+                                        <div>
+                                            <div class="personal-label"><i class="fa fa-mobile me-2" aria-hidden="true"></i> <span>Mobile</span></div>
+                                            <p class="mb-0">45454545454</p>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12 boder-b1">
+                                    <div class="pro-personal-val ">
+                                        <div>
+                                            <div class="personal-label"><i class="fa fa-envelope-o me-2" aria-hidden="true"></i> <span>Email id</span></div>
+                                            <p class="mb-0">{{ personalForm.get('email').value }}</p>
+                                        </div>
+                                        <div>
+                                            <!-- <button class="btn btn-link btn-sm">Edit</button> -->
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="col-md-12 boder-b1">
+                                    <div class="row ">
+                                        <div class="col-md-3">
+                                            <div class="pro-personal-val">
+                                                <div>
+                                                    <div class="personal-label"> <span>Gender</span></div>
+                                                    <p class="mb-0">{{ personalForm.get('gender').value === 1 ? 'Male' : personalForm.get('gender').value === 2 ? 'Female' : personalForm.get('gender').value === 3 ? 'Others' : 'Unknown' }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="pro-personal-val">
+                                                <div>
+                                                    <div class="personal-label"> <span>Marital Status</span></div>
+                                                    <p class="mb-0">{{ personalForm.get('maritalStatus').value === 1 ? 'Married' : 'Unmarried' }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="pro-personal-val">
+                                                <div>
+                                                    <div class="personal-label"> <span>Qualification</span></div>
+                                                    <p class="mb-0">{{ personalForm.get('qualification').value === 1 ? "Bachelor's Degree" :
+                                                        personalForm.get('qualification').value === 2 ? "Vocational Qualification" :
+                                                        personalForm.get('qualification').value === 3 ? "Master's Degree" :
+                                                        personalForm.get('qualification').value === 4 ? "Doctorate or higher" :
+                                                        personalForm.get('qualification').value === 5 ? "Primary School" :
+                                                        personalForm.get('qualification').value === 6 ? "High School" : "Unknown" }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="pro-personal-val">
+                                                <div>
+                                                    <div class="personal-label"> <span>Occupation</span></div>
+                                                    <p class="mb-0">{{ personalForm.get('occupation').value === 1 ? "Private Sector" :
+                                                        personalForm.get('occupation').value === 2 ? "Government Service" :
+                                                        personalForm.get('occupation').value === 3 ? "Public Sector" :
+                                                        personalForm.get('occupation').value === 4 ? "Agriculturist" :
+                                                        personalForm.get('occupation').value === 5 ? "Professional" :
+                                                        personalForm.get('occupation').value === 6 ? "Business" : 
+                                                        personalForm.get('occupation').value === 7 ? "Housewife" :
+                                                        personalForm.get('occupation').value === 8 ? "Retired" :
+                                                        personalForm.get('occupation').value === 9 ? "Student" :"Unknown" }} </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="col-md-12 boder-b1">
+                                    <div class="row ">
+                                        <div class="col-md-3">
+                                            <div class="pro-personal-val">
+                                                <div>
+                                                    <div class="personal-label"> <span>Annual Income (in Lakhs)</span></div>
+                                                    <p class="mb-0">{{ personalForm.get('annualIncome').value }} Lakhs</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="pro-personal-val">
+                                                <div>
+                                                    <div class="personal-label"> <span>Stack Market Exp.</span></div>
+                                                    <p class="mb-0">{{ personalForm.get('stockMarketExp').value }} Years</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="pro-personal-val">
+                                                <div>
+                                                    <div class="personal-label"> <span>Net Worth (in Lakhs)</span></div>
+                                                    <p class="mb-0">{{ personalForm.get('netWorth').value }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="col-md-12">
+                                    <div class="pro-personal-val">
+                                        <div>
+                                            <div class="personal-label"><i class="fa fa-map-marker me-2" aria-hidden="true"></i> <span>Address</span></div>
+                                            <p class="mb-0">{{ personalForm.get('address').value }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="add-class-for-show-and-hide" *ngIf="currentTab == 'tab2'">
+                            <div><h5 class="profile-bold-text "> Banking details</h5></div>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <div class="float-end">
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add Bank</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                               <div class="col-md-12">
+                                    <div class="row default-bank-checked">
+                                        <div class="col-md-12">
+                                            <div class="pro-personal-val2 ">
+                                                <div>
+                                                   <p class="bankname-txt">{{bankName}}</p>
+                                                    
+                                                </div>
+                                                <div>
+                                                    <div class="form-check" style="font-size: 14px; color:#818181">
+                                                        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Default
+                                                        <label class="form-check-label" for="radio1"></label>
+                                                      </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="pro-personal-val2 ">
+                                                <div>
+                                                    <p class=""><span class="personal-label me-2">Bank Account Number</span>{{maskedValue}}</p>
+                                                </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="pro-personal-val boder-b1">
+                                                <div>
+                                                    <div class="personal-label"> <span>Account Name Holder</span></div>
+                                                    <p class="mb-0">{{accountName}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="pro-personal-val boder-b1">
+                                                <div>
+                                                    <div class="personal-label"> <span>IFSC Code</span></div>
+                                                    <p class="mb-0">{{ifsc}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      
+                                        
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="add-class-for-show-and-hide" *ngIf="currentTab == 'tab3'">
+                            <div><h5 class="profile-bold-text mb-5">Change Password</h5></div>
+                            <form [formGroup]="passwordForm">
+                            <div class="row">
+                               <div class="col-md-12">
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="pro-personal-val2 w-100">
+                                                        <div class="form-floating mb-4 w-100">
+                                                            <input formControlName="newpass" class="form-control ab-border0" (keypress)="keyPressAlphaNumeric($event)"  type="text" placeholder=".">
+                                                            <label>New password</label>
+                                                          </div>
+                                                         
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="float-end">
+                                                        <button class="btn btn-sm btn-outline-primary" (click)="GENERATE_OTP()">SEND OTP</button>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-md-12" *ngIf="otpSent">
+                                                    <div class="pro-personal-val2 w-100">
+                                                        <div class="form-floating mb-4 w-100">
+                                                            <input style="letter-spacing: 22px;" formControlName="otp" maxlength="6" class="form-control ab-border0"   type="text" placeholder=".">
+                                                            <label>Enter your OTP</label>
+                                                          </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="float-end">
+                                                            <button class="btn btn-sm btn-outline-primary" (click)="changePassword()">VERIFY OTP</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="add-class-for-show-and-hide" *ngIf="currentTab == 'tab4'">
+                            <div><h5 class="profile-bold-text "> Nominee details</h5></div>
+                            <div class="row mb-5">
+                                <div class="col-md-12">
+                                    <div class="mb-2 mt-2 d-grid" *ngIf="nomineeForm.disabled">
+                                        <button class="btn btn-black btn-slide-login btn-block">Edit Nominee Details</button>
+                                      </div>
+                                </div>
+                            </div>
+                            <form [formGroup]="nomineeForm">
+                            <div class="row">
+                               <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-4">
+                                               <input  class="form-control ab-border0" formControlName="name"  type="text" placeholder=".">
+                                               <label>Name</label>
+                                             </div>
+                                         </div>
+                                        
+                                         <div class="col-md-6">
+                                            <div class="form-floating width-64 mb-4">
+                                               <select class="form-select ab-border0" id="sel3" formControlName="relationship" style="font-size: 14px;">
+                                                  <option value="">--Select--</option>
+                                                  <option [value]="1" [selected]="nomineeForm.get('relationship').value === 1">Son</option>
+                                                  <option [value]="2" [selected]="nomineeForm.get('relationship').value === 2">Daughter</option>
+                                                  <option [value]="3" [selected]="nomineeForm.get('relationship').value === 3">Father</option>
+                                                  <option [value]="4" [selected]="nomineeForm.get('relationship').value === 4">Mother</option>
+                                                  <option [value]="5" [selected]="nomineeForm.get('relationship').value === 5">Grand Son</option>
+                                                  <option [value]="6" [selected]="nomineeForm.get('relationship').value === 6">Grand Daughter</option>
+                                                  <option [value]="7" [selected]="nomineeForm.get('relationship').value === 7">Spouse</option>
+                                               </select>
+                                               <label for="sel3" class="form-label">Relationship</label>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-6">
+                                            <div class="form-floating mb-4">
+                                               <input  class="form-control ab-border0" formControlName="dateOfBirth" type="date" placeholder=".">
+                                               <label>Date of Birth</label>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-6">
+                                            <div class="form-floating mb-4">
+                                               <input  class="form-control ab-border0"  type="text" formControlName="panNumber" placeholder=".">
+                                               <label>Pan number</label>
+                                             </div>
+                                         </div>
+                                       
+                                        
+                                    </div>
+                               </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div class="d-flex">
+                                    <div class="user-profile-img me-3">
+                                        <img src="assets/images/fake-user.png">
+                                    </div>
+                                    <div class="user-pro-first">
+                                        <h5>Hereuser Name</h5>
+                                        
+                                        <div class="d-flex">
+                                            <p class="flabe">Pan No.</p>
+                                            <p>EKYPS4545ER</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <p class="flabe">DOB</p>
+                                            <p>12/12/1995</p>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+
+                                <div class="col-md-12 mb-4 mt-5">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-12 mb-4"><h5>Personal Details</h5></div>
+                                        <div class="row mng-p">
+                                            <div class="col-md-3">
+                                                <p class="fk-lbe">Mobile</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p class="fk-lbe">Email</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p class="fk-lbe">Gender</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                        </div>
+                                        <div class="row mng-p">
+                                            <div class="col-md-3">
+                                                <p class="fk-lbe">Marital Status</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p class="fk-lbe">Qualification</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p class="fk-lbe">Occupation</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                        </div>
+                                        <div class="row mng-p">
+                                            <div class="col-md-3">
+                                                <p class="fk-lbe">Annual Income (in Lakhs)</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p class="fk-lbe">Stack Market Exp.</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p class="fk-lbe">Net Worth (in Lakhs)</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                        </div>
+                                        <div class="row mng-p">
+                                            <div class="col-md-12">
+                                                <p class="fk-lbe">Address</p>
+                                                <p>123456789</p> 
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <!-- <div class="col-md-6">
+                                            <div class="d-flex">
+                                                <p class="flabe me-2">Mobile:</p>
+                                                <p>123456789</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <p class="flabe2 me-2">Email:</p>
+                                                <p>mynameismailid.mymailid.com</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <p class="flabe2 me-2">Gender:</p>
+                                                <p>Male</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <p class="flabe2 me-2">Marital Status:</p>
+                                                <p>Marred</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <p class="flabe2 me-2">Qualification:</p>
+                                                <p>B.Tech</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <p class="flabe2 me-2">Occupation:</p>
+                                                <p>Developer</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex">
+                                                <p class="flabe">Annual Income (in Lakhs)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <p class="flabe">Stack Market Exp.</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <p class="flabe">Net Worth (in Lakhs)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <p class="flabe">Address</p>
+                                                <p></p>
+                                            </div>
+                                        </div> -->
+
+                                    </div> 
+                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

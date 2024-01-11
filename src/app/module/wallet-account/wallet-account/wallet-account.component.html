@@ -1,0 +1,984 @@
+<div class="wallet p-3">
+    <div class="row">
+        <div class="col-lg-9">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs ">
+                <li [ngbNavItem]="1" [routerLinkActive]="['active']">
+                    <button ngbNavLink><img src="assets\images\ikons\BTC.png" width="20px" height="20px" alt="img"> BTC
+                        <p>(0.0000000)</p>
+                    </button>
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>BTC</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example" >
+                                        <div>filtered from 0 total records</div>
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2" [routerLinkActive]="['active']">
+                    <button ngbNavLink><img src="assets\images\ikons\ETH.png" width="20px" height="20px" alt="img"> ETH
+                        <p>(0.0000000)</p>
+                    </button>
+
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>ETH</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="3">
+                    <button ngbNavLink><img src="assets\images\ikons\LTC.png" width="20px" height="20px" alt="img"> LTC
+                        <p>(0.0000000)</p>
+                    </button>
+
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>LTC</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="4">
+                    <button ngbNavLink><img src="assets\images\ikons\XRP.png" width="20px" height="20px" alt="img"> XRP
+                        <p>(0.0000000)</p>
+                    </button>
+
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>XRP</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="5">
+                    <button ngbNavLink><img src="assets\images\ikons\USDT.png" width="20px" height="20px" alt="img">
+                        USDT <p>(0.0000000)</p></button>
+
+                        <ng-template ngbNavContent>
+                            <div class="wallet-txn">
+                                <h6>USDT</h6>
+                                <div class="progress-div">
+                                    <p>Daily BTC Transfer Limit</p>
+                                    <div class="progress"></div>
+                                    <div class="d-flex justify-content-between py-2">
+                                        <span>0 BTC</span>
+                                        <span>0.00% Used</span>
+                                        <span>5 BTC</span>
+                                    </div>
+                                </div>
+                                <div class="data mt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <span>Show</span>
+                                            <select class="mx-2">
+                                                <option>15</option>
+                                                <option>25</option>
+                                                <option>100</option>
+                                                <option>Al</option>
+                                            </select>
+                                            <span>Entries</span>
+                                        </div>
+                                        <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                                class="fa-solid fa-magnifying-glass"></i></div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table" style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th>Txn Id</th>
+                                                    <th>Amount</th>
+                                                    <th style="text-align: right;">Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>9876543210</td>
+                                                    <td>$5000</td>
+                                                    <td>26/July/2023 10.10 AM</td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody>
+                                                <tr class="odd">
+                                                    <td valign="top" colspan="4" class="text-align">No data
+                                                        available in table</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div>
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-end my-3">
+                                                <li class="page-item"><a href="#" class="page-link">First</a>
+                                                </li>
+                                                <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                                </li>
+                                                <li class="page-item"><a href="#" class="page-link">Next</a>
+                                                </li>
+                                                <li class="page-item"><a href="#" class="page-link">Last</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </ng-template>
+                </li>
+                <li [ngbNavItem]="6">
+                    <button ngbNavLink><img src="assets\images\ikons\TRX.png" width="20px" height="20px" alt="img"> TRX
+                        <p>(0.0000000)</p>
+                    </button>
+
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>TRX</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="7">
+                    <button ngbNavLink><img src="assets\images\ikons\YFI.png" width="20px" height="20px" alt="img"> YFI
+                        <p>(0.0000000)</p>
+                    </button>
+
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>YFI</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="8">
+                    <button ngbNavLink><img src="assets\images\ikons\LINK.png" width="20px" height="20px" alt="img">
+                        LINK <p>(0.0000000)</p></button>
+
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>LINK</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="9">
+                    <button ngbNavLink><img src="assets\images\ikons\DOGE.png" width="20px" height="20px" alt="img">
+                        DOGE <p>(0.0000000)</p></button>
+
+                        <ng-template ngbNavContent>
+                            <div class="wallet-txn">
+                                <h6>DOGE</h6>
+                                <div class="progress-div">
+                                    <p>Daily BTC Transfer Limit</p>
+                                    <div class="progress"></div>
+                                    <div class="d-flex justify-content-between py-2">
+                                        <span>0 BTC</span>
+                                        <span>0.00% Used</span>
+                                        <span>5 BTC</span>
+                                    </div>
+                                </div>
+                                <div class="data mt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <span>Show</span>
+                                            <select class="mx-2">
+                                                <option>15</option>
+                                                <option>25</option>
+                                                <option>100</option>
+                                                <option>Al</option>
+                                            </select>
+                                            <span>Entries</span>
+                                        </div>
+                                        <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                                class="fa-solid fa-magnifying-glass"></i></div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table" style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th>Txn Id</th>
+                                                    <th>Amount</th>
+                                                    <th style="text-align: right;">Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>9876543210</td>
+                                                    <td>$5000</td>
+                                                    <td>26/July/2023 10.10 AM</td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody>
+                                                <tr class="odd">
+                                                    <td valign="top" colspan="4" class="text-align">No data
+                                                        available in table</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div>
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-end my-3">
+                                                <li class="page-item"><a href="#" class="page-link">First</a>
+                                                </li>
+                                                <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                                </li>
+                                                <li class="page-item"><a href="#" class="page-link">Next</a>
+                                                </li>
+                                                <li class="page-item"><a href="#" class="page-link">Last</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </ng-template> 
+                </li>
+                <li [ngbNavItem]="10">
+                    <button ngbNavLink><img src="assets\images\ikons\DOT.png" width="20px" height="20px" alt="img"> DOT
+                        <p>(0.0000000)</p>
+                    </button>
+
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>DOT</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="11">
+                    <button ngbNavLink><img src="assets\images\ikons\BNB.png" width="20px" height="20px" alt="img"> BNB
+                        <p>(0.0000000)</p>
+                    </button>
+
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>BNB</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="12">
+                    <button ngbNavLink><img src="assets\images\ikons\UMC.png" width="20px" height="20px" alt="img"> UMC
+                        <p>(0.0000000)</p>
+                    </button>
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>UMC</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="13">
+                    <button ngbNavLink><img src="assets\images\ikons\SPT.png" width="20px" height="20px" alt="img"> SPT
+                        <p>(0.0000000)</p>
+                    </button>
+
+                    <ng-template ngbNavContent>
+                        <div class="wallet-txn">
+                            <h6>SPT</h6>
+                            <div class="progress-div">
+                                <p>Daily BTC Transfer Limit</p>
+                                <div class="progress"></div>
+                                <div class="d-flex justify-content-between py-2">
+                                    <span>0 BTC</span>
+                                    <span>0.00% Used</span>
+                                    <span>5 BTC</span>
+                                </div>
+                            </div>
+                            <div class="data mt-4">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span>Show</span>
+                                        <select class="mx-2">
+                                            <option>15</option>
+                                            <option>25</option>
+                                            <option>100</option>
+                                            <option>Al</option>
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
+                                    <div class="search position-relative "><input type="Search" placeholder="Search"><i
+                                            class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Txn Id</th>
+                                                <th>Amount</th>
+                                                <th style="text-align: right;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>9876543210</td>
+                                                <td>$5000</td>
+                                                <td>26/July/2023 10.10 AM</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="4" class="text-align">No data
+                                                    available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end my-3">
+                                            <li class="page-item"><a href="#" class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"><a href="#" class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </li>
+            </ul>
+
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+        <div class="col-lg-3">
+            <div><app-order-place></app-order-place> </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,628 @@
+<div class="dashboard">
+  <div class="row first pt-2">
+     <div class="col-md-8 d-flex">
+        <div>
+           <div ngbDropdown class="d-inline-block market-pair ps-2">
+              <button type="button" class="btn btn-outline-primary " id="dropdownBasic1" ngbDropdownToggle>
+              {{ ListsocketData1?.oQuote?.S}}
+              </button>
+              <!-- <p style="mt-1"> {{ ListsocketData1?.Base}}/{{ ListsocketData1?.Quote}} </p> -->
+              <div>
+                 <!-- {{getChartCurr(liveData)}} -->
+                 <span class="lastTradePrice">{{ListsocketData1?.oQuote?.L}} <strong
+                    style="color: red !important">{{ListsocketData1?.oQuote?.a |number:'1.3-3'}}</strong></span>
+              </div>
+           </div>
+        </div>
+        <ul class="d-flex list-pair">
+           <li>
+              <p>Last Trade Price</p>
+              <span>{{ListsocketData1?.oQuote?.L}}</span>
+           </li>
+           <li>
+              <p>24h Change</p>
+              <span class="" *ngIf="!getRunningData(ListsocketData1?.oQuote?.a).flag" class="arrowR"><i
+                 class="fa-solid fa-arrow-down-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value |number:'1.3-3'
+              }} </span>
+              <span class="" *ngIf="getRunningData(ListsocketData1?.oQuote?.a).flag" class="arrowG"><i
+                 class="fa-solid fa-arrow-up-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value |number:'1.3-3'
+              }} </span>
+           </li>
+           <li>
+              <p>24h High</p>
+              <span class="price_green">{{ListsocketData1?.oQuote?.h|number:'1.7-7'}}</span>
+           </li>
+           <li>
+              <p>24h Low</p>
+              <span class="price_red">{{ListsocketData1?.oQuote?.L |number:'1.7-7'}}</span>
+           </li>
+           <li>
+              <p>24h Volume</p>
+              <span>{{ListsocketData1?.oQuote?.v1 |number:'1.7-7'}}</span>
+           </li>
+        </ul>
+     </div>
+     <div class="col-md-4">
+        <ul class="d-flex status justify-content-end d-md-flex d-none">
+           <li *ngIf="connection" class="mx-md-4 mx-3 clock">
+              <p><i class="fa-solid fa-signal signal-connect"></i> Socket Status</p>
+              <p class="price_green">Connected</p>
+           </li>
+           <li *ngIf="!connection" class="mx-md-4 mx-3 clock">
+              <p><i class="fa-solid fa-signal"></i> Socket Status</p>
+              <p style="color: #585858;">Not Connected</p>
+           </li>
+        </ul>
+     </div>
+  </div>
+  <ul class="d-flex status justify-content-between d-md-none d-block position-fixed">
+     <li class="mx-md-4 mx-3 connected d-flex align-items-center">
+        <i class="fa-solid fa-signal"></i>
+        <p class="price_green">Connected</p>
+     </li>
+     <li class="mx-md-4 mx-3 clock d-flex align-items-center">
+        <i class="fa-regular fa-clock"></i>
+        <p class="ms-2 text-white">15/07/2023 15:03:31</p>
+     </li>
+  </ul>
+  <div class="row second">
+     <div class="col-xxl-2 col-xl-2 col-md-3 pe-0" id="marketwatch">
+        <div class="balanceslist">
+           <div class="mk-base-tab d-flex align-items-center">
+              <div style="float: left">
+                 <button class="nxt-btn" (click)="scrollLeft()"><i class="fa-solid fa-angles-left"></i></button>
+              </div>
+              <ul class="middle" #widgetsContent>
+                 <li class="info-widget" *ngFor="let list of ListBase ; let i = index">
+                    <input type="radio" class="btn-check" name="options-outlined" (click)="symbolChange1(list)"
+                    [id]="'list' + i" [autocomplete]="i === 0 ? 'on' : 'off'" [checked]="i === 0">
+                    <label class="btn btn-outline-success" [for]="'list' + i">{{list}}</label>
+                 </li>
+              </ul>
+              <div style="float: right">
+                 <button class="prv-btn" (click)="scrollRight()"><i class="fa-solid fa-angles-right"></i></button>
+              </div>
+           </div>
+           <div class="search">
+              <input type="text" class="form-control search" placeholder="Search">
+           </div>
+           <div class="d-flex justify-content-between total d-none">
+              <p>Total</p>
+              <p>0.00 USDT</p>
+           </div>
+           <div class="exchange_balance table-responsive customtable0 scroll mybase-scroll-trackhide">
+              <div class="mybase-scroll">
+                 <table class="table" style="display: none">
+                    <tbody></tbody>
+                    <tfoot>
+                       <tr>
+                          <td>Total</td>
+                          <td>
+                             <span class="total_estimated_fiat">0.00 USDT</span>
+                          </td>
+                       </tr>
+                    </tfoot>
+                 </table>
+                 <table class="table " id="my_balance">
+                    <tbody class=" tbody-m" style="border: 1px solid #50505000 !important;">
+                       <tr *ngFor="let list1 of listBygase let i=index" (click)="getsymbol(i)">
+                       <td>
+                          <div class="d-flex">
+                           
+                             <img [src]="list1.img"  *ngIf="list1.img != undefined" class="watch-img" /> 
+                             <img [src]="image"  *ngIf="list1.img == undefined" alt="">
+                             <div>
+                                <p class="leftbase-txt"> {{list1.Base}}</p>
+                                <span class="text-start">{{list1?.Quote}}</span>
+                             </div>
+                          </div>
+                       </td>
+                       <td>
+                          <p>{{list1?.oQuote?.L}} {{list1?.Quote}}</p>
+                          <!-- <span class="estimated_fiat " *ngIf="getRunningData(list1?.oQuote?.a).flag" style="color:rgb(0, 255, 38)"><i class="fa-solid fa-caret-up"></i>
+                             {{getRunningData(list1?.oQuote?.a).value|number:'1.9-9'}}
+                             </span> -->
+                          <span class="estimated_fiat" *ngIf="!getRunningData(list1?.oQuote?.a).flag" class="arrowR"><i
+                             class="fa-solid fa-caret-down"></i>
+                          {{getRunningData(list1?.oQuote?.a).value | slice:0:6}}
+                          </span>
+                          <span class="estimated_fiat" *ngIf="getRunningData(list1?.oQuote?.a).flag" class="arrowG"><i
+                             class="fa-solid fa-caret-up"></i>
+                          {{getRunningData(list1?.oQuote?.a).value | slice:0:4}}
+                          </span>
+                       </td>
+                       </tr>
+                    </tbody>
+                 </table>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="col-xxl-8 col-xl-8 col-md-6 pe-0">
+        <app-charts [items]="item1"></app-charts>
+        <div class="below-chart py-3 pe-2 d-none">
+           <div class="heading py-2">
+              <h6>Order History <span>BTC/USDT</span></h6>
+           </div>
+           <div id="chart-tabs">
+              <ul ngbNav #nav3="ngbNav" [(activeId)]="active2" class="nav-tabs p-0">
+              <li [ngbNavItem]="6">
+                 <button ngbNavLink>
+                 Executed <span class="count">[0]</span>
+                 </button>
+                 <ng-template ngbNavContent>
+                    <div class="d-flex justify-content-between show-entry">
+                       <div>
+                          <span>Show</span>
+                          <select class="mx-2">
+                             <option>15</option>
+                             <option>25</option>
+                             <option>100</option>
+                             <option>All</option>
+                          </select>
+                          <span>entries</span>
+                       </div>
+                       <div class="search position-relative">
+                          <input type="Search" placeholder="Search" /><i class="fa-solid fa-magnifying-glass"></i>
+                       </div>
+                    </div>
+                    <div class="table-responsive">
+                       <table class="table" id="table-2" style="width: 100%" cellpadding="10px">
+                          <thead>
+                             <tr role="row" style="padding: 8px">
+                                <th rowspan="1" colspan="1" style="width: 0px; padding: 8px">
+                                   Order No
+                                </th>
+                                <th rowspan="1" colspan="1" style="width: 0px">Side</th>
+                                <th rowspan="1" colspan="1" style="width: 0px">Type</th>
+                                <th rowspan="1" colspan="1" style="width: 0px">
+                                   Order Price
+                                </th>
+                                <th rowspan="1" colspan="1" style="width: 0px">
+                                   Executed Price
+                                </th>
+                                <th rowspan="1" colspan="1" style="width: 0px">Fee</th>
+                                <th rowspan="1" colspan="1" style="width: 0px">
+                                   Total Value
+                                </th>
+                                <th rowspan="1" colspan="1" style="width: 0px">
+                                   Executed At
+                                </th>
+                                <th rowspan="1" colspan="1" style="width: 0px">
+                                   Action
+                                </th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             <tr>
+                                <td>01</td>
+                                <td>UP</td>
+                                <td>BTC</td>
+                                <td>$4.99</td>
+                                <td>$5.00</td>
+                                <td>$1.99</td>
+                                <td>$7.99</td>
+                                <td>15/07/2023 15:03:31</td>
+                                <td>SOLD</td>
+                             </tr>
+                             <tr>
+                                <td>01</td>
+                                <td>UP</td>
+                                <td>BTC</td>
+                                <td>$4.99</td>
+                                <td>$5.00</td>
+                                <td>$1.99</td>
+                                <td>$7.99</td>
+                                <td>15/07/2023 15:03:31</td>
+                                <td>SOLD</td>
+                             </tr>
+                             <tr>
+                                <td>01</td>
+                                <td>UP</td>
+                                <td>BTC</td>
+                                <td>$4.99</td>
+                                <td>$5.00</td>
+                                <td>$1.99</td>
+                                <td>$7.99</td>
+                                <td>15/07/2023 15:03:31</td>
+                                <td>SOLD</td>
+                             </tr>
+                             <tr>
+                                <td>01</td>
+                                <td>UP</td>
+                                <td>BTC</td>
+                                <td>$4.99</td>
+                                <td>$5.00</td>
+                                <td>$1.99</td>
+                                <td>$7.99</td>
+                                <td>15/07/2023 15:03:31</td>
+                                <td>SOLD</td>
+                             </tr>
+                             <tr>
+                                <td>01</td>
+                                <td>UP</td>
+                                <td>BTC</td>
+                                <td>$4.99</td>
+                                <td>$5.00</td>
+                                <td>$1.99</td>
+                                <td>$7.99</td>
+                                <td>15/07/2023 15:03:31</td>
+                                <td>SOLD</td>
+                             </tr>
+                             <tr class="odd text-center">
+                                <td valign="top" colspan="12" class="dataTables_empty py-5">
+                                   No data available in table
+                                </td>
+                             </tr>
+                          </tbody>
+                       </table>
+                    </div>
+                    <nav aria-label="Page navigation example">
+                       <ul class="pagination justify-content-end">
+                          <li class="page-item">
+                             <a class="page-link" href="#">First</a>
+                          </li>
+                          <li class="page-item">
+                             <a class="page-link" href="#">Previous</a>
+                          </li>
+                          <li class="page-item">
+                             <a class="page-link" href="#">Next</a>
+                          </li>
+                          <li class="page-item">
+                             <a class="page-link" href="#">Last</a>
+                          </li>
+                       </ul>
+                    </nav>
+                 </ng-template>
+              </li>
+              </ul>
+              <div [ngbNavOutlet]="nav3" class="mt-2"></div>
+           </div>
+        </div>
+        <div class="ordersection">
+           <div class="row">
+              <div class="col-md-6 ps-0">
+                 <div ngbAccordion>
+                    <div ngbAccordionItem [collapsed]="false">
+                       <h2 class="panel-m-hd pt-2">
+                          <span class="me-2">Order Book</span> <span> {{ListsocketData1?.Base}}/
+                          {{ListsocketData1?.Quote}}</span>
+                       </h2>
+                       <div ngbAccordionCollapse>
+                          <div ngbAccordionBody>
+                             <div class="sellorder orderright">
+                                <div id="sellOrdersTable_wrapper">
+                                   <div class="hideandshow">
+                                      <div class="row set-ask-bid-tit" style="padding:4px 15px ">
+                                         <div class="col-md-6 set-b-border1">
+                                            <div class="d-flex justify-content-between">
+                                               <div> Volume </div>
+                                               <div>Price </div>
+                                            </div>
+                                         </div>
+                                         <div class="col-md-6 set-b-border1">
+                                            <div class="d-flex justify-content-between">
+                                               <div>Price </div>
+                                               <div> Volume </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                      <div class="ordertrade-book-h2">
+                                         <div class="row set-ask-bid" style="padding:0px 15px 15px 15px">
+                                            <div class="col-md-6 pe-0" style=" border-right: solid 1px #333">
+                                               <div class="d-flex justify-content-between set-b-border ps-3 pe-2 pos-ret"
+                                                  *ngFor="let bid of getOrderData1">
+                                                  <div class="bgdata-green" [ngStyle]="{'width': (((bid.Qty)/maxAPrice)*100) + '%'}">
+                                                  </div>
+                                                  <div class="redata d-flex justify-content-between pos-ret"
+                                                     style="z-index: 2; width: 100%;">
+                                                     <ng-container>
+                                                        <div style="color:#b3b3b3">
+                                                           {{ bid.Qty | number:'1.6-6' }}
+                                                        </div>
+                                                        <div style="color:#0ECB81 ">{{ bid.Price
+                                                           }}
+                                                        </div>
+                                                     </ng-container>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                            <div class="col-md-6 ps-0">
+                                               <div class="d-flex0 justify-content-between0 set-b-border pe-3 ps-2 pos-ret"
+                                                  *ngFor="let ask of getOrderData">
+                                                  <div class="bgdata-red" [ngStyle]="{'width': (((ask.Qty)/maxPrice)*100) + '%'}"></div>
+                                                  <div class="redata d-flex justify-content-between pos-ret" style="z-index: 2;">
+                                                     <ng-container>
+                                                        <div style="color:red">{{ ask.Price }}</div>
+                                                        <div style="color:#b3b3b3 ">{{ ask.Qty | number:'1.6-6'}}</div>
+                                                     </ng-container>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                         
+                                      </div>
+                                   </div>
+                                   
+                                   <!-- <div class="table-responsive ordertrade-book-h">
+                                   </div> -->
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="trading_book_section market-pair" id="accordian-1">
+                    <div ngbAccordion>
+                       <div ngbAccordionItem [collapsed]="false">
+                          <h2 class="panel-m-hd pt-2">
+                             <span class="me-2">Trades Book</span> <span> {{ListsocketData1?.Base}}/
+                             {{ListsocketData1?.Quote}}</span>
+                          </h2>
+                          <div ngbAccordionCollapse>
+                             <div ngbAccordionBody>
+                                <ng-template>
+                                   <div class="panel-heading_custom0 markets">
+                                      <ul ngbNav #nav3="ngbNav" [(activeId)]="active3" class="nav-tabs" id="market-your">
+                                      <li [ngbNavItem]="8" class="active">
+                                         <button ngbNavLink class="market">Markets</button>
+                                         <ng-template ngbNavContent>
+                                            <div class="ordertrade-book-h3">
+                                               <table class="table dataTable market-table " style="width: 100%;">
+                                                  <thead>
+                                                     <tr role="row">
+                                                        <th class="number" rowspan="1" colspan="1" style="width: 110px">
+                                                           Price
+                                                        </th>
+                                                        <th class="number" rowspan="1" colspan="1" style="width: 92px">
+                                                           Volume
+                                                        </th>
+                                                        <th class="date" rowspan="1" colspan="1" style="width: 86px">
+                                                           Time
+                                                        </th>
+                                                     </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                     <tr *ngFor="let data of allTradeBList ">
+                                                        <td>{{data?.price}}</td>
+                                                        <td>{{data?.qty}}</td>
+                                                        <td>{{data?.time | date:' HH:mm:ss'}}</td>
+                                                     </tr>
+                                                  </tbody>
+                                               </table>
+                                            </div>
+                                         </ng-template>
+                                      </li>
+                                      <li [ngbNavItem]="9" class="yours">
+                                         <button ngbNavLink class="market">Order</button>
+                                         <ng-template ngbNavContent>
+                                            <div class="set-fake-tab1">
+                                               <a (click)="openOrder(content2)">View Orders</a>
+                                            </div>
+                                            <app-trade-book-order [items3]="listOfFirst2"></app-trade-book-order>
+                                         </ng-template>
+                                      </li>
+                                      <li [ngbNavItem]="10" class="yours">
+                                         <button ngbNavLink class="market">Trade</button>
+                                         <ng-template ngbNavContent>
+                                            <div class="set-fake-tab1">
+                                               <a (click)="openLg(content)">View All Trade</a>
+                                            </div>
+                                            <app-ex-tradebook-trade [trade]="listOfFirst2"></app-ex-tradebook-trade>
+                                         </ng-template>
+                                      </li>
+                                      <li [ngbNavItem]="11" class="yours">
+                                         <button ngbNavLink class="market">Cancel</button>
+                                         <ng-template ngbNavContent>
+                                      
+                                            <app-cancel-order [cancel]="this.allCancelList"></app-cancel-order>
+                                         </ng-template>
+                                      </li>
+                                      <li [ngbNavItem]="12" class="yours">
+                                         <button ngbNavLink class="market">Net Position</button>
+                                         <ng-template ngbNavContent>
+                                            <div class="set-fake-tab1">
+                                               <a (click)="netposition(content3)">View Net Position</a>
+                                            </div>
+                                            <app-net-position [netPos]="listOfFirst2"></app-net-position>
+                                         </ng-template>
+                                      </li>
+                                      </ul>
+                                      <div [ngbNavOutlet]="nav3" class="mt-2"></div>
+                                   </div>
+                                </ng-template>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="col-xxl-2 col-xl-2 col-md-2 ">
+        <app-order-place [items1]="listOfFirst1"></app-order-place>
+        <!-- <app-home></app-home> -->
+     </div>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+     <h4 class="modal-title">All Trade </h4>
+     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+     <div class="table-responsive">
+        <table class="table line-table" id="deposit">
+           <thead>
+              <tr>
+                 <th>
+                    <p class="mb-0 ms-3">Timestamp</p>
+                 </th>
+                 <th>Symbol</th>
+                 <th>Type</th>
+                 <th>Lot</th>
+                 <th>Price</th>
+              </tr>
+           </thead>
+           <tbody id="infoTable">
+              <!-- <tr *ngFor="let trade of pageOfItems">
+               <td>
+                  0
+                 
+               </td>
+                 <td>
+                 0
+                 </td>
+                 <td>
+                 0
+                 </td>
+                 <td>
+                  0
+                 </td>
+                 
+                 <td>
+                    0
+                 </td>
+                 
+              </tr> -->
+           </tbody>
+        </table>
+     </div>
+     <div class="row pt-3" >
+      <div class="col-md-12 ex-pagination">
+         <div class="">
+            <app-pagination [items]="getAlltreadeData"  (changePage)="onChangePage($event)"></app-pagination>
+          </div>
+      </div>
+     </div>
+  </div>
+</ng-template>
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+     <h4 class="modal-title"> Order </h4>
+     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+     <div class="table-responsive">
+        <table class="table line-table" id="deposit">
+           <thead>
+              <tr>
+                 <th>Timestamp</th>
+                 <th>Symbol</th>
+                 <th>Type</th>
+                 <th>Lot</th>
+                 <th>Price</th>
+                 <th>CMP</th>
+                 <th>Profit</th>
+              </tr>
+           </thead>
+           <tbody id="infoTable1">
+              <tr *ngFor="let dd of pageOfItems">
+                 <td>
+                    <p class="">{{dd.Time | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                 </td>
+                 <td>
+                  
+                  <div class="d-flex align-items-center">
+                     <div><img class="watch-img" [src]="dd.imgg"></div>
+                     <p class="">{{dd.SymbolName}}</p>
+                  </div>
+                 </td>
+                 <td>
+                    <p class="type-m-buy" *ngIf="dd.Buy_Sell == 1">Buy</p>
+                    <p class="type-m-sell" *ngIf="dd.Buy_Sell == 2">Sell</p>
+                 </td>
+                 <td>
+                    {{dd.Lot}}
+                 </td>
+                 <td>
+                    {{dd.Price}}
+                 </td>
+                 <td>
+                    <p>0</p>
+                 </td>
+                 <td>
+                    <p>0</p>
+                 </td>
+              </tr>
+           </tbody>
+           
+        </table>
+        
+     </div>
+     <div class="row pt-3">
+      <div class="col-md-12 ex-pagination">
+         <div class="">
+            <app-pagination [items]="getllOrderData"  (changePage)="onChangePage($event)"></app-pagination>
+          </div>
+      </div>
+     </div>
+  </div>
+</ng-template>
+<ng-template #content3 let-modal>
+  <div class="modal-header">
+     <h4 class="modal-title">Net Position </h4>
+     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+     <div class="table-responsive">
+        <table class="table line-table" id="deposit">
+           <thead>
+              <tr>
+                <th>Symbol</th>
+                 <th>Buy Lot</th>
+                 <th>Avg. Buy</th>
+                 <th>Avg. Sell</th>
+                 <th>Sell Lot</th>
+                 <th>Net Lot</th>
+                 <th>UnL</th>
+                 <th>PL</th>
+              </tr>
+           </thead>
+           <tbody id="infoTable1">
+              <tr *ngFor="let dd of pageOfItems">
+               <td>
+                  
+                  <div class="d-flex align-items-center">
+                     <div><img class="watch-img" [src]="dd.imgg"></div>
+                     <p class="">{{dd.SymbolName}}</p>
+                  </div>
+                 </td>
+                 <td>
+                    {{dd.LotBuy}}
+                 </td>
+                 <td>
+                    {{dd.AvgBuy}}
+                 </td>
+                 <td>
+                    {{dd.AvgSell}}
+                 </td>
+                 <td>
+                  {{dd.LotSell}}
+                 </td>
+                 <td>
+                  {{dd.NetLot}}
+                 </td>
+                 <td>
+                    0
+                 </td>
+                 <td>
+                    0
+                 </td>
+              </tr>
+           </tbody>
+           
+        </table>
+     </div>
+     <div class="row pt-3" >
+      <div class="col-md-12 ex-pagination">
+         <div class="">
+            <app-pagination [items]="netPostionData"  (changePage)="onChangePage($event)"></app-pagination>
+          </div>
+      </div>
+     </div>
+  </div>
+</ng-template>

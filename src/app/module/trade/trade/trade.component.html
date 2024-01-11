@@ -1,0 +1,616 @@
+
+
+    <section class=" p-tow-p-padding" style="overflow: hidden;">
+   
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+            <li [ngbNavItem]="1">
+                <button ngbNavLink  (click)="getStatus(3)">Traded</button>
+                <ng-template ngbNavContent>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <div class="table-responsive">
+                                <table class="table" id="deposit">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Symbol</th>
+                                            <th>User Type</th>
+                                            <th>Order Ref.</th>
+                                            <th>Quantity</th>
+                                            <th>Trade Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="infoTable">
+                                        <tr *ngFor="let data of tradeList">
+                                           
+                                            <td>{{data.oTradeTime.sCreadedOn_Str}}</td>
+                                            <td><img style="width:30px; margin-right: 6px;" src="assets/images/ikons/{{data.Crypto}}.png">{{data.Crypto}}</td>
+                                            <td><span class="buyertype"><i class="fa-regular fa-circle-user me-1"></i> Buyer</span>
+                                                 <span class="sellertype"><i class="fa-regular fa-circle-user me-1"></i> Seller</span></td>
+                                            <td>{{data.OrderRef}}</td>
+                                         
+                                            <td>{{data.TradeQty}}</td>
+                                            <td>{{data.TradePrice}}</td>
+                                            <td>
+                                                <!-- <button class="btn makepy me-2">Make Payment</button> -->
+                                                <a (click)="openViewTrade(content,data)"  class="btn btn-dl1">view details</a>
+                                            </td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                    <tbody id="infoTable" *ngIf="tradeListLength == 0">
+                                        <tr >
+                                            <td colspan="7"> <div style="text-align: center;
+                                                padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                                        </tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <button ngbNavLink (click)="getStatus(2)">In Progress</button>
+                <ng-template ngbNavContent>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <div class="table-responsive">
+                                <table class="table" id="deposit">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Symbol</th>
+                                            <th>User Type</th>
+                                            <th>Order Ref.</th>
+                                            <th>Quantity</th>
+                                            <th>Trade Price</th>
+                                            <th>Validity</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="infoTable">
+                                        <tr *ngFor="let data of tradeList">
+                                           
+                                            <td>{{convertDate(data.oTradeTime.sCreadedOn_Str)}}  {{trimmedDate}}</td>
+                                            <td><img style="width:30px; margin-right: 6px;" src="assets/images/ikons/{{data.Crypto}}.png">{{data.Crypto}}</td>
+                                            
+                                            <td><span class="buyertype"><i class="fa-regular fa-circle-user me-1"></i> Buyer</span>
+                                                <span class="sellertype"><i class="fa-regular fa-circle-user me-1"></i> Seller</span></td>
+                                            <td>{{data.OrderRef}}</td>
+                                          
+                                            <td>{{data.TradeQty}}</td>
+                                            <td>{{data.TradePrice}}</td>
+                                            <td> <p *ngIf="displayTimer" style="color:#F1B435; width:100px" class="mb-0"><i  class="fa-regular fa-clock me-2"></i> {{showOrderTime}}</p>
+                                                <p *ngIf="!displayTimer" style="color:#e4180a" class="mb-0"><i  class="fa-regular fa-clock me-2"></i>_</p></td>
+                                            <td>
+                                                <!-- <p>{{this.days}}:{{this.minn }}</p> -->
+                                                
+                                                <button class="btn makepy me-2"  (click)="open(content1)">make payment</button>
+                                                <a (click)="openViewTrade1(content3,data)"  class="btn btn-dl1">view details</a>
+                                                <!-- <p>{{showOrderTime}}</p> -->
+                                            </td>
+                                        </tr>
+                                      
+                                    </tbody>
+                                    <tbody id="infoTable" *ngIf="tradeListLength == 0">
+                                        <tr >
+                                            <td colspan="7"> <div style="text-align: center;
+                                                padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                                        </tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+                <button ngbNavLink (click)="getStatus(4)">Expired</button>
+                <ng-template ngbNavContent>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <div class="table-responsive">
+                                <table class="table" id="deposit">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Symbol</th>
+                                            <th>User Type</th>
+                                            <th>Order Ref.</th>
+                                           
+                                            <th>Quantity</th>
+                                            <th>Trade Price</th>
+                                          
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="infoTable">
+                                        <tr *ngFor="let data of tradeList">  
+                                           
+                                            <td>{{data.oTradeTime.sCreadedOn_Str| date : 'EEEE, MMMM d, h:mm:ss''}}</td>
+                                            <td><img style="width:30px; margin-right: 6px;" src="assets/images/ikons/{{data.Crypto}}.png">{{data.Crypto}}</td>
+                                            <td><span class="buyertype"><i class="fa-regular fa-circle-user me-1"></i> Buyer</span>
+                                                <span class="sellertype"><i class="fa-regular fa-circle-user me-1"></i> Seller</span></td>
+                                            <td>{{data.OrderRef}}</td>
+                                           
+                                            <td>{{data.TradeQty}}</td>
+                                            <td>{{data.TradePrice}}</td>
+                                            <td>
+                                                <!-- <button class="btn makepy me-2">Make Payment</button> -->
+                                                <a (click)="openViewTrade(content,data)"  class="btn btn-dl1">view details</a>
+                                            </td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                    <tbody id="infoTable" *ngIf="tradeListLength == 0">
+                                        <tr >
+                                            <td colspan="7"> <div style="text-align: center;
+                                                padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                                        </tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+            <!-- <li [ngbNavItem]="4">
+                <button ngbNavLink (click)="getStatus(5)">Reports</button>
+                <ng-template ngbNavContent>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <div class="table-responsive">
+                                <table class="table" id="deposit">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Symbol</th>
+                                            <th>User Type</th>
+                                            <th>Order Ref. </th>
+                                           
+                                            <th>Quantity</th>
+                                            <th>Trade Price</th>
+                                          
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="infoTable">
+                                        <tr *ngFor="let data of tradeList">
+                                           
+                                            <td>{{data.oTradeTime.sCreadedOn_Str}}</td>
+                                            <td><img style="width:30px; margin-right: 6px;" src="assets/images/ikons/{{data.Crypto}}.png">{{data.Crypto}}</td>
+                                            <td><span class="buyertype"><i class="fa-regular fa-circle-user me-1"></i> Buyer</span>
+                                                <span class="sellertype"><i class="fa-regular fa-circle-user me-1"></i> Seller</span></td>
+                                            <td>{{data.OrderRef}}</td>
+                                           
+                                            <td>{{data.TradeQty}}</td>
+                                            <td>{{data.TradePrice}}</td>
+                                            <td>
+                                                <a (click)="openViewTrade(content,data)"  class="btn btn-dl1">View Details</a>
+                                            </td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                    <tbody id="infoTable" *ngIf="tradeListLength == 0">
+                                        <tr >
+                                            <td colspan="7"> <div style="text-align: center;
+                                                padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                                        </tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </li> -->
+            <!-- <li [ngbNavItem]="4">
+                <button ngbNavLink (click)="getStatus(5)">Cancelled</button>
+                <ng-template ngbNavContent>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <div class="table-responsive">
+                                <table class="table" id="deposit">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Symbol</th>
+                                            <th>Order Id</th>
+                                            <th>Challen Id</th>
+                                            <th>Quantity</th>
+                                            <th>Trade Price</th>
+                                          
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="infoTable">
+                                        <tr *ngFor="let data of tradeList">
+                                           
+                                            <td>{{data.oTradeTime.sCreadedOn_Str}}</td>
+                                            <td><img style="width:30px; margin-right: 6px;" src="assets/images/ikons/{{data.Crypto}}.png">{{data.Crypto}}</td>
+                                            <td>{{data.OrderID}}</td>
+                                            <td>{{data.rChallenID}}</td>
+                                            <td>{{data.TradeQty}}</td>
+                                            <td>{{data.TradePrice}}</td>
+                                            <td>
+                                               
+                                                <a (click)="openViewTrade(content,data)"  class="btn btn-dl1">View Details</a>
+                                            </td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                    <tbody id="infoTable" *ngIf="tradeListLength == 0">
+                                        <tr >
+                                            <td colspan="7"> <div style="text-align: center;
+                                                padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
+                                        </tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </li> -->
+        </ul>
+        
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        
+        
+       
+        </section>
+
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Trade Details</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeModel()"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row pending-details-modal " style="background: #2E3253; border-radius: 15px; color:#fff">
+                <div class="col-md-12">
+                    <div class="yellow-card">
+                        <div class="row mb-2 align-items-center">
+                            <div class="col-md-6">
+                                
+                                
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Trade Ref:-</div>
+                                    <div class="bdval1">{{tradeListData.TradeRef}}</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Trade ID:-</div>
+                                    <div class="bdval1">{{tradeListData.TradeID}}</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Created on:-</div>
+                                    <div class="bdval1">{{tradeListData.oTradeTime.sCreadedOn_Str}}</div>
+                                </div>
+                               
+                            
+                                
+                            </div>
+                          
+                            <div class="col-md-6">
+                                <div class="filter d-flex align-items-center mb-2 justify-content-end">
+                                    <!-- <button class="btn makepy me-2">Make Payment</button> -->
+                                        <button class="btn makepy me-2" style="font-size: 14px;"><i  class="fa-regular fa-file-excel me-1"></i> Download Trade</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12">
+                    <div class="row">
+                        
+                        <div class="col">
+                            <div class="modal-in-card">
+                               <div class="pall">
+                                <div>
+                                    <img src="assets\images\ikons\{{tradeListData.Crypto}}.png" alt="img">
+                                </div>
+                                <div>
+                                    <div class="bdtit1">Symbol</div>
+                                    <div class="bdval1">{{tradeListData.Crypto}}</div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="modal-in-card">
+                               <div class="pall">
+                                <div><img  src="assets/images/ikons/total-amount.png"></div>
+                                <div>
+                                    <div class="bdtit1">Total Amount</div>
+                                    <div class="bdval1">200000.00</div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="modal-in-card">
+                               <div class="pall">
+                                <div><img  src="assets/images/ikons/rec-amount.png"></div>
+                                <div>
+                                    <div class="bdtit1">Received Amount</div>
+                                    <div class="bdval1">200000.00</div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <!-- <div class="col-md-12 mt-2">
+                    <div class="table-responsive">
+                        <table class="table" id="deposit">
+                            <thead>
+                                <tr>
+                                                
+                                    <th>
+                                        <div class="chln-tbl-tit">Timestamp</div>
+                                    </th>
+                                    <th>
+                                        <div class="chln-tbl-tit">Tnx id</div>
+                                    </th>
+                                    <th>
+                                        <div class="chln-tbl-tit">Payment mode</div>
+                                    </th>
+                                    <th>
+                                        <div class="chln-tbl-tit text-end me-5">Amount</div>
+                                    </th>
+                                 </tr>
+                            </thead>
+                            <tbody id="infoTable">
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">8,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">12,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">10,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">10,000</span></td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+    </ng-template>
+
+
+    <ng-template #content3 let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Challen Details</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeModel()"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row pending-details-modal " style="background: #2E3253; border-radius: 15px; color:#fff">
+                <div class="col-md-12">
+                    <div class="yellow-card">
+                        <div class="row mb-2 align-items-center">
+                            <div class="col-md-6">
+                                
+                                
+                                <!-- <div class="d-flex mb-1">
+                                    <div class="bdtit1">Trade Ref:-</div>
+                                    <div class="bdval1">{{tradeRefId}}</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Trade ID:-</div>
+                                    <div class="bdval1">{{tradeId}}</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Created on:-</div>
+                                    <div class="bdval1">{{createdTrade}}</div>
+                                </div> -->
+
+                                 <div class="d-flex mb-1">
+                                    <div class="bdtit1">Trade Ref:-</div>
+                                    <div class="bdval1">{{tradeListData.TradeRef}}</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Trade ID:-</div>
+                                    <div class="bdval1">{{tradeListData.TradeID}}</div>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="bdtit1">Created on:-</div>
+                                    <div class="bdval1">{{tradeListData.oTradeTime.sCreadedOn_Str}}</div>
+                                </div>
+                               
+                            
+                                
+                            </div>
+                          
+                            <div class="col-md-6">
+                                <div class="filter d-flex align-items-center mb-2 justify-content-end">
+                                    <!-- <button class="btn makepy me-2">Make Payment</button> -->
+                                        <button class="btn makepy me-2" style="font-size: 14px;"><i  class="fa-regular fa-file-excel me-1"></i> Download Challen</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12">
+                    <div class="row">
+                        
+                        <div class="col">
+                            <div class="modal-in-card">
+                               <div class="pall">
+                                <div>
+                                    <img src="assets\images\ikons\{{tradeListData.Crypto}}.png" alt="img">
+                                </div>
+                                <div>
+                                    <div class="bdtit1">Symbol</div>
+                                    <div class="bdval1">{{tradeListData.Crypto}}</div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="modal-in-card">
+                               <div class="pall">
+                                <div><img  src="assets/images/ikons/total-amount.png"></div>
+                                <div>
+                                    <div class="bdtit1">Total Amount</div>
+                                    <div class="bdval1">200000.00</div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="modal-in-card">
+                               <div class="pall">
+                                <div><img  src="assets/images/ikons/rec-amount.png"></div>
+                                <div>
+                                    <div class="bdtit1">Received Amount</div>
+                                    <div class="bdval1">200000.00</div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="modal-in-card">
+                               <div class="pall">
+                                <div><img  src="assets/images/ikons/pending-amount.png"></div>
+                                <div>
+                                    <div class="bdtit1">Pending Amount</div>
+                                    <div class="bdval1">200000.00</div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="modal-in-card">
+                               <div class="pall">
+                                <div><img  src="assets/images/ikons/due-time.png"></div>
+                                <div>
+                                    <div class="bdtit1">Due Date </div>
+                                    <div class="bdval1" style="height: 24px;">{{showOrderTime}}</div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <div class="table-responsive">
+                        <table class="table" id="deposit">
+                            <thead>
+                                <tr>
+                                                
+                                    <th>
+                                        <div class="chln-tbl-tit">Timestamp</div>
+                                    </th>
+                                    <th>
+                                        <div class="chln-tbl-tit">Tnx id</div>
+                                    </th>
+                                    <th>
+                                        <div class="chln-tbl-tit">Payment mode</div>
+                                    </th>
+                                    <th>
+                                        <div class="chln-tbl-tit text-end me-5">Amount</div>
+                                    </th>
+                                 </tr>
+                            </thead>
+                            <tbody id="infoTable">
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">8,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">12,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">10,000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16/07/2023 - 2:24 pm</td>
+                                    <td>Tnx-2568545695</td>
+                                    <td>Bank Transfer</td>
+                                    <td class="text-end "><span class="me-5">10,000</span></td>
+                                </tr>
+                                <!-- <tr>
+                                    <td colspan="3" class="text-end"></td>
+                                    <td class="text-end">Sum: <span class="me-5" style="font-weight:600">50,00000</span></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+    </ng-template>
+
+
+
+    <ng-template #content1 let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Payment Gateway</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeModel1()"></button>
+        </div>
+        <div class="modal-body">
+            <p style="color:#d1d1d1">Please select payment gateway</p>
+            <div class="payment-method pay-mod">
+                <div class="setactive" *ngFor="let gateway of ListofGateways" style="cursor: pointer;"  [class.active]="selected === gateway.GatewayID"
+                (click)="getChangePayment(gateway.GatewayID)">
+                    <img style="width:36px" src="assets\images\gateway\{{gateway.Gateway}}.png">
+                <div  class="l-label">
+                {{ gateway.Gateway }}
+              </div>
+                </div>
+              </div>
+          <!-- <div class="payment-method pay-mod">
+            <label  *ngFor="let gateway of ListofGateways" style="cursor: pointer;"  [class.active]="selected === gateway.GatewayID"
+            (click)="getChangePayment(gateway.GatewayID)">
+            {{ gateway.Gateway }}
+          </label>
+        </div> -->
+        <div *ngIf="ListofGateways.length == 0">
+            <p style="color: #F1B435;">{{gateError}}</p>
+           </div>
+        </div>
+        <div class="modal-footer">
+            <button style="width: 100%;" type="submit" class="btn btn-success" (click)="MAKEPAYM()"  [disabled]="!show">Pay</button>
+        </div>
+    </ng-template>

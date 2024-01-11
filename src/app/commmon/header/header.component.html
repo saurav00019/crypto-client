@@ -1,0 +1,166 @@
+<section class="header-section">
+  <div class="topmenu1">
+     <div class="right-side">
+        <div ngbDropdown class="d-inline-block me-2">
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+           News Flash
+           </button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a  href="https://ng-bootstrap.github.io/#/components/dropdown/examples" ngbDropdownItem>Create Flash</a>
+              <a ngbDropdownItem>Flash List</a>
+           </div>
+        </div>
+        <a class="btn btn-outline-primary me-2" >Role : Superadmin </a>
+        <a class="btn btn-outline-primary me-2" >Online Users :  1 </a>
+        <div ngbDropdown class="d-inline-block">
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+           Admin
+           </button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a  href="" ngbDropdownItem>Profile</a>
+              <a ngbDropdownItem>Admin Logs</a>
+              <a ngbDropdownItem>Change Password</a>
+              <a ngbDropdownItem>Logout</a>
+           </div>
+        </div>
+     </div>
+  </div>
+  <div class="topmenu2">
+     <nav class="navbar navbar-expand-md ">
+        <div class="container-fluid">
+           <div class="d-flex">
+              <span class="navbar-brand0 me-3" style="font-weight: 600; font-size: 14px;"> Crypto Exchange </span>
+              <div class="change-admin d-flex">
+                 <input type="radio" class="btn-check" name="option" [(ngModel)]="selectedOption" value="admin" id="success-outlined" autocomplete="off" >
+                 <label class="btn btn-outline-success" for="success-outlined">Exchange</label>
+                 <input type="radio" class="btn-check" name="option" [(ngModel)]="selectedOption" value="user" id="danger-outlined" autocomplete="off" >
+                 <label class="btn btn-outline-danger" for="danger-outlined">P 2 P</label>
+              </div>
+           </div>
+           <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
+           <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+              <ul *ngIf="selectedOption === 'admin'" class="navbar-nav ms-auto">
+                 <li ><a routerLink="/dashboard"  class="nav-link">Dashboard</a></li>
+                 <li ><a routerLink="users/accesslevel"  class="nav-link">Roles Access</a></li>
+                 <li class="nav-item" ngbDropdown>
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button">
+                    Manage Currency
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Currency Listing</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Currency Pairing</a>
+                    </div>
+                 </li>
+                 <li class="nav-item" ngbDropdown>
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button">
+                    Reports 
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-end">
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">ERC20 Explorer</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Referral Income </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Trade Report  </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Order Book  </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Executions Report  </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Transactions Report  </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Wallet Balance  </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Credit Debit History  </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Internal Transfer Requests  </a>
+                    </div>
+                 </li>
+                 <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                    Customers
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Listing</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Income History </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Users Network  </a>
+                    </div>
+                 </li>
+                 <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                    Support
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Tickets</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Contact Us </a>
+                    </div>
+                 </li>
+                 <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                    Withdraw
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Fiat Withdraw Request</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Crypto Withdraw Request </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Fiat Withdraw History  </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Crypto Withdraw History </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Withdrawal Commission </a>
+                    </div>
+                 </li>
+                 <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                    Deposit
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Fiat Deposit Request</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Crypto Deposit Request </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Deposit History</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Crypto Deposit History  </a>
+                    </div>
+                 </li>
+                 <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                    Manage Settings
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Settings</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Market Maker Setting </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Maker Taker Setting  </a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">User Ranks Setting  </a>
+                    </div>
+                 </li>
+                 <li ><a href="#"  class="nav-link">Staking Settings</a></li>
+                 <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                    KYC 
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">KYC Request</a>
+                    </div>
+                 </li>
+                 <li ><a href="#"  class="nav-link">Journal Log</a></li>
+                 <li ><a href="#"  class="nav-link">User Log</a></li>
+                 <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                    News & Push
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Web News</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Push Notifications </a>
+                    </div>
+                 </li>
+              </ul>
+              <ul *ngIf="selectedOption === 'user'" class="navbar-nav ms-auto">
+                 <li ><a href="#" (click)="$event.preventDefault()"  class="nav-link">Dashboard</a></li>
+                 <li class="nav-item" ngbDropdown>
+                    <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button">
+                    Configuration
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
+                       <a ngbDropdownItem routerLink="p2p/gateway" (click)="$event.preventDefault()">Gateway</a>
+                       <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Symbol</a>
+                       <a ngbDropdownItem routerLink="/package-page" (click)="$event.preventDefault()">Package</a>
+                    </div>
+                 </li>
+                 <li ><a routerLink="/order-book"  class="nav-link">Order Book</a></li>
+                 <li ><a routerLink="/trade-book"  class="nav-link">Trade Book</a></li>
+                 <li ><a routerLink="/txn"  class="nav-link">Transactions</a></li>
+              </ul>
+           </div>
+        </div>
+     </nav>
+  </div>
+</section>

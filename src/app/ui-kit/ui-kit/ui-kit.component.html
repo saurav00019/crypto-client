@@ -1,0 +1,408 @@
+<p>ui-kit works!</p>
+<section>
+   <div class="row">
+      <div class="col-md-6">
+         <div class="card p-4">
+            <div class="form-floating mb-3">
+               <input type="email" class="form-control is-valid" id="floatingInputValid" placeholder="name@example.com" value="test@example.com">
+               <label for="floatingInputValid">Invalid input</label>
+            </div>
+            <div class="form-floating mb-3">
+               <input type="email" class="form-control is-invalid" id="floatingInputValid" placeholder="name@example.com" value="test@example.com">
+               <label for="floatingInputInvalid">Invalid input</label>
+            </div>
+            <div class="form-floating mb-3">
+               <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+               <label for="floatingTextarea">Comments</label>
+            </div>
+            <div class="form-floating mb-3">
+               <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+               </select>
+               <label for="floatingSelect">Works with selects</label>
+            </div>
+            <div class="form-group input-group mb-3">
+               <span class="has-float-label">
+               <input class="form-control" id="first" type="text" placeholder="Name"/>
+               <label for="first">First</label>
+               </span>
+               <label class="has-float-label">
+               <input class="form-control" type="text" placeholder="Surname"/>
+               <span>Last</span>
+               </label>
+            </div>
+            <div class="form-group input-group mb-3">
+               <span class="input-group-addon">@</span>
+               <label class="has-float-label">
+               <input class="form-control" type="email" placeholder="email@example.com" value="email@example.com"/>
+               <span>Email</span>
+               </label>
+            </div>
+            <div class="form-group has-float-label mb-3">
+               <input class="form-control is-valid" id="password" type="password" placeholder="••••••••"/>
+               <label for="password">Password</label>
+               <div class="valid-feedback"> Looks good! </div>
+            </div>
+            <div class="form-group has-float-label mb-3">
+              <input class="form-control " id="name" type="text" placeholder="name"/>
+              <label for="name">Name</label>
+            </div>
+            <div class="form-group has-float-label mb-3">
+              <textarea class="form-control" rows="5" id="address" name="text"></textarea>
+              <label for="address">Name</label>
+            </div>
+            <div class="form-group has-float-label mb-3">
+               <input class="form-control is-invalid" id="password" type="password" placeholder="••••••••"/>
+               <label for="password">Password</label>
+               <div  class="invalid-feedback"> Please provide a valid city. </div>
+            </div>
+            <label class="form-group has-float-label mb-3">
+               <select class="form-control custom-select">
+                  <option selected>United States</option>
+                  <option>Canada</option>
+                  <option>...</option>
+               </select>
+               <span>Country</span>
+            </label>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="checkbox-animated">
+                     <input id="checkbox_animated_1" type="checkbox">
+                     <label for="checkbox_animated_1">
+                     <span class="check"></span>
+                     <span class="box"></span>
+                     Active
+                     </label>
+                  </div>
+                  <div class="checkbox-animated">
+                     <input id="checkbox_animated_2" type="checkbox" disabled>
+                     <label for="checkbox_animated_2">
+                     <span class="check"></span>
+                     <span class="box"></span>
+                     Unchecked Disabled
+                     </label>
+                  </div>
+                  <div class="checkbox-animated">
+                     <input id="checkbox_animated_3" type="checkbox" checked="checked" >
+                     <label for="checkbox_animated_3">
+                     <span class="check"></span>
+                     <span class="box"></span>
+                     Checked Disabled
+                     </label>
+                  </div>
+                  <div class="checkbox-animated">
+                     <input id="checkbox_animated_3" type="checkbox" checked="checked" disabled>
+                     <label for="checkbox_animated_3">
+                     <span class="check"></span>
+                     <span class="box"></span>
+                     Checked Disabled
+                     </label>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-check">
+                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                     <label class="form-check-label" for="flexRadioDefault1">
+                     Default radio
+                     </label>
+                  </div>
+                  <div class="form-check">
+                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                     <label class="form-check-label" for="flexRadioDefault2">
+                     Default checked radio
+                     </label>
+                  </div>
+                  <hr>
+                  <div class="form-check form-switch">
+                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                     <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                  </div>
+                  <div class="form-check form-switch bg-green">
+                     <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                     <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                  </div>
+                  <div class="form-check form-switch">
+                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" disabled>
+                     <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox input</label>
+                  </div>
+                  <div class="form-check form-switch">
+                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked disabled>
+                     <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="card p-4 mt-4">
+            <h5 class="mb-4">Stepper form or wizard form</h5>
+            <div class="ab-stepper">
+               <ul id="progressbar">
+                  <li class="postactive tickright panv0"><a [routerLink]="['/onboading-kyc/pan-varify']"   routerLinkActive="router-link-active"><span>Pan Verification</span></a></li>
+                  <li class="active aadhaarv"><a [routerLink]="['/onboading-kyc/adhar-verify']" routerLinkActive="router-link-active"><span>Aadhaar Verification</span></a></li>
+                  <li class="personald"><a [routerLink]="['/onboading-kyc/personal-detail']"  routerLinkActive="router-link-active"><span>Personal Details</span></a></li>
+                  <li class="bankd"><a [routerLink]="['/onboading-kyc/bank-detail']"  routerLinkActive="router-link-active"><span>Bank Details</span></a></li>
+                  <li class="videod"><a [routerLink]="['/onboading-kyc/video-verify']"  routerLinkActive="router-link-active"><span>Video Verification</span></a></li>
+                  <li class="tradee"><a [routerLink]="['/onboading-kyc/trade']"  routerLinkActive="router-link-active"><span>Trade Experience</span></a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="card p-4 mt-4">
+          <h5 class="mb-4">Tab panel</h5>
+              <div class="tabviewone">
+                <nav>
+                  <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+                  </div>
+                </nav>
+                <div class="tab-content p-3 border bg-light" id="nav-tabContent">
+                  <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <p><strong>This is some placeholder content the Home tab's associated content.</strong>
+                      Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps
+                      classes to control the content visibility and styling. You can use it with tabs, pills, and any
+                      other <code>.nav</code>-powered navigation.</p>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="tabviewtwo">
+                <nav>
+                  <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+                  </div>
+                </nav>
+                <div class="tab-content p-3 border bg-light" id="nav-tabContent">
+                  <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <p><strong>This is some placeholder content the Home tab's associated content.</strong>
+                      Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps
+                      classes to control the content visibility and styling. You can use it with tabs, pills, and any
+                      other <code>.nav</code>-powered navigation.</p>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="tabviewthree">
+                <nav>
+                  <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+                  </div>
+                </nav>
+                <div class="tab-content p-3 border bg-light" id="nav-tabContent">
+                  <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <p><strong>This is some placeholder content the Home tab's associated content.</strong>
+                      Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps
+                      classes to control the content visibility and styling. You can use it with tabs, pills, and any
+                      other <code>.nav</code>-powered navigation.</p>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="tabviewfour">
+                <div class="tab-container mb-3">
+                  <button class="tab tab--1 active">Monthly</button>
+                  <button class="tab tab--2 ">Annual</button>
+                  <button class="tab tab--3">Monthly</button>
+                  <button class="tab tab--4">Annual</button>
+                  <div class="indicator"></div>
+                </div>
+                <div class="tab-content p-3 border bg-light" id="nav-tabContent">
+                  <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <p><strong>This is some placeholder content the Home tab's associated content.</strong>
+                      Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps
+                      classes to control the content visibility and styling. You can use it with tabs, pills, and any
+                      other <code>.nav</code>-powered navigation.</p>
+                  </div>
+                </div>
+              </div>
+         </div>
+      </div>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="col-md-6">
+         <div class="card2 p-4 ">
+          <h5>Button slide</h5>
+            <button type="button" class="btn btn-primary btn-slide">Primary</button>
+            <button type="button" class="btn btn-secondary btn-slide">Secondary</button>
+            <button type="button" class="btn btn-success btn-slide">Success</button>
+            <button type="button" class="btn btn-danger btn-slide">Danger</button>
+            <button type="button" class="btn btn-warning btn-slide">Warning</button>
+            <button type="button" class="btn btn-info btn-slide">Info</button>
+            <button type="button" class="btn btn-light btn-slide">Light</button>
+            <button type="button" class="btn btn-dark btn-slide">Dark</button>
+            <button type="button" class="btn btn-link btn-slide">Link</button>
+            <hr>
+            <h5>Ripple button</h5>
+            <button type="button" class="btn btn-primary btn-ripple">Primary</button>
+            <button type="button" class="btn btn-secondary btn-ripple">Secondary</button>
+            <button type="button" class="btn btn-success btn-ripple">Success</button>
+            <button type="button" class="btn btn-danger btn-ripple">Danger</button>
+            <button type="button" class="btn btn-warning btn-ripple">Warning</button>
+            <button type="button" class="btn btn-info btn-ripple">Info</button>
+            <button type="button" class="btn btn-light btn-ripple">Light</button>
+            <button type="button" class="btn btn-dark btn-ripple">Dark</button>
+            <button type="button" class="btn btn-link btn-ripple">Link</button>
+            <hr>
+            <h5>Simple button</h5>
+            <button type="button" class="btn">Basic</button>
+            <button type="button" class="btn btn-primary">Primary</button>
+            <button type="button" class="btn btn-secondary">Secondary</button>
+            <button type="button" class="btn btn-success">Success</button>
+            <button type="button" class="btn btn-info">Info</button>
+            <button type="button" class="btn btn-warning">Warning</button>
+            <button type="button" class="btn btn-danger">Danger</button>
+            <button type="button" class="btn btn-dark">Dark</button>
+            <button type="button" class="btn btn-light">Light</button>
+            <button type="button" class="btn btn-link">Link</button>
+            <hr>
+            <h5>Outline button</h5>
+            <button type="button" class="btn btn-outline-primary">Primary</button>
+            <button type="button" class="btn btn-outline-secondary">Secondary</button>
+            <button type="button" class="btn btn-outline-success">Success</button>
+            <button type="button" class="btn btn-outline-danger">Danger</button>
+            <button type="button" class="btn btn-outline-warning">Warning</button>
+            <button type="button" class="btn btn-outline-info">Info</button>
+            <button type="button" class="btn btn-outline-light">Light</button>
+            <button type="button" class="btn btn-outline-dark">Dark</button>
+            <hr>
+            <h5>Rounded button</h5>
+            <button class="btn btn-primary btn-rounded">Primary</button>
+            <button class="btn btn-secondary btn-rounded">Secondary</button>
+            <button class="btn btn-rounded btn-success">Success</button>
+            <button class="btn btn-danger btn-rounded">Danger</button>
+            <button class="btn btn-warning btn-rounded">Warning</button>
+            <button class="btn btn-info btn-rounded">Info</button>
+            <button class="btn btn-light btn-light btn-rounded">Light</button>
+            <button class="btn btn-light btn-dark btn-rounded">Dark</button>
+         </div>
+         <div class="card p-4 mt-4">
+            <h5>Alert box</h5>
+            <div class="alert alert-success alert-dismissible fade show">
+               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+               <strong>Success!</strong> This alert box could indicate a successful or positive action.
+            </div>
+            <div class="alert alert-info alert-dismissible fade show">
+               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+               <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+            </div>
+            <div class="alert alert-warning alert-dismissible fade show">
+               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+               <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show">
+               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+               <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+            </div>
+            <div class="alert alert-primary alert-dismissible fade show">
+               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+               <strong>Primary!</strong> Indicates an important action.
+            </div>
+            <div class="alert alert-secondary alert-dismissible fade show">
+               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+               <strong>Secondary!</strong> Indicates a slightly less important action.
+            </div>
+            <div class="alert alert-dark alert-dismissible fade show">
+               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+               <strong>Dark!</strong> Dark grey alert.
+            </div>
+            <div class="alert alert-light alert-dismissible fade show">
+               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+               <strong>Light!</strong> Light grey alert.
+            </div>
+         </div>
+        
+         <div class="card p-4 mt-4">
+          <h5>Tooltip</h5>
+            <div style="display: flex; justify-content: space-evenly; align-items: flex-end;">
+              <div class="abtooltip"><i class="fa fa-question-circle fa-lg"></i>
+                <span class="tooltiptext">Tooltip text</span>
+              </div> 
+              <div class="abtooltip"><i class="fa fa-question-circle fa-2x"></i>
+                <span class="tooltiptext">Tooltip text</span>
+              </div> 
+              <div class="abtooltip"><i class="fa fa-question-circle fa-3x"></i>
+                <span class="tooltiptext">Tooltip text</span>
+              </div> 
+              <div class="abtooltip"><i class="fa fa-question-circle fa-4x"></i>
+                <span class="tooltiptext">Tooltip text</span>
+              </div> 
+              <div class="abtooltip"><i class="fa fa-question-circle fa-5x"></i>
+                <span class="tooltiptext">Tooltip text</span>
+              </div> 
+            </div>
+         </div>
+
+         <div class="card p-4 mt-4">
+            <h5>Tooltip</h5>
+             <div>
+               <div class="page-header">Simple pagination</div>
+               <ul id="pagination">
+                  <li><a href="#">«</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#" class="">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                  <li><a href="#">7</a></li>
+                  <li><a href="#">»</a></li>
+               </ul> 
+  
+               <!--Active and Hoverable Pagination-->
+                  <div class="page-header">Active and Hoverable Pagination</div>
+               <ul id="pagination">
+                  <li><a class="" href="#">«</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#" class="active">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                  <li><a href="#">7</a></li>
+                  <li><a href="#">»</a></li>
+               </ul> 
+  
+                  <!--Bordered Pagination-->
+               <div class="page-header">Bordered Pagination</div>
+               <div class="b-pagination-outer">
+               <ul id="border-pagination">
+                  <li><a class="" href="#">«</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#" class="active">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                  <li><a href="#">7</a></li>
+                  <li><a href="#">»</a></li>
+               </ul> 
+               </div>
+             </div> 
+         </div>
+
+         <div class="card p-4 mt-4">
+            <h5>Accordion  </h5>
+            <div  *ngFor="let item of data;let i = index;">
+               <div class="mb-2">
+                  <button class="accordion" (click)="toggleAccordian($event, i)"> {{item.parentName}} </button>
+               <div class="accordion-panel" hide="!item.isActive">
+                  <div class="accordion-panel-body">
+                     <p *ngFor="let child of item.childProperties"> {{child.propertyName}} </p>
+                  </div>
+               </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!---->
+

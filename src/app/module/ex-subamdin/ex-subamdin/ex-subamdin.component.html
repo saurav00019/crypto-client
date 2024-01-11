@@ -1,0 +1,228 @@
+<section class="setpage">
+    <div class="container-fluid padmng">
+       <div class="row dd-top-card pt-4 mb-3">
+          <div class="col-md-6">
+             <h2 class="pageheading">
+                Subadmin List
+             </h2>
+          </div>
+       </div>
+    </div>
+    <div class="container-fluid padmng">
+       <div class="row dd-top-card pt-3 mb-3">
+          <div class="col-md-12">
+             <div class="card">
+                <div class="col-md-12 ">
+                   <div class="float-end btn-success-mng">
+                    <div class="d-flex">
+                        <div class="input-group input-group-md me-2">
+                            <span style="height: 36px;" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input style="height: 36px; font-size: 14px;" type="text" class="form-control" placeholder="">
+                            <button style="height: 36px; font-size: 14px;" class="btn btn-success" type="button">Search</button>
+                          </div>
+                          <div> <button class="btn btn-success2 me-2"><i class="fa-regular fa-copy"></i></button></div>
+                          <div><button class="btn btn-success2"><i class="fa-solid fa-file-csv"></i></button></div>
+                    </div>
+                    
+                     
+                        
+                   </div>
+                </div>
+                <div class="table-responsive">
+                   <table class="table" id="">
+                      <thead>
+                         <tr>
+                           <th> Sr.No  </th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Send Email Notifications</th>
+                            <th>Is Active</th>
+                            <th>Action</th>
+                         </tr>
+                      </thead>
+                      <tbody>
+                         <tr>
+                            <td>1</td>
+                            <td>admin</td>
+                            <td>info@s.com</td>
+                            <td>Admin</td>
+                            <td>Superadmin</td>
+                            <td>
+                                <button class="btn allow-btn btn-sm" (click)="openLg(content)"><i class="fa-solid fa-check"></i> Allow</button>
+                                <!-- <button class="btn disallow-btn btn-sm"> Disallow</button> -->
+                            </td>
+                            <td>
+                                <!-- <button class="btn allow-btn btn-sm"><i class="fa-solid fa-check"></i> Active</button> -->
+                                <button class="btn disallow-btn btn-sm" (click)="openLg(content1)"> Not Active</button>
+                            </td>
+                            <td><button class="btn gray-btn btn-sm" (click)="openLg(content2)"><i class="fa-regular fa-pen-to-square"></i> Edit</button></td>
+                         </tr>
+                         <tr>
+                            <td>1</td>
+                            <td>admin</td>
+                            <td>info@s.com</td>
+                            <td>Admin</td>
+                            <td>Superadmin</td>
+                            <td>
+                                <button class="btn allow-btn btn-sm"><i class="fa-solid fa-check"></i> Allow</button>
+                                <!-- <button class="btn disallow-btn btn-sm"> Disallow</button> -->
+                            </td>
+                            <td>
+                                <button class="btn allow-btn btn-sm"><i class="fa-solid fa-check"></i> Active</button>
+                                <!-- <button class="btn disallow-btn btn-sm"> Not Active</button> -->
+                            </td>
+                            <td><button class="btn gray-btn btn-sm"><i class="fa-regular fa-pen-to-square"></i> Edit</button></td>
+                         </tr>
+                         <tr>
+                            <td>1</td>
+                            <td>admin</td>
+                            <td>info@s.com</td>
+                            <td>Admin</td>
+                            <td>Superadmin</td>
+                            <td>
+                                <!-- <button class="btn allow-btn btn-sm"><i class="fa-solid fa-check"></i> Allow</button> -->
+                                <button class="btn disallow-btn btn-sm"> Disallow</button>
+                            </td>
+                            <td>
+                                <!-- <button class="btn allow-btn btn-sm"><i class="fa-solid fa-check"></i> Active</button> -->
+                                <button class="btn disallow-btn btn-sm"> Not Active</button>
+                            </td>
+                            <td><button class="btn gray-btn btn-sm"><i class="fa-regular fa-pen-to-square"></i> Edit</button></td>
+                         </tr>
+                         <tr>
+                            <td>1</td>
+                            <td>admin</td>
+                            <td>info@s.com</td>
+                            <td>Admin</td>
+                            <td>Superadmin</td>
+                            <td>
+                                <button class="btn allow-btn btn-sm"><i class="fa-solid fa-check"></i> Allow</button>
+                                <!-- <button class="btn disallow-btn btn-sm"> Disallow</button> -->
+                            </td>
+                            <td>
+                                <button class="btn allow-btn btn-sm"><i class="fa-solid fa-check"></i> Active</button>
+                                <!-- <button class="btn disallow-btn btn-sm"> Not Active</button> -->
+                            </td>
+                            <td><button class="btn gray-btn btn-sm"><i class="fa-regular fa-pen-to-square"></i> Edit</button></td>
+                         </tr>
+                         <tr>
+                            <td>1</td>
+                            <td>admin</td>
+                            <td>info@s.com</td>
+                            <td>Admin</td>
+                            <td>Superadmin</td>
+                            <td>
+                                <!-- <button class="btn allow-btn btn-sm"><i class="fa-solid fa-check"></i> Allow</button> -->
+                                <button class="btn disallow-btn btn-sm"> Disallow</button>
+                            </td>
+                            <td>
+                                <!-- <button class="btn allow-btn btn-sm"><i class="fa-solid fa-check"></i> Active</button> -->
+                                <button class="btn disallow-btn btn-sm"> Not Active</button>
+                            </td>
+                            <td><button class="btn gray-btn btn-sm"><i class="fa-regular fa-pen-to-square"></i> Edit</button></td>
+                         </tr>
+                      </tbody>
+                   </table>
+                </div>
+                <div class="col-md-12">
+                    <ul class="pagination pagination-sm justify-content-end mt-2">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                      </ul>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+
+
+
+ <ng-template #content let-modal>
+    <div class="modal-header">
+       <h4 class="modal-title">Add Role</h4>
+       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body text-center">
+       <p>Are you sure to restrict notifications to this subadmin?</p>
+       <p>Are you sure to send notifications to this subadmin?</p>
+    </div>
+    <div class="modal-footer">
+       <button type="button" class="btn btn-success" (click)="modal.close('Close click')">Yes</button>
+       <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+ </ng-template>
+
+ <ng-template #content1 let-modal>
+    <div class="modal-header">
+       <h4 class="modal-title">Add Role</h4>
+       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body text-center">
+       <p>Are you sure to activate this subadmin?</p>
+       <p>Subadmin activated successfully</p>
+    </div>
+    <div class="modal-footer">
+       <button type="button" class="btn btn-success" (click)="modal.close('Close click')">Yes</button>
+       <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+ </ng-template>
+
+
+ <ng-template #content2 let-modal>
+    <div class="modal-header">
+       <h4 class="modal-title">Edit subadmin</h4>
+       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+       <form>
+        <div class="form-group mb-3">
+            <label for="username" class="form-control-label">First Name</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+            <span class="error" style="color:red"></span>
+         </div>
+         <div class="form-group mb-3">
+            <label for="email" class="form-control-label">Last Name</label>
+            <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email">
+            <span class="error" style="color:red"></span>
+         </div>
+          <div class="form-group mb-3">
+             <label for="role" class="form-control-label">Role</label>
+             <select class="form-control" name="role" id="role">
+                <option value="1">Superadmin    </option>
+                <option value="2">Sub Admin</option>
+                <option value="3">test access</option>
+                <option value="4">Test</option>
+                <option value="5">Testing</option>
+                <option value="6">test role</option>
+                <option value="7">testrole</option>
+                <option value="8">sdjflsdfjk</option>
+             </select>
+             <span class="error" style="color:red"></span>
+          </div>
+          <div class="form-group mb-3">
+            <label for="fname" class="form-control-label">Email</label>
+            <input type="text" class="form-control" name="fname" id="fname" placeholder="Enter First Name">
+            <span class="error" style="color:red"></span>
+         </div>
+          
+          <div class="form-group mb-3">
+             <label for="password" class="form-control-label">Password</label>
+             <input type="text" class="form-control" name="password" id="password" placeholder="Enter Password">
+             <span class="error" style="color:red"></span>
+          </div>
+         
+         
+       </form>
+    </div>
+    <div class="modal-footer">
+       <button type="button" class="btn btn-success" (click)="modal.close('Close click')">Save</button>
+       <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+ </ng-template>
+ 

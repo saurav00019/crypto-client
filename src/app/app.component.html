@@ -1,0 +1,10 @@
+<div *ngIf="isLoader">
+    <app-loader ></app-loader>
+</div>
+
+ <app-header-ptwop  [ngClass]="{'special-class': !headerFlag}" ></app-header-ptwop>
+ <router-outlet>
+</router-outlet>
+
+
+

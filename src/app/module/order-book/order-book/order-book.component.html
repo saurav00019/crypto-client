@@ -1,0 +1,250 @@
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white  p-two-p-height-scroll">
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3">
+                <div class="col-md-6">
+                    <h2 class="pageheading"> Order Book </h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-3 mb-3">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="filter d-flex justify-content-end">
+                            <div class="d-flex justify-content-end mb-2">
+                                <label>
+                                    <input type="radio" name="buy-sell" id="buy" class="me-1">Buy
+                                </label>
+                                <label>
+                                    <input type="radio" name="buy-sell" id="sell" class="me-1">Sell
+                                </label>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <!-- <table id="statsTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Symbol</th>
+                                        <th>Price</th>
+                                        <th>Type</th>
+                                        <th class="d-none">Sell</th>
+                                        <th>Quantity</th>
+                                        <th>Subscribers</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="withdrawTable">
+                                    <tr>
+                                        <td><img src="assets/images/ticon/Bitcoin.png" width="20"> BTC</td>
+                                        <td>10,00,000</td>
+                                        <td class="buy">
+                                            <span>Buy</span>
+                                        </td>
+                                        <td class="sell d-none">
+                                            <span>Sell</span>
+                                        </td>
+                                        <td class="qua">
+                                            <div>
+                                                <span>300</span>
+                                            </div>
+                                        </td>
+                                        <td class="subs">
+                                            <div>
+                                                <i class="fa-solid fa-user me-2"></i>
+                                                <span>12000</span>
+                                            </div>
+                                        </td>
+                                        <td class="view-more"><a routerLink="/p2p/order-detail">view more </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/ticon/Ethereum-ETH-icon.png" width="20"> ETH</td>
+                                        <td>9,85,000</td>
+                                        <td class="buy">
+                                            <span>Buy</span>
+                                        </td>
+                                        
+                                        <td class="qua">
+                                            <div>
+                                                <span>2500</span>
+                                            </div>
+                                        </td>
+                                        <td class="subs">
+                                            <div>
+                                                <i class="fa-solid fa-user me-2"></i>
+                                                <span>8000</span>
+                                            </div>
+                                        </td>
+                                        <td class="view-more"><a routerLink="/p2p/order-detail">view more </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/ticon/ltc.png" width="20"> LTC</td>
+                                        <td>15,45,000</td>
+                                        <td class="buy">
+                                            <span>Buy</span>
+                                        </td>
+                                        <td class="qua">
+                                            <div>
+                                                <span>10000</span>
+                                            </div>
+                                        </td>
+                                        <td class="subs">
+                                            <div>
+                                                <i class="fa-solid fa-user me-2"></i>
+                                                <span>1000</span>
+                                            </div>
+                                        </td>
+                                        <td class="view-more"><a routerLink="/p2p/order-detail">view more </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/ticon/xrp.png" width="20"> XRP</td>
+                                        <td>1,00,000</td>
+                                        <td class="buy">
+                                            <span>Buy</span>
+                                        </td>
+                                        <td class="qua">
+                                            <div>
+                                                <span>1300</span>
+                                            </div>
+                                        </td>
+                                        <td class="subs">
+                                            <div>
+                                                <i class="fa-solid fa-user me-2"></i>
+                                                <span>800</span>
+                                            </div>
+                                        </td>
+                                        <td class="view-more"><a routerLink="/p2p/order-detail">view more </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/ticon/USDT.png" width="20"> USDT</td>
+                                        <td>20,10,000</td>
+                                        <td class="buy">
+                                            <span>Buy</span>
+                                        </td>
+                                        <td class="qua">
+                                            <div>
+                                                <span>1300</span>
+                                            </div>
+                                        </td>
+                                        <td class="subs">
+                                            <div>
+                                                <i class="fa-solid fa-user me-2"></i>
+                                                <span>22000</span>
+                                            </div>
+                                        </td>
+                                        <td class="view-more"><a routerLink="/p2p/order-detail">view more </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/ticon/trx.png" width="20"> TRX</td>
+                                        <td>10,00,000</td>
+                                        <td class="buy">
+                                            <span>Buy</span>
+                                        </td>
+                                        <td class="qua">
+                                            <div>
+                                                <span>300</span>
+                                            </div>
+                                        </td>
+                                        <td class="subs">
+                                            <div>
+                                                <i class="fa-solid fa-user me-2"></i>
+                                                <span>12000</span>
+                                            </div>
+                                        </td>
+                                        <td class="view-more"><a routerLink="/p2p/order-detail">view more </a></td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                            <div class="tbl-childe">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Symbol</th>
+                                            <th>Price</th>
+                                            <th>Type</th>
+                                            <th class="d-none">Sell</th>
+                                            <th>Quantity</th>
+                                            <th>Subscribers</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <ng-container *ngFor="let row of data">
+                                        <tr>
+                                          
+                                        
+                                          <td><img src="assets/images/ticon/Bitcoin.png" width="20"> BTC</td>
+                                        <td>10,00,000</td>
+                                        <td class="buy">
+                                            <span>Buy</span>
+                                        </td>
+                                        <td class="sell d-none">
+                                            <span>Sell</span>
+                                        </td>
+                                        <td class="qua">
+                                            <div>
+                                                <span>300</span>
+                                            </div>
+                                        </td>
+                                        <td class="subs">
+                                            <div>
+                                                <i class="fa-solid fa-user me-2"></i>
+                                                <span>12000</span>
+                                            </div>
+                                        </td>
+                                          <td (click)="row.isExpand = !row.isExpand">
+                                            <button style="font-size: 12px;" class="btn btn-outline-primary btn-sm" *ngIf="!row.isExpand"><i  class="fa-solid fa-plus me-1"></i> View more</button>
+                                            <button style="font-size: 12px;" class="btn btn-outline-primary btn-sm" *ngIf="row.isExpand"><i  class="fa-solid fa-minus me-1"></i> View less</button>
+                                           
+                                          </td>
+                                        </tr>
+                                        <tr *ngIf="row.isExpand">
+                                          <td colspan="6" style="background:#f9f9f9;">
+                                            <table class="table table-sm">
+                                              <thead>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Price</th>
+                                                <th>Type</th>
+                                                <th>Quantity</th>
+                                               </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td><span>Ajay Kumar</span></td>
+                                                  <td><span>ajaykumar@mailid.com</span></td>
+                                                  <td><span>83.50</span></td>
+                                                  <td><span>Buy</span></td>
+                                                  <td><span>200</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>Vinay Singh</span></td>
+                                                    <td><span>Singviyan@mailid.com</span></td>
+                                                    <td><span>83.50</span></td>
+                                                    <td><span>Buy</span></td>
+                                                    <td><span>70</span></td>
+                                                  </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </ng-container>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <ul class="pagination pagination-sm justify-content-end mt-2">
+                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                              </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </section>
+</div>

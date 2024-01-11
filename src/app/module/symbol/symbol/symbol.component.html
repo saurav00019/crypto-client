@@ -1,0 +1,366 @@
+
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white p-two-p-height-scroll">
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3 align-items-center">
+                <div class="col-md-6">
+                    <h2 class="pageheading"> Symbol Setting  </h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="add">
+                        <h6>
+                            <button class="btn" (click)="openLg(content, 0)"><i class="fa-solid fa-circle-plus"></i> Add New </button>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+      
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-3 mb-3">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-4 mb-3"  *ngFor="let itemData of getData">
+                                <div class=" package">
+                                    <div class="d-flex p-3 " style="background:#e6e3ff; justify-content: space-between; align-items: center;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="upload-img-show2 me-2">
+                                              
+                                               
+                                                <img  src={{itemData.Logo}} >
+                                             
+                                            
+                                            </div>
+                                            <h5 class="mb-0">{{itemData.Crypto}}</h5>
+                                        </div>
+                                        <div>
+                                           
+                                              <div class="form-check form-switch" *ngIf="itemData.Status == 1">
+                                                <input class="form-check-input" [id]="itemData.oInfo.CryptoID" (change)="updateCryS($event)" type="checkbox"  name="darkmode"  [value]="0" [checked]="itemData.Status == 1" >
+                                                <label class="form-check-label" *ngIf="itemData.Status == 1"  for="mySwitch">Enable</label>
+                                              </div> 
+                                              <div class="form-check form-switch" *ngIf="itemData.Status == 0">
+                                                <input class="form-check-input" [id]="itemData.oInfo.CryptoID" (change)="updateCryS($event)" type="checkbox"  [value]="1"  name="darkmode">
+                                                <label class="form-check-label" *ngIf="itemData.Status == 0" for="mySwitch">Disable</label>
+                                              </div> 
+                                        </div>
+                                    </div> 
+                                    <div class="form0 p-3">
+                                        <div class="row mb-4">
+                                            <div class="col-md-4">
+                                                <label for="package-name">Buy</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <!-- <div class="form-check form-switch">
+                                                    <label class="form-check-label">Enable</label>
+                                                  </div>  -->
+                                                  <div class="form-check form-switch">
+                                                    <label class="form-check-label" *ngIf="itemData.Buy == 1" for="mySwitch">Enable</label>
+                                                    <label class="form-check-label" *ngIf="itemData.Buy == 0" for="mySwitch">Disable</label>
+                                                  </div> 
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="myfloating">
+                                                    <div class="form-floating ">
+                                                        <input type="text" class="form-control" readonly id="email" name="itemData.oInfo.Fee_Buy" [ngModel]="itemData.oInfo.Fee_Buy" >
+                                                        <label for="email">Fee</label>
+                                                      </div>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-md-4">
+                                                <label for="package-name">Sell</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check form-switch">
+                                                    <!-- <label class="form-check-label" >Disable</label> -->
+                                                    <label class="form-check-label" *ngIf="itemData.Sell == 1" for="mySwitch">Enable</label>
+                                                    <label class="form-check-label" *ngIf="itemData.Sell == 0" for="mySwitch">Disable</label>
+                                                  </div> 
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="myfloating">
+                                                    <div class="form-floating ">
+                                                        <input type="text" class="form-control" readonly id="email" name="itemData.oInfo.Fee_Sell" [ngModel]="itemData.oInfo.Fee_Sell">
+                                                        <label for="email">Fee</label>
+                                                      </div>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row mb-3 mt-4">
+                                            <hr>
+                                            <div class="col-md-12">
+                                                <p style="margin-top: -28px;
+                                                background: #ffffff;
+                                                z-index: 999;
+                                                position: absolute;
+                                                padding: 1px 8px;
+                                                font-size: 12px;
+                                                font-weight: 600;">Holding</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4 align-items-center">
+                                            <div class="col-md-4">
+                                                <label for="package-name">Qty/Trade</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="myfloating">
+                                                    <div class="form-floating ">
+                                                        <input type="text" class="form-control" readonly id="email"name="QtyMin" [ngModel]="itemData.oInfo.QtyMin">
+                                                        <label for="email">Min</label>
+                                                      </div>
+                                                  </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="myfloating">
+                                                    <div class="form-floating ">
+                                                        <input type="text" class="form-control" readonly id="email" name="QtyMax" [ngModel]="itemData.oInfo.QtyMax">
+                                                        <label for="email">Max</label>
+                                                      </div>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4 align-items-center">
+                                            <div class="col-md-4">
+                                                <label for="package-name">Qty/Daily</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="myfloating">
+                                                    <div class="form-floating ">
+                                                        <input type="text" class="form-control" readonly id="email" name="TotalQty_Day" [ngModel]="itemData.oInfo.TotalQty_Day">
+                                                        <label for="email">Max</label>
+                                                      </div>
+                                                  </div>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8"></div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-outline-success me-2"  (click)="openLg(content, itemData )"  style=" font-size: 12px;"><i class="fa-regular fa-pen-to-square"></i> Edit</button>
+                                                <button class="btn btn-outline-danger"[id]="itemData.oInfo.CryptoID" (click)="deletId($event)" style="font-size: 12px;"><i class="fa-solid fa-trash"></i> </button>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="font-size: 16px;">Symbol Setting</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="closeModel()"></button>
+	</div>
+	<div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" package">
+                 
+                    <form class="form0 p-3"  [formGroup]="addSymbols"
+                    >
+                        <!-- <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="package-name">Select Symbol</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-select" (change)="selectSymbols($event)" formControlName="symbolValue">
+                                  
+                                    <option *ngFor="let data of symbol">{{data.sy}}</option>
+                                    
+                                  </select >
+                                  <input type="text" formControlName="symbolValue">
+                                  <div *ngIf="addSymbols.controls['symbolValue'].invalid && (addSymbols.controls['symbolValue'].dirty || addSymbols.controls['symbolValue'].touched)" class="text-danger">
+                                    <div *ngIf="addSymbols.controls['symbolValue'].errors.required">Please select symbol!</div>  
+                                   
+                                  </div>
+                            </div>
+                           
+                        </div> -->
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="package-name">Symbol Name</label>
+                            </div>
+                            <div class="col-md-8">
+                            
+                                <div class="myfloating">
+                                    <div class="form-floating ">
+                                        <input type="text" class="form-control" id="Buy_Fee" formControlName="symbolValue"  aria-describedby="Buy_Fee" placeholder="Enter email" name="Buy_Fee">
+                                        <label for="email">Symbol</label>
+                                      </div>
+                                      <div *ngIf="addSymbols.controls['symbolValue'].invalid && (addSymbols.controls['symbolValue'].dirty || addSymbols.controls['symbolValue'].touched)" class="text-danger">
+                                        <div *ngIf="addSymbols.controls['symbolValue'].errors.required">Please enter symbol name!</div>  
+                                       
+                                      </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="package-name">Buy</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="mySwitch" formControlName="buyValue" name="darkmode" (change)="buyLabelModel($event)">
+                                    <div *ngIf="statusLabel">
+                                      <label class="form-check-label" for="mySwitch">Enable</label>
+                                    </div>
+                                    <div *ngIf="!statusLabel">
+                                      <label class="form-check-label" for="mySwitch">Disable</label>
+                                    </div>
+                                  </div>
+                                  
+                            </div>
+                            <div class="col-md-4">
+                                <div class="myfloating">
+                                    <div class="form-floating ">
+                                        <input type="text" class="form-control" id="Buy_Fee" formControlName="Buy_Fee" (keypress)="numberOnly($event)"  aria-describedby="Buy_Fee" placeholder="Enter email" name="Buy_Fee">
+                                        <label for="email">Fee</label>
+                                      </div>
+                                      <div *ngIf="addSymbols.controls['Buy_Fee'].invalid && (addSymbols.controls['Buy_Fee'].dirty || addSymbols.controls['Buy_Fee'].touched)" class="text-danger">
+                                        <div *ngIf="addSymbols.controls['Buy_Fee'].errors.required">Buy Fee is required!</div>  
+                                       
+                                      </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="package-name">Sell</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="mySwitch1" formControlName="sellValue" name="darkmode1" (change)="sellLabelModel($event)">
+                                    <div *ngIf="statusLabel1">
+                                      <label class="form-check-label" for="mySwitch1">Enable</label>
+                                    </div>
+                                    <div *ngIf="!statusLabel1">
+                                      <label class="form-check-label" for="mySwitch1">Disable</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="myfloating">
+                                    <div class="form-floating ">
+                                        <input type="text" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="Sell_Fee"  placeholder="Enter email" name="email">
+                                        <label for="email">Fee</label>
+                                      </div>
+                                      <div *ngIf="addSymbols.controls['Sell_Fee'].invalid && (addSymbols.controls['Sell_Fee'].dirty || addSymbols.controls['Sell_Fee'].touched)" class="text-danger">
+                                        <div *ngIf="addSymbols.controls['Sell_Fee'].errors.required">Buy Fee is required!</div>  
+                                       
+                                      </div>
+                                  </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row mb-3 mt-4">
+                            <hr>
+                            <div class="col-md-12">
+                                <p style="margin-top: -28px;
+                                background: #ffffff;
+                                z-index: 999;
+                                position: absolute;
+                                padding: 1px 8px;
+                                font-size: 12px;
+                                font-weight: 600;">Set Limits</p>
+                            </div>
+                        </div>
+                        <div class="row mb-4 align-items-center">
+                            <div class="col-md-4">
+                                <label for="package-name">Qty/Trade</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="myfloating">
+                                    <div class="form-floating ">
+                                        <input type="text" class="form-control" formControlName="QtyMin"(keypress)="numberOnly($event)" id="email" placeholder="Enter email" name="email" >
+                                        <label for="email">Min</label>
+                                      </div>
+                                      <div *ngIf="addSymbols.controls['QtyMin'].invalid && (addSymbols.controls['QtyMin'].dirty || addSymbols.controls['QtyMin'].touched)" class="text-danger">
+                                        <div *ngIf="addSymbols.controls['QtyMin'].errors.required">Min value is required!</div>  
+                                       
+                                      </div>
+                                  </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="myfloating">
+                                    <div class="form-floating ">
+                                        <input type="text" class="form-control" (keypress)="numberOnly($event)" formControlName="QtyMax" id="email" placeholder="Enter email" name="email">
+                                        <label for="email">Max</label>
+                                      </div>
+                                      <div *ngIf="addSymbols.controls['QtyMax'].invalid && (addSymbols.controls['QtyMax'].dirty || addSymbols.controls['QtyMax'].touched)" class="text-danger">
+                                        <div *ngIf="addSymbols.controls['QtyMax'].errors.required">Max value is required!</div>  
+                                       
+                                      </div>
+                                  </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row mb-4 align-items-center">
+                            <div class="col-md-4">
+                                <label for="package-name">Qty/Daily</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="myfloating">
+                                    <div class="form-floating ">
+                                        <input type="text" class="form-control" (keypress)="numberOnly($event)"formControlName="QtyDaily" id="email" placeholder="Enter email" name="email">
+                                        <label for="email">Max</label>
+                                      </div>
+                                      <div *ngIf="addSymbols.controls['QtyDaily'].invalid && (addSymbols.controls['QtyDaily'].dirty || addSymbols.controls['QtyDaily'].touched)" class="text-danger">
+                                        <div *ngIf="addSymbols.controls['QtyDaily'].errors.required">Daily max value is required!</div>  
+                                       
+                                      </div>
+                                  </div>
+                            </div>
+                            
+                        </div>
+                       
+                        <div class="row mb-4 align-items-center">
+                            <div class="col-md-6" *ngIf="!showLogo">
+                                <div class="form-group">
+                                    <input type="file" class="form-control mc-upload" id="Sell-Fee" accept=" .jpg, .jpeg, .png, .gif,image/*" formControlName="uReceipt_Snap"
+                                   (change)="onFileSelected($event)" aria-describedby="Sell-Fee">
+                                </div>
+                            </div>
+                            <div class="col-md-6" *ngIf="showLogo">
+                                <div class="upload-img-show">
+                                 
+                                    <img [src]="logoImg">
+                                </div>
+                            </div>
+                            <div *ngIf="addSymbols.controls['uReceipt_Snap'].invalid && (addSymbols.controls['uReceipt_Snap'].dirty || addSymbols.controls['uReceipt_Snap'].touched)" class="text-danger">
+                                <div *ngIf="addSymbols.controls['uReceipt_Snap'].errors.required">Please select symbol logo!</div>  
+                               
+                              </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12o">
+                                <button class="btn btn-success"  type="submit" (click)="addSymbolss()" *ngIf="!submitAndUpdateButton"    
+                                style="width:100%">Submit</button>
+                                <button class="btn btn-success" (click)="updateIn()"  type="submit" *ngIf="submitAndUpdateButton"
+                                 style="width:100%">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+	</div>
+	
+</ng-template>

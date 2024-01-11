@@ -1,0 +1,453 @@
+<section class=" blue-bg-img">
+   <div class="container  ">
+      <div class="row" style="height: 100vh;
+      justify-content: center;
+      align-items: center;">
+         <div class="col-md-5">
+            <div class="card-box login-area">
+               <div class="row">
+                  <div class="col-md-12">
+                     <img class="form-logo" src="assets/images/ce-logo2.png">
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 mb-4" *ngIf="tab1==0">
+
+                     <p class="formtit-1 mb-0">Create an account</p>
+                     <p class="formtit-2">Please Enter The Details Below</p>
+                  </div>
+                  <div class="col-md-12" *ngIf="tab1==1">
+                     <p class="formtit-1 mb-0">ENTER OTP</p>
+
+                     <!-- <p class="formtit-2">Please Enter OTP's sent to your registered Mobile Number: {{regMob}}
+                        & Email: {{regEmail}}.</p> -->
+                        <p class="formtit-2">Please Enter OTP's sent to your registered Email: {{regEmail}}.</p>
+
+                        <p class="formtit-2" style="color: red;">Please don't REFRESH the page and don't click on BACK button.</p>
+                  </div>
+               </div>
+               <div class="myform-start">
+                  <ng-container *ngIf="tab1==0">
+
+                     <form [formGroup]="signUpForm">
+
+                        <div class="row firstform-decor000">
+                           <div class="col-md-6">
+
+                              <div class="form-floating mb-3">
+                                 <input name="userName" type="text" formControlName="userName"
+                                    (keypress)="keyPressAlphaNumeric($event)"
+                                    [ngClass]="{ 'is-invalid': submitted && f['userName'].errors }" required
+                                    class="form-control ab-border0" placeholder=".">
+                                 <label>First Name:<sup>*</sup></label>
+                                 <div *ngIf="submitted && f['userName'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['userName'].errors['required']">First Name is required</div>
+                                    <div *ngIf="f['userName'].errors['pattern']">First Name is invalid</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+
+
+
+                              <div class="form-floating mb-3">
+                                 <input name="userLName" type="text" formControlName="userLName"
+                                    (keypress)="keyPressAlphaNumeric($event)"
+                                    [ngClass]="{ 'is-invalid': submitted && f['userLName'].errors }"
+                                    class="form-control ab-border0" placeholder=".">
+                                 <label>Last Name:<sup>*</sup></label>
+                                 <div *ngIf="submitted && f['userLName'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['userLName'].errors['required']">Last Name is required</div>
+                                    <div *ngIf="f['userLName'].errors['pattern']">Last Name is invalid</div>
+                                 </div>
+                              </div>
+
+
+                           </div>
+                           <div class="col-md-12">
+                              <div class="form-floating mb-3">
+                                 <input type="email" formControlName="email" name="email"
+                                    [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+                                    class="form-control ab-border0" placeholder=".">
+                                 <label>Email:<sup>*</sup></label>
+                                 <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                                    <div *ngIf="f['email'].errors['pattern']">Email is invalid</div>
+                                 </div>
+                              </div>
+
+                           </div>
+                           <div class="col-md-12">
+
+                              <div class="d-flex">
+                                 <div class="setcountrycode" >
+                                    +91
+                                 </div>
+                                 <div class="form-floating mb-3" style="width: 100%;">
+                                    <input type="text" placeholder="Enter your mobile number" name="mobileNo" (keypress)="numberOnly1($event)"
+                                       maxlength="10" formControlName="mobileNo" autocomplete="off"
+                                       [ngClass]="{ 'is-invalid': submitted && f['mobileNo'].errors }" appNumberValidate
+                                       class="form-control ab-border0" placeholder=".">
+                                    <label>Number:<sup>*</sup></label>
+                                    <div *ngIf="submitted && f['mobileNo'].errors" class="invalid-feedback">
+                                       <div *ngIf="f['mobileNo'].errors['required']">Mobile Number is required
+                                       </div>
+                                       <div *ngIf="f['mobileNo'].errors['pattern']">Mobile Number is invalid
+                                       </div>
+
+                                    </div>
+                                 </div>
+
+                              </div>
+
+                           </div>
+                           <div class="col-md-12 mb-2 mt-2 d-grid">
+                              <button class="btn btn-black btn-slide-login btn-block" (click)="onSubmit()">SEND
+                                 OTP</button>
+                           </div>
+                           <div class="col-md-12">
+                              <div class="text-align-right">
+                                 <a style="font-size: 13px;" routerLink="/"><span style="color:#858585">Already
+                                       have an account? </span>LOGIN</a>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+
+                  </ng-container>
+                  <ng-container *ngIf="tab1==1">
+
+
+                     <div class="row firstform-decor00 pt-3">
+
+                        <div class="col-md-12">
+
+                           <div *ngIf="emailotpSuccess == true" class="alert alert-success text-center mb-1" style="font-size: 13px;" role="alert">
+                              <p class="suc-msg-otp">Your Timer is out. Please click on "Resend OTP>>>>>".</p>
+                           </div>
+
+                           <p class="p-like-label">Email OTP:<sup>*</sup></p>
+                           <div class="d-flex justify-content-between mb-2">
+                              <div *ngIf="emailotpSuccess == false && !isEmailOTPValid">
+                                 <ng-otp-input #ngOtpInput (onInputChange)="onEmailOTPChange($event, 'eotp')"
+                                    class="ab-border0" placeholder="."
+                                    [config]="{length:6,isPasswordInput:false,disableAutoFocus:true}"></ng-otp-input>
+
+
+                              </div>
+
+                              <div *ngIf="isEmailOTPValid" class="alert alert-success text-center mb-1" style="font-size: 13px;" role="alert">
+                                 <p class="suc-msg-otp">E-Mail OTP verification done. Please click on "Go to Login" button below.</p>
+                              </div>
+                              <!-- <div *ngIf="emailotpSuccess">
+                                 <p class="suc-msg-otp">Your Email has been verified.</p>
+                              </div> -->
+<!-- 
+
+                              <div class="d-flex">
+
+                                 <div class="set-error-flags">
+                                    <i *ngIf="!isEmailOTPValid" class="fa fa-exclamation-circle" style="color:#dc3545"
+                                       aria-hidden="true"></i>
+                                    <i *ngIf="isEmailOTPValid" class="fa fa-check" style="color:#00c76b"
+                                       aria-hidden="true"></i>
+                                 </div>
+                              </div> -->
+                           </div>
+
+
+                           <div *ngIf="!isEmailOTPValid">
+                              <p class="text-align-right" style="color: #8d8d8d; font-size: 12px;"
+                                >Resend OTP in <span class="timer-width">{{emailTimer }}</span> seconds</p>
+
+
+
+                              <div class="col-md-12 text-align-right" *ngIf="emailotpSuccess">
+                                 <p class=" f12" style="color:#8d8d8d">Didn't receive otp? <span style="color:#0b5ed7"
+                                       class="link pointer" (click)="resendOtp()">Resend OTP</span> </p>
+                              </div>
+
+                           </div>
+                           <div class="col-md-12 mb-2 mt-2 d-grid">
+                              <button type="button"  [disabled]="(!isEmailOTPValid)" class="btn btn-black btn-slide-login btn-block" (click)="navigate()">Go to Login</button>
+                           </div>
+                           <!-- <button type="button" class="mb-4 mt-4"  (click)="navigate()">Go to Login</button> -->
+                        </div>
+                        <!-- <div class="col-md-12">
+                           <p class="p-like-label">Phone Number OTP:<sup>*</sup></p>
+                           <div class="d-flex justify-content-between mb-2">
+                              <div *ngIf="!phoneotpSuccess">
+                                 <ng-otp-input #phoneOtpInputRef (onInputChange)="onEmailOTPChange($event, 'potp')"
+                                    class="ab-border0" placeholder="."
+                                    [config]="{length:6,isPasswordInput:false,disableAutoFocus:true}"></ng-otp-input>
+                              </div>
+
+                              <div *ngIf="phoneotpSuccess">
+                                 <p class="suc-msg-otp">Your Mobile Number has been verified.</p>
+                              </div>
+
+
+                              <div class="d-flex">
+
+                                 <div class="set-error-flags">
+                                    <i *ngIf="!isPhoneOTPValid" class="fa fa-exclamation-circle" style="color:#dc3545"
+                                       aria-hidden="true"></i>
+                                    <i *ngIf="isPhoneOTPValid" class="fa fa-check" style="color:#00c76b"
+                                       aria-hidden="true"></i>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div *ngIf="!isPhoneOTPValid">
+                              <p class="text-align-right" style="color: #8d8d8d; font-size: 12px;"
+                                 *ngIf="!resendOtpphone && !hidePhoneTimer">Resend OTP in {{ display }} seconds
+                              </p>
+
+
+                              <div class="col-md-12 text-align-right" *ngIf="resendOtpphone || hidePhoneTimer">
+                                 <p class="f12" style="color:#8d8d8d">Didn't receive otp? <span style="color:#0b5ed7"
+                                       class="link pointer" (click)="SEND_OTP_BY_PHONE()">Resend OTP</span> </p>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-12 mb-2 mt-2 d-grid">
+                           <button class="btn btn-black btn-slide-login btn-block"
+                              [disabled]="((!isPhoneOTPValid) || (!isEmailOTPValid))" (click)=navigate()>VERIFY
+                              OTP</button>
+                        </div> -->
+                     </div>
+
+
+                  </ng-container>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- <div class="row">
+         <div class="col-md-5 m-auto">
+            <div class="row row-decor00 card-box">
+
+               <div class="col-md-12 my-pad-lr-50">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <img class="form-logo" src="assets/images/logo.png">
+                     </div>
+                  </div>
+
+                  <div class="row login-area" style="height: 80%;">
+                     <div class="col-md-12">
+                        <div class="row">
+                           <div class="col-md-12 mb-4" *ngIf="tab1==0">
+
+                              <p class="formtit-1 mb-0">Create an account</p>
+                              <p class="formtit-2">Please Enter The Details Below</p>
+                           </div>
+                           <div class="col-md-12" *ngIf="tab1==1">
+                              <p class="formtit-1 mb-0">ENTER OTP</p>
+
+                              <p class="formtit-2">Please Enter OTP's sent to your registered Mobile Number: {{regMob}}
+                                 & Email: {{regEmail}}.</p>
+                           </div>
+                        </div>
+                        <div class="login-area000">
+                           <ng-container *ngIf="tab1==0">
+
+                              <form [formGroup]="signUpForm">
+
+                                 <div class="row firstform-decor000">
+                                    <div class="col-md-6">
+
+                                       <div class="form-floating mb-3">
+                                          <input name="userName" type="text" formControlName="userName"
+                                             (keypress)="keyPressAlphaNumeric($event)"
+                                             [ngClass]="{ 'is-invalid': submitted && f['userName'].errors }" required
+                                             class="form-control ab-border0" placeholder=".">
+                                          <label>First Name:<sup>*</sup></label>
+                                          <div *ngIf="submitted && f['userName'].errors" class="invalid-feedback">
+                                             <div *ngIf="f['userName'].errors['required']">First Name is required</div>
+                                             <div *ngIf="f['userName'].errors['pattern']">First Name is invalid</div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+
+
+                                       <div class="form-floating mb-3">
+                                          <input name="userLName" type="text" formControlName="userLName"
+                                             (keypress)="keyPressAlphaNumeric($event)"
+                                             [ngClass]="{ 'is-invalid': submitted && f['userLName'].errors }"
+                                             class="form-control ab-border0" placeholder=".">
+                                          <label>Last Name:<sup>*</sup></label>
+                                          <div *ngIf="submitted && f['userLName'].errors" class="invalid-feedback">
+                                             <div *ngIf="f['userLName'].errors['required']">Last Name is required</div>
+                                             <div *ngIf="f['userLName'].errors['pattern']">Last Name is invalid</div>
+                                          </div>
+                                       </div>
+
+
+                                    </div>
+                                    <div class="col-md-12">
+                                       <div class="form-floating mb-3">
+                                          <input type="email" formControlName="email" name="email"
+                                             [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+                                             class="form-control ab-border0" placeholder=".">
+                                          <label>Email:<sup>*</sup></label>
+                                          <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                             <div *ngIf="f['email'].errors['required']">Email is required</div>
+                                             <div *ngIf="f['email'].errors['pattern']">Email is invalid</div>
+                                          </div>
+                                       </div>
+
+                                    </div>
+                                    <div class="col-md-12">
+
+                                       <div class="d-flex">
+                                          <div class="setcountrycode">
+                                             +91
+                                          </div>
+                                          <div class="form-floating mb-3" style="width: 100%;">
+                                             <input type="text" placeholder="Enter your mobile number" name="mobileNo"
+                                                maxlength="10" formControlName="mobileNo" autocomplete="off"
+                                                [ngClass]="{ 'is-invalid': submitted && f['mobileNo'].errors }"
+                                                appNumberValidate class="form-control ab-border0" placeholder=".">
+                                             <label>Number</label>
+                                             <div *ngIf="submitted && f['mobileNo'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['mobileNo'].errors['required']">Mobile Number is required
+                                                </div>
+                                                <div *ngIf="f['mobileNo'].errors['pattern']">Mobile Number is invalid
+                                                </div>
+                                                
+                                             </div>
+                                          </div>
+
+                                       </div>
+
+                                    </div>
+                                    <div class="col-md-12 mb-2 mt-2 d-grid">
+                                       <button class="btn btn-black btn-slide-login btn-block" (click)="onSubmit()">SEND
+                                          OTP</button>
+                                    </div>
+                                    <div class="col-md-12">
+                                       <div class="text-align-right">
+                                          <a style="font-size: 13px;" routerLink="/"><span style="color:#858585">Already
+                                                have an account? </span>LOGIN</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </form>
+
+                           </ng-container>
+                           <ng-container *ngIf="tab1==1">
+
+
+                              <div class="row firstform-decor00 pt-3">
+
+                                 <div class="col-md-12">
+
+
+                                    <p class="p-like-label">Email OTP:<sup>*</sup></p>
+                                    <div class="d-flex justify-content-between mb-2">
+                                       <div *ngIf="!emailotpSuccess">
+                                          <ng-otp-input #ngOtpInput (onInputChange)="onEmailOTPChange($event, 'eotp')"
+                                             class="ab-border0" placeholder="."
+                                             [config]="{length:6,isPasswordInput:false,disableAutoFocus:true}"></ng-otp-input>
+
+
+                                       </div>
+
+                                       <div *ngIf="emailotpSuccess">
+                                          <p class="suc-msg-otp">Your Email has been verified.</p>
+                                       </div>
+
+
+                                       <div class="d-flex">
+
+                                          <div class="set-error-flags">
+                                             <i *ngIf="!isEmailOTPValid" class="fa fa-exclamation-circle"
+                                                style="color:#dc3545" aria-hidden="true"></i>
+                                             <i *ngIf="isEmailOTPValid" class="fa fa-check" style="color:#00c76b"
+                                                aria-hidden="true"></i>
+                                          </div>
+                                       </div>
+                                    </div>
+
+
+                                    <div *ngIf="!isEmailOTPValid">
+                                       <p class="text-align-right" style="color: #8d8d8d; font-size: 12px;"
+                                          *ngIf="!resendOTPemail && !hideEmailTimer">Resend OTP in <span
+                                             class="timer-width">{{ emailTimer }}</span> seconds</p>
+
+
+
+                                       <div class="col-md-12 text-align-right" *ngIf="resendOTPemail || hideEmailTimer">
+                                          <p class=" f12" style="color:#8d8d8d">Didn't receive otp? <span
+                                                style="color:#0b5ed7" class="link pointer"
+                                                (click)="SEND_OTP_BY_EMAIL()">Resend OTP</span> </p>
+                                       </div>
+
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <p class="p-like-label">Phone Number OTP:<sup>*</sup></p>
+                                    <div class="d-flex justify-content-between mb-2">
+                                       <div *ngIf="!phoneotpSuccess">
+                                          <ng-otp-input #phoneOtpInputRef
+                                             (onInputChange)="onEmailOTPChange($event, 'potp')" class="ab-border0"
+                                             placeholder="."
+                                             [config]="{length:6,isPasswordInput:false,disableAutoFocus:true}"></ng-otp-input>
+                                       </div>
+
+                                       <div *ngIf="phoneotpSuccess">
+                                          <p class="suc-msg-otp">Your Mobile Number has been verified.</p>
+                                       </div>
+
+
+                                       <div class="d-flex">
+                                         
+                                          <div class="set-error-flags">
+                                             <i *ngIf="!isPhoneOTPValid" class="fa fa-exclamation-circle"
+                                                style="color:#dc3545" aria-hidden="true"></i>
+                                             <i *ngIf="isPhoneOTPValid" class="fa fa-check" style="color:#00c76b"
+                                                aria-hidden="true"></i>
+                                          </div>
+                                       </div>
+                                    </div>
+
+
+                                    <div *ngIf="!isPhoneOTPValid">
+                                       <p class="text-align-right" style="color: #8d8d8d; font-size: 12px;"
+                                          *ngIf="!resendOtpphone && !hidePhoneTimer">Resend OTP in {{ display }} seconds
+                                       </p>
+
+
+                                       <div class="col-md-12 text-align-right" *ngIf="resendOtpphone || hidePhoneTimer">
+                                          <p class="f12" style="color:#8d8d8d">Didn't receive otp? <span
+                                                style="color:#0b5ed7" class="link pointer"
+                                                (click)="SEND_OTP_BY_PHONE()">Resend OTP</span> </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 mb-2 mt-2 d-grid">
+                                    <button class="btn btn-black btn-slide-login btn-block"
+                                       [disabled]="((!isPhoneOTPValid) || (!isEmailOTPValid))" (click)=navigate()>VERIFY
+                                       OTP</button>
+                                 </div>
+                              </div>
+
+
+                           </ng-container>
+
+                        </div>
+                     </div>
+                  </div>
+
+
+               </div>
+
+            </div>
+         </div>
+      </div> -->
+   </div>
+</section>

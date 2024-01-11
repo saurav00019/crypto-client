@@ -1,0 +1,203 @@
+
+<div class="header-p-two-p"  [ngClass]="{'activeHeader1': headerActive}">
+
+    <div class="topmenu2">
+        <div class="row">
+            
+            <div class="col-12 col-md-12">
+                <nav class="navbar navbar-expand-md text-end">
+                    <div class="container-fluid">
+                        <div class=" navbar-brand">
+                            <div class="header-logo-flex">
+                                <div class="pp2-logo">
+                                    <img class="pp-logo" src="assets/images/ce-logo2.png">
+                                </div>
+                                <div>
+                                    <div class="switch-dash" >
+                                        <fieldset [disabled]="!kycStatus">
+                                            <a   (click)="navigateSwith('p2p', false)"  [ngClass]="{'activeHeader': !headerActive}"  class="active-pp" style="cursor: pointer;">P2P trading</a>
+                                        <a (click)="navigateSwith('exchange', true)"  [ngClass]="{'activeHeader': headerActive}"  class="active-ex" style="cursor: pointer;">Exchange</a>
+                                        </fieldset>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
+                       <span class="navbar-toggler-icon"></span>
+                       </button>
+                       <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+                         
+                          <ul class="navbar-nav my-m-auto mytext-left myaligen-center" *ngIf="!headerActive">
+                            <li [class.active]="isActive === 'item1'" (click)="toggleActive('item1')"><a style="cursor: pointer;" (click)="navigate('p2p')"  class="nav-link">P2P Trade</a></li>
+
+                            <li [class.active]="isActive === 'item5'" (click)="toggleActive('item5')"><a style="cursor: pointer;"  (click)="navigate('myOrder')" class="nav-link">My Order</a></li>
+                         
+                              <li [class.active]="isActive === 'item2'" (click)="toggleActive('item2')"><a style="cursor: pointer;"  (click)="navigate('trade')" class="nav-link">My Trade</a></li>
+                             
+                              <li [class.active]="isActive === 'item3'" (click)="toggleActive('item3')"><a style="cursor: pointer;" (click)="navigate('reports')" class="nav-link">Reports</a></li>
+                              
+                             <!-- <li [class.active]="isActive === 'item4'" (click)="toggleActive('item4')"><a style="cursor: pointer;" (click)="navigate('user-profile')" class="nav-link">My Profile</a></li>
+                             <li [class.active]="isActive === 'item5'" (click)="toggleActive('item5')"><a style="cursor: pointer;"  (click)="navigate('myOrder')" class="nav-link">My Order</a></li> -->
+                             
+                          </ul>
+                          <ul class="navbar-nav my-m-auto mytext-left myaligen-center" *ngIf="headerActive">
+                            <!-- <li [class.active]="isActive === 'item1'" (click)="toggleActive('item1')"><a style="cursor: pointer;" (click)="navigate('p2p')"  class="nav-link">exchange Trade</a></li>
+
+                            <li [class.active]="isActive === 'item5'" (click)="toggleActive('item5')"><a style="cursor: pointer;"  (click)="navigate('myOrder')" class="nav-link">My Order</a></li>
+                         
+                              <li [class.active]="isActive === 'item2'" (click)="toggleActive('item2')"><a style="cursor: pointer;"  (click)="navigate('trade')" class="nav-link">My Trade</a></li>
+                             
+                              <li [class.active]="isActive === 'item3'" (click)="toggleActive('item3')"><a style="cursor: pointer;" (click)="navigate('reports')" class="nav-link">Reports</a></li>
+                               -->
+                             <!-- <li [class.active]="isActive === 'item4'" (click)="toggleActive('item4')"><a style="cursor: pointer;" (click)="navigate('user-profile')" class="nav-link">My Profile</a></li>
+                             <li [class.active]="isActive === 'item5'" (click)="toggleActive('item5')"><a style="cursor: pointer;"  (click)="navigate('myOrder')" class="nav-link">My Order</a></li> -->
+                             
+                          </ul>
+                          <ul class="navbar-nav my-ms-auto mytext-left align-items-center">
+                            <li>
+                              <div class="bell-notify" (click)="openNav()">
+                                  <i class="fa-regular fa-bell"></i>
+                                  <div class="notice-count">3</div>
+                              </div>
+                           </li>
+                           <!-- <li>
+                            <div class="bell-notify" (click)="gblsdbaropenNav()">
+                                <i class="fa-regular fa-bell"></i>
+                                <div class="notice-count">3</div>
+                            </div>
+                         </li> -->
+                            <li>
+                                <div ngbDropdown  class="d-inline-block">
+                                    <button (click)="openSidePanel(content)" style="min-height:46px; display: flex; color:#fff; align-items: center;" type="button" class="btn " id="dropdownBasic2" ngbDropdownToggle>
+                                       <div class="header-user-porf">
+                                        <div><img  class="upro-img" src="assets/images/demouser.png"></div>
+                                        <div style="text-align: left;">
+                                            <div style="color:#fff; font-size: 14px;">{{allData?.First}} {{allData?.Last}}</div> 
+                                            <div>{{allData?.oContact?.Email}}</div>
+                                        </div>
+                                      </div>
+                                    </button>
+                                   
+                                </div>
+                             </li>
+                          </ul>
+                       </div>
+                    </div>
+                 </nav>
+            </div>
+        </div>
+     </div>
+</div>
+
+
+<!-- ##############--Notification--################### -->
+<div id="myNav" class="overlay">
+  <div class="d-flex align-items-center justify-content-between ps-3">
+      <div><h1 class="notify-title">Notification</h1></div>
+      <div><a  class="closebtn00" (click)="closeNav()">&times;</a></div>
+  </div>
+  <div class="overlay-content">
+    <div class="notify-div">
+      <ul class="notify-ul">
+          <li class="notify-li">
+              <a class="notify-li-div">
+                  <div class="me-3"><img src="assets/images/notification/notice-pending.png"></div>
+                  <div>
+                      <h3>Pending Amount</h3>
+                      <p>Dear, {{fullName}} ! This is a reminder that your BTC (Quty. 200) payment of INR-20000 will be due on November 15, 2023 - 4:30 pm. </p>
+                  </div>
+              </a>
+           </li>
+           <li class="notify-li">
+              <a class="notify-li-div">
+                  <div class="me-3"><img src="assets/images/notification/planupgrade.png"></div>
+                  <div>
+                      <h3>Upgrade your  Plan to access advanced  features that will make your trading journey even better.</h3>
+                      <!-- <h3>UpGrade your plan and get more benefits ...!</h3> -->
+                      <!-- <p>Dear, {{fullName}} ! This is a reminder that your BTC (Quty. 200) payment of INR-20000 will be due on November 15, 2023 - 4:30 pm. </p> -->
+                  </div>
+              </a>
+           </li>
+           <li class="notify-li">
+              <a class="notify-li-div">
+                  <div class="me-3"><img src="assets/images/notification/notice-pending.png"></div>
+                  <div>
+                      <h3>Pending Amount</h3>
+                      <p>Dear, {{fullName}} ! This is a reminder that your BTC (Quty. 200) payment of INR-20000 will be due on November 15, 2023 - 4:30 pm. </p>
+                  </div>
+              </a>
+           </li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header pt-4 justify-content-end">
+		<div class="rightp-close" (click)="d('Cross click')" ><i class="fa-solid fa-xmark"></i></div>
+		</div>
+	<div class="modal-body">
+        <div class="overlay-content">
+            <div class="gblsdbar-user-div">
+                <span> </span><span> </span><span> </span><span> </span>
+                <div class="gsb-user text-center">
+                    <img src="assets/images/demouser.png">
+                </div>
+                <div class="gblsdbar-user-details">
+                    <h2>👋 Welcome</h2>
+                    <p class="usr-name">{{allData?.First}} {{allData?.Last}}</p>
+                    <p class="usr-email">{{allData?.oContact?.Email}}</p>
+                </div>
+            </div>
+          <div class="gblsdbar-div">
+           
+            <ul>
+                <li>
+                   <a class="gblsdbar-link" [class.active]="isActive === 'item6'" (click)="toggleActive('item6')"  style="cursor: pointer;"  (click)="navigate('profile/personal-detail')">
+                    <div class="gblsdbar-icon"><i class="fa-regular fa-circle-user"></i></div>
+                    <div class="gblsdbar-txt"  >My Profile</div>
+                   </a>
+                </li>
+                <li>
+                    <a  [class.active]="isActive === 'item7'" (click)="toggleActive('item7')"   style="cursor: pointer;"  routerLink="ticket" class="gblsdbar-link">
+                     <div class="gblsdbar-icon"><i class="fa-solid fa-ticket"></i></div>
+                     <div class="gblsdbar-txt"  >My Ticket</div>
+                    </a>
+                 </li>
+                 <li *ngIf="!headerActive">
+                    <a class="gblsdbar-link" [class.active]="isActive === 'item8'" (click)="toggleActive('item8')"   style="cursor: pointer;"  (click)="navigate('packages')">
+                     <div class="gblsdbar-icon"><i class="fa-solid fa-layer-group"></i></div>
+                     <div class="gblsdbar-txt" >Package</div>
+                    </a>
+                 </li>
+                 <li>
+                    <a class="gblsdbar-link" [class.active]="isActive === 'item9'" (click)="toggleActive('item9')"   style="cursor: pointer;"  (click)="navigate('ledger')">
+                     <div class="gblsdbar-icon"><i class="fa-solid fa-list-check"></i></div>
+                     <div class="gblsdbar-txt">View Ledger</div>
+                    </a>
+                 </li>
+                 <li>
+                    <a class="gblsdbar-link" [class.active]="isActive === 'item10'" (click)="toggleActive('item10')"   style="cursor: pointer;"  (click)="navigate('profile/change-password')">
+                     <div class="gblsdbar-icon"><i class="fa-solid fa-unlock-keyhole"></i></div>
+                     <div class="gblsdbar-txt">Change Password</div>
+                    </a>
+                 </li>
+                 <li>
+                    <a class="gblsdbar-link"  style="cursor: pointer;"  (click)="logout()">
+                     <div class="gblsdbar-icon"><i class="fa-solid fa-power-off"></i></div>
+                     <div class="gblsdbar-txt" >Log Out</div>
+                    </a>
+                 </li>
+            </ul>
+          </div>
+        </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+	</div>
+</ng-template>

@@ -1,0 +1,116 @@
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white  p-two-p-height-scroll">
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3">
+                <div class="col-md-6">
+                    <h2 class="pageheading">Tab</h2>
+                </div>
+            </div>
+        </div>
+<div class="container-fluid executives padmng">
+    <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12  py-4 text-end">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <!-- <h2 class="text-start mb-1">Tab</h2>
+                    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+                        aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a >Executives Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Tab</li>
+                        </ol>
+                    </nav> -->
+                </div>
+                <div>
+                    <button type="button" class="btn btn-light add-button" (click)="openVerticallyCentered(content,0)"><i class='bx bx-cube me-2'></i> Add
+                        Tab</button>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+ 
+    <div class="row mb-3" >
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+            <div class="executives-card p-3 pb-0" >
+                <div class="row" >
+                 
+                    <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 mb-3 w-20"  *ngFor="let data of moduleData" >
+                        <div class="card p-0" >
+                            <div class="card-header">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h4 class="pb-0 mb-0"><i class='bx bx-cube me-2'></i>{{data.Master}}</h4>
+                                    <div ngbDropdown class="d-inline-block">
+                                        <button type="button" class="btn btn-outline-primary drop" id="dropdownForm1"
+                                            ngbDropdownToggle><i class='bx bx-dots-vertical-rounded'></i></button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+                                            <button type="button" ngbDropdownItem (click)="openVerticallyCentered(content,data)"><i class='bx bxs-edit me-1'></i>
+                                                Edit</button>
+                                            <div class="dropdown-divider"></div>
+                                            <button type="button" ngbDropdownItem (click)="deleteModule(data.MasterID,data.Master)"><i class='bx bx-trash me-1'></i>
+                                                Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="status-text">Tab Status </div>
+                                    <div class="approved-color ng-pristine ng-valid ng-touched" *ngIf="data.oEnable==1">
+                                        <i class='bx bx-user-check me-1'></i> Enable
+                                    </div>
+                                    <div class="pending-color ng-pristine ng-valid ng-touched" *ngIf="data.oEnable==0" >
+                                        <i class='bx bx-user-x me-1'></i> Disable
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+       
+        <h4 class="modal-title"><i class='bx bx-cube me-2'></i> Add Module</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="login-right">
+            <div class="form">
+                <form [formGroup]="moduleForm">
+                <div class="myfloating">
+                    <div class="form-floating ">
+                        <input type="text" id="email" class="form-control" [readonly]="getEditData" onfocus="this.removeAttribute('readonly');" formControlName="name" required>
+                        <label for="email">Enter Module Name</label>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="email">Select Status</label>
+                    <select class="form-select" formControlName="status">
+                        <option value="1">Enable </option>
+                        <option value="0">Disable </option>
+                    </select>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light add-button" (click)="modal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-light close-button" *ngIf="!getEditData" [disabled]="moduleForm.invalid" (click)="addModule()">Submit</button>
+        <button type="button" class="btn btn-light close-button" *ngIf="getEditData" [disabled]="moduleForm.invalid" (click)="updateStatus()">Update Status</button>
+    </div>
+</ng-template>
+
+<!-- 
+vikas
+<p *ngFor="let data of moduleData">hello test</p> -->
+

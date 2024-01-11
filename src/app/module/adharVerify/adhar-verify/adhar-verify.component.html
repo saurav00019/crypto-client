@@ -1,0 +1,57 @@
+
+   <div class="s-card scard-shadow">
+       <div class="scard-header">
+          <h2>Please upload your Aadhaar Card via Digi Locker</h2>
+       </div>
+       <div class="scard-body">
+          <div class="col-md-12">
+            <div class="row firstform-decor000 pb-4">
+               <div class="col-md-12 text-center pt-4 ">
+                   <img class="digilockerlogo" src="assets/images/digilogo1.png">
+                 </div>
+              <div style="max-width:768px; margin:auto; width:auto ">
+                 <div class="col-md-12 m-auto" >
+                   <div class="d-benefits-card text-center" *ngIf="!uploadButton">
+                     <p class="mb-1">DigiLocker benefits:</p>
+                     <div>
+                        <p class="f13 mb-0">Your information is kept 100% secure and confidential.</p>
+                     </div>
+                  </div>
+                  <div class="d-benefits-card2 text-center" *ngIf="uploadButton">
+                     <p>
+                        <i style="color: green; font-size: 40px;" class="fa fa-check-circle" aria-hidden="true"></i>
+                     </p>
+                     <p class="mb-1" style="color: green; font-weight: 500;">Aadhaar Verification Successful!</p>
+                     <div>
+                        <p class="f13 mb-0" >Please click on <b>"Proceed to Next"</b> button below to continue.</p>
+                     </div>
+                  </div>
+                  <div class="row" *ngIf="!uploadButton" >
+                     <div class="col-md-6 m-auto">
+                        <div class="text-center mt-4">
+                           <button class="btn btn-border-h-fill" (click)="reqDigiUrl()" [disabled]="uploadButton"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> Verfiy Aadhaar</button>
+                      
+                        </div>
+                     </div>
+                  </div>
+                 </div>
+                 
+               </div>
+           
+           </div>
+             
+          </div>
+       </div>
+      
+       <div class="scard-footer" >
+         <div class="row justify-content-between00">
+         
+            <div class="col-md-6 m-auto">
+               <button type="button" class="btn btn-light next-btn btn-slide width-100" [disabled]="isNextButtonDisabled" (click)="navigate()">Proceed to next</button>
+            </div>
+         </div>
+
+  
+      </div>
+    </div>
+  

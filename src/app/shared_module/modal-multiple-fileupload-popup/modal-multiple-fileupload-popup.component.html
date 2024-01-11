@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 w960" style="margin-top:20px;">
+  
+  
+        <div style="width: 100%;">
+            <div class="row">
+                <div class="col-sm-3 text-center" width="140px" height="140px"
+                    style=" margin: auto;" *ngIf="logo !=''">
+      
+      
+                    <img src={{logo}} class="uploadImage">
+                    <i class="fa fa-minus-circle rm" (click)="removeImage()"
+                        *ngIf="(logo !='')"></i>
+      
+                </div>
+                <div class="col-sm-3 text-center"
+                    style="display: flex; align-items: center;" *ngIf="logo ==''">
+      
+      
+                    <img src="../../../assets/img/defaultImage.png"
+                        style="max-width: 140px; height: 140px; margin: auto;">
+      
+                   
+      
+                </div>
+      
+                <div class="col-sm-9">
+                    <div class="card-box">
+                        <p class="mt-0 mb-3  p-2"> Acceptable file format jpg, png. maximum file size 1MB</p>
+                        <div class="image-upload-wrap">
+                            <input accept="image/*" (change)="getFiles($event, 'profile')"
+                                class="file-upload-input" type="file" single>
+                            <div class="drag-text">
+                                <h3>Upload your front Adhar</h3>
+      
+                            </div>
+                            <input accept="image/*" (change)="getFiles($event, 'profile')"
+                            class="file-upload-input" type="file" single style="position: absolute; height: 100px; top:0px">
+                        </div>
+                    </div>
+                </div>
+      
+      
+      
+      
+      
+            </div>
+      
+      
+      
+      
+      
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  

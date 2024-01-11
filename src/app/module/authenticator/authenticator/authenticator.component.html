@@ -1,0 +1,190 @@
+<div class="auth">
+    <div class="row">
+        <div class="col-12">
+            <div class="auth-tabs">
+                <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs justify-content-between">
+                    <li [ngbNavItem]="1">
+                        <button ngbNavLink>1. Download App</button>
+                        <ng-template ngbNavContent>
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    <div class="list-content">
+                                        <h5 class=" text-center">Step 1</h5>
+                                        <h6>Download & Install Google Authentication App</h6>
+                                        <div class="text-center ">
+                                            <img src="assets\images\auth-ico.png" class="my-3" width="150">
+                                            <div class="app-store">
+                                                <a href="" class="mx-2"><img src="assets\images\googlestorebutton.png"
+                                                        width="100"></a>
+                                                <a href="" class="mx-2"><img src="assets\images\appstorebutton.png"
+                                                        width="100"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nxt d-flex justify-content-md-end justify-content-center">
+                                <button>next</button>
+                            </div>
+                        </ng-template>
+                    </li>
+                    <li [ngbNavItem]="2">
+                        <button ngbNavLink>2. Scan Qr Code</button>
+                        <ng-template ngbNavContent>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5 col-12 ">
+                                    <div class="list-content ">
+                                        <h5 class=" text-center">Step 2</h5>
+                                        <h6>3ISYQEDR47YES5IM</h6>
+                                        <div class="text-center">
+                                            <img src="assets\images\chart.png" class="my-3" width="150">
+                                            <div class="app-store">
+                                                <h6>If you have any problem with scanning the QR code enter this code
+                                                    manually into the APP.
+
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nxt d-flex justify-content-md-end justify-content-center">
+                                <button>next</button>
+                            </div>
+                        </ng-template>
+                    </li>
+                    <li [ngbNavItem]="3">
+                        <button ngbNavLink>3. Backup Key</button>
+                        <ng-template ngbNavContent>
+                            <div class="row">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-5  col-12">
+                                    <div class="list-content">
+                                        <h5 class=" text-center">Step 3</h5>
+                                        <h6 class="pad-6">Please save this Key on paper. This Key will allow you to
+                                            recover
+                                            your Google Authentication in case of phone loss.</h6>
+
+                                        <div class="text-center ">
+                                            <img src="assets\images\penpaper.png" class="my-3" width="150">
+                                            <div class="app-store">
+                                                <h6>3ISYQEDR47YES5IM</h6>
+                                                <h6 style="color: #F84163 !important;font-size: 12px;margin-top: 8px;"
+                                                    class="pad-6">
+                                                    *Resetting your Google Authentication requires opening a support
+                                                    ticket and takes at least 7 days to process.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nxt d-flex justify-content-md-end justify-content-center">
+                                <button>next</button>
+                            </div>
+                        </ng-template>
+                    </li>
+                    <li [ngbNavItem]="4">
+                        <button ngbNavLink>4. Enable Google 2FA</button>
+                        <ng-template ngbNavContent>
+                            <div class="row">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-4 col-12">
+                                    <div class="list-content ps-5">
+                                        <h5 class=" text-center">Step 4</h5>
+                                        <form>
+                                            <p>Login Password: </p>
+                                            <input type="password">
+                                            <p>Google Authentication Code: </p>
+                                            <input type="number">
+                                            <p>Status</p>
+                                            <input type="radio" value="Enabled" id="enable" name="status">
+                                            <label class="ms-2">Enabled </label>
+                                            <input type="radio" value="Disable" id="disable" class="ms-4" name="status">
+                                            <label class="ms-2">Disabled </label>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nxt d-flex justify-content-md-end justify-content-center ">
+                                <button>Submit</button>
+                            </div>
+                        </ng-template>
+                    </li>
+                </ul>
+
+                <div [ngbNavOutlet]="nav" class="mt-2"></div>
+            </div>
+            <div class="row p-3">
+                <div class="col-12">
+                    <div class="phising">
+                        <h6>SEt Anti-Phishing Code</h6>
+
+                        <div class="row my-3 anti">
+                            <div class="col-xxl-3 col-xl-4 col-md-3 col-12 ">
+                                <p>Anti-Phishing Code:</p>
+                            </div>
+                            <div class=" col-xxl-6 col-xl-8 col-md-9 col-12">
+                                <input type="text">
+                                <p>Note:Any word you want can be a security word. This word will be available in every
+                                    email you send to Crypto Exchange (except those sent by our support team). This
+                                    means
+                                    that you can easily distinguish between those from the Dukes Exchange and phishing
+                                    e-mails.
+                                </p>
+                                <div class="nxt d-flex justify-content-md-end justify-content-center"><button
+                                        _ngcontent-ng-c2810177279="">Save</button></div>
+                            </div>
+                            <div class="col-xxl-3 col-12"></div>
+                        </div>
+                        <h6>Change Password</h6>
+                        <div class="row my-3 anti">
+                            <div class="col-md-12">
+                                <div class="row my-3">
+                                    <div class="col-xxl-3 col-xl-4 col-md-3 col-12">
+                                        <p>Old Password</p>
+                                    </div>
+                                    <div class="col-xxl-6 col-xl-8 col-md-9 col-12">
+                                        <input type="password">
+                                    </div>
+                                    <div class="col-xxl-3 col-12"></div>
+                                </div>
+                                <div class="row my-3">
+                                    <div class="col-xxl-3 col-xl-4 col-md-3 col-12">
+                                        <p>New Password</p>
+                                    </div>
+                                    <div class="col-xxl-6 col-xl-8 col-md-9 col-12">
+                                        <input type="password">
+                                    </div>
+                                    <div class="col-xxl-3 col-12"></div>
+                                </div>
+                                <div class="row my-3">
+                                    <div class="col-xxl-3 col-xl-4 col-md-3 col-12">
+                                        <p>Cofirm Password</p>
+                                    </div>
+                                    <div class="col-xxl-6 col-xl-8 col-md-9 col-12">
+                                        <input type="password">
+                                        <div class="nxt d-flex justify-content-md-end justify-content-center"><button>Save</button></div>
+                                    </div>
+                                    <div class="col-xxl-3 col-12"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h6>Auto Logout Time Settings</h6>
+                        <div class="row my-3 anti">
+                            <div class="col-xxl-3 col-xl-4 col-md-3 col-12 ">
+                                <p>Auto Logout Time (In Minutes):</p>
+                            </div>
+                            <div class="col-xxl-6 col-xl-8 col-md-9 col-12">
+                                <input type="number">
+                                <div class="nxt d-flex justify-content-md-end justify-content-center"><button>Save</button></div>
+                            </div>
+                            <div class="col-xxl-3 col-12"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

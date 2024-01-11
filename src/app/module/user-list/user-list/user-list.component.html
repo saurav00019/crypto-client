@@ -1,0 +1,281 @@
+<div class="p-two-p-scroll-design">
+    <section class="setpage p-two-p-section-radius p-two-p-bg-white p-two-p-height-scroll">
+        <div class="container-fluid padmng">
+            <div class="row dd-top-card pt-4 mb-3">
+                <div class="col-md-6">
+                    <h2 class="pageheading">User List</h2>
+                </div>
+            </div>
+        </div>
+        <!-- stat -->
+        <div class="container-fluid padmng">
+            
+            <div class="row ">
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="t-card card mb-4 four-bor payment-failed">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="heading-text">
+                                    <h2>Total Users</h2>
+                                    <p class="mb-0">{{count}}</p>
+                                    <p class="mb-0 text-truncate"><span class="payment-col me-1">
+                                            <i class='bx bx-up-arrow-alt '></i>
+                                            12.37% </span> Last month
+                                    </p>
+                                </div>
+                                <div
+                                    class="thumb-md bg-light-failed rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class='bx bx-user'></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="t-card card mb-4 text-success bg-success-transparent first-bor">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="heading-text">
+                                    <h2>Total Approved </h2>
+                                    <p class="mb-0">{{approvedCount}}</p>
+                                    <p class="mb-0 text-truncate"><span class="text-success  me-1">
+                                            <i class='bx bx-up-arrow-alt '></i>
+                                            47.74% </span> Last month
+                                    </p>
+                                </div>
+                                <div
+                                    class="thumb-md bg-light-alt rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class='bx bx-user-check'></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="card t-card text-warning bg-warning-transparent  sec-bor ">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="heading-text">
+                                    <h2>Total Pending </h2>
+                                    <p class="mb-0">{{pendingCount}}</p>
+                                    <p class="mb-0 text-truncate"><span class="text-warning">
+                                            <i class='bx bx-up-arrow-alt '></i>
+                                            12.37%</span> Last month
+                                    </p>
+                                </div>
+                                <div
+                                    class="thumb-md bg-light-pending rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class='bx bx-user-minus'></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="t-card card mb-4 text-danger bg-danger-transparent third-bor">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="heading-text">
+                                    <h2>Total Rejected </h2>
+                                    <p class="mb-0">{{rejectedCount}}</p>
+                                    <p class="mb-0 text-truncate"><span class="text-danger me-1">
+                                            <i class='bx bx-down-arrow-alt '></i>
+                                            12.37%</span> Last month
+                                    </p>
+                                </div>
+                                <div
+                                    class="thumb-md bg-light-sent rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class='bx bx-user-x'></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="nk-block">
+                        <div class="card card-bordered card-stretch">
+                            <div class="row mb-4 mt-1 align-items-center">
+                                <div class="col-md-2">
+                                    <select class="form-select" (change)="selectValue($event)" [(ngModel)]="oFilter">
+                                        <option value="">Filter</option>
+                                        <option value="1">First Name</option>
+                                        <option value="1">Last Name</option>
+                                        <option value="2">By Email</option>
+                                       
+                                      </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="myfloating">
+                                        <div class="form-floating ">
+                                            <input type="text" class="form-control" id="email" placeholder="Enter email"  [(ngModel)]="searchValue" name="email" (keydown.enter)="search()">
+                                            <label for="email"><i class="fa-solid fa-magnifying-glass"></i> Search</label>
+                                          </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary btn-sm" style="font-size: 13px;" *ngIf="searching == true" (click)="search()">Search</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" style="font-size: 13px;" *ngIf="searching == false" (click)="clear()">Clear</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-end">
+                                        <button  class="btn btn-outline-light bg-white d-none d-sm-inline-flex" (click)="exportCsv()">
+                                            <i class='bx bx-download icon'></i>
+                                            <span>Export Excel</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="margin-top: 0px;">
+                            <div class="text-center hide-here" *ngIf="this.count == 0">
+                                <div class="nk-tb-list nk-tb-ulist">
+                                    <div class="nk-tb-item nk-tb-head">
+                                        <div class="nk-tb-col"><span class="sub-text">First Name</span></div>
+                                        <div class="nk-tb-col"><span class="sub-text">Last Name</span></div>
+                                        <div class="nk-tb-col tb-col-sm"><span class="sub-text">Email</span></div>
+                                        <div class="nk-tb-col tb-col-md"><span class="sub-text">Phone</span></div>
+                                        <div class="nk-tb-col tb-col-xxl"><span class="sub-text">Joined</span></div>
+                                        <div class="nk-tb-col tb-col-lg"><span class="sub-text">KYC Status</span></div>
+                                        <div class="nk-tb-col tb-col-lg text-end"><span class="sub-text ">Actions</span></div>
+                                        <div class="nk-tb-col text-end"><span class="sub-text">View Details</span></div>
+                                    </div>
+                                </div>
+                                <img style="width: 280px;" src="assets/images/no-data.png" alt="">
+                            </div>
+                            <div  class="card-inner p-0" *ngIf="this.count != 0">
+                                <div class="nk-tb-list nk-tb-ulist">
+                                    <div class="nk-tb-item nk-tb-head">
+                                        
+                                        <div class="nk-tb-col"><span class="sub-text">First Name</span></div>
+                                        <div class="nk-tb-col"><span class="sub-text">Last Name</span></div>
+                                        <div class="nk-tb-col tb-col-sm"><span class="sub-text">Email</span></div>
+                                        <div class="nk-tb-col tb-col-md"><span class="sub-text">Phone</span></div>
+                                        <div class="nk-tb-col tb-col-xxl"><span class="sub-text">Joined</span></div>
+                                        <div class="nk-tb-col tb-col-lg"><span class="sub-text">KYC Status</span></div>
+                                        <div class="nk-tb-col tb-col-lg text-end"><span class="sub-text ">Actions</span></div>
+                                        <div class="nk-tb-col text-end"><span class="sub-text">View Details</span></div>
+                                    </div>
+                                    <div class="nk-tb-item" *ngFor="let data of userList let i=index">
+                                       
+                                        <div class="nk-tb-col"><a >
+                                                <div class="user-card">
+                                                    <div class="user-avatar" [ngClass]="{'pending-color':data.Status_KYC==1,'approved-color':data.Status_KYC==2,'reject-color':data.Status_KYC==3, 'resubmit-color':data.Status_KYC==4}"><span>{{(data.First).charAt(0).toUpperCase() }}{{(data.Last).charAt(0).toUpperCase()}}</span></div>
+                                                    <div class="user-info">
+                                                        <span class="tb-lead">{{data.First}}
+                                                            <span class="dot dot-success d-md-none ms-1"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a></div>
+                                            <div class="nk-tb-col"><a >
+                                                <div class="user-card">
+                                                    <div class="user-info">
+                                                        <span class="tb-lead">{{data.Last}}
+                                                            <span class="dot dot-success d-md-none ms-1"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a></div>
+                                        <div class="nk-tb-col tb-col-sm"><span
+                                                class="sub-text">{{data.oContact.Email}}</span></div>
+                                        <div class="nk-tb-col tb-col-md"><span class="sub-text">{{data.oContact.Phone}}</span></div>
+        
+        
+                                        <div class="nk-tb-col tb-col-xxl"><span class="sub-text">{{data.LastLogin.sUpdatedOn_Str| date:'dd/MM/yyyy'}}</span>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-lg">
+                                            <!-- <span class="tb-status text-success" *ngIf="data.Status_KYC == 1">PENDING</span>
+                                            <span class="tb-status text-success" *ngIf="data.Status_KYC == 2">APPROVED</span>
+                                            <span class="tb-status text-success" *ngIf="data.Status_KYC == 3">REJECT</span>
+                                            <span class="tb-status text-success" *ngIf="data.Status_KYC == 4">RESUBMIT</span>
+                                            <span class="tb-status text-success" *ngIf="data.Status_KYC == 5">SUSPEND</span>
+                                            <span class="tb-status text-success" *ngIf="data.Status_KYC == 6">UPLOAD</span> --> 
+                                            <!-- <select [ngClass]="active" (change)="dropDown($event)" >
+                                                <option  hidden selected>{{actualStatus}} </option>
+                                                <option [ngClass]="active" *ngFor="let dropdown of userData" [value]="dropdown.tag">{{dropdown.status}} </option>
+                                            </select> -->
+
+                                            <select  class="form-select" [(ngModel)]='data.Status_KYC' [ngClass]="{'pending-color':data.Status_KYC==1,'approved-color':data.Status_KYC==2,'reject-color':data.Status_KYC==3, 'resubmit-color':data.Status_KYC==4}" (change)="dropDown($event)">
+                                                <option  hidden selected>{{actualStatus}} </option>
+                                                <option [ngClass]="active" *ngFor="let dropdown of userData" [value]="dropdown.id">{{dropdown.status}} </option>
+                                            </select>
+                                            
+                                        </div>
+                                        <div class="nk-tb-col nk-tb-col-tools">
+                                            <ul class="nk-tb-actions gx-1">
+                                                <li>
+                                                    <div ngbDropdown class="d-inline-block">
+                                                        <button type="button" class="btn btn-outline-primary"
+                                                            id="dropdownBasic1" ngbDropdownToggle>
+                                                            <i class="fa-solid fa-ellipsis"></i>
+                                                        </button>
+                                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                         
+    
+                                                               
+                                                            <!-- <div class="dropdown-divider"></div> -->
+                                                            
+                                                            <a ngbDropdownItem><i class="fa-solid fa-trash-can me-2"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-lg text-end">
+                                            <a routerLink="/user-list"
+                                                class="btn btn-outline-primary btn-sm">
+                                                <i class='bx bxs-show icon me-2'></i>
+                                                <span>View More</span></a>
+                                        </div>
+                                    </div>
+                                 
+                                   
+                                   
+                                    
+                                   
+                                   
+                                   
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                               
+
+                                <ul class="pagination pagination-sm justify-content-end mt-2">
+                                    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                        <a class="page-link" (click)="setPage(1)">First</a>
+                
+                                    </li>
+                                    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                        <a class="page-link" (click)="setPage(this.page-1)">Previous</a>
+                
+                                    </li>
+                                  
+                                    <li *ngFor="let page of pager.pages" class="page-item" [ngClass]="{active:pager.currentPage === page}">
+                                        <a class="page-link " (click)="setPage(page)">{{page}}</a>
+                                    </li>
+                                    <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                        <a class="page-link " (click)="setPage(this.page+1)">Next</a>
+                
+                                    </li>
+                                    <li class="page-item" [ngClass]="{disabled:pager.totalPages === page}">
+                                        <a class="page-link " (click)="setPage(pager.totalPages)">Last</a>
+                                    </li>
+                
+                
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- edn ne -->
+
+
+        <!-- <app-pagination [items]="userList"  (changePage)="onChangePage($event)"></app-pagination> -->
+    
+    </section>
+</div>

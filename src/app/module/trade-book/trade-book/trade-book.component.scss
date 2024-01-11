@@ -1,0 +1,124 @@
+.card{box-shadow:0 2px 8px 1px rgba(64,60,67,.34);}
+.filter .d-flex{border: 1px solid #bbb; padding: 4px 8px; border-radius: 24px;margin-right: 1rem;}
+.filter label{display: flex;margin-right: 4px;}
+.sec-per{background-color: #e6720a1c;}
+.fir-per{background-color: #65af451a;}
+.tbook-flex{
+    display: flex;
+        img{
+            width:30px;
+            margin-right: 8px;
+        }
+        .sybtxt{
+            margin-bottom: 0px;
+            font-weight: 600;
+        }
+        .tbook-date{
+            margin-bottom: 0px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        
+}
+
+.umail{
+    margin-bottom: 0px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.tblable{
+    margin-bottom: 0px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.buy-badge{
+    // background: #89e589;
+    padding: 2px 8px;
+    border-radius: 50px;
+    color: #006c4a;
+}
+
+.sell-badge{
+    // background: #ff9c95;
+    padding: 2px 8px;
+    border-radius: 50px;
+    color: #a50101;
+}
+
+
+
+.ico-details{
+    i{
+        color: #a7a7a7;
+        font-size: 12px;
+        cursor: pointer;
+    }
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+.bankdetails-card{
+    background: #f1f0ff;
+    padding: 5px 5px 0px 5px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    .bdlab {
+        font-size: 13px;
+        
+        margin-bottom: 2px;
+    }
+    .bdval {
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+}
+
+.vmorebtn{
+    color: #3F51B5;
+    font-size: 13px;
+}
+
+.dp-name {
+    width: 75px;
+    height: 75px;
+    background: #e6e3ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 75%;
+    margin-bottom: 8px;
+}
+
+.personaldetails-card{
+    .bdlab {
+        font-size: 13px;
+        
+        margin-bottom: 8px;
+    }
+    .bdval {
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+}
+
+
+.usersense{
+    font-size: 13px;
+    margin-bottom: 0px;
+}
+
+.userregdate{
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+

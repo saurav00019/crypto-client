@@ -1,0 +1,16 @@
+.api{background:var(--black);color: var(--white);min-height: 100vh;}
+.table thead th{background: #28304E;color: var(--light-gray);font-size: 13px;border-bottom: 1px solid #333;padding: 1rem;}
+.table thead th:first-child{border-radius: 16px 0 0 0;}
+.table thead th:last-child{border-radius: 0 16px 0 0;}
+.table tbody {border-radius: 16px 0 0 0;}
+.table td{background:var(--dark-blue) ;color: var(--light-gray);font-size: 13px;border-bottom: 1px solid #333;padding: 1rem;}
+.table tr:last-child td{border-bottom: none;}
+.table tr:last-child td:last-child{border-radius: 0 0 16px 0;}
+.table tr:last-child td:first-child{border-radius: 0 0 0 16px;}
+input:not([type="checkbox"]){background-color: #151C2E;border: none;width: 100%;padding: 8px;margin-bottom: 8px;color: var(--white);}
+.nxt button{padding: 6px 16px;border-radius: 4px;background: #67d6ee; outline: none; border: none;transition: .5s;margin: 1rem 0;font-weight: 500;font-size: 14px;}
+.nxt button:hover{background: #a7efff;}
+.checkbox{display: flex;align-items: center;}
+.checkbox p{margin-bottom: 0;}
+.checkbox label{display: flex; gap: 8px; align-items: center; justify-content: center;}
+// .table tr td:last-child{text-align: right;}

@@ -1,0 +1,198 @@
+<div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 navtab-height">
+    <div class="profile-box">
+
+        <div class="add-class-for-show-and-hide">
+            <div>
+                <h5 class="profile-bold-text "> Personal details</h5>
+            </div>
+            <form [formGroup]="personalForm">
+                <div class="row">
+
+                    <div class="col-md-12 boder-b1">
+                        <div class="pro-personal-val ">
+                            <div>
+                                <div class="personal-label"><i class="fa fa-mobile me-2" aria-hidden="true"></i>
+                                    <span>Mobile</span></div>
+                                <p class="mb-0">{{ phone }}</p>
+                            </div>
+                            <div>
+                                <!-- <button class="btn btn-link btn-sm">Edit</button> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 boder-b1">
+                        <div class="pro-personal-val ">
+                            <div>
+                                <div class="personal-label"><i class="fa fa-envelope-o me-2"
+                                        aria-hidden="true"></i> <span>Email id</span></div>
+                                <p class="mb-0">{{ email }}</p>
+                            </div>
+                            <div>
+                                <!-- <button class="btn btn-link btn-sm">Edit</button> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 boder-b1">
+                        <div class="row ">
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>Gender</span></div>
+                                        <p class="mb-0">{{ personalForm.get('gender').value === 1 ? 'Male' :
+                                            personalForm.get('gender').value === 2 ? 'Female' :
+                                            personalForm.get('gender').value === 3 ? 'Others' : 'Unknown' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>Marital Status</span></div>
+                                        <p class="mb-0">{{ personalForm.get('maritalStatus').value === 1 ?
+                                            'Married' : 'Unmarried' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>Qualification</span></div>
+                                        <p class="mb-0">{{ personalForm.get('qualification').value === 1 ?
+                                            "Bachelor's Degree" :
+                                            personalForm.get('qualification').value === 2 ? "Vocational
+                                            Qualification" :
+                                            personalForm.get('qualification').value === 3 ? "Master's Degree" :
+                                            personalForm.get('qualification').value === 4 ? "Doctorate or
+                                            higher" :
+                                            personalForm.get('qualification').value === 5 ? "Primary School" :
+                                            personalForm.get('qualification').value === 6 ? "High School" :
+                                            "Unknown" }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>Occupation</span></div>
+                                        <p class="mb-0">{{ personalForm.get('occupation').value === 1 ? "Private Sector" :
+                                            personalForm.get('occupation').value === 2 ? "Government Service" :
+                                            personalForm.get('occupation').value === 3 ? "Public Sector" :
+                                            personalForm.get('occupation').value === 4 ? "Agriculturist" :
+                                            personalForm.get('occupation').value === 5 ? "Professional" :
+                                            personalForm.get('occupation').value === 6 ? "Business" :
+                                            personalForm.get('occupation').value === 7 ? "Housewife" :
+                                            personalForm.get('occupation').value === 8 ? "Retired" :
+                                            personalForm.get('occupation').value === 9 ? "Student" :"Unknown" }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 boder-b1">
+                        <div class="row ">
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>Annual Income (in Lakhs)</span></div>
+                                      
+                                        <p class="mb-0">{{ personalForm.get('annualIncome').value === 1 ? "0" :
+                                            personalForm.get('annualIncome').value === 2 ? "1" :
+                                            personalForm.get('annualIncome').value === 3 ? "3" :
+                                            personalForm.get('annualIncome').value === 4 ? "5" :
+                                            personalForm.get('annualIncome').value === 5 ? "8" :
+                                            personalForm.get('annualIncome').value === 6 ? "10" :
+                                            personalForm.get('annualIncome').value === 7 ? "15" :
+                                            personalForm.get('annualIncome').value === 8 ? "20" :
+                                            personalForm.get('annualIncome').value === 9 ? "25" :
+                                            personalForm.get('annualIncome').value === 10 ? "35" :
+                                            personalForm.get('annualIncome').value === 11 ? "50" :"Unknown" }}
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>Stock Market Exp.</span></div>
+                                        <p class="mb-0">{{ personalForm.get('stockMarketExp').value === 1 ? "0" :
+                                            personalForm.get('stockMarketExp').value === 2 ? "1" :
+                                            personalForm.get('stockMarketExp').value === 3 ? "2" :
+                                            personalForm.get('stockMarketExp').value === 4 ? "3" :
+                                            personalForm.get('stockMarketExp').value === 5 ? "4" :
+                                            personalForm.get('stockMarketExp').value === 6 ? "5" :
+                                            personalForm.get('stockMarketExp').value === 7 ? "6" :
+                                            personalForm.get('stockMarketExp').value === 8 ? "7" :
+                                            personalForm.get('stockMarketExp').value === 9 ? "8" :
+                                            personalForm.get('stockMarketExp').value === 10 ? "9" :"Unknown" }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>Net Worth (in Lakhs)</span></div>
+                                        <p class="mb-0">{{ personalForm.get('netWorth').value }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-md-12 boder-b1">
+                        <div class="row ">
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>City</span></div>
+                                        <p class="mb-0">{{ allData.oAddr.City }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>State</span></div>
+                                        <p class="mb-0">{{ allData.oAddr.State }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>Country</span></div>
+                                        <p class="mb-0">{{ allData.oAddr.Country }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pro-personal-val">
+                                    <div>
+                                        <div class="personal-label"> <span>Zipcode</span></div>
+                                        <p class="mb-0">{{ allData.oAddr.Zipcode }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-md-12">
+                        <div class="pro-personal-val">
+                            <div>
+                                <div class="personal-label"><i class="fa fa-map-marker me-2"
+                                        aria-hidden="true"></i> <span>Address</span></div>
+                                <p class="mb-0">{{ address }}</p>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </form>
+        </div>
+        </div>
+        </div>

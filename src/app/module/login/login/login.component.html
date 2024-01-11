@@ -1,0 +1,102 @@
+<section class="height-vh100-none h-00vh100 bgImages blue-bg-img" style="overflow-x: hidden;">
+
+  <div class="container align-items-center d-flex " style="height: 100vh;">
+    <div class="row ">
+      <div class="col-md-5 m-auto">
+        <div class="row card-box">
+
+          <div class="col-12 my-pad-lr-50">
+            <div class="row mb-4">
+              <div class="col-md-12">
+                <img class="form-logo" src="assets/images/ce-logo2.png">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="login-area" style="width:100%; padding-left:15px; padding-right: 15px; height: 80%;">
+                  <form [formGroup]="loginForm" (ngSubmit)="submit()" autocomplete="off">
+                    <div class="row firstform-decor000">
+                      <div class="col-md-12 mb-4">
+                        <p class="formtit-1 mb-0">Login to your account</p>
+                        <p class="formtit-2">Please Enter The Details Below</p>
+                      </div>
+
+                    
+                      <div class="col-md-12 ab-input-decor">
+                        <div class="form-floating mb-3">
+                          <input type="text" formControlName="userName" ariaAutoComplete="off"
+                            [ngClass]="{ 'is-invalid': submited && f.userName.errors }" class="form-control ab-border0"
+                            placeholder=".">
+                          <label>Email id / Client Code</label>
+                          <div *ngIf="submited && f.userName.errors" class="invalid-feedback">
+
+                            <div *ngIf="f.userName.errors?.required">Email id/Client Code is required.</div>
+
+                          </div>
+                        </div>
+
+                        <div *ngIf="submited && f.userName.errors" class="invalid-feedback">
+
+                          <div *ngIf="f.userName.errors?.required">Email id/Client is required.</div>
+
+                        </div>
+
+                      </div>
+                      
+                      <div class="col-md-12 ab-input-decor">
+                        <div class="form-floating mb-3">
+                          <input style="background-image: none!important;" [type]="password" formControlName="password"
+                            ariaAutoComplete="off" [ngClass]="{ 'is-invalid': submited && f.password.errors }"
+                            class="form-control ab-border0" placeholder=".">
+
+                            <div (click)="Password()">
+                              <i  class="fa fa-eye" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  *ngIf="!show"></i> 
+                              <i  class="fa fa-eye-slash" style="color: #a5a5a5; position: absolute; right: 2%; top: 30%;"  *ngIf="show"></i> 
+                          </div>
+                          <label>Password:</label>
+
+                          <div *ngIf="submited && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors?.required">Password is required.</div>
+                          </div>
+
+                        </div>
+
+
+
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group form-check ps-0">
+                          <label class="form-check-label">
+                            <input class="form-check-input0 me-2" type="checkbox" formControlName="rememberMe"
+                              (click)="setValue($event)"> Remember me
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-2 mt-4 d-grid">
+                        <button class="btn btn-black btn-slide-login btn-block" (keydown.enter)="submit()">LOGIN</button>
+                      </div>
+                     
+                      <div class="col-md-12 pt-3 arg-d-flex">
+                        <div class="d-flex justify-content-between">
+
+                          <div>
+                            <a class="f13" routerLink="/forget-password" style="color:#858585"><i class="fa fa-lock"
+                                aria-hidden="true"></i> Forgot Password</a>
+                          </div>
+                          <div>
+                            <a style="font-size: 13px;" routerLink="/signup" (click)="hideClick()"><span
+                                style="color:#858585">Create an account? </span>SIGN UP</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

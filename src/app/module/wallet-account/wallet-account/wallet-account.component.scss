@@ -1,0 +1,30 @@
+.wallet{background:var(--black);color: var(--white);min-height: 100vh;}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{background: transparent;color: #79eef3;border: none;}
+.nav-tabs .nav-link{color: var(--light-gray);border: none;}
+// .nav-tabs .nav-item:hover{border: 0px;border-bottom: 1.5px solid #79eef3;}
+.nav-tabs .nav-item p{font-size: 12px;color: var(--light-gray);margin-bottom: 0;}
+.nav-tabs .nav-item{text-align: center;position: relative;margin: 8px 0;}
+.nav-tabs .nav-link.active p{color: #fff;}
+.nav-tabs .nav-link.active::after{content: ''; width: 0; height: 0; border:8px solid #79eef3; position: absolute; left: 50%;top:100%;  border-bottom: 8px solid transparent; transform: translate(-50%, 0); border-left: 8px solid transparent; border-right: 8px solid transparent;}
+.nav-tabs .nav-link.active::before  {content: ''; width: 100%; height: 0; border:1px solid #79eef3; position: absolute; left: 50%; transform: translate(-50%, 0);top:100%;}
+.nav-tabs{border-bottom: none;background:var(--dark-blue);font-size: 14px;padding: 8px;flex-flow: row wrap;}
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus{border: none;}
+.wallet-txn{background: var(--dark-blue);margin-top:2rem;padding: 1rem ;}
+.progress-div{font-size: 14px;color: var(--light-gray);}
+.progress-div > div{font-size: 13px;}
+.progress-div > div span:nth-child(2){color: #79eef3;}
+.progress{background: #151C2E;}
+.data span{font-size: 12px;color: var(--light-gray);}
+select, select option{background: var(--dark-blue);color: var(--white);font-size: 12px;color: var(--light-gray);}
+.search input{background: transparent; outline: none; border: 1px solid var(--light-gray); padding: 4px 8px; color: var(--light-gray); border-radius: 4px;font-size: 12px;}
+.search i{position: absolute; right: 0; top: 50%; transform: translate(-8px, -50%);font-size: 14px;color: var(--light-gray);}
+::placeholder{font-size: 13px;}
+.table{margin-top: 1.5rem;}
+.table tr td{color: var(--light-gray);border-bottom: 1px solid #333 !important;}
+.table tr:not(.odd) td:last-child{text-align: right;}
+.table tr th:first-child, .table tr th:last-child{border-radius: 0;}
+.odd{text-align: center;padding: 3rem;}
+.odd td{padding: 3rem;}
+nav {display: flex;justify-content: space-between;align-items: center;}
+nav > div {font-size: 14px;color: var(--light-gray);}
+.pagination a{background-color: transparent; border: none; font-size: 14px; color: var(--light-gray);}

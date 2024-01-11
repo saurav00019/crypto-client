@@ -1,0 +1,108 @@
+
+
+<div class="sidebar" [ngClass]="{'show': isSidebarVisible}">
+    <div class="logo-details">
+      <div class="logo"></div>
+    </div>
+    <ul class="nav-links navbar-main-ul" id="nav-links">
+      <li *ngFor="let item of menuSidebar" #itemEl routerLinkActive="active">
+        <div *ngIf="item.sub_menu.length == 0" class="dropdown-title">
+          <a [routerLink]="[item.link]">
+            <i [class]="item.icon"></i>
+            <span class="link_name">{{item.link_name}}</span>
+          </a>
+        </div>
+        <div *ngIf="item.sub_menu.length > 0" class="dropdown-title" (click)="showSubmenu(itemEl)">
+          <a>
+            <i [class]="item.icon"></i>
+            <span class="link_name">{{item.link_name}}</span>
+          </a>
+          <i class='fa fa-angle-down navbar-arrow-color'></i>
+        </div>
+        <ul class="sub-menu" [class.blank]="item.sub_menu.length == 0">
+          <li><a class="link_name">{{item.link_name}}</a></li>
+          <li *ngFor="let item_sub of item.sub_menu" routerLinkActive="active">
+            <a [routerLink]="[item_sub.link]">{{item_sub.link_name}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- <div class="logo-details">
+       <i class="bx bxl-c-plus-plus"></i>
+       <span class="logo-name">TraderRoom</span>
+    </div>
+    <ul class="nav-links">
+       
+
+       <li>
+         <a [routerLink]="['/dashboard']"   routerLinkActive="router-link-active" >
+         <i class='bx bxs-dashboard' ></i>
+         <span class="link-name">Dashboard</span>
+         </a>
+         <ul class="sub-menu blank">
+            <li> 
+               <a  [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Dashboard</a>
+            </li>
+         </ul>
+      </li>
+
+       <li>
+          <a [routerLink]="['/account']"  routerLinkActive="router-link-active" >
+          <i class='bx bxs-user-account' ></i>
+          <span class="link-name">Account</span>
+          </a>
+          <ul class="sub-menu blank">
+             <li> 
+                <a class="link-name" [routerLink]="['/account']" routerLinkActive="router-link-active">Account</a>
+             </li>
+          </ul>
+       </li>
+       <li [ngClass]="{'showMenu':show1}">
+          <div class="icon-link" (click)="toogle(1)">
+             <a >
+             <i class="bx bx-dollar"></i>
+             <span class="link-name">Finance</span>
+             </a>
+             <i class="bx bxs-chevron-down arrow" ></i>
+          </div>
+          <ul class="sub-menu">
+             <li> 
+                <a class="link-name">Finance</a>
+             </li>
+             <li> 
+                <a  [routerLink]="['/finance/deposit-funds/deposit-to-wallet']" routerLinkActive="router-link-active">Deposit Funds</a>
+             </li>
+             <li> 
+                <a  [routerLink]="['/finance/withdraw-funds']" routerLinkActive="router-link-active">Withdraw Funds</a>
+             </li>
+             <li> 
+                <a [routerLink]="['/finance/transfer-funds/account-to-wallet']" routerLinkActive="router-link-active">Transfer Funds</a>
+             </li>
+             <li> 
+                <a  [routerLink]="['/finance/ledger-overview']" routerLinkActive="router-link-active">Ledger Overview</a>
+             </li>
+          </ul>
+       </li>
+    
+      
+       <li [ngClass]="{'showMenu':show2}">
+          <div class="icon-link"(click)="toogle(2)">
+            
+             <a >
+             <i class='bx bxs-report'></i>
+             <span class="link-name">Reports</span>
+             </a>
+             <i class="bx bxs-chevron-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+             <li> 
+                <a class="link-name"  >Reports</a>
+             </li>
+             <li> 
+                <a  [routerLink]="['/reports/trades']" routerLinkActive="router-link-active">Trades</a>
+             </li>
+          </ul>
+       </li>
+      
+    </ul> -->
+ </div>
