@@ -9,17 +9,26 @@ import {
 // import { subscribeOnStream, unsubscribeFromStream } from './streaming.js';
 
 import { SubscribeBarsCallback } from '../../../assets/charting_library';
+import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
 @Component({
     selector: 'app-charts',
     templateUrl: './charts.component.html',
     styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements OnInit, OnDestroy {
+    allMasterData: any =[]
+constructor(private shared: SharedDataService){
+    this.shared.imageData$.subscribe( (res: any) => {
+
+        this.allMasterData=res
+        console.log("resresres",this.allMasterData)
+      });
+}
     @Input() items?: "";
     private _interval: ChartingLibraryWidgetOptions['interval'] = '1' as ResolutionString;
     // BEWARE: no trailing slash is expected in feed URL
     //   private _datafeedUrl = 'https://demo_feed.tradingview.com';
-    private _datafeedUrl = 'https://www.marketwicks.com:4001';
+    private _datafeedUrl = 'https://www.marketwicks.com:4002';
     // private _datafeedUrl = 'https://192.168.0.155:4000/history';
     private _libraryPath: ChartingLibraryWidgetOptions['library_path'] = '/assets/charting_library/';
     private _chartsStorageUrl: ChartingLibraryWidgetOptions['charts_storage_url'] = 'https://www.marketwicks.com:4000';
@@ -107,7 +116,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             theme: "dark",
             toolbar_bg: "#0000",
             "timezone": "Asia/Kolkata",
-            datafeed: new (window as any).Datafeeds.UDFCompatibleDatafeed(this._datafeedUrl, 1000),
+            datafeed: new (window as any).Datafeeds.UDFCompatibleDatafeed(this._datafeedUrl, 5000),
 
             interval: this._interval,
             container: this._containerId,
@@ -168,13 +177,14 @@ export class ChartsComponent implements OnInit, OnDestroy {
             this._tvWidget = null;
         }
     }
-
+    getID: any
+    _symbol1: any
     ngOnChanges(changes: any) {
         console.log("changes", changes.items.currentValue
         )
-        this._symbol = changes.items.currentValue;
-        console.log("this._symbol", this._symbol)
-
+        this._symbol = changes.items?.currentValue?.Base;
+        this._symbol1 = changes.items?.currentValue?.Symbol;
+        
         this.getChartWigit()
         // console.log("vikas pathak", this.items)
         // set page when items array first set or changed

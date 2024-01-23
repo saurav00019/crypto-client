@@ -535,12 +535,12 @@
                         <div class="col-md-12">
                             <div class="myfloating">
                                 <div class="form-floating ">
-                                    <input type="text" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="unit_price" placeholder="Enter email" name="email">
+                                    <input type="number" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="unit_price" placeholder="Enter email" name="email">
                                     <label for="email">Unit Price<sup>*</sup></label>
                                   </div>
                                   <div class="my-error">
                                   <div *ngIf="makeOrders.controls['unit_price'].invalid && (makeOrders.controls['unit_price'].dirty || makeOrders.controls['unit_price'].touched)" class="text-danger">
-                                    <div *ngIf="makeOrders.controls['unit_price'].errors.required">Please enter unit price</div>  
+                                    <div *ngIf="makeOrders.controls['unit_price'].errors.pattern">Please enter unit price</div>  
                                    
                                   </div>
                                   </div>
@@ -551,7 +551,7 @@
                         <div class="col-md-12">
                             <div class="myfloating">
                                 <div class="form-floating ">
-                                    <input type="text" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="total_qty" placeholder="Enter email" name="email">
+                                    <input type="number" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="total_qty" placeholder="Enter email" name="email">
                                     <label for="email">Total Quantity<sup>*</sup></label>
                                   </div>
                                   <div class="my-error">
@@ -567,7 +567,7 @@
                         <div class="col-md-6">
                             <div class="myfloating">
                                 <div class="form-floating ">
-                                    <input type="text" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="min_qty" placeholder="Enter email" name="email">
+                                    <input type="number" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="min_qty" placeholder="Enter email" name="email">
                                     <label for="email">Min. Quantity<sup>*</sup></label>
                                   </div>
                               </div>
@@ -582,7 +582,7 @@
                         <div class="col-md-6">
                             <div class="myfloating">
                                         <div class="form-floating ">
-                                            <input type="text" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="max_qty" placeholder="Enter email" name="email">
+                                            <input type="number" class="form-control" id="email" (keypress)="numberOnly($event)" formControlName="max_qty" placeholder="Enter email" name="email">
                                             <label for="email">Max. Quantity<sup>*</sup></label>
                                           </div>
                                       </div>

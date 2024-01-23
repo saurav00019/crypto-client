@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiDataService } from 'src/app/services/dataservice/api-data.service';
 import Swal from 'sweetalert2';
 import{SharedDataService} from "../../../services/sharedData/shared-data.service";
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-my-order',
   templateUrl: './my-order.component.html',
@@ -13,7 +14,18 @@ export class MyOrderComponent implements OnInit {
 
   active = 1;
   statusId: any 
-  constructor(private modalService: NgbModal, private api : ApiDataService ,private shared: SharedDataService, private toastrService: ToastrService) {}
+  symbolIDToFilterAll: any =[]
+  constructor(private modalService: NgbModal, private api : ApiDataService ,private shared: SharedDataService,
+     private toastrService: ToastrService, private datePipe: DatePipe) {
+  
+    // ('p2pData') || '{}')
+    
+      // this.symbolIDToFilterAll = JSON.parse(localStorage.getItem('symbolIDToFilterAll') || '{}')
+      // console.log("symbolIDToFilterAllsymbolIDToFilterAll",this.symbolIDToFilterAll);
+      
+    
+
+  }
 
   tradeListData: any
   openViewTrade(content: any , va1: any) {
@@ -54,6 +66,9 @@ export class MyOrderComponent implements OnInit {
 showNoData: any
 dataLength: any
 orderList: any
+myOrderData: any =[]
+modelImageData: any =[]
+imgg: any
 listOfOrder(val:any){
  this.shared.loader(true);
   console.log("list data",val);
@@ -66,8 +81,25 @@ listOfOrder(val:any){
   this.api.orderList(obj).subscribe({
     next: (res: any) => {
       this.shared.loader(false);
+    
+  
+
   if(val == 1){
     this.orderList = res.lstOrders.filter((order: any) => order.Status === 1 );
+   
+  //   console.log("this.myOrderDatathis.myOrderData",this.myOrderData)
+  //   this.orderList.forEach((item: any, index:any) => {
+  //     console.log("item",item);
+  //     // this.modelImageData= this.symbolIDToFilterAll.filter((item1: any) => item1.BaseSym === item.Crypto );
+
+  //     this.modelImageData= this.symbolIDToFilterAll.filter((item1: any) => item1.BaseSym === item.Crypto );
+     
+  //     console.log("this.modelImageDatathis.modelImageData",this.modelImageData[0]?.ICON_Path);
+      
+  //     this.orderList[index].imgg= this.modelImageData[0]?.ICON_Path
+  
+ 
+  // })
   }
   else if(val == 4){
   
@@ -139,6 +171,16 @@ deleteData: any
          Swal.fire('Error', 'An error occurred while cancelling the order.', 'error');
       console.log(err);
     }})
+  }
+
+
+  // ============================================================================= Date convert ===================================================
+
+  convertedDate: any
+  trimmedDate: any
+  convertDate(val: any) {
+    this.convertedDate = new Date(val + ' UTC');
+         this.trimmedDate = this.datePipe.transform(this.convertedDate, 'EEE MMM dd yyyy hh:mm:ss');
   }
 
   // ========================================================================== pagination ================================================================================================

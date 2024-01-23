@@ -5,11 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { WebSocketSubject } from 'rxjs/webSocket';
 import { GlobalAPIService } from 'src/app/service/global-api.service';
-import { Web2Service } from 'src/app/service/web2.service';
-import { WebnewService } from 'src/app/service/webnew.service';
-import { WebsocketService } from 'src/app/service/websocket.service';
-import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
 
+import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-trade-book-order',
@@ -33,27 +31,8 @@ export class TradeBookOrderComponent {
   bufferArray: any=[];
   jsonBytes: any = Uint8Array;
   private socket: any = WebSocketSubject;
-  constructor(private api: GlobalAPIService,private web2:Web2Service,private webn: WebnewService,private web:WebsocketService,private fb: UntypedFormBuilder,private shared: SharedDataService,private modalService: NgbModal,private toaster: ToastrService){
-
-  
-    this.subscription = this.shared.dataArray$.subscribe(dataArray => {
-      this.receivedDataArray = dataArray;
-      console.log("Order getdata",this.receivedDataArray)
-      console.log("date",this.today)
-     
-    });
-
-    this.shared.ordCancel$.subscribe( (res: any) => {
-      this.sendData=res
-      // if(this.sendData.ID == 122){
-        // this.receivedDataArray = []
-        console.log("this.receivedDataArraythis.receivedDataArray",this.receivedDataArray)
-      // }
-      // console.log("resresres",res)
-    });
-
-  
-
+  reportStatus: any
+  constructor(private api: GlobalAPIService,private datePipe: DatePipe,private fb: UntypedFormBuilder,private shared: SharedDataService,private modalService: NgbModal,private toaster: ToastrService){
 
 
     this.makeOrdersLimit = fb.group({
@@ -74,10 +53,30 @@ export class TradeBookOrderComponent {
       console.log("resresres",res)
     });
 
- 
+  
+    this.shared.report_Req$.subscribe( (res: any) => {
+      this.reportStatus=res
+      if(this.reportStatus == 1){
+       this.getAllOrder();
+      }
+      else{
+        
+      }
+      console.log("resresres",res)
+    });
+
+    this.shared.allMarketLiveData$.subscribe( (res: any) => {
+      this.marketWtachLive = res
+      this.getCMP()
+      // console.log("Market watch data",res)
+    });
+
+
+    this.getAllSymbolImg();
   
   }
 
+  marketWtachLive: any = []
    modifyData: any ={}
    modifyDataValue: any ={}
 	openLg(content: any,val: any, orderData: any) {
@@ -112,17 +111,47 @@ export class TradeBookOrderComponent {
   }
 	}
 
+  //=========================================================== Datepipe formate with GMT ====================================================
 
+  formatTimestamp(timestamp: number, format: string, timeZone: string, locale?: string): string {
+    const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+    const formattedDate = this.datePipe.transform(date, format, timeZone, locale);
+    return formattedDate || 'Invalid Date'; // Provide a default value in case of null
+  }
 
-
+  
     symbolID: any
+    onchangeMarketData: any =[]
   ngOnChanges(changes: SimpleChanges) {
     console.log("changes['items']changes['items']", changes['items3']?.currentValue )
  
-    this.symbolID = changes['items3']?.currentValue.Quote.ID
-    this.getAllSymbolImg();
+    this.symbolID = changes['items3']?.currentValue.oQuote.ID
+    console.log("this.symbolID  Data",this.symbolID);
+  //  this.onchangeMarketData= this.marketWtachLive 
+
+    // this.getAllSymbolImg();
     this.getAllOrder()
     
+  }
+  cmp: any
+
+    getCMP(){
+
+  this.getllOrderData1.forEach((order: any, index:any) => {
+
+ 
+    this.marketWtachLive.forEach((res1:any) => {
+      if(res1.SymbID == order.SymbolID){
+     
+        this.getllOrderData1[index].L = res1.L;
+
+      }
+    });
+
+
+      // console.log("found this.getllOrderData1[index].LSymbol.L",  this.getllOrderData1)
+    
+  });
   }
 
 
@@ -146,16 +175,9 @@ export class TradeBookOrderComponent {
   }
 modifyData1: any
 
-  // modifyOrder(orderId: any, val: any){
-  //   console.log("All Data", val)
-  //   this.modifyData = val
-  //   this.modalRef.open()
-  //   console.log(`Modifying order with ID ${orderId}`);
-  
-  // }
 
   CaneclOrder(): void {
-    console.log("order details", this.makeOrdersLimitMod);
+    // console.log("order details", this.makeOrdersLimitMod);
     let val = this.makeOrdersLimitMod.value
    
     let obj = {
@@ -167,9 +189,7 @@ modifyData1: any
          OrdNo:this.cancelDataValue.OrderID
 
     }
-     console.log(`Cancel order with ID ${this.indexCancel}`);
-    // this.receivedDataArray.splice(this.indexCancel, 1)
-   console.log("Cancell allll",this.receivedDataArray)
+     
    this.shared.getCancel(obj)
    this.OrderCancel(obj)
     this.shared.getOrderCanRes(val);
@@ -192,14 +212,13 @@ modifyData1: any
      OrdNo:this.sendData.orderNo
    }
    console.log("this.sendDatathis.sendData", obj)
- this.web2.cancell(obj)
-   
-   
+    
+   this.getAllOrder()
      }
 
 
      OrderCancel(obj: any) {
-      debugger
+      
      
           this.jsonBytes = []
           this.jsonBytes = this.ordeCancel(obj);
@@ -306,36 +325,9 @@ modifyData1: any
 
     this.shared.modifyData(obj)
     this.shared.obSym(1)
-      // let obj = {
-      //   Key: 'TEST',
-      //   S:  this.modifyData.S,
-      //   ID: 151,
-      //   U: Number(this.modifyData.U),
-      //   Buy_Sell: Number(this.modifyData.Buy_Sell),
-      //   T: this.modifyData.T,
-      //   P: Number(this.makeOrdersLimit.value.price),
-      //   L: Number(this.makeOrdersLimit.value.QuantityL),
-      //   SL: Number(this.modifyData.SL),
-      //   C: this.modifyData.C,
-        
-      // }
-      // const modifiedItemIndex = this.receivedDataArray.findIndex((item: any) => item.orderNo === this.modifyData.orderNo);
-
-      // if (modifiedItemIndex !== -1) {
-      //   const modifiedItem = this.receivedDataArray[modifiedItemIndex];
-  
-      //   // Modify the properties of the item
-      //   modifiedItem.SL = Number(this.makeOrdersLimitMod.value.stopLos);
-      //   modifiedItem.TP = 3.3;
-      //   modifiedItem.Price = Number(this.makeOrdersLimitMod.value.price);
-      //   modifiedItem.Lot = Number(this.makeOrdersLimitMod.value.Lot);
-  
-      //   // Call your modifyData function with the modified item
-      //   this.shared.modifyData(modifiedItem);
-      // }
     
       console.log("Modifirde",obj);
-     
+      this.getAllOrder()
       this.closedModel()
       // setTimeout(() => {
       //   this.toaster.success("Modified successfull", "Success")
@@ -366,6 +358,7 @@ modifyData1: any
 
 
     getAllOrder(){
+   
       let obj = {
         Report_Req:0,   // ORDER = 0,TRADE = 1,NET_POS = 2   
         _dtFrom:"",
@@ -386,36 +379,33 @@ modifyData1: any
     });
     }
 
-
-    
-    
-
-
   
-    allRepostData: any={}
-    getllOrderData:any=[]
+    allRepostData1: any={}
+    getllOrderData1:any=[]
     
     modelImageData: any =[]
-   
+  
     imgg: any
     SymbolName: any
     getAllOrderCallbk(){
-      this.getllOrderData = []
-    
+      this.getllOrderData1 = []
+ 
       this.api.getAllOTradeCallbackurl().subscribe({
         next: (res: any) => {
-          this.allRepostData = res?.lstOrd.filter((item: any) => item.Status === 2 || item.Status === 6 || item.Status === 7);
-          console.log("this.allRepostData",this.allRepostData)
-          this.getllOrderData=this.allRepostData
-          this.getllOrderData.forEach((item: any, index:any) => {
+       
+          this.allRepostData1 = res?.lstOrd.filter((item: any) => item.Status === 2 || item.Status === 6 || item.Status === 7);
+          console.log("this.allRepostData",this.allRepostData1)
+          this.getllOrderData1=this.allRepostData1
+          this.getllOrderData1.forEach((item: any, index:any) => {
               this.modelImageData= this.symbolIDToFilterAll.filter((item1: any) => item1.SymbolID === item.SymbolID );
              
-             this.getllOrderData[index].imgg= this.modelImageData[0]?.ICON_Path
-             this.getllOrderData[index].SymbolName= this.modelImageData[0]?.BaseSym
+             this.getllOrderData1[index].imgg= this.modelImageData[0]?.ICON_Path
+            //  this.getllOrderData[index].cmp= this.
+             this.getllOrderData1[index].SymbolName= this.modelImageData[0]?.BaseSym
          
           })
           
-          console.log("this.getllOrderDatathis.getllOrderData", this.getllOrderData)
+          // console.log("this.getllOrderDatathis.getllOrderData", this.getllOrderData1)
       
         
       

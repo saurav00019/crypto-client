@@ -16,7 +16,7 @@ p{margin-bottom: 0;}
 .panel-heading_custom p{font-size: 14px;margin-bottom: 0;background-color: var(--dark-blue);}
 .panel-heading_custom.markets { background: #202740;border-radius: 1rem;overflow-y: scroll; max-height: 282px !important; }
 // .table{--bs-table-bg: #202740;}
-.table > :not(caption) > * > *{color: #b3b3b3;padding: 2px 8px; border: none;font-size: 13px;background: var(--dark-blue);;}
+.table > :not(caption) > * > *{color: #b3b3b3;padding: 2px 8px; border: none;font-size: 11px;background: var(--dark-blue);;}
 .table{--bs-table-border-color: #dee2e600;margin-bottom: 0px;padding-bottom: 0px;border-radius: 1rem;overflow: hidden !important}
 .table tr th:first-child {border-radius: 15px 0 0 }
 .table tr th:last-child{border-radius: 0 15px 0px 0 }

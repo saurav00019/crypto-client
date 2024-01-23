@@ -17,8 +17,9 @@ import { NgOtpInputModule } from  'ng-otp-input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderPtwopComponent } from './common/header-ptwop/header-ptwop.component';
 import { LoaderComponent } from './common/loader/loader.component';
-import { OnlineOfflineService } from './services/sharedData/online-offline.service';
+
 import { DatePipe } from '@angular/common';
+
 
 
 @NgModule({
@@ -27,7 +28,6 @@ import { DatePipe } from '@angular/common';
     NumberValidateDirective,
     HeaderPtwopComponent,
     LoaderComponent
-    
    
   
   
@@ -44,7 +44,7 @@ import { DatePipe } from '@angular/common';
     NgbModule
    
   ],
-  providers: [ApiDataService,DatePipe,  HttpClientModule,OnlineOfflineService,{
+  providers: [ApiDataService,DatePipe,  HttpClientModule,{
     provide: HTTP_INTERCEPTORS,
     useClass: myHttpInterceptor,
     multi: true

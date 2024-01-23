@@ -170,9 +170,10 @@ export class GlobalAPIService {
 
 
   getOrderAskBid(obj:any){
+  
     // http://62.216.82.94:5102/CryptoExch
     // return this.http.get('https://apitest.bitziana.com/Tradersroom_API_bitzianatest/GET_SYMBOL_OB?SymbolID='+obj)
-    return this.http.get('https://apibitz.bitziana.com/Tradersroom_API_bitziana/GET_SYMBOL_OB?SymbolID='+obj)
+    return this.http.get('https://apibitz.bitziana.com/Tradersroom_API_bitziana/GET_SYMBOL_OB?SymbolID='+obj.SymbolID)
     // return this.http.get('http://62.216.82.94:6102/CryptoExch/GET_SYMBOL_OB?SymbolID='+obj)
   }
 // ========================================================================== Report_Req ====================================================================== 
@@ -182,6 +183,22 @@ export class GlobalAPIService {
     return this.http.post('https://apibitz.bitziana.com/Tradersroom_API_bitziana/OME_USR_REPORT_REQ',obj)
   }
  
+  PostTradeSnap(obj: any){
+    // return this.http.post('https://apitest.bitziana.com/Tradersroom_API_bitzianatest/OME_USR_REPORT_REQ',obj) 
+    return this.http.post('https://apibitz.bitziana.com/Tradersroom_API_bitziana/GET_USER_TRADE_POS',obj)
+  }
+  PostTradePosSnap(obj: any){
+    // return this.http.post('https://apitest.bitziana.com/Tradersroom_API_bitzianatest/OME_USR_REPORT_REQ',obj) 
+    return this.http.post('https://apibitz.bitziana.com/Tradersroom_API_bitziana/GET_USER_TRADE_POS_SNAP',obj)
+  }
+
+  getTradeSnap(){
+      return this.http.get('https://www.marketwicks.com:4000/apiGatway/getUserTradePos')
+  }
+
+  getTradePosSnap(){
+    return this.http.get('https://www.marketwicks.com:4000/apiGatway/getUserTradePosSnap')
+}
   getAllOTradeCallbackurl(){
     return this.http.get('https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl')
   }

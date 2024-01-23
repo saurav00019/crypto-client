@@ -6,10 +6,10 @@ import { ClientExchangeDashComponent } from './client-exchange-dash/client-excha
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
-import { HomeComponent } from './home/home.component';
+
 @NgModule({
   declarations: [
-    ClientExchangeDashComponent, HomeComponent
+    ClientExchangeDashComponent
   ],
   imports: [
     CommonModule,

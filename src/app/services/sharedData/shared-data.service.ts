@@ -56,8 +56,19 @@ export class SharedDataService
     private imageData: Subject<any> = new Subject<any>();
     imageData$: Observable<any> = this.imageData.asObservable();
 
+  
+    private report_Req: Subject<any> = new Subject<any>();
+    report_Req$: Observable<any> = this.report_Req.asObservable();
+
+
+    private allMarketLiveData: Subject<any> = new Subject<any>();
+    allMarketLiveData$: Observable<any> = this.allMarketLiveData.asObservable();
+
     private obSymbol: Subject<any> = new Subject<any>();
     obSymbol$: Observable<any> = this.obSymbol.asObservable();
+
+    private obSymb: Subject<any> = new Subject<any>();
+    obSymb$: Observable<any> = this.obSymb.asObservable();
 
     private dataArraySubject = new BehaviorSubject<string[]>([]); // Array of data
     public dataArray$: Observable<string[]> = this.dataArraySubject.asObservable();
@@ -71,6 +82,7 @@ export class SharedDataService
     private dataArraySubject1 = new BehaviorSubject<string[]>([]); // Array of data
     public dataArray1$: Observable<string[]> = this.dataArraySubject1.asObservable();
   
+    
     addDataToSharedArray1(data: any) {
       const currentDataArray = this.dataArraySubject1.getValue();
       const updatedDataArray = [...currentDataArray, data];
@@ -99,7 +111,7 @@ export class SharedDataService
     }
     else   if(localStorage.getItem("kycValue")=="6"){
       this.rout.navigateByUrl("/p2p")
-      // this.sessionService.setSession('active', 13);
+   
     }
   }
 
@@ -132,33 +144,48 @@ export class SharedDataService
     }
  
     getPlaOrderData(data: any){
+
       this.placeOrder.next(data);
      }
 
      getOrderCanRes(data: any){
-      debugger
+   
       this.ordCancel.next(data)
+     }
+
+     getReporStatus(data: any){
+      this.report_Req.next(data)
+     }
+
+     
+     marketLiveData(data: any){
+      this.allMarketLiveData.next(data)
      }
 
     //  orderCancel
      getCancel(data: any){
-      debugger
+
       this.orderCancel.next(data)
      }
 
     //  obSymbol
     obSym(data: any){
-      debugger
+    
       this.obSymbol.next(data)
      }
 
+     obSymID(data: any){
+  
+      this.obSymb.next(data)
+     }
+
      modifyData(data: any){
-      debugger
+     
       this.modif.next(data)
      }
 
      imgBySymbol(data: any){
-   
+  
       this.imageData.next(data)
      }
 

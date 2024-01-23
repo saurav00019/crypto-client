@@ -9,6 +9,7 @@ import { SHA256 } from 'crypto-js';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
+import { GlobalAPIService } from 'src/app/service/global-api.service';
 // import { formatDate } from '@angular/common';
 // import { log } from 'console';
 
@@ -55,7 +56,7 @@ export class ClientP2pDashComponent implements OnInit {
 
   modalRef?: any;
   kycStatus: any
-  constructor(private modalService: NgbModal,config: NgbModalConfig,private datePipe: DatePipe, private sharedData:SharedDataService, private http: HttpClient, private api: ApiDataService, private toastrService: ToastrService, private fb: UntypedFormBuilder,) {
+  constructor(private modalService: NgbModal,config: NgbModalConfig,private datePipe: DatePipe, private sharedData:SharedDataService, private http: HttpClient, private api: ApiDataService, private global: GlobalAPIService, private toastrService: ToastrService, private fb: UntypedFormBuilder,) {
     config.backdrop = 'static';
 		config.keyboard = false;
     this.makeOrders = fb.group({
@@ -90,7 +91,22 @@ export class ClientP2pDashComponent implements OnInit {
 
     this.getCrypto();
     this.getGatewaysLis()
+    this.getAllSymbolImg()
+  }
+  symbolIDToFilterAll: any =[]
 
+  getAllSymbolImg() {
+ 
+      this.global.getSymbolImage().subscribe({
+        next: (res: any) => {
+          this.symbolIDToFilterAll = res
+          console.log(" this.symbolIDToFilterAll this.symbolIDToFilterAll", this.symbolIDToFilterAll)
+          this.sharedData.imgBySymbol(this.symbolIDToFilterAll)
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+      });
   }
   // ========================================================================== Min quantity should not be greater than Max quantity ================================================================================================
 
@@ -620,7 +636,9 @@ addTranReqq(){
 
   //=========================================================================Order single List==============================================================================================
   showNoData: any
+  AllDashData: any =[]
   dataLength: any
+  modelImageData: any = []
   orderList: any
   listOfOrder(val : any) {
     this.sharedData.loader(true);
@@ -635,7 +653,17 @@ addTranReqq(){
       next: (res: any) => {
         // this.orderList=res.lstOrders
         this.sharedData.loader(false);
-        this.orderList = res.lstOrders.filter((order: any) => order);
+      
+        this.orderList = res.lstOrders.filter((order: any) => order.Status == 1);
+        // this.AllDashData=  this.orderList
+        // console.log(" this.AllDashData", this.AllDashData)
+        // this.AllDashData.forEach((item: any, index:any) => {
+        //     this.modelImageData= this.symbolIDToFilterAll.filter((item1: any) => item1.BaseSym === item.Crypto );
+           
+        //    this.AllDashData[index].imgg= this.modelImageData[0]?.ICON_Path
+        
+       
+        // })
         this.dataLength = res.lstOrders.length
         if (this.dataLength > 0) {
           this.showNoData = 1
@@ -794,11 +822,15 @@ let obj ={
       dtValidUpto: this.datePipe.transform(formsVal.Validity, 'yyyy-MM-dd HH:mm:ss', 'GMT'),
     }
 
-    if  ((obj.MinQty > obj.MaxQty) || (obj.MinQty > obj.Qty ) || (obj.MaxQty > obj.Qty ) ) {
+    // if  ((obj.MinQty > obj.MaxQty) && (obj.MinQty > obj.Qty ) && (obj.MaxQty > obj.Qty ) ) {
+      if  (Number(obj.MinQty) > Number(obj.MaxQty) || (Number(obj.MinQty) > Number(obj.Qty ) || (Number(obj.MaxQty) > Number(obj.Qty )))  ) {
+      // if  (Number(this.makeOrders.value.max_qty) < Number(this.makeOrders.value.min_qty)) {
       this.toastrService.error(`MaxQty should be greater then ${this.makeOrders.value.min_qty} and Total qty is greater then ${this.makeOrders.value.max_qty} or ${this.makeOrders.value.min_qty}`)
       return;
+    } else if (obj.Price == 0 || obj.Qty == 0 || obj.MinQty == 0 || obj.MaxQty == 0 ) {
+      this.toastrService.error("Price should not be zero")
+      return;
     } else {
-  
     this.api.makeOrder(obj).subscribe({
       next: (res: any) => {
 

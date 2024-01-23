@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { ApiDataService } from 'src/app/services/dataservice/api-data.service';
 import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
 import { ToastrService } from 'ngx-toastr';
-import { SessionService } from 'src/app/services/session.service';
 
 import Swal from 'sweetalert2';
-import { WebsocketService } from 'src/app/service/websocket.service';
-import { WebnewService } from 'src/app/service/webnew.service';
-import { Web2Service } from 'src/app/service/web2.service';
+
+
+import { GlobalAPIService } from 'src/app/service/global-api.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -38,7 +37,7 @@ singnup:boolean=false;
     this.ReadMore = !this.ReadMore; 
     this.visible = !this.visible
   }
-  constructor(private services:ApiDataService,private web2:Web2Service,private web: WebsocketService,private sessionService: SessionService, private toastrService: ToastrService,private formBuilder: FormBuilder,  private router:Router,public shareService:SharedDataService) { 
+  constructor(private services:ApiDataService,private global : GlobalAPIService, private toastrService: ToastrService,private formBuilder: FormBuilder,  private router:Router,public shareService:SharedDataService) { 
     
     
     this.shareService.selectedsignupValue.subscribe((res)=>{
@@ -147,6 +146,7 @@ this.shareService.loader(true)
         localStorage.setItem('ProfileID',this.profileID),
         localStorage.setItem('isLoggedIn', "true"),
         localStorage.setItem('ProfileID',this.profileID),
+       
         this.getUserInfo(),
         this.getUserStage()
         this.shareService.loginHeader(true)
@@ -191,6 +191,22 @@ this.shareService.loader(true)
   //     }
 
 
+  }
+
+  symbolIDToFilterAll: any =[]
+
+  getAllSymbolImg() {
+ 
+      this.global.getSymbolImage().subscribe({
+        next: (res: any) => {
+          this.symbolIDToFilterAll = res
+          console.log(" this.symbolIDToFilterAll this.symbolIDToFilterAll", this.symbolIDToFilterAll)
+          localStorage.setItem("symbolIDToFilterAll", JSON.stringify(this.symbolIDToFilterAll))
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+      });
   }
 
  logout(){
@@ -296,7 +312,7 @@ this.services.GET_USER_STAGE(params).subscribe((data:any)=>{
     
     this.shareService.loader(false);
     this.router.navigate(['/p2p']);
-  
+    // this.getAllSymbolImg()
     localStorage.setItem('headerActive', "false");
 
   

@@ -1,7 +1,7 @@
 <div class=" ">
     <div class="row middle">
         <div class="col-xxl-12 col-xl-12 col-md-12 col-12 left-side ordertrade-book-h3">
-            <div class="loader-table" *ngIf="getAlltreadeData.length == 0">
+            <!-- <div class="loader-table" *ngIf="getllOrderData1.length == 0">
                 <table class="tg">
                     <tr>
                       <th class="tg-cly1">  
@@ -134,57 +134,54 @@
                       </td>
                     </tr>
                   </table>
-            </div>
+            </div> -->
             <div class="table-responsive">
-                <table class="table" id="deposit"  *ngIf="getAlltreadeData.length > 0">
+                <table class="table" id="deposit">
                     <thead>
                         <tr>
 
                             <th>Timestamp</th>
+                            <th>Order No.</th>
                             <th>Symbol</th>
-                            <th>Triger</th>
                             <th>Type</th>
                             <th>Lot</th>
                             <th>Price</th>
-                            <!-- <th>Profit</th>
-                            <th>Action</th> -->
+                            <th>CMP</th>
+                            <th>Profit</th>
+                            <!-- <th>Action</th> -->
                         </tr>
                     </thead>
-                    <tbody id="infoTable">
-                        <tr *ngFor="let order of getAlltreadeData ; let i = index">
+                    <tbody id="infoTable" *ngIf="getllOrderData1.length > 0">
+                        <tr *ngFor="let order of getllOrderData1 ; let i = index">
                             <td>
-                              {{ formatTimestamp(order.TimeClose, 'yyyy-MM-dd HH:mm:ss a', 'GMT') }}
+                                {{ formatTimestamp(order.Time, 'yyyy-MM-dd HH:mm:ss', 'GMT') }}
+                           
                             </td>
+                            <td>{{order.OrderID}}</td>
                             <td class="tbl-img">
 
                                 <div class="d-flex align-items-center">
-                                    <div><img style="border-radius: 50px;" class="watch-img" [src]="order.imgg"></div>
+                                    <div><img class="watch-img" [src]="order.imgg"></div>
                                     <div>
                                         <div>{{order.SymbolName}}</div>
-
+                                     
                                     </div>
                                 </div>
 
-
                             </td>
-                            <td>0</td>
-                            <td>
-                                <span class="cl-type-buy" *ngIf="order.Buy_Sell == 1">Buy</span>
+                            <td><span class="cl-type-buy" *ngIf="order.Buy_Sell == 1">Buy</span>
                                 <span class="cl-type-sell" style *ngIf="order.Buy_Sell == 2">Sell</span>
-                                <span  style *ngIf="order.Buy_Sell == 0">0</span>
                             </td>
                             <td>≈ {{order.Lot}} </td>
-                            <td>{{order.Price}}</td>
+                            <td>{{order.Price | number: '1.4-4'}}</td>
+                            <td>{{order.L | number: '1.4-4'}}</td>
 
-
-                            <!-- <td>0</td>
-                            <td style="color: yellow;">Trade</td> -->
-
-
+                            <td>0</td>
+                           <td>0</td>
                         </tr>
 
                     </tbody>
-                    <!-- <tbody *ngIf="getAlltreadeData.length == 0">
+                    <tbody *ngIf="getllOrderData1.length == 0">
                         <tr>
                             <td colspan="6">
                                 <div style="text-align: center; padding-top: 2%; padding-bottom: 2%; ">
@@ -193,7 +190,7 @@
                             </td>
                         </tr>
 
-                    </tbody> -->
+                    </tbody>
                 </table>
             </div>
 

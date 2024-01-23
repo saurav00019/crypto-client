@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { GlobalAPIService } from 'src/app/service/global-api.service';
 import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
 import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-ex-tradebook-trade',
   templateUrl: './ex-tradebook-trade.component.html',
@@ -14,11 +15,23 @@ export class ExTradebookTradeComponent {
   receivedDataArray1:any = [];
   subscription:any= Subscription;
   today: number = Date.now();
-  constructor(private shared: SharedDataService, private api: GlobalAPIService,private toaster: ToastrService){
+  reportStatus: any
+  constructor(private datePipe: DatePipe,private shared: SharedDataService, private api: GlobalAPIService,private toaster: ToastrService){
     this.subscription = this.shared.dataArray1$.subscribe(dataArray1 => {
       this.receivedDataArray1 = dataArray1;
       
       console.log("Trade data getdata",this.receivedDataArray1)
+    });
+
+    this.shared.report_Req$.subscribe( (res: any) => {
+      this.reportStatus=res
+      if(this.reportStatus == 1){
+       this.getAllOrder();
+      }
+      else{
+        
+      }
+      console.log("resresres",res)
     });
   }
 
@@ -50,20 +63,33 @@ export class ExTradebookTradeComponent {
     });
   }
 
-
-
-  getAllOrder(){
-    let obj = {
-      Report_Req:0,   // ORDER = 0,TRADE = 1,NET_POS = 2   
-      _dtFrom:"",
-      _dtTo:"",
-      Key:"",
-      UserID: Number(localStorage.getItem('ProfileID')),
-      CB_URL:"https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl"
+  formatTimestamp(timestamp: number, format: string, timeZone: string, locale?: string): string {
+    const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+    const formattedDate = this.datePipe.transform(date, format, timeZone, locale);
+    return formattedDate || 'Invalid Date'; // Provide a default value in case of null
   }
-  this.api.reportReq(obj).subscribe({
+  dateTrade1: any
+  getAllOrder(){
+    let currentDate = new Date();
+    let formattedDate1 = this.datePipe.transform(currentDate, 'yyyy-MM-dd 11:59:59', 'GMT');
+    this.dateTrade1 = formattedDate1
+    console.log("formattedDate1",this.dateTrade1);
+
+    let obj = {
+      "Report_Req":1,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
+      _dtFrom:"2024-01-12 07:01:22",
+      _dtTo:this.dateTrade1,
+      "Initial":1,
+      "MaxCount":200,
+      "Key":"",
+      "UserID":Number(localStorage.getItem('ProfileID')),               // user profile ID
+      "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getUserTradePos",                // this URL used for getting data
+      "oFilter":3,
+      "Value": Number(localStorage.getItem('ProfileID'))
+      }
+      this.api.PostTradePosSnap(obj).subscribe({
     next: (res: any) => {
-      this.getAllOrderCallbk();
+      this.getTradeData();
   
     },
     error: (err: any) => {
@@ -86,38 +112,30 @@ export class ExTradebookTradeComponent {
   netPostionData : any =[]
   imgg: any
   SymbolName: any
-  getAllOrderCallbk(){
-    this.getllOrderData = []
-  this.getAlltreadeData=[]
-this.netPostionData =[]
-    this.api.getAllOTradeCallbackurl().subscribe({
+
+  getTradeData(){
+   
+    this.getAlltreadeData = []
+      this.api.getTradePosSnap().subscribe({
       next: (res: any) => {
-        this.allRepostData = res?.lstTrd.filter((item: any) => item.Status === 3);
-        console.log("this.allRepostData",this.allRepostData)
-        this.getAlltreadeData=this.allRepostData
-        this.getAlltreadeData=this.allRepostData
-        this.getAlltreadeData.forEach((item: any, index:any) => {
-            this.modelImageData= this.symbolIDToFilterAll.filter((item1: any) => item1.SymbolID === item.SymbolID );
-           
-           this.getAlltreadeData[index].imgg= this.modelImageData[0]?.ICON_Path
-           this.getAlltreadeData[index].SymbolName= this.modelImageData[0]?.BaseSym
-       
-        })
-        
-        console.log("this.getAlltreadeData", this.getAlltreadeData)
+      console.log("Trade data ", res)
+      this.allRepostData = res
+      this.getAlltreadeData = this.allRepostData?.lstTrd
+      console.log(" this.getAlltreadeData  this.getAlltreadeData", this.getAlltreadeData);
       
-      
-        // this.listBygase.forEach((item: any, index:any) => {
-        //   this.allImage= this.symbolIDToFilterAll.filter((item1: any) => item1.SymbolID === item.oQuote.ID );
-         
-        //   this.listBygase[index].img= this.allImage[0]?.ICON_Path
-       
-      
-    
+      this.getAlltreadeData.forEach((item: any, index: any) => {
+        this.modelImageData = this.symbolIDToFilterAll.filter((item1: any) => item1.SymbolID === item.SymbolID);
+
+        this.getAlltreadeData[index].imgg = this.modelImageData[0]?.ICON_Path
+        this.getAlltreadeData[index].SymbolName = this.modelImageData[0]?.BaseSym
+
+      })
+
+
       },
       error: (err: any) => {
         console.log(err);
-    
+
       },
     });
   }

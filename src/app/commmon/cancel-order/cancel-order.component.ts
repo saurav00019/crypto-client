@@ -16,11 +16,11 @@ export class CancelOrderComponent {
   subscription:any= Subscription;
   today: number = Date.now();
   constructor(private shared: SharedDataService, private api: GlobalAPIService,private toaster: ToastrService){
-    this.subscription = this.shared.dataArray1$.subscribe(dataArray1 => {
-      this.receivedDataArray1 = dataArray1;
+    // this.subscription = this.shared.dataArray1$.subscribe(dataArray1 => {
+    //   this.receivedDataArray1 = dataArray1;
       
-      console.log("Trade data getdata",this.receivedDataArray1)
-    });
+    //   console.log("Trade data getdata",this.receivedDataArray1)
+    // });
     this.getAllSymbolImg();
     this.getAllOrder()
   }
@@ -85,12 +85,11 @@ export class CancelOrderComponent {
   imgg: any
   SymbolName: any
   getAllOrderCallbk(){
-    this.getllOrderData = []
-  this. getCancelAllData=[]
+  
 this.netPostionData =[]
     this.api.getAllOTradeCallbackurl().subscribe({
       next: (res: any) => {
-        this.allRepostData = res?.lstOrd.filter((item: any) => item.Status === 4);
+        this.allRepostData = res?.lstOrd.filter((item: any) => item.Status == 4);
         console.log("this.allRepostData",this.allRepostData)
         this.getCancelAllData=this.allRepostData
         this.getCancelAllData=this.allRepostData
@@ -102,7 +101,7 @@ this.netPostionData =[]
        
         })
         
-        console.log("this.getAlltreadeData", this.getCancelAllData)
+        console.log("this.getCancelAllData", this.getCancelAllData)
       
       
         // this.listBygase.forEach((item: any, index:any) => {

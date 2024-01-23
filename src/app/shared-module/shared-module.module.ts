@@ -12,9 +12,10 @@ import { ExTradebookTradeComponent } from '../commmon/ex-tradebook-trade.compone
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { CancelOrderComponent } from '../commmon/cancel-order/cancel-order.component';
 import { NetPositionComponent } from '../commmon/net-position/net-position.component';
+import { LogsComponent } from '../commmon/logs/logs.component';
 
 @NgModule({
-  declarations: [PaginationComponent,ChartsComponent,OrderPlaceComponent,TradeBookOrderComponent,ExTradebookTradeComponent,CancelOrderComponent,NetPositionComponent ],
+  declarations: [PaginationComponent,ChartsComponent,OrderPlaceComponent,TradeBookOrderComponent,ExTradebookTradeComponent,CancelOrderComponent,NetPositionComponent,LogsComponent],
   imports: [
     CommonModule,
     NgbDropdownModule,
@@ -23,6 +24,6 @@ import { NetPositionComponent } from '../commmon/net-position/net-position.compo
     ReactiveFormsModule,
     FormsModule, NgbTooltipModule
 
-  ],exports: [PaginationComponent,ChartsComponent,OrderPlaceComponent,TradeBookOrderComponent,ExTradebookTradeComponent,CancelOrderComponent,NetPositionComponent]
+  ],exports: [PaginationComponent,ChartsComponent,OrderPlaceComponent,TradeBookOrderComponent,ExTradebookTradeComponent,CancelOrderComponent,NetPositionComponent,LogsComponent]
 })
 export class SharedModuleModule { }

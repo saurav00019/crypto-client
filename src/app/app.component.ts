@@ -4,9 +4,8 @@ import { ChangeDetectorRef, Component , HostListener,NgZone, AfterViewInit, OnIn
 import { SharedDataService } from './services/sharedData/shared-data.service';
 import { ToastrService } from 'ngx-toastr';
 import { ApiDataService } from './services/dataservice/api-data.service';
-import { WebsocketService } from './service/websocket.service';
-// import { WebnewService } from './service/webnew.service';
-import { Web2Service } from './service/web2.service';
+
+
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
@@ -23,7 +22,7 @@ export class AppComponent  {
   headerFlag: any
 
   
-  constructor(private router: Router, private web2: Web2Service,private zone: NgZone,public api: ApiDataService, private web:WebsocketService,private cdr: ChangeDetectorRef, public sharedData:SharedDataService, private toastrService: ToastrService)
+  constructor(private router: Router,private zone: NgZone,public api: ApiDataService, private cdr: ChangeDetectorRef, public sharedData:SharedDataService, private toastrService: ToastrService)
   {
     this.isloggeding=this.api.isLogin();
 

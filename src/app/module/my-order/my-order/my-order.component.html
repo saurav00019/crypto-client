@@ -24,7 +24,7 @@
 
                                     <tr *ngFor="let data of pageOfItems">
                                         <td>
-                                            <div class="withname d-flex align-items-center"> {{data.dtCreatedOn}}</div>
+                                            <div class="withname d-flex align-items-center"> {{convertDate(data.dtCreatedOn)}} {{trimmedDate}}</div>
 
                                         </td>
                                         <td class="withname ">
@@ -44,7 +44,7 @@
                                             {{data.Min_Qty}} ~ {{data.Max_Qty}}<span class="bitcoin"> Limit</span>
                                         </td>
                                         <td>
-                                            {{data.dtValidUpto}}
+                                            {{convertDate(data.dtValidUpto)}} {{trimmedDate}}
                                         </td>
                                         <td>
                                             <!-- <a *ngIf="editShow" (click)="openViewTrade(content, data)"
@@ -103,7 +103,7 @@
 
                                     <tr *ngFor="let data of pageOfItems">
                                         <td>
-                                            <div class="withname d-flex align-items-center"> {{data.dtCreatedOn}}</div>
+                                            <div class="withname d-flex align-items-center"> {{convertDate(data.dtCreatedOn)}} {{trimmedDate}}</div>
 
                                         </td>
                                         <!-- <td class="withname d-flex align-items-center">
@@ -138,7 +138,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                {{data.dtValidUpto}}
+                                                {{convertDate(data.dtValidUpto)}} {{trimmedDate}}
                                             </div>
                                           
                                         </td>

@@ -1,91 +1,235 @@
 <div class=" ">
-  <div class="row middle">
-      <div class="col-xxl-12 col-xl-12 col-md-12 col-12 left-side ordertrade-book-h3">
-        <div class="table-responsive">
-            <table class="table" id="deposit">
-                <thead>
+    <div class="row middle">
+        <div class="col-xxl-12 col-xl-12 col-md-12 col-12 left-side ordertrade-book-h3">
+            <div class="loader-table" *ngIf="getllOrderData1.length == 0">
+                <table class="tg">
                     <tr>
-                      
-                        <th>Timestamp</th>
-                        <th>Symbol</th>
-                        <th>Type</th>
-                        <th>Lot</th>
-                        <th>Price</th>
-                        <th>Profit</th>
-                        <th>Action</th>
-                     </tr>
-                </thead>
-                <tbody id="infoTable" *ngIf="getllOrderData.length > 0">
-                    <tr *ngFor="let order of getllOrderData ; let i = index">
-                        <td>
-                            {{today | date:'yyyy-MM-dd HH:mm:ss'}}
-                        </td>
-                        <td class="tbl-img">
+                      <th class="tg-cly1">  
+                          <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                    </tr>
+                  </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="deposit">
+                    <thead>
+                        <tr>
 
-                            <div class="d-flex align-items-center">
-                                <div><img class="watch-img" [src]="order.imgg"></div>
-                                <div>
-                                    <div>{{order.SymbolName}}</div>
-                                    <!-- <div style="font-size: 10px;">23/10/2023: 10:40AM</div> -->
-                                </div>
-                            </div>
-                            
-                        </td>
-                        <td><span class="cl-type-buy" *ngIf="order.Buy_Sell == 1">Buy</span>
-                            <span class="cl-type-sell" style *ngIf="order.Buy_Sell == 2">Sell</span></td>
-                        <td>≈ {{order.Lot}} </td>
-                        <td>{{order.Price}}</td>
-                
-                        
-                        <td>0</td>
-                        <td class="ms-3">
-                            <div >
-                                <!-- <div class="text-center" *ngIf="order.T == 1">
-                                    <div placement="top"(click)="CaneclOrder(i, order)" style="cursor: pointer;" ngbTooltip="Close Order"><i style="color:orangered"  class="fa-solid fa-xmark "></i>
+                            <th>Timestamp</th>
+                            <th>Order No.</th>
+                            <th>Symbol</th>
+                            <th>Type</th>
+                            <th>Lot</th>
+                            <th>Price</th>
+                            <th>CMP</th>
+                            <th>Profit</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="infoTable" *ngIf="getllOrderData1.length > 0">
+                        <tr *ngFor="let order of getllOrderData1 ; let i = index">
+                            <td class="td-width1">
+                                {{ formatTimestamp(order.Time, 'yyyy-MM-dd HH:mm:ss a', 'GMT') }}
+                           
+                            </td>
+                            <td>{{order.OrderID}}</td>
+                            <td class="tbl-img">
+
+                                <div class="d-flex align-items-center">
+                                    <div><img class="watch-img" [src]="order.imgg"></div>
+                                    <div>
+                                        <div>{{order.SymbolName}}</div>
+                                     
                                     </div>
                                 </div>
-                                <div class="d-flex" *ngIf="order.T ==2">
-                                    <div (click)="openLg(content,i,order)"  style="cursor: pointer;" placement="top" ngbTooltip="Modify Order" class="me-3"><i style="color:orange"  class="fa-solid fa-gear " ></i></div>
-                                    <div (click)="CaneclOrder(i, order)" placement="top"  style="cursor: pointer;" ngbTooltip="Close Order"><i style="color:orangered"  class="fa-solid fa-xmark "></i></div>
-                                </div> -->
-                                <!-- CaneclOrder() -->
-                                <div class="text-center" *ngIf="order.T == 1">
-                                    <div placement="top"(click)="cancelorder(content3,i, order)" style="cursor: pointer;" ngbTooltip="Close Order"><i style="color:orangered"  class="fa-solid fa-xmark "></i>
+
+                            </td>
+                            <td><span class="cl-type-buy" *ngIf="order.Buy_Sell == 1">Buy</span>
+                                <span class="cl-type-sell" style *ngIf="order.Buy_Sell == 2">Sell</span>
+                            </td>
+                            <td>≈ {{order.Lot}} </td>
+                            <td>{{order.Price | number: '1.4-4'}}</td>
+                            <td class="td-width2">
+                              <p *ngIf="order.L != null">{{order.L | number: '1.4-4'}}</p>
+                              <p *ngIf="order.L == null">0</p>
+                              </td>
+                            <!-- *ngIf="dd.L != null" -->
+                            <td>
+                              <p *ngIf="order.L != null">{{(((order.L - order.Price)*100)/order.Price) | number : '1.2-2'}}%</p>
+                              <p *ngIf="order.L == null">0%</p>
+                              </td>
+
+                            <td class="ms-3">
+                                <div class="typ-pointer">
+
+                                    <div class="text-center" *ngIf="order.T == 1">
+                                        <div placement="top" (click)="cancelorder(content3,i, order)"
+                                             ngbTooltip="Close Order">
+                                             <i style="color:orangered; cursor: pointer !important"
+                                                class="fa-solid fa-xmark "></i>
+                                        </div>
                                     </div>
+
+                                    <div class="d-flex" *ngIf="order.T ==2">
+                                        <div  (click)="openLg(content,i,order)"  placement="top"
+                                            ngbTooltip="Modify Order" class="me-3"><span style="color:orange; cursor: pointer !important">M</span></div>
+                                        <div  (click)="cancelorder(content3,i, order)" placement="top"
+                                             ngbTooltip="Close Order"><i style="color:orangered; cursor: pointer !important"
+                                                class="fa-solid fa-xmark "></i></div>
+                                    </div>
+
                                 </div>
-                                
-                                <div class="d-flex" *ngIf="order.T ==2">
-                                    <div (click)="openLg(content,i,order)"  style="cursor: pointer;" placement="top" ngbTooltip="Modify Order" class="me-3"><i style="color:orange"  class="fa-solid fa-gear " ></i></div>
-                                    <div (click)="cancelorder(content3,i, order)" placement="top"  style="cursor: pointer;" ngbTooltip="Close Order"><i style="color:orangered"  class="fa-solid fa-xmark "></i></div>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <!-- <tbody *ngIf="getllOrderData.length == 0">
+                        <tr>
+                            <td colspan="6">
+                                <div style="text-align: center; padding-top: 2%; padding-bottom: 2%; ">
+                                    <img style="width: 200px;" src="assets/images/p2p-no-datat.png" alt="">
                                 </div>
-                              
-                            </div>
-                            
-                        </td>
-                    </tr>
-                   
-                </tbody>
-                <tbody *ngIf="getllOrderData.length == 0">
-                    <tr>
-                       <td colspan="6">
-                        <div style="text-align: center; padding-top: 2%; padding-bottom: 2%; ">
-                            <img style="width: 200px;" src="assets/images/p2p-no-datat.png" alt="">
-                         </div>
-                       </td>
-                    </tr>
-              
-                </tbody>
-            </table>
+                            </td>
+                        </tr>
+
+                    </tbody> -->
+                </table>
+            </div>
+
         </div>
-        
-</div>
- 
-  </div>
+
+    </div>
 </div>
 
 <ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title">
+    <div class="modal-header">
+        <h4 class="modal-title">
             <div class="d-flex align-items-center">
                 <div>
                     <img class="modalsym" [src]="modifyDataValue.imgg">
@@ -99,13 +243,13 @@
                     </div>
                     <h3 class="m-orderno">{{modifyDataValue.OrderID}}</h3>
                 </div>
-            </div>    
+            </div>
         </h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
         <form [formGroup]="makeOrdersLimitMod">
-		<!-- <div class="row">
+            <!-- <div class="row">
             <div class="col-md-6 mb-4 ">
                 <h6 class="an-lab">Price</h6>
                 <div class="form-group-custom d-flex">
@@ -141,54 +285,61 @@
             </div>
         </div> -->
 
-        <div class="row mb-3 mm-dfx">
-            <div class="col-md-3"><h6 class="an-lab">Price</h6></div>
-            <div class="col-md-9">
-                <div class="form-group-custom d-flex">
-                    
-                    <input  (keypress)="numberOnly($event)" readonly [value]="modifyDataValue.Price" autocomplete="off" class="form-control" id="price_buy"
-                       type="text" />
-                       <span>{{modifyDataValue.QoutesSym}}</span>
-                  </div>
+            <div class="row mb-3 mm-dfx">
+                <div class="col-md-3">
+                    <h6 class="an-lab">Price</h6>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group-custom d-flex">
+
+                        <input (keypress)="numberOnly($event)" readonly [value]="modifyDataValue.Price"
+                            autocomplete="off" class="form-control" id="price_buy" type="text" />
+                        <span>{{modifyDataValue.QoutesSym}}</span>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row mb-3 mm-dfx">
-            <div class="col-md-3"><h6 class="an-lab">Quantity</h6></div>
-            <div class="col-md-9">
-                <div class="form-group-custom d-flex">
-                   
-                    <input  (keypress)="numberOnly($event)" readonly formControlName="Lot" [value]="modifyDataValue.Lot" autocomplete="off" class="form-control" id="price_buy"
-                       type="text" />
-                       <span>{{modifyDataValue.Sym}}</span>
-                  </div>
+            <div class="row mb-3 mm-dfx">
+                <div class="col-md-3">
+                    <h6 class="an-lab">Quantity</h6>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group-custom d-flex">
+
+                        <input (keypress)="numberOnly($event)" readonly formControlName="Lot"
+                            [value]="modifyDataValue.Lot" autocomplete="off" class="form-control" id="price_buy"
+                            type="text" />
+                        <span>{{modifyDataValue.Sym}}</span>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row mb-3 mm-dfx">
-            <div class="col-md-3"><h6 class="an-lab">Modify Price</h6></div>
-            <div class="col-md-9">
-                <div class="form-group-custom d-flex">
-                   
-                    <input  (keypress)="numberOnly($event)" formControlName="price" [value]="modifyDataValue.Price" autocomplete="off" class="form-control" id="price_buy"
-                       type="text" />
-                       <span>{{modifyDataValue.QoutesSym}}</span>
-                  </div>
+            <div class="row mb-3 mm-dfx">
+                <div class="col-md-3">
+                    <h6 class="an-lab">Modify Price</h6>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group-custom d-flex">
+
+                        <input (keypress)="numberOnly($event)" formControlName="price" [value]="modifyDataValue.Price"
+                            autocomplete="off" class="form-control" id="price_buy" type="text" />
+                        <span>{{modifyDataValue.QoutesSym}}</span>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-success " (click)="modify()" style="width:100%">Modify </button>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-success " (click)="modify()" style="width:100%">Modify </button>
+                </div>
             </div>
-        </div>
-        
-       
-    </form>
-	</div>
-	
+
+
+        </form>
+    </div>
+
 </ng-template>
 
 <ng-template #content3 let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title">
+    <div class="modal-header">
+        <h4 class="modal-title">
             <div class="d-flex align-items-center">
                 <div>
                     <img class="modalsym" [src]="cancelDataValue.imgg">
@@ -202,23 +353,23 @@
                     </div>
                     <h3 class="m-orderno">{{cancelDataValue.OrderID}}</h3>
                 </div>
-            </div>    
-        </h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-        <form [formGroup]="makeOrdersLimitMod">
-		<div class="row">
-            <div class="col-md-12 mb-3 ">
-                <h6 class="an-lab">Price</h6>
-                <div class="form-group-custom d-flex">
-                    
-                    <input  (keypress)="numberOnly($event)" formControlName="price" [value]="cancelDataValue.Price" autocomplete="off" class="form-control" id="price_buy"
-                       type="text" />
-                       <span>{{cancelDataValue.QoutesSym}}</span>
-                  </div>
             </div>
-            <!-- <div class="col-md-4 mb-4 ">
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="makeOrdersLimitMod">
+            <div class="row">
+                <div class="col-md-12 mb-3 ">
+                    <h6 class="an-lab">Price</h6>
+                    <div class="form-group-custom d-flex">
+
+                        <input (keypress)="numberOnly($event)" formControlName="price" [value]="cancelDataValue.Price"
+                            autocomplete="off" class="form-control" id="price_buy" type="text" />
+                        <span>{{cancelDataValue.QoutesSym}}</span>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4 mb-4 ">
                 <h6 class="an-lab">SL</h6>
                 <div class="form-group-custom d-flex">
                     
@@ -227,26 +378,26 @@
                     
                   </div>
             </div> -->
-            <div class="col-md-12 mb-3 ">
-                <h6 class="an-lab">Quantity</h6>
-                <div class="form-group-custom d-flex">
-                   
-                    <input  (keypress)="numberOnly($event)" formControlName="Lot" [value]="cancelDataValue.Lot" autocomplete="off" class="form-control" id="price_buy"
-                       type="text" />
-                       <span>{{cancelDataValue.Sym}}</span>
-                  </div>
+                <div class="col-md-12 mb-3 ">
+                    <h6 class="an-lab">Quantity</h6>
+                    <div class="form-group-custom d-flex">
+
+                        <input (keypress)="numberOnly($event)" formControlName="Lot" [value]="cancelDataValue.Lot"
+                            autocomplete="off" class="form-control" id="price_buy" type="text" />
+                        <span>{{cancelDataValue.Sym}}</span>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        
-        
-        <div class="row">
-            
-            <div class="col-md-12">
-                <button class="btn btn-success "  (click)="CaneclOrder()" style="width:100%">Cancel</button>
+
+
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <button class="btn btn-success " (click)="CaneclOrder()" style="width:100%">Cancel</button>
+                </div>
             </div>
-        </div>
-    </form>
-	</div>
-	
+        </form>
+    </div>
+
 </ng-template>

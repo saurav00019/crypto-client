@@ -1,11 +1,11 @@
-import { Component, ElementRef, Renderer2, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiDataService } from 'src/app/services/dataservice/api-data.service';
 import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
 import swal from 'sweetalert2';
 import { NgbDatepickerModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { WebnewService } from 'src/app/service/webnew.service';
+
 
 
 
@@ -14,7 +14,7 @@ import { WebnewService } from 'src/app/service/webnew.service';
   templateUrl: './header-ptwop.component.html',
   styleUrls: ['./header-ptwop.component.scss']
 })
-export class HeaderPtwopComponent  {
+export class HeaderPtwopComponent implements OnInit {
   collapsed = true;
   isDropdownOpen = true;
   email: any
@@ -29,7 +29,7 @@ export class HeaderPtwopComponent  {
  
   
   private offcanvasService = inject(NgbOffcanvas);
-  constructor(private webn:WebnewService,private router: Router, private shared: SharedDataService, private api: ApiDataService, private modalService: NgbModal, private el: ElementRef, private renderer: Renderer2)
+  constructor(private router: Router, private shared: SharedDataService, private api: ApiDataService, private modalService: NgbModal, private el: ElementRef, private renderer: Renderer2)
   
   {
 this.shared.selectkyc.subscribe((res: any) =>{
@@ -56,6 +56,12 @@ else{
 }
 
   }
+
+ngOnInit(): void {
+ 
+  this.toggleActive('item1')
+
+}
 
   openNav() {
     const myNavElement = this.el.nativeElement.querySelector("#myNav");
@@ -169,7 +175,14 @@ gblsdbarcloseNav() {
           }
   
       toggleActive(item: string) {
-        this.isActive = item;
+        if('item1' == item){
+          this.router.navigateByUrl('p2p')
+          this.isActive = item;
+        }
+        else{
+          this.isActive = item;
+        }
+      
         this.closeSidePanel()
         
       }

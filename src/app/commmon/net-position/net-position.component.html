@@ -1,7 +1,141 @@
 <div class=" ">
     <div class="row middle">
         <div class="col-xxl-12 col-xl-12 col-md-12 col-12 left-side ordertrade-book-h3">
-            <div class="table-responsive">
+            <div class="loader-table" *ngIf="netPostionData.length == 0">
+                <table class="tg">
+                    <tr>
+                      <th class="tg-cly1">  
+                          <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                      <th class="tg-cly1">
+                        <div class="line"></div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                      <td class="tg-cly1">
+                        <div class="line"></div>
+                      </td>
+                    </tr>
+                  </table>
+            </div>
+            <div class="table-responsive" *ngIf="netPostionData.length > 0">
                 <table class="table" id="deposit">
                     <thead>
                         <tr>
@@ -15,14 +149,14 @@
                             <th>PL</th>
                         </tr>
                     </thead>
-                    <tbody id="infoTable" *ngIf="netPostionData.length > 0">
+                    <tbody id="infoTable" >
                         <tr *ngFor="let order of netPostionData ; let i = index">
                             <td class="tbl-img">
 
                                 <div class="d-flex align-items-center">
-                                    <div><img class="watch-img" [src]="order.imgg"></div>
+                                    <div><img style="border-radius: 50px;" class="watch-img" [src]="order.imgg"></div>
                                     <div>
-                                        <div>{{order.Sym}}</div>
+                                        <div>{{order.SymbolName}}</div>
 
                                     </div>
                                 </div>
