@@ -20,6 +20,8 @@ export interface CheckboxItem {
 export class GlobalAPIService {
   domain = environment.url;
   domain2 = environment.fileUrl;
+  orderUrlB= environment.urlb
+
   data = [];
   
 
@@ -171,41 +173,61 @@ export class GlobalAPIService {
 
   getOrderAskBid(obj:any){
   
-    // http://62.216.82.94:5102/CryptoExch
-    // return this.http.get('https://apitest.bitziana.com/Tradersroom_API_bitzianatest/GET_SYMBOL_OB?SymbolID='+obj)
-    return this.http.get('https://apibitz.bitziana.com/Tradersroom_API_bitziana/GET_SYMBOL_OB?SymbolID='+obj.SymbolID)
-    // return this.http.get('http://62.216.82.94:6102/CryptoExch/GET_SYMBOL_OB?SymbolID='+obj)
+    
+    return this.http.get(this.orderUrlB+'GET_SYMBOL_OB?SymbolID='+obj.SymbolID)
+  
+    
   }
 // ========================================================================== Report_Req ====================================================================== 
 
+
+
+
   reportReq(obj: any){
-    // return this.http.post('https://apitest.bitziana.com/Tradersroom_API_bitzianatest/OME_USR_REPORT_REQ',obj) 
-    return this.http.post('https://apibitz.bitziana.com/Tradersroom_API_bitziana/OME_USR_REPORT_REQ',obj)
+  
+    return this.http.post(this.orderUrlB+'OME_USR_REPORT_REQ',obj)
+  
   }
  
-  PostTradeSnap(obj: any){
-    // return this.http.post('https://apitest.bitziana.com/Tradersroom_API_bitzianatest/OME_USR_REPORT_REQ',obj) 
-    return this.http.post('https://apibitz.bitziana.com/Tradersroom_API_bitziana/GET_USER_TRADE_POS',obj)
+  newReportCallBack(obj:any){
+   return this.http.get('https://p2p.bitziana.com:4005/apiGatway/getAllOTradeCallbackurl?Userid='+obj)
+  }
+
+  PostTradePos(obj: any){
+  
+    return this.http.post(this.orderUrlB+'GET_USER_TRADE_POS',obj)
+   
   }
   PostTradePosSnap(obj: any){
-    // return this.http.post('https://apitest.bitziana.com/Tradersroom_API_bitzianatest/OME_USR_REPORT_REQ',obj) 
-    return this.http.post('https://apibitz.bitziana.com/Tradersroom_API_bitziana/GET_USER_TRADE_POS_SNAP',obj)
+    
+    return this.http.post(this.orderUrlB+'GET_USER_TRADE_POS_SNAP',obj)
+  
   }
 
-  getTradeSnap(){
-      return this.http.get('https://www.marketwicks.com:4000/apiGatway/getUserTradePos')
+  getTradeSnap1(){
+    return this.http.get('https://www.marketwicks.com:4000/apiGatway/getUserTradePos')
+}
+
+getTradePosSnap1(){
+  return this.http.get('https://www.marketwicks.com:4000/apiGatway/getUserTradePosSnap')
+}
+getAllOTradeCallbackurl1(){
+  return this.http.get('https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl')
+}
+
+  callGetTradePos(obj:any){
+    return this.http.get('https://p2p.bitziana.com:4005/apiGatway/getUserTradePos?Userid='+obj)
   }
 
-  getTradePosSnap(){
-    return this.http.get('https://www.marketwicks.com:4000/apiGatway/getUserTradePosSnap')
+  getTradePosSnap(obj:any){
+    return this.http.get('https://p2p.bitziana.com:4005/apiGatway/getUserTradePosSnap?Userid='+obj)
 }
   getAllOTradeCallbackurl(){
     return this.http.get('https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl')
   }
   
   getSymbolImage(){
-    // https://apitest.bitziana.com/Tradersroom_API_bitzianatest/
-    // return this.http.get('https://apitest.bitziana.com/Tradersroom_API_bitziana/GET_ADM_TRAD_MASTER_SYMBOL?Source_SymbolID=0')
+  
     return this.http.get('https://apibitz.bitziana.com/Tradersroom_API_bitziana/GET_ADM_TRAD_MASTER_SYMBOL?Source_SymbolID=0')
   }
 

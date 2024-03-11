@@ -136,6 +136,7 @@ gblsdbarcloseNav() {
         sessionStorage.clear();
        this.closeSidePanel()
     this.router.navigate(['/login']);
+    this.toggleActive('item1')
     this.shared.loginHeader('')
       }
     });

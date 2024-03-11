@@ -3,18 +3,18 @@ import { SharedDataService } from 'src/app/services/sharedData/shared-data.servi
 import { WebSocketSubject } from 'rxjs/webSocket';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import { environment } from '../../../environments/environment'
 @Component({
   selector: 'app-order-place',
   templateUrl: './order-place.component.html',
   styleUrls: ['./order-place.component.scss']
 })
 export class OrderPlaceComponent implements OnInit {
-  active: any = 1;
-  active1: any = 4;
-  active2: any = 6;
-  active3: any = 8;
-  active4: any = 11;
+ 
+  active1: any = 1;
+  currentTab: any = "tab1";
+  orderUrl= environment.urlOrder
+
   responseData: any
   placeOrderData: any
   allMasterData: any = []
@@ -23,26 +23,42 @@ export class OrderPlaceComponent implements OnInit {
   private socket: any = WebSocketSubject;
   makeOrders: any = UntypedFormGroup;
   makeOrdersLimit: any = UntypedFormGroup;
-
+  makeOrdersSl: any = UntypedFormGroup;
+ marketQ: any 
+ limit: any 
   constructor( private shared: SharedDataService, private fb: UntypedFormBuilder, private toaster: ToastrService) {
    
-    this.socket = new WebSocket('wss://apibitz.bitziana.com:9797');//live 
+    this.socket = new WebSocket(`${this.orderUrl}`);//live 
+    // this.socket = new WebSocket('ws://81.0.218.39:9697');//Local live 
     // this.socket = new WebSocket('wss://apitest.bitziana.com:9798');//Testing
     this.socket.onmessage = this.handleMessage.bind(this);
     this.socket.onerror = this.handleError.bind(this);
-
-    this.makeOrders = fb.group({
+    this.socket.onclose = this.handleClose.bind(this);
+    this.makeOrders = this.fb.group({
+      Price: [' ', Validators.required],
       Quantity: [' ', Validators.required]
     });
+
     this.makeOrders.get('Quantity').valueChanges.subscribe((value: any) => {
+    this.marketQ = value
       console.log("this.Quantity", value);
     });
 
-    this.makeOrdersLimit = fb.group({
-      price: [' ', Validators.required],
+    this.makeOrdersLimit = this.fb.group({
+      priceLL: [' ', Validators.required],
       QuantityL: [' ', Validators.required],
-      sl: [' ', Validators.required]
+      sl: [' ']
+ 
     });
+
+    this.makeOrdersSl = this.fb.group({
+      priceSl: [' ', Validators.required],
+      QuantitySl: [' ', Validators.required],
+      trigger:[' ', Validators.required],
+    });
+
+
+    
     this.shared.ordCancel$.subscribe((res: any) => {
       this.sendData = res
       console.log("resresres", res)
@@ -80,17 +96,46 @@ export class OrderPlaceComponent implements OnInit {
 
   }
 
+  reConnect(){
+     this.socket = new WebSocket(`${this.orderUrl}`);//live 
+    //  this.socket = new WebSocket('ws://81.0.218.39:9697');//Local live 
+    
+     this.socket.onmessage = this.handleMessage.bind(this);
+     this.socket.onerror = this.handleError.bind(this);
+  }
+
+  nvatabc (tab: any){
+    
+    this.currentTab = tab
+    console.log("this.currentTab ",this.currentTab );
+    if(this.currentTab == 'tab1'){
+  this.clear()
+    }
+    else if(this.currentTab == 'tab2'){
+      this.clear1()
+    }
+    else if(this.currentTab == 'tab3'){
+      this.clearSL()
+    }
+    else if(this.currentTab == 'tab4'){
+      this.clearSL()
+    }
+    else{
+      this.clear()
+    }
+  }
+
   ngOnInit() {
     let obj = {
       id: 100,
       loginId: (localStorage.getItem('ProfileID')),
       key: 1
     }
-
   
     setTimeout(() => {
       this.login(obj)
       }, 1000);
+
     }
   
   
@@ -103,8 +148,12 @@ export class OrderPlaceComponent implements OnInit {
 
     this.placeOrderData = changes['items1']?.currentValue
     console.log(" this.placeOrderData this.placeOrderData", this.placeOrderData);
+    this.makeOrdersSl.patchValue({priceSl:  (this.placeOrderData?.oQuote?.L).toFixed(4) })
 
-    this.makeOrdersLimit.patchValue({ price: (this.placeOrderData?.oQuote?.L).toFixed(4) });
+    this.makeOrders.patchValue({ Price: (this.placeOrderData?.oQuote?.L) });
+    this.makeOrdersLimit.patchValue({ priceLL: (this.placeOrderData?.oQuote?.L).toFixed(4) });
+    this.makeOrdersSl.patchValue({ trigger: (0).toFixed(4) });
+
     this.currentPrice = (this.placeOrderData?.oQuote?.L).toFixed(4);
 
     this.getID = this.allMasterData.filter((item1: any) => item1.Source_Symbol === this.placeOrderData?.Symbol);
@@ -112,10 +161,10 @@ export class OrderPlaceComponent implements OnInit {
     this.getIDS = this.getID[0]?.SymbolID
     // console.log("this.getIDSthis.getIDS", this.getIDS);
     this.shared.obSymID(this.getIDS);
-
-    // console.log(" this.currentPrice", this.currentPrice);
-    // this.web.getMassage()
-    //  this.getMessgae()
+    this.clear()
+    this.clear1()
+    this.clearSL()
+   
   }
 
 
@@ -128,9 +177,21 @@ export class OrderPlaceComponent implements OnInit {
   }
   private handleError(event: Event) {
     console.error('WebSocket error:', event);
-  }
+    this.reConnect()
+    let obj = {
+      id: 100,
+      loginId: (localStorage.getItem('ProfileID')),
+      key: 1
+    }
+   
+    setTimeout(() => {
+      this.login(obj)
+      }, 1000);
+    }
+  
 
   private handleMessage(event: MessageEvent) {
+    this.shared.reConn(1)
     const blobData: Blob = event.data;
 
     const reader = new FileReader();
@@ -178,6 +239,28 @@ export class OrderPlaceComponent implements OnInit {
     reader.readAsArrayBuffer(blobData);
   }
 
+ private handleClose(event: Event) {
+  
+    console.log('Connection closed:', event);
+    if(event.type == 'close'){
+      this.shared.reConn(0)
+      this.reConnect()
+      let obj = {
+        id: 100,
+        loginId: (localStorage.getItem('ProfileID')),
+        key: 1
+      }
+     
+      setTimeout(() => {
+        this.login(obj)
+        }, 1000);
+    }
+    else{
+      this.shared.reConn(1)
+    }
+
+    // You can add your logic here to handle the connection loss
+  }
 
   private bytesToAscii(bytes: Uint8Array): string {
     // Convert binary data to ASCII representation
@@ -193,14 +276,7 @@ export class OrderPlaceComponent implements OnInit {
     this.quantValue = true
 
     this.Quant = this.makeOrders.get('Quantity').value
-    if (this.Quant == 0) {
-      this.toaster.error("Quantity not should be 0", "Error")
-      this.placeOrderButton = false
-    }
-    else {
-      this.placeOrderButton = true
-
-    }
+  
 
 
 
@@ -224,6 +300,27 @@ export class OrderPlaceComponent implements OnInit {
     }
 
 
+    
+
+
+  }
+
+  qunty2() {
+
+    this.quantValue = true
+    this.Quant = this.makeOrdersSl.get('QuantitySl').value
+
+    if (this.Quant == 0) {
+      this.toaster.error("Quantity not should be 0", "Error")
+      this.placeOrderButtonLimit = false
+    }
+    else {
+
+      this.placeOrderButtonLimit = true
+    }
+
+
+    
 
 
   }
@@ -256,8 +353,12 @@ export class OrderPlaceComponent implements OnInit {
 
   placeOrderLimit(val: any, orderType: any) {
 
-    if (this.makeOrdersLimit.value.sl == "") {
-      this.toaster.info("Please enter sl", "Info")
+    if(this.makeOrdersLimit.value.QuantityL == " "){
+      this.toaster.error("Please fill Quantity", "Error")
+ 
+    }
+    else if( this.makeOrdersLimit.value.priceLL <= 0){
+      this.toaster.error("Price should not be 0", "Error")
     }
     else {
       this.flag2 = false
@@ -275,21 +376,91 @@ export class OrderPlaceComponent implements OnInit {
         U: Number(localStorage.getItem('ProfileID')),
         Buy_Sell: Number(this.buy_sell),
         T: this.typeOrder,
-        P: Number(this.makeOrdersLimit.value.price),
+        P: Number(this.makeOrdersLimit.value.priceLL),
         L: Number(this.makeOrdersLimit.value.QuantityL),
         SL: Number(this.makeOrdersLimit.value.sl),
+        // SL:" ",
+        C: this.alpha,
+        UT: 1
+
+      }
+
+      console.log("obbjjjjj", obj);
+      this.orderBuyLimit(obj)
+      this.shared.obSym(1) 
+  
+        this.clear1()
+    
+    }
+
+  }
+
+  slM(val:any)
+  {
+    console.log("vall",val)
+   if(val === 1){
+    this.active1 = 3
+   }
+   else if(val === 2){
+    this.active1= 5
+   }
+   else{
+    this.active1 = 1
+   }
+  }
+
+
+  placeOrderSL(val: any, orderType: any) {
+
+    if (this.makeOrdersSl.value.trigger <= 0) {
+      this.toaster.error("Please enter trigger more then 0", "Error  ")
+    }
+    else if(this.makeOrdersSl.value.QuantitySl == " "){
+      this.toaster.error("Please fill Quantity", "Error")
+ 
+    }
+    else {
+      this.flag2 = false
+      this.makeOrders.value.Quantity = ''
+      this.alpha = this.commAphaNum(5)
+      this.buy_sell = val
+      this.flag2 = false;
+      this.typeOrder = orderType
+      console.log(" this.typeOrder", orderType)
+
+      let obj = {
+        ID: 105,
+        Key: 1,
+        SymID: this.getID[0].SymbolID,
+        U: Number(localStorage.getItem('ProfileID')),
+        Buy_Sell: Number(this.buy_sell),
+        T: this.typeOrder,
+        UT: 1,
+        // P: Number(this.makeOrdersLimit.value.price),
+        // L: Number(this.makeOrdersLimit.value.QuantityL),
+        // SL: Number(this.makeOrdersLimit.value.sl),
+        P: Number(this.makeOrdersSl.value.priceSl),
+        L: Number(this.makeOrdersSl.value.QuantitySl),
+        SL: Number(this.makeOrdersSl.value.trigger),
+        // SL:" ",
         C: this.alpha
 
       }
 
-      // console.log("obbjjjjj", obj);
+      console.log("obbjjjjj", obj);
       this.orderBuyLimit(obj)
       this.shared.obSym(1) 
-      setTimeout(() => {
-        this.clear()
-      }, 500);
+  
+        this.clearSL()
+    
     }
 
+  }
+
+  clearSL(){
+  
+    this.makeOrdersSl.patchValue({trigger: " " })
+    this.makeOrdersSl.patchValue({QuantitySl: " " })
   }
 
 
@@ -324,20 +495,45 @@ export class OrderPlaceComponent implements OnInit {
 
   // ========================================================================== Number and dot value only in input on keepress =================================================
   numericMessage: any
+  numberOnly(event: any): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+
+    // Allow digits (0-9) and dot (.)
+    if ((charCode < 48 || charCode > 57) && charCode !== 46) {
+      this.numericMessage = true;
+      return false;
+    }
+
+    this.numericMessage = false;
+    return true;
+  }
+  
   // numberOnly(event: any): boolean {
   //   const charCode = (event.which) ? event.which : event.keyCode;
-
+  //   const inputValue: string = event.target.value;
+  
   //   // Allow digits (0-9) and dot (.)
   //   if ((charCode < 48 || charCode > 57) && charCode !== 46) {
-  //     this.numericMessage = true;
+  //     this.toaster.error('Please enter a valid number.');
   //     return false;
   //   }
-
-  //   this.numericMessage = false;
+  
+  //   // Allow only one dot
+  //   if (inputValue.indexOf('.') !== -1 && charCode === 46) {
+  //     this.toaster.error('Please enter a valid number with up to 4 decimal places.');
+  //     return false;
+  //   }
+  
+  //   // Allow up to 4 decimal places
+  //   const decimalIndex = inputValue.indexOf('.');
+  //   if (decimalIndex !== -1 && inputValue.length - decimalIndex > 4) {
+  //     this.toaster.error('Please enter a valid number with up to 4 decimal places.');
+  //     return false;
+  //   }
+  
   //   return true;
   // }
-  
-  numberOnly(event: any): boolean {
+  numberOnly1(event: any): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
     const inputValue: string = event.target.value;
   
@@ -352,6 +548,7 @@ export class OrderPlaceComponent implements OnInit {
       this.toaster.error('Please enter a valid number with up to 4 decimal places.');
       return false;
     }
+    
   
     // Allow up to 4 decimal places
     const decimalIndex = inputValue.indexOf('.');
@@ -362,17 +559,24 @@ export class OrderPlaceComponent implements OnInit {
   
     return true;
   }
-
   // ========================================================================== Clear form =====================================================
 
   clear() {
 
-    this.placeOrderButton = false
-    this.placeOrderButtonLimit = false
-    this.makeOrders.reset();
-    //  this.makeOrdersLimit.reset();
+  
+    this.makeOrders.patchValue({Quantity: " " })
+
   }
 
+  clear1() {
+
+ 
+    // this.makeOrders.reset();
+    this.makeOrdersLimit.patchValue({ priceLL: this.currentPrice})
+   this.makeOrdersLimit.patchValue({QuantityL:" "})
+   this.makeOrdersLimit.patchValue({trigger:" "})
+   this.makeOrdersLimit.patchValue({sl:" "})
+  }
   step: any = 0
 
 
@@ -401,36 +605,51 @@ export class OrderPlaceComponent implements OnInit {
   alpha: any
   placeOrder(val: any, orderType: any) {
 
+    if(this.makeOrders.value.Quantity  === " "){
+      this.toaster.error("Please fill Quantity", "Error")
+ 
+    }
+    else  if( this.makeOrders.value.Price <= 0){
+      this.toaster.error("Price should not be 0", "Error")
+    }
+  
+    else{
 
-    this.alpha = this.commAphaNum(5)
-    this.buy_sell = val
-    this.flag1 = false;
-
-    this.typeOrder = orderType
-
-
-    let obj = {
-      ID: 105,
-      Key: 1,
-      SymID: Number(this.getID[0].SymbolID),
-      U: Number(localStorage.getItem('ProfileID')),
-      Buy_Sell: Number(this.buy_sell),
-      T: this.typeOrder,
-      P: this.currentPrice,
-      // P: 18,
-      L: Number(this.makeOrders.get('Quantity').value),
-      // L:  15,
-      // makeOrders
-      // SL:Number(this.makeOrdersLimit.value.sl),
-      // this.makeOrdersForm.get('Quantity').value)
-      C: this.alpha
+      this.alpha = this.commAphaNum(5)
+      this.buy_sell = val
+      this.flag1 = false;
+  
+      this.typeOrder = orderType
+  
+  
+      let obj = {
+        ID: 105,
+        Key: 1,
+        SymID: Number(this.getID[0].SymbolID),
+        U: Number(localStorage.getItem('ProfileID')),
+        Buy_Sell: Number(this.buy_sell),
+        T: this.typeOrder,
+        P: Number(this.makeOrders.get('Price').value),
+        // P: 18,
+        L: Number(this.makeOrders.get('Quantity').value),
+        // L:  15,
+        // makeOrders
+        // SL:Number(this.makeOrdersLimit.value.sl),
+        // this.makeOrdersForm.get('Quantity').value)
+        C: this.alpha,
+        UT: 1
+  
+      }
+  
+      console.log("order request :",obj);
+      
+   
+      this.orderBuy(obj)
+      this.shared.obSym(1) 
+      this.clear()
 
     }
-
-    // console.log("this.currentPrice", obj);
-    this.orderBuy(obj)
-    this.shared.obSym(1) 
-    this.clear()
+   
 
 
   }
@@ -439,8 +658,11 @@ export class OrderPlaceComponent implements OnInit {
 
 
   placeOrder1(val: any, orderType: any) {
-
-
+    if(this.makeOrders.Quantity != 'undefined'){
+      this.toaster.error("Please fill Quantity", "Error")
+ 
+    }
+else{
     this.alpha = this.commAphaNum(5)
     this.buy_sell = val
     this.flag1 = false;
@@ -466,9 +688,10 @@ export class OrderPlaceComponent implements OnInit {
     // this.web2.placeOrder(obj)
     console.log("this.currentPrice", obj);
 
-    this.orderSell(obj)
-    this.shared.obSym(1)  
-    this.clear()
+    // this.orderSell(obj)
+    // this.shared.obSym(1)  
+    // this.clear()
+  }
 
   }
 
@@ -533,11 +756,12 @@ export class OrderPlaceComponent implements OnInit {
   //============================================================================== Decode order All request sen bianary Data ====================================================
 
   orderSend(obj: any): Uint8Array {
-    const buffer = new ArrayBuffer(48); // Total byte length based on your specified lengths
+    const buffer = new ArrayBuffer(50); // Total byte length based on your specified lengths
     const view = new DataView(buffer);
 
     // Set values in the buffer
     view.setUint16(0, obj.ID, true);
+    view.setUint16(2, obj.UT, true);
     view.setUint32(2, obj.Key, true);
     view.setUint16(6, obj.SymID, true);
     view.setUint16(8, obj.U, true);
@@ -576,6 +800,7 @@ export class OrderPlaceComponent implements OnInit {
     const T = view.getUint8(12);
     const Price = view.getFloat64(14, true);
     const Lot = view.getFloat64(22, true);
+    const UT= view.getUint16(2, true);
 
 
     const stringBytes = [];
@@ -619,7 +844,8 @@ export class OrderPlaceComponent implements OnInit {
       img: '',
       Sym: '',
       QoutesSym: '',
-      masterSym: ''
+      masterSym: '',
+      UT: UT
     };
 
     this.OrderNooooo = originalData1.orderNo
@@ -647,6 +873,14 @@ export class OrderPlaceComponent implements OnInit {
       this.shared.obSym(1)
       this.shared.getReporStatus(1)
     }
+    else if (originalData1.ID == 201) {
+   
+      this.shared.getOrderCanRes(originalData1)
+      this.toaster.success("Order placed!", "Success")
+      this.shared.obSym(1)
+      this.shared.getReporStatus(1)
+    }
+
     else if (originalData1.ID == 150) {
 
   
@@ -655,6 +889,8 @@ export class OrderPlaceComponent implements OnInit {
       this.shared.obSym(1)
       this.shared.getReporStatus(1)
     }
+
+    
     console.log("Deocde order.....", originalData1)
     return originalData1;
 

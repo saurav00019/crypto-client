@@ -2,20 +2,20 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { GlobalAPIService } from 'src/app/service/global-api.service';
-import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
-import { DatePipe } from '@angular/common';
+import { SharedDataService } from 'src/app/service/shared-data.service';
+
 @Component({
-  selector: 'app-cancel-order',
-  templateUrl: './cancel-order.component.html',
-  styleUrls: ['./cancel-order.component.scss']
+  selector: 'app-pending-order',
+  templateUrl: './pending-order.component.html',
+  styleUrls: ['./pending-order.component.scss']
 })
-export class CancelOrderComponent {
+export class PendingOrderComponent {
   @Input() cancel?: Array<any>;
  
   receivedDataArray1:any = [];
   subscription:any= Subscription;
   today: number = Date.now();
-  constructor(private datePipe: DatePipe,private shared: SharedDataService, private api: GlobalAPIService,private toaster: ToastrService){
+  constructor(private shared: SharedDataService, private api: GlobalAPIService,private toaster: ToastrService){
     // this.subscription = this.shared.dataArray1$.subscribe(dataArray1 => {
     //   this.receivedDataArray1 = dataArray1;
       
@@ -54,25 +54,16 @@ export class CancelOrderComponent {
   }
 
 
-  dateTrade1: any
-  getAllOrder(){
-    let currentDate = new Date();
-    let formattedDate1 = this.datePipe.transform(currentDate, 'yyyy-MM-dd 11:59:59', 'GMT');
-    this.dateTrade1 = formattedDate1
-    console.log("formattedDate1",this.dateTrade1);
 
+  getAllOrder(){
     let obj = {
-      "Report_Req":1,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
-      _dtFrom:"2024-01-12 07:01:22",
-      _dtTo:this.dateTrade1,
-      "Initial":1,
-      "MaxCount":200,
-      "Key":"",
-      "UserID":Number(localStorage.getItem('ProfileID')),               // user profile ID
-      "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl",                // this URL used for getting data
-      "oFilter":3,
-      "Value": Number(localStorage.getItem('ProfileID'))
-      }
+      Report_Req:0,   // ORDER = 0,TRADE = 1,NET_POS = 2   
+      _dtFrom:"",
+      _dtTo:"",
+      Key:"",
+      UserID: Number(localStorage.getItem('ProfileID')),
+      CB_URL:"https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl"
+  }
   this.api.reportReq(obj).subscribe({
     next: (res: any) => {
       this.getAllOrderCallbk();

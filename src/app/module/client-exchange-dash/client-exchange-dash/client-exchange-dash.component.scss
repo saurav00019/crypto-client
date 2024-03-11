@@ -416,7 +416,7 @@ option:checked{background-color: transparent;}
 
     .set-fake-tab1{
       position: absolute;
-      margin-top: -42px;
+      margin-top: -32px;
       right: 15px;
       a{
         color:#399cff;
@@ -458,5 +458,28 @@ option:checked{background-color: transparent;}
       background: #f400002b;
       color:red ;
       padding:2px 6px
+    }
+
+    .tabnavc-ul{
+      margin-bottom: 0px;
+      padding-left: 0px;
+      display: flex;
+      border-bottom: solid 1px #333;
+        li{
+          color:#fff;
+          font-size: 14px;
+          padding:8px 16px;
+          cursor: pointer;
+          &:hover{
+            border-bottom: 1px solid #f7b543!important;
+          border-radius: 0!important;
+          color: #f7b543!important;
+          }
+        }
+        .active{
+          border-bottom: 1px solid #f7b543!important;
+          border-radius: 0!important;
+          color: #f7b543!important;
+        }
     }
    

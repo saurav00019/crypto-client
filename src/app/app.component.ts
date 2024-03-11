@@ -7,6 +7,7 @@ import { ApiDataService } from './services/dataservice/api-data.service';
 
 
 import { Router } from '@angular/router';
+import { InactiveTimerService } from './service/inactive-timer.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,7 +23,8 @@ export class AppComponent  {
   headerFlag: any
 
   
-  constructor(private router: Router,private zone: NgZone,public api: ApiDataService, private cdr: ChangeDetectorRef, public sharedData:SharedDataService, private toastrService: ToastrService)
+  constructor(private router: Router,private zone: NgZone,public api: ApiDataService, private cdr: ChangeDetectorRef,
+     public sharedData:SharedDataService, private toastrService: ToastrService, private inactivity: InactiveTimerService)
   {
     this.isloggeding=this.api.isLogin();
 
@@ -103,5 +105,21 @@ this.router.navigateByUrl("/login")
 this.headerFlag=""
 }
    })
+   }
+
+
+   @HostListener('window:mousemove')
+   @HostListener('window:click')
+   @HostListener('window:keydown')
+
+   onUserActivity() {
+    this.inactivity.resetTimer()
+   if (this.inactivity.myHeader === true) {
+    return
+   } else if (this.inactivity.myHeader === false) {
+    this.headerFlag= false
+    
+   }
+  
    }
 }

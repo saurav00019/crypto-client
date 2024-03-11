@@ -687,6 +687,7 @@ addTranReqq(){
   orderAggList: any;
   lstPrice_Ord: any
   showNoData1: any
+  orderNewAgg: any= []
   listOfAggOrders(val:any) {
 this.sharedData.loader(true)
 
@@ -697,6 +698,9 @@ let obj ={
       next: (res: any) => {
         this.sharedData.loader(false)
         this.orderAggList = res
+        this.orderNewAgg= res[0].lstPrice_Ord
+        console.log("here is aggregate data", this.orderNewAgg);
+        
         this.dataAggLength = res.length;
         if (this.dataAggLength > 0) {
           this.showNoData1 = 1

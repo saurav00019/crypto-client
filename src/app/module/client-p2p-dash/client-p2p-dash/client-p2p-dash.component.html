@@ -504,7 +504,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-flex" >
-                                        <input style="color-scheme: dark ;" type="datetime-local"id="meeting-time"name="meeting-time" [min]="previousDate" formControlName="Validity"  (change)="date_data1($event)"  id="unit">
+                                        <input style="color-scheme: dark ;" type="datetime-local"id="meeting-time"  name="meeting-time" [min]="previousDate" formControlName="Validity"  (change)="date_data1($event)"  id="unit">
                                         <!-- <input style="width:50%; border:none !important" type="date" formControlName="Validity"  (change)="date_data1($event)"  id="unit">
                                         <input style="width:50%; border:none !important; padding-left: 55px;" type="time" formControlName="time" (change)="time_data1($event)" id="unit" value="00:00"> -->
                                     </div>
@@ -540,7 +540,7 @@
                                   </div>
                                   <div class="my-error">
                                   <div *ngIf="makeOrders.controls['unit_price'].invalid && (makeOrders.controls['unit_price'].dirty || makeOrders.controls['unit_price'].touched)" class="text-danger">
-                                    <div *ngIf="makeOrders.controls['unit_price'].errors.pattern">Please enter unit price</div>  
+                                    <div *ngIf="makeOrders.controls['unit_price'].errors.required ">Please enter unit price</div>  
                                    
                                   </div>
                                   </div>
@@ -616,7 +616,7 @@
                 </div>
                 <div class="modal-footer" style="border-top: 1px dotted #858585;">
                     <!-- <button type="submit" (click)="makeOrder()">Submit</button> -->
-                    <button style="width:100%; background: #F1B435; color: #000;"  [disabled]="makeOrders.invalid"  type="submit" (click)="makeOrder()" class="btn btn-outline-dark formBtn">Submit</button>
+                    <button style="width:100%; background: #F1B435; color: #000;"  [disabled]="makeOrders.invalid ||( makeOrders.value.unit_price == 0 || makeOrders.value.total_qty == 0 || makeOrders.value.max_qty == 0 ||  makeOrders.value.min_qty == 0)"  type="submit" (click)="makeOrder()" class="btn btn-outline-dark formBtn">Submit</button>
                 </div>
             </div>
 

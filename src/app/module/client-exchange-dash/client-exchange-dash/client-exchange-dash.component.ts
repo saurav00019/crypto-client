@@ -3,8 +3,8 @@ import { NgbModal, } from '@ng-bootstrap/ng-bootstrap';
 
 import { GlobalAPIService } from 'src/app/service/global-api.service';
 // import { SharedDataService } from 'src/app/service/shared-data.service';
-
-import { WebSocketSubject } from 'rxjs/webSocket';
+import { environment } from '../../../../environments/environment'
+import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
 import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
 
 import { ToastrService } from 'ngx-toastr';
@@ -30,9 +30,23 @@ export class ClientExchangeDashComponent implements OnInit {
   ListsocketData3: any = {}
   modalRef?: any;
   orderBookID: any
+  positionTab: any = "tab1";
   liveData: any = {
 
   }
+
+  urlm = environment.urlMarket
+
+
+  positionnav (tab: any){
+    
+    this.positionTab = tab
+    console.log("this.currentTab ",this.positionTab );
+    
+    
+  }
+
+
   @ViewChild('widgetsContent', { read: ElementRef })
   public widgetsContent!: ElementRef<any>;
   item1: any;
@@ -47,17 +61,21 @@ export class ClientExchangeDashComponent implements OnInit {
   }
   webdata: any
   connection: any = false
+  connectTrade: any = false
   allCancelList: any = []
   today: number = Date.now();
   constructor(private api: GlobalAPIService,private datePipe: DatePipe, private sharedData: SharedDataService,private toaster: ToastrService, private modalService: NgbModal) {
     {
 
-      this.socket = new WebSocket('wss://apibitz.bitziana.com:9799');//Live
+console.log("this.urlm",this.urlm);
+
+      // this.socket = new WebSocket("ws://81.0.218.39:9699")
+      this.socket = new WebSocket(`${this.urlm}`);//Live
 
       // this.socket = new WebSocket('wss://apitest.bitziana.com:9796');//Testing
       this.socket.onmessage = this.handleMessage.bind(this);
       this.socket.onerror = this.handleError.bind(this);
-
+      this.socket.onclose = this.handleClose.bind(this);
       
       this.sharedData.obSymbol$.subscribe(res => {
         if (res == 1) {
@@ -70,6 +88,15 @@ export class ClientExchangeDashComponent implements OnInit {
       });
 
     }
+
+    this.sharedData.reConnect$.subscribe((res: any) =>{
+      if(res == 0){
+       this.connectTrade = false
+      }
+      else{
+      this.connectTrade  = true
+      }
+    })
 
     this.sharedData.obSymb$.subscribe( (res: any) => {
       // this.getAskBid(res)
@@ -126,30 +153,57 @@ openLogs(content9: any) {
     this.modalRef = this.modalService.open(content9, { size: 'xl ex-modal1 allcenter modal-height' });
 
   }
+
+  openPrnding(content10: any) {
+
+    let currentDate = new Date();
+    let formattedDate1 = this.datePipe.transform(currentDate, 'yyyy-MM-dd 11:59:59', 'GMT');
+    this.dateTrade = formattedDate1
+    console.log("formattedDate1",this.dateTrade);
+  
+
+    this.modalRef = this.modalService.open(content10, { size: 'xl ex-modal1 allcenter modal-height' });
+
+  }
   // getAlltreadeData: any = []
   getAllTrade(){
 
     // 
-    let obj = {
+    // let obj = {
+    //   "Report_Req":1,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
+    //   "_dtFrom":"2024-01-12 07:01:22",
+    //   _dtTo:  this.dateTrade,
+    //   "Initial":1,
+    //   "MaxCount":100,
+    //   "Key":"",
+    //   "UserID":Number(localStorage.getItem('ProfileID')),               // user profile ID
+    //   "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getUserTradePos",                // this URL used for getting data
+    //   "oFilter":3,
+    //   "Value": Number(localStorage.getItem('ProfileID'))
+    // }
+    this.uniqUserID = this.UserID(5)
+console.log("this.uniqUserID",this.uniqUserID);
+
+    let obj ={
       "Report_Req":1,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
       "_dtFrom":"2024-01-12 07:01:22",
       _dtTo:  this.dateTrade,
       "Initial":1,
-      "MaxCount":100,
+      "MaxCount":30,
       "Key":"",
       "UserID":Number(localStorage.getItem('ProfileID')),               // user profile ID
-      "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getUserTradePos",                // this URL used for getting data
+      "CB_URL":String(this.uniqUserID),                // AUTO-GENERATED KEY IN STRING
       "oFilter":3,
-      "Value": Number(localStorage.getItem('ProfileID'))
+      "Value":Number(localStorage.getItem('ProfileID'))
     }
-    this.api.PostTradeSnap(obj).subscribe({
+    this.api.PostTradePos(obj).subscribe({
       next: (res: any) => {
-        if("Send data Callback successful" == "Send data Callback successful"){
+        // if(res == "Data Send Successful On Callback"){
           this.getTradeData();
-        }
-         else{
-          this.toaster.error("Something went wrong","Error")
-         }
+        // }
+        //  else{
+        //   this.toaster.error("Something went wrong","Error")
+        //  }
 
       },
       error: (err: any) => {
@@ -159,10 +213,24 @@ openLogs(content9: any) {
     });
   }
 
+  handleClose(event: Event) {
+    console.log('Connection Market closed:', event);
+    // You can add your logic here to handle the connection loss
+    if(event.type == 'close'){
+      this.connection = false
+    }
+    else{
+      this.connection = true
+    }
+  }
+
   getTradeData(){
    this.allRepostData ={}
     this.getAlltreadeData = []
-      this.api.getTradeSnap().subscribe({
+    let obj ={
+      userId: this.uniqUserID 
+    }
+      this.api.callGetTradePos(obj.userId).subscribe({
       next: (res: any) => {
         console.log("Trade on windo data ", res)
          this.allRepostData = res
@@ -276,48 +344,6 @@ openLogs(content9: any) {
   decode(byteArray: Uint8Array) {
     const view = new DataView(byteArray.buffer);
 
-    // // Read count
-    // const count = view.getUint16(0, true);
-
-    // // Read QUOTE_SNAP objects
-    // const objects = [];
-    // const objectSize = 42; // Size of each QUOTE_SNAP object in bytes
-
-    // for (let i = 0; i < count; i++) {
-    //   const offset = 2 + i * objectSize; // Skip 2 bytes for the count
-
-    //   const SymbolID = view.getInt16(offset, true);
-    //   const H = view.getFloat64(offset + 2, true);
-    //   const C = view.getFloat64(offset + 10, true);
-    //   const O = view.getFloat64(offset + 18, true);
-    //   const L = view.getFloat64(offset + 26, true);
-    //   const Time_Sec = view.getUint32(offset + 34, true);
-
-    //   objects.push({ SymbolID, H, C, O, L, Time_Sec });
-    // }
-    // Read count
-    // const count = view.getUint16(0, true);
-
-    // // Read QUOTE_SNAP objects
-    // const objects = [];
-    // const objectSize = 64; // Size of each QUOTE_SNAP object in bytes
-
-    // for (let i = 0; i < count; i++) {
-    //   const offset = 2 + i * objectSize; // Skip 2 bytes for the count
-
-    //   const SymbID = view.getInt16(offset, true); // 2 bytes
-    //   const L = view.getFloat64(offset + 2, true); // 8 bytes
-    //   const a = view.getFloat64(offset + 10, true); // 8 bytes
-    //   const b = view.getFloat64(offset + 18, true); // 8 bytes
-    //   const h = view.getFloat64(offset + 26, true); // 8 bytes
-    //   const l = view.getFloat64(offset + 34, true); // 8 bytes
-    //   const v1 = view.getFloat64(offset + 42, true); // 8 bytes
-    //   const v2 = view.getFloat64(offset + 50, true); // 8 bytes
-    //   const O = view.getFloat64(offset + 58, true); // 8 bytes
-    //   const Time_Sec = view.getUint32(offset + 66, true); // 4 bytes
-
-    //   objects.push({ SymbID, L, a, b, h, l, v1, v2, O, Time_Sec });
-    // }
     const count = view.getUint16(0, true);
 
     // Read QUOTE_SNAP objects
@@ -381,6 +407,8 @@ openLogs(content9: any) {
       // console.log('sockethhbh open :');
       console.log('sockethhbh open :', e);
       this.connection = true
+      console.log("connction: ",this.connection)
+      
     };
 
 
@@ -397,8 +425,9 @@ openLogs(content9: any) {
   
   let obj = {
     SymbolID: this.orderBookID
+    // SymbolID: 100
   }
-    this.getOrderData = []
+    // this.getOrderData = []
     this.getOrderData1 = []
     this.api.getOrderAskBid(obj).subscribe({
       next: (res: any) => {
@@ -424,6 +453,23 @@ openLogs(content9: any) {
   }
   // ========================================================================== Report Post(get) and node get callback api  ================================================================================================
 
+
+  //Genrating aphanumeric string for MrachantTranansactionId 16 alphabates
+  UserID(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  
+    let result = '';
+  
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * 14);
+      result += characters[randomIndex];
+    }
+  
+    return result;
+  }
+  
+  uniqUserID: any
+
   getAllOrder() {
 
     let currentDate = new Date();
@@ -431,18 +477,18 @@ openLogs(content9: any) {
     this.dateTrade = formattedDate2
     console.log("formattedDate1",this.dateTrade);
 
-    let obj = {
+    // let obj = {
 
-    "Report_Req":0,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
-    "_dtFrom":"2024-01-12 07:01:22",
-    "_dtTo": this.dateTrade,
-    "Initial":1,
-    "MaxCount":200,
-    "Key":"",
-    "UserID": Number(localStorage.getItem('ProfileID')),               // user profile ID
-    "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl",                // this URL used for getting data
-    "oFilter":3,
-    "Value": Number(localStorage.getItem('ProfileID'))
+    // "Report_Req":0,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
+    // "_dtFrom":"2024-01-12 07:01:22",
+    // "_dtTo": this.dateTrade,
+    // "Initial":1,
+    // "MaxCount":200,
+    // "Key":"",
+    // "UserID": Number(localStorage.getItem('ProfileID')),               // user profile ID
+    // "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl",                // this URL used for getting data
+    // "oFilter":3,
+    // "Value": Number(localStorage.getItem('ProfileID'))
 
       // Report_Req: 0,   // ORDER = 0,TRADE = 1,NET_POS = 2   
       // _dtFrom: "",
@@ -450,7 +496,22 @@ openLogs(content9: any) {
       // Key: "",
       // UserID: Number(localStorage.getItem('ProfileID')),
       // CB_URL: "https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl"
-    }
+    // }
+    this.uniqUserID = this.UserID(5)
+    console.log("this.uniqUserID",this.uniqUserID);
+ 
+     let obj ={
+       "Report_Req":0,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
+       "_dtFrom":"2024-01-12 07:01:22",
+       "_dtTo": this.dateTrade,
+       "Initial":1,
+       "MaxCount":30,
+       "Key":"",
+       "UserID":  Number(localStorage.getItem('ProfileID')),               // user profile ID
+       "CB_URL":String(this.uniqUserID),                // AUTO-GENERATED KEY IN STRING
+       "oFilter":3,
+       "Value": Number(localStorage.getItem('ProfileID'))
+     }
     this.api.reportReq(obj).subscribe({
       next: (res: any) => {
         this.getAllOrderCallbk();
@@ -469,15 +530,25 @@ openLogs(content9: any) {
   modelImageData: any = []
   imgg: any
   SymbolName: any
+  showOrder: any = false
   getAllOrderCallbk() {
     this.allRepostData ={}
     this.getllOrderData = []
     this.getAllOrderCancel = []
     this.netPostionData = []
-    this.api.getAllOTradeCallbackurl().subscribe({
+    let obj ={
+      userId: this.uniqUserID 
+    }
+    this.api.newReportCallBack(obj.userId).subscribe({
       next: (res: any) => {
         this.allRepostData = res
         this.getllOrderData = this.allRepostData?.lstOrd
+        if(this.getllOrderData.length == 0){
+          this.showOrder = false
+        }
+        else{
+          this.showOrder = true
+        }
         this.getllOrderData.forEach((item: any, index: any) => {
           this.modelImageData = this.symbolIDToFilterAll.filter((item1: any) => item1.SymbolID === item.SymbolID);
 
@@ -576,7 +647,8 @@ openLogs(content9: any) {
   selectedSymbol: any = ""
   count: any = 1;
 
-  symbolIDToFilter: any = 111; // Replace with the SymbolID you want to filter
+  // symbolIDToFilter: any = 111; // Replace with the SymbolID you want to filter
+  symbolIDToFilter: any;
   symbolIDToFilterAll: any[] = [];
 
   getAllSymbolImg() {
@@ -595,10 +667,12 @@ openLogs(content9: any) {
     this.sharedData.getPlaOrderData(val)
     this.ListsocketData1 = {}
     this.ListsocketData1 = {}
+    console.log("valll",val);
+    
     this.listOfFirst1 = this.listBygase[val]
     this.listOfFirst2 = this.listBygase[val]
     this.listOfFirst = this.listBygase[val]
-    this.connection = true
+    // this.connection = true
 
     this.item1 = this.listBygase[val].Base
     this.ListsocketData1 = this.listBygase[val]
@@ -611,20 +685,20 @@ openLogs(content9: any) {
     this.selectedSymbol = this.ListsocketData1.Symbol
     this.sharedData.setChartData(this.selectedSymbol)
     // this.getAskBid(this.ListsocketData1.oQuote.ID)
-    // this.getAskBid()
+    this.getAskBid()
     this.tradesBook(this.selectedSymbol)
     // this.orderBook(this.selectedSymbol)
-    // this.intervalId = setInterval(() => {
-    //   if (this.count == 60000) {
-    //     // this.getAskBid()
-    //     this.tradesBook(this.selectedSymbol)
-    //     this.orderBook(this.selectedSymbol)
-    //   }
+    this.intervalId = setInterval(() => {
+      if (this.count == 20000) {
+        this.getAskBid()
+        // this.tradesBook(this.selectedSymbol)
+        // this.orderBook(this.selectedSymbol)
+      }
 
 
-    // }, 60000);
+    }, 20000);
 
-    // this.count = 60000
+    this.count = 20000
 
 
   }
@@ -883,7 +957,7 @@ openLogs(content9: any) {
     if (this.socket) {
       this.socket.close();
     }
-    clearInterval(this.intervalId);
+    // clearInterval(this.intervalId);
 
   }
 

@@ -4,24 +4,24 @@
          <div>
             <div ngbDropdown class="d-inline-block market-pair ps-2">
                <!-- <button type="button" class="btn btn-outline-primary " id="dropdownBasic1" ngbDropdownToggle> -->
-                  {{ ListsocketData1?.oQuote?.S}}
+               {{ ListsocketData1?.oQuote?.S}} <span><i class="fa-regular fa-star" style="color:#f1b435"></i></span>
                <!-- </button> -->
                <!-- <p style="mt-1"> {{ ListsocketData1?.Base}}/{{ ListsocketData1?.Quote}} </p> -->
                <div>
                   <!-- {{getChartCurr(liveData)}} -->
-                  <span class="lastTradePrice">{{ListsocketData1?.oQuote?.L}} 
+                  <span class="lastTradePrice">
+                     {{ListsocketData1?.oQuote?.L}} 
                      <!-- <strong
                         style="color: red !important">{{ListsocketData1?.oQuote?.a |number:'1.3-3'}}</strong> -->
-
-                        <span class="" *ngIf="!getRunningData(ListsocketData1?.oQuote?.a).flag" class="arrowR"><i
-                           class="fa-solid fa-arrow-down-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value
-                        |number:'1.3-3'
-                        }} </span>
+                     <span class="" *ngIf="!getRunningData(ListsocketData1?.oQuote?.a).flag" class="arrowR"><i
+                        class="fa-solid fa-arrow-down-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value
+                     |number:'1.3-3'
+                     }} </span>
                      <span class="" *ngIf="getRunningData(ListsocketData1?.oQuote?.a).flag" class="arrowG"><i
-                           class="fa-solid fa-arrow-up-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value
-                        |number:'1.3-3'
-                        }} </span>
-                     </span>
+                        class="fa-solid fa-arrow-up-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value
+                     |number:'1.3-3'
+                     }} </span>
+                  </span>
                </div>
             </div>
          </div>
@@ -33,13 +33,13 @@
             <li>
                <p>24h Change</p>
                <span class="" *ngIf="!getRunningData(ListsocketData1?.oQuote?.a).flag" class="arrowR"><i
-                     class="fa-solid fa-arrow-down-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value
-                  |number:'1.3-3'
-                  }} </span>
+                  class="fa-solid fa-arrow-down-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value
+               |number:'1.3-3'
+               }} </span>
                <span class="" *ngIf="getRunningData(ListsocketData1?.oQuote?.a).flag" class="arrowG"><i
-                     class="fa-solid fa-arrow-up-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value
-                  |number:'1.3-3'
-                  }} </span>
+                  class="fa-solid fa-arrow-up-long"></i>{{getRunningData(ListsocketData1?.oQuote?.a).value
+               |number:'1.3-3'
+               }} </span>
             </li>
             <li>
                <p>24h High</p>
@@ -57,11 +57,11 @@
       </div>
       <div class="col-md-4">
          <ul class="d-flex status justify-content-end d-md-flex d-none">
-            <li *ngIf="connection" class="mx-md-4 mx-3 clock">
+            <li *ngIf="connectTrade" class="mx-md-4 mx-3 clock">
                <p><i class="fa-solid fa-signal signal-connect"></i> Socket Status</p>
                <p class="price_green">Connected</p>
             </li>
-            <li *ngIf="!connection" class="mx-md-4 mx-3 clock">
+            <li *ngIf="!connection && !connectTrade" class="mx-md-4 mx-3 clock">
                <p><i class="fa-solid fa-signal"></i> Socket Status</p>
                <p style="color: #585858;">Not Connected</p>
             </li>
@@ -86,9 +86,13 @@
                   <button class="nxt-btn" (click)="scrollLeft()"><i class="fa-solid fa-angles-left"></i></button>
                </div>
                <ul class="middle" #widgetsContent>
+                  <li class="info-widget">
+                     <input type="radio" class="btn-check" name="options-outlined" >
+                     <label class="btn btn-outline-success" style="padding: 8px; min-width: 40px;"><i class="fa-solid fa-star" style="color:#f1b435"></i></label>
+                  </li>
                   <li class="info-widget" *ngFor="let list of ListBase ; let i = index">
                      <input type="radio" class="btn-check" name="options-outlined" (click)="symbolChange1(list)"
-                        [id]="'list' + i" [autocomplete]="i === 0 ? 'on' : 'off'" [checked]="i === 0">
+                     [id]="'list' + i" [autocomplete]="i === 0 ? 'on' : 'off'" [checked]="i === 0">
                      <label class="btn btn-outline-success" [for]="'list' + i">{{list}}</label>
                   </li>
                </ul>
@@ -119,31 +123,30 @@
                   <table class="table " id="my_balance">
                      <tbody class=" tbody-m" style="border: 1px solid #50505000 !important;">
                         <tr *ngFor="let list1 of listBygase let i=index" (click)="getsymbol(i)">
-                           <td>
-                              <div class="d-flex">
-
-                                 <img [src]="list1.img" *ngIf="list1.img != undefined" class="watch-img" />
-                                 <img [src]="image" *ngIf="list1.img == undefined" alt="">
-                                 <div>
-                                    <p class="leftbase-txt"> {{list1.Base}}</p>
-                                    <span class="text-start">{{list1?.Quote}}</span>
-                                 </div>
+                        <td>
+                           <div class="d-flex">
+                              <img [src]="list1.img" *ngIf="list1.img != undefined" class="watch-img" />
+                              <img [src]="image" *ngIf="list1.img == undefined" alt="">
+                              <div>
+                                 <p class="leftbase-txt"> {{list1.Base}}</p>
+                                 <span class="text-start">{{list1?.Quote}}</span>
                               </div>
-                           </td>
-                           <td>
-                              <p>{{list1?.oQuote?.L}} {{list1?.Quote}}</p>
-                              <!-- <span class="estimated_fiat " *ngIf="getRunningData(list1?.oQuote?.a).flag" style="color:rgb(0, 255, 38)"><i class="fa-solid fa-caret-up"></i>
-                             {{getRunningData(list1?.oQuote?.a).value|number:'1.9-9'}}
-                             </span> -->
-                              <span class="estimated_fiat" *ngIf="!getRunningData(list1?.oQuote?.a).flag"
-                                 class="arrowR"><i class="fa-solid fa-caret-down"></i>
-                                 {{getRunningData(list1?.oQuote?.a).value | slice:0:6}}
-                              </span>
-                              <span class="estimated_fiat" *ngIf="getRunningData(list1?.oQuote?.a).flag"
-                                 class="arrowG"><i class="fa-solid fa-caret-up"></i>
-                                 {{getRunningData(list1?.oQuote?.a).value | slice:0:4}}
-                              </span>
-                           </td>
+                           </div>
+                        </td>
+                        <td>
+                           <p>{{list1?.oQuote?.L}} {{list1?.Quote}}</p>
+                           <!-- <span class="estimated_fiat " *ngIf="getRunningData(list1?.oQuote?.a).flag" style="color:rgb(0, 255, 38)"><i class="fa-solid fa-caret-up"></i>
+                              {{getRunningData(list1?.oQuote?.a).value|number:'1.9-9'}}
+                              </span> -->
+                           <span class="estimated_fiat" *ngIf="!getRunningData(list1?.oQuote?.a).flag"
+                              class="arrowR"><i class="fa-solid fa-caret-down"></i>
+                           {{getRunningData(list1?.oQuote?.a).value | slice:0:6}}
+                           </span>
+                           <span class="estimated_fiat" *ngIf="getRunningData(list1?.oQuote?.a).flag"
+                              class="arrowG"><i class="fa-solid fa-caret-up"></i>
+                           {{getRunningData(list1?.oQuote?.a).value | slice:0:4}}
+                           </span>
+                        </td>
                         </tr>
                      </tbody>
                   </table>
@@ -153,11 +156,10 @@
       </div>
       <div class="col-xxl-10 col-xl-10 col-md-10">
          <div class="row">
-            <div class="col-xxl-10 col-xl-10 col-md-10">
+            <div class="col-xxl-9 col-xl-9 col-md-9">
                <app-charts [items]="listOfFirst2"></app-charts>
             </div>
-         
-            <div class="col-xxl-2 col-xl-2 col-md-2 ">
+            <div class="col-xxl-3 col-xl-3 col-md-3 ">
                <app-order-place [items1]="listOfFirst1"></app-order-place>
                <!-- <app-home></app-home> -->
             </div>
@@ -167,148 +169,149 @@
                      <h6>Order History <span>BTC/USDT</span></h6>
                   </div>
                   <div id="chart-tabs">
-                     <ul ngbNav #nav3="ngbNav" [(activeId)]="active2" class="nav-tabs p-0">
-                        <li [ngbNavItem]="6">
-                           <button ngbNavLink>
-                              Executed <span class="count">[0]</span>
-                           </button>
-                           <ng-template ngbNavContent>
-                              <div class="d-flex justify-content-between show-entry">
-                                 <div>
-                                    <span>Show</span>
-                                    <select class="mx-2">
-                                       <option>15</option>
-                                       <option>25</option>
-                                       <option>100</option>
-                                       <option>All</option>
-                                    </select>
-                                    <span>entries</span>
-                                 </div>
-                                 <div class="search position-relative">
-                                    <input type="Search" placeholder="Search" /><i class="fa-solid fa-magnifying-glass"></i>
-                                 </div>
+                     <!-- [(activeId)]="active2" -->
+                     <ul ngbNav #nav3="ngbNav"  class="nav-tabs p-0">
+                     <li [ngbNavItem]="6">
+                        <button ngbNavLink>
+                        Executed <span class="count">[0]</span>
+                        </button>
+                        <ng-template ngbNavContent>
+                           <div class="d-flex justify-content-between show-entry">
+                              <div>
+                                 <span>Show</span>
+                                 <select class="mx-2">
+                                    <option>15</option>
+                                    <option>25</option>
+                                    <option>100</option>
+                                    <option>All</option>
+                                 </select>
+                                 <span>entries</span>
                               </div>
-                              <div class="table-responsive">
-                                 <table class="table" id="table-2" style="width: 100%" cellpadding="10px">
-                                    <thead>
-                                       <tr role="row" style="padding: 8px">
-                                          <th rowspan="1" colspan="1" style="width: 0px; padding: 8px">
-                                             Order No
-                                          </th>
-                                          <th rowspan="1" colspan="1" style="width: 0px">Side</th>
-                                          <th rowspan="1" colspan="1" style="width: 0px">Type</th>
-                                          <th rowspan="1" colspan="1" style="width: 0px">
-                                             Order Price
-                                          </th>
-                                          <th rowspan="1" colspan="1" style="width: 0px">
-                                             Executed Price
-                                          </th>
-                                          <th rowspan="1" colspan="1" style="width: 0px">Fee</th>
-                                          <th rowspan="1" colspan="1" style="width: 0px">
-                                             Total Value
-                                          </th>
-                                          <th rowspan="1" colspan="1" style="width: 0px">
-                                             Executed At
-                                          </th>
-                                          <th rowspan="1" colspan="1" style="width: 0px">
-                                             Action
-                                          </th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr>
-                                          <td>01</td>
-                                          <td>UP</td>
-                                          <td>BTC</td>
-                                          <td>$4.99</td>
-                                          <td>$5.00</td>
-                                          <td>$1.99</td>
-                                          <td>$7.99</td>
-                                          <td>15/07/2023 15:03:31</td>
-                                          <td>SOLD</td>
-                                       </tr>
-                                       <tr>
-                                          <td>01</td>
-                                          <td>UP</td>
-                                          <td>BTC</td>
-                                          <td>$4.99</td>
-                                          <td>$5.00</td>
-                                          <td>$1.99</td>
-                                          <td>$7.99</td>
-                                          <td>15/07/2023 15:03:31</td>
-                                          <td>SOLD</td>
-                                       </tr>
-                                       <tr>
-                                          <td>01</td>
-                                          <td>UP</td>
-                                          <td>BTC</td>
-                                          <td>$4.99</td>
-                                          <td>$5.00</td>
-                                          <td>$1.99</td>
-                                          <td>$7.99</td>
-                                          <td>15/07/2023 15:03:31</td>
-                                          <td>SOLD</td>
-                                       </tr>
-                                       <tr>
-                                          <td>01</td>
-                                          <td>UP</td>
-                                          <td>BTC</td>
-                                          <td>$4.99</td>
-                                          <td>$5.00</td>
-                                          <td>$1.99</td>
-                                          <td>$7.99</td>
-                                          <td>15/07/2023 15:03:31</td>
-                                          <td>SOLD</td>
-                                       </tr>
-                                       <tr>
-                                          <td>01</td>
-                                          <td>UP</td>
-                                          <td>BTC</td>
-                                          <td>$4.99</td>
-                                          <td>$5.00</td>
-                                          <td>$1.99</td>
-                                          <td>$7.99</td>
-                                          <td>15/07/2023 15:03:31</td>
-                                          <td>SOLD</td>
-                                       </tr>
-                                       <tr class="odd text-center">
-                                          <td valign="top" colspan="12" class="dataTables_empty py-5">
-                                             No data available in table
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
+                              <div class="search position-relative">
+                                 <input type="Search" placeholder="Search" /><i class="fa-solid fa-magnifying-glass"></i>
                               </div>
-                              <nav aria-label="Page navigation example">
-                                 <ul class="pagination justify-content-end">
-                                    <li class="page-item">
-                                       <a class="page-link" href="#">First</a>
-                                    </li>
-                                    <li class="page-item">
-                                       <a class="page-link" href="#">Previous</a>
-                                    </li>
-                                    <li class="page-item">
-                                       <a class="page-link" href="#">Next</a>
-                                    </li>
-                                    <li class="page-item">
-                                       <a class="page-link" href="#">Last</a>
-                                    </li>
-                                 </ul>
-                              </nav>
-                           </ng-template>
-                        </li>
+                           </div>
+                           <div class="table-responsive">
+                              <table class="table" id="table-2" style="width: 100%" cellpadding="10px">
+                                 <thead>
+                                    <tr role="row" style="padding: 8px">
+                                       <th rowspan="1" colspan="1" style="width: 0px; padding: 8px">
+                                          Order No
+                                       </th>
+                                       <th rowspan="1" colspan="1" style="width: 0px">Side</th>
+                                       <th rowspan="1" colspan="1" style="width: 0px">Type</th>
+                                       <th rowspan="1" colspan="1" style="width: 0px">
+                                          Order Price
+                                       </th>
+                                       <th rowspan="1" colspan="1" style="width: 0px">
+                                          Executed Price
+                                       </th>
+                                       <th rowspan="1" colspan="1" style="width: 0px">Fee</th>
+                                       <th rowspan="1" colspan="1" style="width: 0px">
+                                          Total Value
+                                       </th>
+                                       <th rowspan="1" colspan="1" style="width: 0px">
+                                          Executed At
+                                       </th>
+                                       <th rowspan="1" colspan="1" style="width: 0px">
+                                          Action
+                                       </th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>01</td>
+                                       <td>UP</td>
+                                       <td>BTC</td>
+                                       <td>$4.99</td>
+                                       <td>$5.00</td>
+                                       <td>$1.99</td>
+                                       <td>$7.99</td>
+                                       <td>15/07/2023 15:03:31</td>
+                                       <td>SOLD</td>
+                                    </tr>
+                                    <tr>
+                                       <td>01</td>
+                                       <td>UP</td>
+                                       <td>BTC</td>
+                                       <td>$4.99</td>
+                                       <td>$5.00</td>
+                                       <td>$1.99</td>
+                                       <td>$7.99</td>
+                                       <td>15/07/2023 15:03:31</td>
+                                       <td>SOLD</td>
+                                    </tr>
+                                    <tr>
+                                       <td>01</td>
+                                       <td>UP</td>
+                                       <td>BTC</td>
+                                       <td>$4.99</td>
+                                       <td>$5.00</td>
+                                       <td>$1.99</td>
+                                       <td>$7.99</td>
+                                       <td>15/07/2023 15:03:31</td>
+                                       <td>SOLD</td>
+                                    </tr>
+                                    <tr>
+                                       <td>01</td>
+                                       <td>UP</td>
+                                       <td>BTC</td>
+                                       <td>$4.99</td>
+                                       <td>$5.00</td>
+                                       <td>$1.99</td>
+                                       <td>$7.99</td>
+                                       <td>15/07/2023 15:03:31</td>
+                                       <td>SOLD</td>
+                                    </tr>
+                                    <tr>
+                                       <td>01</td>
+                                       <td>UP</td>
+                                       <td>BTC</td>
+                                       <td>$4.99</td>
+                                       <td>$5.00</td>
+                                       <td>$1.99</td>
+                                       <td>$7.99</td>
+                                       <td>15/07/2023 15:03:31</td>
+                                       <td>SOLD</td>
+                                    </tr>
+                                    <tr class="odd text-center">
+                                       <td valign="top" colspan="12" class="dataTables_empty py-5">
+                                          No data available in table
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <nav aria-label="Page navigation example">
+                              <ul class="pagination justify-content-end">
+                                 <li class="page-item">
+                                    <a class="page-link" href="#">First</a>
+                                 </li>
+                                 <li class="page-item">
+                                    <a class="page-link" href="#">Previous</a>
+                                 </li>
+                                 <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                 </li>
+                                 <li class="page-item">
+                                    <a class="page-link" href="#">Last</a>
+                                 </li>
+                              </ul>
+                           </nav>
+                        </ng-template>
+                     </li>
                      </ul>
                      <div [ngbNavOutlet]="nav3" class="mt-2"></div>
                   </div>
                </div>
                <div class="ordersection">
                   <div class="row">
-                     <div class="col-md-6 ps-0">
+                     <div class="col-md-4 ps-0">
                         <div ngbAccordion>
                            <div ngbAccordionItem [collapsed]="false">
                               <h2 class="panel-m-hd pt-2">
                                  <span class="me-2">Order Book</span> <span> {{ListsocketData1?.Base}}/
-                                    {{ListsocketData1?.Quote}}</span>
+                                 {{ListsocketData1?.Quote}}</span>
                               </h2>
                               <div ngbAccordionCollapse>
                                  <div ngbAccordionBody>
@@ -368,12 +371,10 @@
                                                       </div>
                                                    </div>
                                                 </div>
-      
                                              </div>
                                           </div>
-      
                                           <!-- <div class="table-responsive ordertrade-book-h">
-                                         </div> -->
+                                             </div> -->
                                        </div>
                                     </div>
                                  </div>
@@ -381,104 +382,137 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6">
+                     <div class="col-md-8">
                         <div class="trading_book_section market-pair" id="accordian-1">
                            <div ngbAccordion>
                               <div ngbAccordionItem [collapsed]="false">
                                  <h2 class="panel-m-hd pt-2">
-                                    <span class="me-2">Trades Book</span> <span> {{ListsocketData1?.Base}}/
-                                       {{ListsocketData1?.Quote}}</span>
+                                    <span class="me-2">Position</span> <span> {{ListsocketData1?.Base}}/
+                                    {{ListsocketData1?.Quote}}</span>
                                  </h2>
-                                 <div ngbAccordionCollapse>
-                                    <div ngbAccordionBody>
-                                       <ng-template>
-                                          <div class="panel-heading_custom0 markets">
-                                             
-                                             <ul ngbNav #nav3="ngbNav" [(activeId)]="active3" class="nav-tabs"
-                                                id="market-your">
-                                                <li [ngbNavItem]="8" class="active">
-                                                   <button ngbNavLink class="market">Markets</button>
-                                                   <ng-template ngbNavContent>
-                                                      <div class="ordertrade-book-h3">
-                                                         <table class="table dataTable market-table " style="width: 100%;">
-                                                            <thead>
-                                                               <tr role="row">
-                                                                  <th class="number" rowspan="1" colspan="1"
-                                                                     style="width: 110px">
-                                                                     Price
-                                                                  </th>
-                                                                  <th class="number" rowspan="1" colspan="1"
-                                                                     style="width: 92px">
-                                                                     Volume
-                                                                  </th>
-                                                                  <th class="date" rowspan="1" colspan="1"
-                                                                     style="width: 86px">
-                                                                     Time
-                                                                  </th>
-                                                               </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                               <tr *ngFor="let data of allTradeBList ">
-                                                                  <td>{{data?.price}}</td>
-                                                                  <td>{{data?.qty}}</td>
-                                                                  <td>{{data?.time | date:' HH:mm:ss'}}</td>
-                                                               </tr>
-                                                            </tbody>
-                                                         </table>
-                                                      </div>
-                                                   </ng-template>
-                                                </li>
-                                                <li [ngbNavItem]="9" class="yours">
-                                                   <button ngbNavLink class="market">Order</button>
-                                                   <ng-template ngbNavContent>
-                                                      <div class="set-fake-tab1">
-                                                         <a (click)="openOrder(content2)">View Orders</a>
-                                                      </div>
-                                                      <app-trade-book-order [items3]="ListsocketData1"></app-trade-book-order>
-                                                   </ng-template>
-                                                </li>
-                                                <li [ngbNavItem]="10" class="yours">
-                                                   <button ngbNavLink class="market">Trade</button>
-                                                   <ng-template ngbNavContent>
-                                                      <div class="set-fake-tab1">
-                                                         <a (click)="openLg(content)">View All Trade</a>
-                                                      </div>
-                                                      <app-ex-tradebook-trade [trade]="listOfFirst2"></app-ex-tradebook-trade>
-                                                   </ng-template>
-                                                </li>
-                                                <li [ngbNavItem]="11" class="yours">
-                                                   <button ngbNavLink class="market">Cancel</button>
-                                                   <ng-template ngbNavContent>
-                                                      <div class="set-fake-tab1">
-                                                         <a (click)="openCancelRep(content4)">View Cancel</a>
-                                                      </div>
-                                                      <app-cancel-order ></app-cancel-order>
-                                                   </ng-template>
-                                                </li>
-                                                <li [ngbNavItem]="12" class="yours">
-                                                   <button ngbNavLink class="market">Net Position</button>
-                                                   <ng-template ngbNavContent>
-                                                      <div class="set-fake-tab1">
-                                                         <a (click)="netposition(content3)">View Net Position</a>
-                                                      </div>
-                                                      <app-net-position [netPos]="listOfFirst2"></app-net-position>
-                                                   </ng-template>
-                                                </li>
-                                                <li [ngbNavItem]="13" class="yours">
-                                                   <button ngbNavLink class="market">Logs</button>
-                                                   <ng-template ngbNavContent>
-                                                      <div class="set-fake-tab1">
-                                                         <a (click)="openLogs(content9)">View Logs</a>
-                                                      </div>
-                                                      <app-logs [logs]=""></app-logs>
-                                                   </ng-template>
-                                                </li>
-                                             </ul>
-                                             <div [ngbNavOutlet]="nav3" class="mt-2"></div>
+                                 <!-- mmm  -->
+                                 <div class="accordion-body markets p-2">
+                                    <div class="tabnavc">
+                                       <ul class="tabnavc-ul">
+                                          <li [ngClass]="{'active': positionTab == 'tab1'}" (click)="positionnav ('tab1')">
+                                          <div class="tabnavc-a ">
+                                             <div><span class="tabnavc-txt">Markets</span></div>
                                           </div>
-                                       </ng-template>
+                                          </li>
+                                          <li [ngClass]="{'active': positionTab == 'tab2'}" (click)="positionnav ('tab2')">
+                                          <div class="tabnavc-a">
+                                             <div><span class="tabnavc-txt">Order</span></div>
+                                          </div>
+                                          </li>
+                                          <li [ngClass]="{'active': positionTab == 'tab3'}" (click)="positionnav ('tab3')">
+                                          <div class="tabnavc-a">
+                                             <div><span class="tabnavc-txt">Pending Order</span></div>
+                                          </div>
+                                          </li>
+                                          <li [ngClass]="{'active': positionTab == 'tab4'}" (click)="positionnav ('tab4')">
+                                          <div class="tabnavc-a">
+                                             <div><span class="tabnavc-txt">Trade</span></div>
+                                          </div>
+                                          </li>
+                                          <li [ngClass]="{'active': positionTab == 'tab5'}" (click)="positionnav ('tab5')">
+                                          <div class="tabnavc-a">
+                                             <div><span class="tabnavc-txt">Cancel</span></div>
+                                          </div>
+                                          </li>
+                                          <li [ngClass]="{'active': positionTab == 'tab6'}" (click)="positionnav ('tab6')">
+                                          <div class="tabnavc-a">
+                                             <div><span class="tabnavc-txt">Net Position</span></div>
+                                          </div>
+                                          </li>
+                                          <li [ngClass]="{'active': positionTab == 'tab7'}" (click)="positionnav ('tab7')">
+                                          <div class="tabnavc-a">
+                                             <div><span class="tabnavc-txt">Logs</span></div>
+                                          </div>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                    <div  *ngIf="positionTab == 'tab1'">
+                                       <div class="anu-tab">
+                                          <div class="ordertrade-book-h3">
+                                             <table class="table dataTable market-table " style="width: 100%;">
+                                                <thead>
+                                                   <tr role="row">
+                                                      <th class="number" rowspan="1" colspan="1"
+                                                         style="width: 110px">
+                                                         Price
+                                                      </th>
+                                                      <th class="number" rowspan="1" colspan="1"
+                                                         style="width: 92px">
+                                                         Volume
+                                                      </th>
+                                                      <th class="date" rowspan="1" colspan="1"
+                                                         style="width: 86px">
+                                                         Time
+                                                      </th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr *ngFor="let data of allTradeBList ">
+                                                      <td>{{data?.price}}</td>
+                                                      <td>{{data?.qty}}</td>
+                                                      <td>{{data?.time | date:' HH:mm:ss'}}</td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div  *ngIf="positionTab == 'tab2'">
+                                       <div class="anu-tab">
+                                          <div class="set-fake-tab1">
+                                             <a (click)="openOrder(content2)">View Orders</a>
+                                          </div>
+                                          <app-trade-book-order [items3]="ListsocketData1"></app-trade-book-order>
+                                       </div>
+                                    </div>
+                                    <div  *ngIf="positionTab == 'tab3'">
+                                       <div class="anu-tab">
+                                          <div class="set-fake-tab1">
+                                             <a (click)="openPrnding(content10)">View pending order</a>
+                                          </div>
+                                          <app-pending-order [cancel]="listOfFirst2"></app-pending-order>
+                                       </div>
+                                    </div>
+                                    <div  *ngIf="positionTab == 'tab4'">
+                                       <div class="anu-tab">
+                                          <div class="set-fake-tab1">
+                                             <a (click)="openLg(content)">View All Trade</a>
+                                          </div>
+                                          <app-ex-tradebook-trade [trade]="listOfFirst2"></app-ex-tradebook-trade>
+                                       </div>
+                                    </div>
+                                    <div  *ngIf="positionTab == 'tab5'">
+                                       <div class="anu-tab">
+                                          <div class="set-fake-tab1">
+                                             <a (click)="openCancelRep(content4)">View Cancel</a>
+                                          </div>
+                                          <app-cancel-order ></app-cancel-order>
+                                       </div>
+                                    </div>
+                                    <div  *ngIf="positionTab == 'tab6'">
+                                       <div class="anu-tab">
+                                          <div class="set-fake-tab1">
+                                             <a (click)="netposition(content3)">View Net Position</a>
+                                          </div>
+                                          <app-net-position [netPos]="listOfFirst2"></app-net-position>
+                                       </div>
+                                    </div>
+                                    <div  *ngIf="positionTab == 'tab7'">
+                                       <div class="anu-tab">
+                                          <div class="set-fake-tab1">
+                                             <a (click)="openLogs(content9)">View Logs</a>
+                                          </div>
+                                          <app-logs [logs]=""></app-logs>
+                                       </div>
                                     </div>
                                  </div>
+                                 <!-- end  -->
+                                 
                               </div>
                            </div>
                         </div>
@@ -488,9 +522,7 @@
             </div>
          </div>
       </div>
-
    </div>
-   
 </div>
 <ng-template #content let-modal>
    <div class="modal-header">
@@ -501,138 +533,138 @@
       <div class="table-responsive">
          <div class="loader-table" *ngIf="getAlltreadeData.length == 0">
             <table class="tg">
-                <tr>
-                  <th class="tg-cly1">  
-                      <div class="line"></div>
+               <tr>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-              </table>
-        </div>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+               </tr>
+            </table>
+         </div>
          <table class="table line-table" id="deposit"  *ngIf="getAlltreadeData.length > 0">
             <thead>
                <tr>
@@ -653,11 +685,9 @@
                      <p class="">
                         {{ formatTimestamp(trade.TimeClose, 'yyyy-MM-dd HH:mm:ss a', 'GMT') }}
                      </p>
-                    
                   </td>
                   <!-- <td>{{trade.OrderID}}</td> -->
                   <td>
-
                      <div class="d-flex align-items-center">
                         <div><img class="watch-img" [src]="trade.imgg"></div>
                         <p class="">{{trade.SymbolName}}</p>
@@ -668,15 +698,14 @@
                      <p class="type-m-buy" *ngIf="trade.Buy_Sell == 1">Buy</p>
                      <p class="type-m-sell" *ngIf="trade.Buy_Sell == 2">Sell</p>
                      <p class="type-m-buy" *ngIf="trade.Buy_Sell == 0">0</p>
-                     
                   </td>
                   <td>
                      {{trade.Lot}}
                   </td>
                   <td>
                      {{trade.Price}}
-                  </td> 
-              </tr>
+                  </td>
+               </tr>
             </tbody>
          </table>
       </div>
@@ -696,140 +725,141 @@
    </div>
    <div class="modal-body">
       <div class="table-responsive">
-         <div class="loader-table" *ngIf="getllOrderData.length == 0">
+         <!-- <div class="loader-table" *ngIf="getllOrderData.length == 0"> -->
+            <div class="loader-table" *ngIf="getllOrderData.length == 0">
             <table class="tg">
-                <tr>
-                  <th class="tg-cly1">  
-                      <div class="line"></div>
+               <tr>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-              </table>
-        </div>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+               </tr>
+            </table>
+         </div>
          <table class="table line-table" *ngIf="getllOrderData.length > 0" id="deposit">
             <thead>
                <tr>
@@ -839,7 +869,6 @@
                   <th>Type</th>
                   <th>Lot</th>
                   <th>Price</th>
-                  
                   <th>CMP</th>
                   <th>Profit</th>
                </tr>
@@ -851,7 +880,6 @@
                   </td>
                   <td>{{dd.OrderID}}</td>
                   <td>
-
                      <div class="d-flex align-items-center">
                         <div><img class="watch-img" [src]="dd.imgg"></div>
                         <p class="">{{dd.SymbolName}}</p>
@@ -873,14 +901,12 @@
                   </td>
                   <td>
                      <!-- <p>{{((dd.Price)-(ListsocketData1?.oQuote?.L)/ListsocketData1?.oQuote?.L) |number:'1.3-3'}}</p> -->
-                     <p *ngIf="dd.L != null">{{(((dd.L - dd.Price)*100)/dd.Price) | number : '1.2-2'}}%</p> 
-                     <p *ngIf="dd.L == null">0%</p> 
+                     <p *ngIf="dd.L != null">{{(((dd.L - dd.Price)*100)/dd.Price) | number : '1.2-2'}}%</p>
+                     <p *ngIf="dd.L == null">0%</p>
                   </td>
                </tr>
             </tbody>
-
          </table>
-
       </div>
       <div class="row pt-3">
          <div class="col-md-12 ex-pagination">
@@ -900,138 +926,138 @@
       <div class="table-responsive">
          <div class="loader-table" *ngIf="getAllOrderCancel.length == 0">
             <table class="tg">
-                <tr>
-                  <th class="tg-cly1">  
-                      <div class="line"></div>
+               <tr>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-              </table>
-        </div>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+               </tr>
+            </table>
+         </div>
          <table class="table line-table" id="deposit"  *ngIf="getAllOrderCancel.length >0">
             <thead>
                <tr>
@@ -1048,11 +1074,9 @@
                <tr *ngFor="let dd of pageOfItems">
                   <td>
                      <p class="">{{ formatTimestamp(dd.Time, 'yyyy-MM-dd HH:mm:ss a', 'GMT') }}
-                     
                      </p>
                   </td>
                   <td>
-
                      <div class="d-flex align-items-center">
                         <div><img class="watch-img" [src]="dd.imgg"></div>
                         <p class="">{{dd.SymbolName}}</p>
@@ -1076,9 +1100,7 @@
                   </td>
                </tr>
             </tbody>
-
          </table>
-
       </div>
       <div class="row pt-3">
          <div class="col-md-12 ex-pagination">
@@ -1098,138 +1120,138 @@
       <div class="table-responsive">
          <div class="loader-table" *ngIf="netPostionData.length == 0">
             <table class="tg">
-                <tr>
-                  <th class="tg-cly1">  
-                      <div class="line"></div>
+               <tr>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-              </table>
-        </div>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+               </tr>
+            </table>
+         </div>
          <table class="table line-table" id="deposit" *ngIf="netPostionData.length > 0">
             <thead>
                <tr>
@@ -1246,7 +1268,6 @@
             <tbody id="infoTable1">
                <tr *ngFor="let dd of pageOfItems">
                   <td>
-
                      <div class="d-flex align-items-center">
                         <div><img class="watch-img" [src]="dd.imgg"></div>
                         <p class="">{{dd.SymbolName}}</p>
@@ -1275,7 +1296,6 @@
                   </td>
                </tr>
             </tbody>
-
          </table>
       </div>
       <div class="row pt-3">
@@ -1287,8 +1307,6 @@
       </div>
    </div>
 </ng-template>
-
-
 <ng-template #content9 let-modal>
    <div class="modal-header">
       <h4 class="modal-title">Logs </h4>
@@ -1298,138 +1316,311 @@
       <div class="table-responsive">
          <div class="loader-table" *ngIf="netPostionData.length == 0">
             <table class="tg">
-                <tr>
-                  <th class="tg-cly1">  
-                      <div class="line"></div>
+               <tr>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
                   <th class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </th>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-                <tr>
+               </tr>
+               <tr>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
                   <td class="tg-cly1">
-                    <div class="line"></div>
+                     <div class="line"></div>
                   </td>
-                </tr>
-              </table>
-        </div>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+               </tr>
+            </table>
+         </div>
+         <table class="table line-table" id="deposit" *ngIf="netPostionData.length > 0">
+            <thead>
+               <tr>
+                  <th>Timestamp</th>
+                  <th>Type</th>
+                  <th>Logs</th>
+               </tr>
+            </thead>
+            <tbody id="infoTable1">
+               <tr *ngFor="let dd of pageOfItems">
+                  <td>
+                     0
+                  </td>
+                  <td>
+                     0
+                  </td>
+                  <td>
+                     0
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="row pt-3">
+         <div class="col-md-12 ex-pagination">
+            <div class="">
+               <app-pagination [items]="netPostionData" (changePage)="onChangePage($event)"></app-pagination>
+            </div>
+         </div>
+      </div>
+   </div>
+</ng-template>
+<ng-template #content10 let-modal>
+   <div class="modal-header">
+      <h4 class="modal-title">Pending Order </h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+   </div>
+   <div class="modal-body">
+      <div class="table-responsive">
+         <div class="loader-table" *ngIf="netPostionData.length == 0">
+            <table class="tg">
+               <tr>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
+                  </th>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
+                  </th>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
+                  </th>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
+                  </th>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
+                  </th>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
+                  </th>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
+                  </th>
+                  <th class="tg-cly1">
+                     <div class="line"></div>
+                  </th>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+                  <td class="tg-cly1">
+                     <div class="line"></div>
+                  </td>
+               </tr>
+            </table>
+         </div>
          <table class="table line-table" id="deposit" *ngIf="netPostionData.length > 0">
             <thead>
                <tr>
@@ -1446,7 +1637,6 @@
             <tbody id="infoTable1">
                <tr *ngFor="let dd of pageOfItems">
                   <td>
-
                      <div class="d-flex align-items-center">
                         <div><img class="watch-img" [src]="dd.imgg"></div>
                         <p class="">{{dd.SymbolName}}</p>
@@ -1475,7 +1665,6 @@
                   </td>
                </tr>
             </tbody>
-
          </table>
       </div>
       <div class="row pt-3">

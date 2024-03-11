@@ -141,13 +141,9 @@
                         <tr>
 
                             <th>Timestamp</th>
-                            <th>Order No.</th>
-                            <th>Symbol</th>
+                          
                             <th>Type</th>
-                            <th>Lot</th>
-                            <th>Price</th>
-                            <th>CMP</th>
-                            <th>Profit</th>
+                            <th>Logs</th>
                             <!-- <th>Action</th> -->
                         </tr>
                     </thead>
@@ -157,27 +153,12 @@
                                 {{ formatTimestamp(order.Time, 'yyyy-MM-dd HH:mm:ss', 'GMT') }}
                            
                             </td>
-                            <td>{{order.OrderID}}</td>
-                            <td class="tbl-img">
-
-                                <div class="d-flex align-items-center">
-                                    <div><img class="watch-img" [src]="order.imgg"></div>
-                                    <div>
-                                        <div>{{order.SymbolName}}</div>
-                                     
-                                    </div>
-                                </div>
-
-                            </td>
+                        
                             <td><span class="cl-type-buy" *ngIf="order.Buy_Sell == 1">Buy</span>
                                 <span class="cl-type-sell" style *ngIf="order.Buy_Sell == 2">Sell</span>
                             </td>
-                            <td>≈ {{order.Lot}} </td>
-                            <td>{{order.Price | number: '1.4-4'}}</td>
-                            <td>{{order.L | number: '1.4-4'}}</td>
-
                             <td>0</td>
-                           <td>0</td>
+                           
                         </tr>
 
                     </tbody>

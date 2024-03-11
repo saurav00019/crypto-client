@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 
 
 import { GlobalAPIService } from 'src/app/service/global-api.service';
+import { InactiveTimerService } from 'src/app/service/inactive-timer.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -37,7 +38,8 @@ singnup:boolean=false;
     this.ReadMore = !this.ReadMore; 
     this.visible = !this.visible
   }
-  constructor(private services:ApiDataService,private global : GlobalAPIService, private toastrService: ToastrService,private formBuilder: FormBuilder,  private router:Router,public shareService:SharedDataService) { 
+  constructor(private services:ApiDataService,private global : GlobalAPIService, private toastrService: ToastrService,private formBuilder: FormBuilder,  
+    private router:Router,public shareService:SharedDataService, private inactive: InactiveTimerService) { 
     
     
     this.shareService.selectedsignupValue.subscribe((res)=>{
@@ -150,6 +152,7 @@ this.shareService.loader(true)
         this.getUserInfo(),
         this.getUserStage()
         this.shareService.loginHeader(true)
+        this.inactive.myHeader= true
        }
        
       }
@@ -314,6 +317,7 @@ this.services.GET_USER_STAGE(params).subscribe((data:any)=>{
     this.router.navigate(['/p2p']);
     // this.getAllSymbolImg()
     localStorage.setItem('headerActive', "false");
+
 
   
    }

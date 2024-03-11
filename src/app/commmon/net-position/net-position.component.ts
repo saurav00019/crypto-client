@@ -2,7 +2,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { GlobalAPIService } from 'src/app/service/global-api.service';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-net-position',
   templateUrl: './net-position.component.html',
@@ -13,7 +13,7 @@ export class NetPositionComponent {
   receivedDataArray1:any = [];
   subscription:any= Subscription;
   today: number = Date.now();
-  constructor( private api: GlobalAPIService,private toaster: ToastrService){
+  constructor(private datePipe: DatePipe, private api: GlobalAPIService,private toaster: ToastrService){
     
   }
 
@@ -46,16 +46,25 @@ export class NetPositionComponent {
   }
 
 
-
+  dateTrade1: any
   getAllOrder(){
+    let currentDate = new Date();
+    let formattedDate1 = this.datePipe.transform(currentDate, 'yyyy-MM-dd 11:59:59', 'GMT');
+    this.dateTrade1 = formattedDate1
+    console.log("formattedDate1",this.dateTrade1);
+
     let obj = {
-      Report_Req:0,   // ORDER = 0,TRADE = 1,NET_POS = 2   
-      _dtFrom:"",
-      _dtTo:"",
-      Key:"",
-      UserID: Number(localStorage.getItem('ProfileID')),
-      CB_URL:"https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl"
-  }
+      "Report_Req":1,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
+      _dtFrom:"2024-01-12 07:01:22",
+      _dtTo:this.dateTrade1,
+      "Initial":1,
+      "MaxCount":200,
+      "Key":"",
+      "UserID":Number(localStorage.getItem('ProfileID')),               // user profile ID
+      "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getUserTradePosSnap",                // this URL used for getting data
+      "oFilter":3,
+      "Value": Number(localStorage.getItem('ProfileID'))
+      }
   this.api.reportReq(obj).subscribe({
     next: (res: any) => {
       this.getAllOrderCallbk();

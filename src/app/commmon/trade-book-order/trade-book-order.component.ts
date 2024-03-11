@@ -356,16 +356,63 @@ modifyData1: any
     }
 
 
+  //Genrating aphanumeric string for MrachantTranansactionId 16 alphabates
+  UserID(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  
+    let result = '';
+  
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * 14);
+      result += characters[randomIndex];
+    }
+  
+    return result;
+  }
+  
+  uniqUserID: any
 
+
+    dateTrade: any
     getAllOrder(){
-   
-      let obj = {
-        Report_Req:0,   // ORDER = 0,TRADE = 1,NET_POS = 2   
-        _dtFrom:"",
-        _dtTo:"",
-        Key:"",
-        UserID: Number(localStorage.getItem('ProfileID')),
-        CB_URL:"https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl"
+      let currentDate = new Date();
+      let formattedDate2 = this.datePipe.transform(currentDate, 'yyyy-MM-dd 11:59:59', 'GMT');
+      this.dateTrade = formattedDate2
+      console.log("formattedDate1",this.dateTrade);   
+      // let obj = {
+
+      //   "Report_Req":0,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
+      //   "_dtFrom":"2024-01-12 07:01:22",
+      //   "_dtTo": this.dateTrade,
+      //   "Initial":1,
+      //   "MaxCount":200,
+      //   "Key":"",
+      //   "UserID": Number(localStorage.getItem('ProfileID')),               // user profile ID
+      //   "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl",                // this URL used for getting data
+      //   "oFilter":3,
+      //   "Value": Number(localStorage.getItem('ProfileID'))
+
+        // Report_Req:0,   // ORDER = 0,TRADE = 1,NET_POS = 2   
+        // _dtFrom:"",
+        // _dtTo:"",
+        // Key:"",
+        // UserID: Number(localStorage.getItem('ProfileID')),
+        // CB_URL:"https://www.marketwicks.com:4000/apiGatway/getAllOTradeCallbackurl"
+    // }
+    this.uniqUserID = this.UserID(5)
+   console.log("this.uniqUserID",this.uniqUserID);
+
+    let obj ={
+      "Report_Req":0,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
+      "_dtFrom":"2024-01-12 07:01:22",
+      "_dtTo": this.dateTrade,
+      "Initial":1,
+      "MaxCount":30,
+      "Key":"",
+      "UserID":  Number(localStorage.getItem('ProfileID')),               // user profile ID
+      "CB_URL":String(this.uniqUserID),                // AUTO-GENERATED KEY IN STRING
+      "oFilter":3,
+      "Value": Number(localStorage.getItem('ProfileID'))
     }
     this.api.reportReq(obj).subscribe({
       next: (res: any) => {
@@ -379,6 +426,32 @@ modifyData1: any
     });
     }
 
+    numberOnlyFor4Deciaml(event: any): boolean {
+      const charCode = (event.which) ? event.which : event.keyCode;
+      const inputValue: string = event.target.value;
+    
+      // Allow digits (0-9) and dot (.)
+      if ((charCode < 48 || charCode > 57) && charCode !== 46) {
+        this.toaster.error('Please enter a valid number.');
+        return false;
+      }
+    
+      // Allow only one dot
+      if (inputValue.indexOf('.') !== -1 && charCode === 46) {
+        this.toaster.error('Please enter a valid number with up to 4 decimal places.');
+        return false;
+      }
+    
+      // Allow up to 4 decimal places
+      const decimalIndex = inputValue.indexOf('.');
+      if (decimalIndex !== -1 && inputValue.length - decimalIndex > 4) {
+        this.toaster.error('Please enter a valid number with up to 4 decimal places.');
+        return false;
+      }
+    
+      return true;
+    }
+
   
     allRepostData1: any={}
     getllOrderData1:any=[]
@@ -387,23 +460,42 @@ modifyData1: any
   
     imgg: any
     SymbolName: any
+    showLoder: any = false
+    afterShowLoder: any = false
     getAllOrderCallbk(){
       this.getllOrderData1 = []
- 
-      this.api.getAllOTradeCallbackurl().subscribe({
+      let obj ={
+        userId: this.uniqUserID 
+      }
+      this.api.newReportCallBack(obj.userId).subscribe({
         next: (res: any) => {
        
-          this.allRepostData1 = res?.lstOrd.filter((item: any) => item.Status === 2 || item.Status === 6 || item.Status === 7);
-          console.log("this.allRepostData",this.allRepostData1)
-          this.getllOrderData1=this.allRepostData1
-          this.getllOrderData1.forEach((item: any, index:any) => {
-              this.modelImageData= this.symbolIDToFilterAll.filter((item1: any) => item1.SymbolID === item.SymbolID );
-             
-             this.getllOrderData1[index].imgg= this.modelImageData[0]?.ICON_Path
-            //  this.getllOrderData[index].cmp= this.
-             this.getllOrderData1[index].SymbolName= this.modelImageData[0]?.BaseSym
-         
-          })
+      
+       
+          if(res == null){
+          this.showLoder = false
+          setInterval(() => {
+           
+            this.afterShowLoder = true
+      
+          }, 10000);
+        
+          }
+          else{
+            this.showLoder = true
+            this.afterShowLoder = false
+            this.allRepostData1 = res?.lstOrd.filter((item: any) => item.Status === 2 || item.Status === 6 || item.Status === 7);
+            console.log("this.allRepostData",this.allRepostData1)
+            this.getllOrderData1=this.allRepostData1
+            this.getllOrderData1.forEach((item: any, index:any) => {
+                this.modelImageData= this.symbolIDToFilterAll.filter((item1: any) => item1.SymbolID === item.SymbolID );
+               
+               this.getllOrderData1[index].imgg= this.modelImageData[0]?.ICON_Path
+              //  this.getllOrderData[index].cmp= this.
+               this.getllOrderData1[index].SymbolName= this.modelImageData[0]?.BaseSym
+           
+            })
+          }
           
           // console.log("this.getllOrderDatathis.getllOrderData", this.getllOrderData1)
       

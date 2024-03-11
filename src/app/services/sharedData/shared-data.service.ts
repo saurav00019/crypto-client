@@ -73,6 +73,9 @@ export class SharedDataService
     private dataArraySubject = new BehaviorSubject<string[]>([]); // Array of data
     public dataArray$: Observable<string[]> = this.dataArraySubject.asObservable();
   
+    private reConnect: Subject<any> = new Subject<any>();
+    reConnect$: Observable<any> = this.reConnect.asObservable();
+
     addDataToSharedArray(data: any) {
       const currentDataArray = this.dataArraySubject.getValue();
       const updatedDataArray = [...currentDataArray, data];
@@ -115,6 +118,10 @@ export class SharedDataService
     }
   }
 
+  reConn(data: any){
+   this.reConnect.next(data);
+  }
+  
   kycHeader(data: any){
     this.kycData.next(data);
   }

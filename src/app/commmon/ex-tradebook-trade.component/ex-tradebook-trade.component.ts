@@ -68,6 +68,23 @@ export class ExTradebookTradeComponent {
     const formattedDate = this.datePipe.transform(date, format, timeZone, locale);
     return formattedDate || 'Invalid Date'; // Provide a default value in case of null
   }
+
+  //Genrating aphanumeric string for MrachantTranansactionId 16 alphabates
+  UserID(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  
+    let result = '';
+  
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * 14);
+      result += characters[randomIndex];
+    }
+  
+    return result;
+  }
+  
+  uniqUserID: any
+
   dateTrade1: any
   getAllOrder(){
     let currentDate = new Date();
@@ -75,18 +92,33 @@ export class ExTradebookTradeComponent {
     this.dateTrade1 = formattedDate1
     console.log("formattedDate1",this.dateTrade1);
 
-    let obj = {
+    // let obj = {
+    //   "Report_Req":1,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
+    //   _dtFrom:"2024-01-12 07:01:22",
+    //   _dtTo:this.dateTrade1,
+    //   "Initial":1,
+    //   "MaxCount":200,
+    //   "Key":"",
+    //   "UserID":Number(localStorage.getItem('ProfileID')),               // user profile ID
+    //   "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getUserTradePosSnap",                // this URL used for getting data
+    //   "oFilter":3,
+    //   "Value": Number(localStorage.getItem('ProfileID'))
+    //   }
+    this.uniqUserID = this.UserID(5)
+console.log("this.uniqUserID",this.uniqUserID);
+
+    let obj ={
       "Report_Req":1,           //  ORDER = 0,  TRADE = 1,NET_POS = 2
       _dtFrom:"2024-01-12 07:01:22",
       _dtTo:this.dateTrade1,
       "Initial":1,
-      "MaxCount":200,
+      "MaxCount":30,
       "Key":"",
       "UserID":Number(localStorage.getItem('ProfileID')),               // user profile ID
-      "CB_URL":"https://www.marketwicks.com:4000/apiGatway/getUserTradePos",                // this URL used for getting data
+      "CB_URL":String(this.uniqUserID),                // AUTO-GENERATED KEY IN STRING
       "oFilter":3,
-      "Value": Number(localStorage.getItem('ProfileID'))
-      }
+      "Value":Number(localStorage.getItem('ProfileID'))
+    }
       this.api.PostTradePosSnap(obj).subscribe({
     next: (res: any) => {
       this.getTradeData();
@@ -114,9 +146,11 @@ export class ExTradebookTradeComponent {
   SymbolName: any
 
   getTradeData(){
-   
+    let obj ={
+      userId: this.uniqUserID 
+    }
     this.getAlltreadeData = []
-      this.api.getTradePosSnap().subscribe({
+      this.api.getTradePosSnap(obj.userId).subscribe({
       next: (res: any) => {
       console.log("Trade data ", res)
       this.allRepostData = res

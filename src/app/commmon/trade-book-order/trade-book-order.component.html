@@ -1,7 +1,7 @@
 <div class=" ">
     <div class="row middle">
         <div class="col-xxl-12 col-xl-12 col-md-12 col-12 left-side ordertrade-book-h3">
-            <div class="loader-table" *ngIf="getllOrderData1.length == 0">
+            <div class="loader-table" *ngIf="!showLoder">
                 <table class="tg">
                     <tr>
                       <th class="tg-cly1">  
@@ -151,7 +151,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="infoTable" *ngIf="getllOrderData1.length > 0">
+                    <tbody id="infoTable"  *ngIf="showLoder">
                         <tr *ngFor="let order of getllOrderData1 ; let i = index">
                             <td class="td-width1">
                                 {{ formatTimestamp(order.Time, 'yyyy-MM-dd HH:mm:ss a', 'GMT') }}
@@ -209,16 +209,17 @@
                         </tr>
 
                     </tbody>
-                    <!-- <tbody *ngIf="getllOrderData.length == 0">
-                        <tr>
+                    <tbody >
+                        <tr *ngIf="!showLoder">
                             <td colspan="6">
                                 <div style="text-align: center; padding-top: 2%; padding-bottom: 2%; ">
+                                
                                     <img style="width: 200px;" src="assets/images/p2p-no-datat.png" alt="">
                                 </div>
                             </td>
                         </tr>
 
-                    </tbody> -->
+                    </tbody>
                 </table>
             </div>
 
@@ -319,7 +320,7 @@
                 <div class="col-md-9">
                     <div class="form-group-custom d-flex">
 
-                        <input (keypress)="numberOnly($event)" formControlName="price" [value]="modifyDataValue.Price"
+                        <input (keypress)="numberOnlyFor4Deciaml($event)" formControlName="price" [value]="modifyDataValue.Price"
                             autocomplete="off" class="form-control" id="price_buy" type="text" />
                         <span>{{modifyDataValue.QoutesSym}}</span>
                     </div>
@@ -327,7 +328,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-success " (click)="modify()" style="width:100%">Modify </button>
+                    <button class="btn btn-success " (click)="modify()" [disabled]="!makeOrdersLimitMod.valid"   style="width:100%">Modify </button>
                 </div>
             </div>
 
@@ -382,7 +383,7 @@
                     <h6 class="an-lab">Quantity</h6>
                     <div class="form-group-custom d-flex">
 
-                        <input (keypress)="numberOnly($event)" formControlName="Lot" [value]="cancelDataValue.Lot"
+                        <input (keypress)="numberOnlyFor4Deciaml($event)" formControlName="Lot" [value]="cancelDataValue.Lot"
                             autocomplete="off" class="form-control" id="price_buy" type="text" />
                         <span>{{cancelDataValue.Sym}}</span>
                     </div>
@@ -394,7 +395,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <button class="btn btn-success " (click)="CaneclOrder()" style="width:100%">Cancel</button>
+                    <button class="btn btn-success "  [disabled]="!makeOrdersLimitMod.valid" (click)="CaneclOrder()" style="width:100%">Cancel</button>
                 </div>
             </div>
         </form>
