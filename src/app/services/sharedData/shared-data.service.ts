@@ -67,8 +67,17 @@ export class SharedDataService
     private obSymbol: Subject<any> = new Subject<any>();
     obSymbol$: Observable<any> = this.obSymbol.asObservable();
 
+    private userSta: Subject<any> = new Subject<any>();
+    userSta$: Observable<any> = this.userSta.asObservable();
+
+    private inact: Subject<any> = new Subject<any>();
+    inact$: Observable<any> = this.inact.asObservable();
+
     private obSymb: Subject<any> = new Subject<any>();
     obSymb$: Observable<any> = this.obSymb.asObservable();
+
+    private headerActiveitem1: Subject<any> = new Subject<any>();
+    headerActiveitem1$: Observable<any> = this.headerActiveitem1.asObservable();
 
     private dataArraySubject = new BehaviorSubject<string[]>([]); // Array of data
     public dataArray$: Observable<string[]> = this.dataArraySubject.asObservable();
@@ -175,6 +184,8 @@ export class SharedDataService
       this.orderCancel.next(data)
      }
 
+
+
     //  obSymbol
     obSym(data: any){
     
@@ -185,6 +196,8 @@ export class SharedDataService
   
       this.obSymb.next(data)
      }
+
+     
 
      modifyData(data: any){
      
@@ -206,5 +219,17 @@ export class SharedDataService
     // console.log("updatedData", data)
     this.chartValye.next(data);
   }
+
+
+  inactiveLogout(data: any){
+    
+    this.inact.next(data)
+   }
+
+   headerActiveitem(data: any){
+    
+    this.headerActiveitem1.next(data)
+   }
+  
 
   }

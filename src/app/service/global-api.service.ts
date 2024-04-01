@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment'
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-
+import { COMETCHAT_CONSTANTS } from '../../CONSTS';
 export interface CheckboxItem {
   Gateway: string;
   GatewayID: number;
@@ -260,4 +260,58 @@ getAllOTradeCallbackurl1(){
     return this.http.get(this.apiUrl);
   }
 
+  //================================================================chat=========================================================
+
+  chatstartHeader(){
+ 
+      let headers = new HttpHeaders({
+        // 'Content-Type' : 'application/json; charset=utf-8',
+        'Accept'       : 'application/json',
+        'apikey': `${'d815370e78b67e3773498a7f0aa94bec822e91c5'}`,
+       });
+       let options = {
+          headers: headers
+       }
+       return options
+     }
+
+  chatLogin(obj:any){
+    // curl --request POST \
+    //  --url https://25416026d3c187d2.api-in.cometchat.io/v3/users/12345/auth_tokens \
+    //  --header 'accept: application/json' \
+    //  --header 'apikey: d815370e78b67e3773498a7f0aa94bec822e91c5' \
+    //  --header 'content-type: application/json' \
+    //  --data '{"force":true}'
+
+    return this.http.post(`https://${COMETCHAT_CONSTANTS.APP_ID}.api-in.cometchat.io/v3/users/${obj.uid}/auth_tokens`,obj, this.chatstartHeader()).pipe(map(res =>{return res}))
+  }   
+  chatStart(obj: any){
+
+
+    return this.http.get(`https://${COMETCHAT_CONSTANTS.APP_ID}.api-in.cometchat.io/v3/users/${obj.uid}/messages`, this.chatstartHeader()).pipe(map(res =>{return res}));
+    // return this.http.post("https://api-explorer.cometchat.com/reference/user-list-user-messages")
+  }
+
+  chatMsaHeader(val:any){
+ 
+    let headers = new HttpHeaders({
+      // 'Content-Type' : 'application/json; charset=utf-8',
+      'Accept'       : 'application/json',
+      'apikey': `${'d815370e78b67e3773498a7f0aa94bec822e91c5'}`,
+      'onBehalfOf':`${val}`
+     });
+     let options = {
+        headers: headers
+     }
+     return options
+   }
+
+chatMas(obj:any){
+let optiondata= this.chatstartHeader()
+return this.http.post(`https://${COMETCHAT_CONSTANTS.APP_ID}.api-in.cometchat.io/v3/messages`,obj, this.chatMsaHeader(obj.senderUID)).pipe(map(res =>{return res}));
+  }
+
+  readMas(){
+    return this.http.get('https://25416026d3c187d2.apiclient-in.cometchat.io/v3.0/users/9871/messages?hideMessagesFromBlockedUsers=0&unread=1&count=1&uid=9871');
+  }
 }

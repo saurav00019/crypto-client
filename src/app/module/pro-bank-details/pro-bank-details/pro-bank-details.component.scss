@@ -669,3 +669,14 @@ opacity: 0;
     opacity: 10;
 }
 
+.card-no-data{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 261px;
+    img{
+        width:150px
+    }
+}
+

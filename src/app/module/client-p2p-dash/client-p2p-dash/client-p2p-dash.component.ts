@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
 import { GlobalAPIService } from 'src/app/service/global-api.service';
+import { error } from 'console';
 // import { formatDate } from '@angular/common';
 // import { log } from 'console';
 
@@ -55,6 +56,7 @@ export class ClientP2pDashComponent implements OnInit {
 
 
   modalRef?: any;
+  modalRefChat?: any;
   kycStatus: any
   constructor(private modalService: NgbModal,config: NgbModalConfig,private datePipe: DatePipe, private sharedData:SharedDataService, private http: HttpClient, private api: ApiDataService, private global: GlobalAPIService, private toastrService: ToastrService, private fb: UntypedFormBuilder,) {
     config.backdrop = 'static';
@@ -92,6 +94,9 @@ export class ClientP2pDashComponent implements OnInit {
     this.getCrypto();
     this.getGatewaysLis()
     this.getAllSymbolImg()
+    setInterval(() => {
+      this.chatconvStart()
+    }, 5000);
   }
   symbolIDToFilterAll: any =[]
 
@@ -372,6 +377,7 @@ addTranReqq(){
   tradeDetails: any
   AmountReq: any
   addChallen(){
+    console.log(this.listData, "lisssssty");
     
     this.makePayment.patchValue({ totalAmount: this.total_payment });
     this.AmountReq= this.makePayment.patchValue({ totalAmount: this.total_payment ? this.makePayment.value.totalAmount: '' }) 
@@ -384,7 +390,7 @@ addTranReqq(){
     OrderID: this.listData.OrderID,
     TradeID:this.tradeId,
     Trade_Profile: localStorage.getItem('ProfileID'),
-    Order_Profile:localStorage.getItem('ProfileID')
+    Order_Profile: Number(this.listData.Profile)
     //"dtCreatedOn": "2023-09-15 12:04:20.007
     }
     this.api.addChallen(obj).subscribe({
@@ -624,9 +630,11 @@ addTranReqq(){
     this.activeClass = val
 
     if (this.activeClass == 0) {
+
       this.getCrypto();
     }
    else if (this.activeClass == 1) {
+  
       this.getCrypto();
     }
 
@@ -696,10 +704,13 @@ let obj ={
 }
     this.api.orderAggList(obj).subscribe({
       next: (res: any) => {
+        // lstOrders.filter((order: any) => order.Status == 1);
         this.sharedData.loader(false)
         this.orderAggList = res
+        console.log("this.orderAggList",res,this.orderAggList);
+        
         this.orderNewAgg= res[0].lstPrice_Ord
-        console.log("here is aggregate data", this.orderNewAgg);
+        console.log("this.orderNewAgg", this.orderNewAgg);
         
         this.dataAggLength = res.length;
         if (this.dataAggLength > 0) {
@@ -803,7 +814,7 @@ let obj ={
   submitted: boolean= false
   makeOrder() {
     this.submitted= true
-   debugger
+  
     // const rendome = Math.floor(Math.random() * 60) + 1
     let currentDate = new Date();
     let formattedDate1 = this.datePipe.transform(currentDate, 'yyyy-MM-dd HH:mm:ss', 'GMT');
@@ -1356,6 +1367,102 @@ veryFyKey: any = ""
     return true;
   }
  
+ //=============================================================================chat======================================
+ //readmore variable, its true than read more string will print
+ ReadMore:boolean = true
+
+ //hiding info box
+ visible:boolean = false
+
+
+ //onclick toggling both
+ unreadData:any=[]
+ onclick()
+ {
+   this.ReadMore = !this.ReadMore; //not equal to condition
+   this.visible = !this.visible
+    
+   this.unreadData=this.allchat.filter((res:any)=> (res.sender != "9871") )
+        
+    console.log("this.unreadDatathis.unreadDatathis.unreadData", this.unreadData)
+   
+ }
  
+
+  //  chatdiv: any = false
+  allchat:any =[]
+  allChatData:any = []
+  chatconvStart(){
+
+    let obj={
+      uid: 9871
+    }
+    this.global.chatStart(obj).subscribe({
+      next: (res: any) => {
+       
+      
+        
+        this.allchat=res.data.filter((res:any)=> (res.conversationId === "9871_user_12345") &&(res.category == 'message'))
+        
+        
+       
+
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
+
+  }
+
+
+  formatTimestamp(timestamp: number, format: string, timeZone: string, locale?: string): string {
+    const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+    const formattedDate = this.datePipe.transform(date, format, timeZone, locale);
+    return formattedDate || 'Invalid Date'; // Provide a default value in case of null
+  }
+
+  notificationData: any =[]
+  countNotifi: any =[]
+  getNotificationCount(val:any){
+
+    this.notificationData= this.allchat.filter((res: any) => res.sender == val)
+    this.countNotifi= this.notificationData.filter((res: any) => res.readAt == undefined)
+    
+    return this.countNotifi.length
+  }
+
+  // ngDoCheck(){
+
+
+  //   this.chatconvStart()
+  // }
+  chatMage:any =''
+  sendMassage(){
+    let obj =
+    {
+        "category": "message",
+        "type": "text",
+        "data": {
+          "text": this.chatMage
+        },
+        "receiver": "12345",
+        "muid": "12345",
+        "receiverType": "user",
+        "senderUID":"9871"
+      }
+      this.global.chatMas(obj).subscribe({
+        next: (res: any) => {
+          console.log("massage",res);
+          this.chatMage =  ''
+          
+  
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+      });
+    }
+
 }
 

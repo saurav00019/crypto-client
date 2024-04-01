@@ -105,7 +105,7 @@ swal.fire({
 }).then((result) => {
   if (result.isConfirmed) {
     // User confirmed, proceed with deletion
-   sessionStorage.clear();
+  //  sessionStorage.clear();
 localStorage.removeItem('ProfileID');
 localStorage.removeItem('token');
 this.router.navigate(['/login']);

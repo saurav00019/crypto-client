@@ -194,6 +194,7 @@ margin-left: 11px!important;
   }
   .p-two-p-modal1 .form-control{
     padding: auto !important;
+    height: 42px !important;
   }
   .form-control{color: #fff;}
   label{color: #b1b1b1;}
@@ -201,3 +202,16 @@ margin-left: 11px!important;
   select{color: #fff;}
   select > option{background-color: #2a3050;
     color: #fff !important;}
+
+    .nomination-modal-body{
+      .form-control{
+        height: 42px !important;
+      }
+      .form-select{
+        height: 42px !important;
+        color: #fff;
+      }
+    }
+
+    ::-webkit-calendar-picker-indicator {
+      filter: invert(1);}

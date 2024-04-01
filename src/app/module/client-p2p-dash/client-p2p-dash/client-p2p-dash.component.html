@@ -38,10 +38,10 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end align-items-center data mt-3">
-                    <button class="m-2 active" (click)="toggleContent(0)"><img src="assets\images\0symbol-list.png" width="16">
+                    <button  [ngClass]="{'m-2': true, 'active': activeClass === 0}" (click)="toggleContent(0)"><img src="assets\images\0symbol-list.png" width="16">
                         <!-- User Data -->
                     </button>
-                    <button class="m-2" (click)="toggleContent(1)"><img src="assets\images\symbol-list.png" width="16">
+                    <button  [ngClass]="{'m-2': true, 'active': activeClass === 1}" (click)="toggleContent(1)"><img src="assets\images\symbol-list.png" width="16">
                         <!-- Symbol Data -->
                     </button>
                 </div>
@@ -70,8 +70,16 @@
                                     <tr *ngFor="let data of pageOfItems let i=index">
                                         <td class="withname d-flex align-items-center">
                                             <div class="firstLetter">{{(data.Name).charAt(0).toUpperCase() }}</div>
+                                            <!-- <div>
+                                                <span>{{data.Name}}</span>
+                                                <span class="chaticon-my" (click)="onclick()"><i class="fa-regular fa-comment-dots"></i>{{ getNotificationCount(12345)}}</span>
+                                            </div> -->
                                             <div>
                                                 <span>{{data.Name}}</span>
+                                                <span class="chaticon-my" (click)="onclick()">
+                                                    <i class="fa-regular fa-comment-dots"></i>
+                                                    <span class="msgco">{{ getNotificationCount(12345)}}</span>
+                                                </span>
                                             </div>
                                         </td>
                                         <td class="inr">
@@ -256,9 +264,9 @@
                                     </ng-container>
 
                                 </tbody>
-                                <tbody id="infoTable" *ngIf="this.showNoData1 == 0">
+                                <!-- <tbody id="infoTable" *ngIf="this.showNoData1 == 0">
                                     <ng-container >
-                                        
+                                         
                                             <tr >
                                                 <td colspan="8"> <div style="text-align: center;
                                                     padding-top: 5%; padding-bottom: 5%; "><img style="width: 280px;" src="assets/images/p2p-no-datat.png" alt=""></div></td>
@@ -266,7 +274,7 @@
                                       
                                         
                                     </ng-container>
-                                </tbody>
+                                </tbody> -->
                             </table>
                         </div>
                     </div>
@@ -690,3 +698,107 @@
 		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
 	</div>
 </ng-template>
+
+
+<!-- <ng-template > -->
+    <div class="mychat" *ngIf="visible">
+        <div class="chatbox-holder">
+            <div class="chatbox">
+              <div class="chatbox-top">
+                
+                <div class="chat-partner-name d-flex align-items-center">
+                  <span class="status online me-2"></span>
+                  <div style="color:#fff; font-weight: 500;">Ankit</div>
+                </div>
+                <div class="chatbox-icons">
+                  <!-- <a href="javascript:void(0);"><i class="fa fa-minus"></i></a> -->
+                  <a href="javascript:void(0);" (click)="onclick()"><i class="fa fa-close"></i></a>       
+                </div>      
+              </div>
+              
+              <div class="chat-messages">
+                <div  *ngFor="let chat of allchat" style="display: block;">
+                 <div class="message-box-holder" *ngIf="chat?.sender == 9871">
+                  
+                  <div class="message-box">
+                    {{chat?.data?.text}} 
+                  </div>
+                  <p class="mt-4" style="font-size: 8px; align-items: end;"> {{ formatTimestamp(chat?.updatedAt, 'yyyy-MM-dd HH:mm:ss a', 'GMT+5:30') }}</p>
+                  <!-- <p>{{ formatTimestamp(chat?.data?.readAt, 'yyyy-MM-dd HH:mm:ss a', 'GMT') }}</p> -->
+                </div>
+                <!-- {{chat?.id}} -->
+                <div class="message-box-holder" *ngIf="chat?.sender != 9871">
+              
+                  <div class="message-box message-partner">
+                    {{chat?.data?.text}}
+                    
+                  </div>
+                  <p class="message-sender mt-2" style="font-size: 8px;"> {{ formatTimestamp(chat?.updatedAt, 'yyyy-MM-dd HH:mm:ss a', 'GMT+5:30') }}</p>
+                 
+                </div>
+                </div>
+<!--                 
+                <div class="message-box-holder">
+                  <div class="message-box">
+                    How are you doing?
+                  </div>
+                </div> -->
+                
+                <!-- <div class="message-box-holder">
+                  <div class="message-sender">
+                    Vikas Pathak
+                   </div>
+                  <div class="message-box message-partner">
+                    I'm doing fine. How about you?
+                  </div>
+                </div>
+                
+                <div class="message-box-holder">
+                  <div class="message-box">
+                    I am fine.
+                  </div>
+                </div>
+                
+                <div class="message-box-holder">
+                  <div class="message-box">
+                    Do you know why I knocked you today?
+                  </div>
+                </div>
+                
+                <div class="message-box-holder">
+                  <div class="message-box">
+                    There's something important I would like to share with you. Do you have some time?
+                  </div>
+                </div>
+                
+                <div class="message-box-holder">
+                  <div class="message-sender">
+                    Vikas Pathak
+                   </div>
+                  <div class="message-box message-partner">
+                    Yeah sure. Let's meet in the Einstein cafe this evening and discuss the matter.
+                  </div>
+                </div>
+                
+                <div class="message-box-holder">
+                  <div class="message-sender">
+                    Vikas Pathak
+                   </div>
+                  <div class="message-box message-partner">
+                    I thought of coming to your place and discuss about it but I had to finish my projects and I didn't have enough time to go out of the house.
+                  </div>
+                </div>       -->
+              </div>
+              
+              <div class="chat-input-holder" style="padding:10px">
+                <textarea class="chat-input" [(ngModel)]="chatMage"></textarea>
+                <!-- <input type="submit" value="Send"  class="message-send" /> -->
+                <button class="message-send" (click)="sendMassage()">Send <i class="fa-regular fa-paper-plane"></i></button>
+              </div>
+              
+            </div>
+            
+           
+          </div>
+    </div>
+<!-- </ng-template> -->

@@ -9,8 +9,11 @@
                     <div class="container-fluid">
                         <div class=" navbar-brand">
                             <div class="header-logo-flex">
-                                <div class="pp2-logo">
-                                    <img class="pp-logo" src="assets/images/ce-logo2.png">
+                                <div class="pp2-logo"  style="cursor: pointer;">
+                                    <div (click)="toggleActive('item1')">
+                                        <img class="pp-logo" (click)="navigate('p2p')"  src="assets/images/ce-logo2.png">
+                                    </div>
+                                   
                                 </div>
                                 <div>
                                     <div class="switch-dash" >
@@ -29,6 +32,7 @@
                        <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
                          
                           <ul class="navbar-nav my-m-auto mytext-left myaligen-center" *ngIf="!headerActive">
+                          
                             <li [class.active]="isActive === 'item1'" (click)="toggleActive('item1')"><a style="cursor: pointer;" (click)="navigate('p2p')"  class="nav-link">P2P Trade</a></li>
 
                             <li [class.active]="isActive === 'item5'" (click)="toggleActive('item5')"><a style="cursor: pointer;"  (click)="navigate('myOrder')" class="nav-link">My Order</a></li>

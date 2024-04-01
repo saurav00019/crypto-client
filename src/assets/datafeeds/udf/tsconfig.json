@@ -20,6 +20,6 @@
 		"types": []
 	},
 	"include": [
-		"./src/**/*.ts"
+		"src/assets/datafeeds/udf/src/history-provider.ts"
 	]
 }

@@ -7,7 +7,7 @@
                 <h5 class="profile-bold-text "> Banking details</h5>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" *ngIf="bankName!= null&& accountName != null">
                     <div class="bankcard cardhover  mt-4">
                         <div class="d-flex justify-content-between align-items-center ps-5 pe-5 pt-4 pb-3">
                             <div><p class="bankname-txt" style="font-size: 18px; color:#fff">{{bankName}}</p></div>
@@ -31,6 +31,13 @@
                             </div>
                         </div>
                         <div class="ring"></div>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="bankName== null&& accountName == null">
+                    <div class="bankcard cardhover  mt-4">
+                       <div class="card-no-data">
+                        <img src="assets/images/p2p-no-datat.png" alt="">
+                       </div>
                     </div>
                 </div>
             </div>

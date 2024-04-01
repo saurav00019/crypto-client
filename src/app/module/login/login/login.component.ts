@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { ApiDataService } from 'src/app/services/dataservice/api-data.service';
 import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { CometChat } from '@cometchat/chat-sdk-javascript';
 import Swal from 'sweetalert2';
+import { CometChatTheme, CometChatThemeService, CometChatUIKit, fontHelper } from '@cometchat/chat-uikit-angular';
 
 
 import { GlobalAPIService } from 'src/app/service/global-api.service';
-import { InactiveTimerService } from 'src/app/service/inactive-timer.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -38,8 +38,7 @@ singnup:boolean=false;
     this.ReadMore = !this.ReadMore; 
     this.visible = !this.visible
   }
-  constructor(private services:ApiDataService,private global : GlobalAPIService, private toastrService: ToastrService,private formBuilder: FormBuilder,  
-    private router:Router,public shareService:SharedDataService, private inactive: InactiveTimerService) { 
+  constructor(private services:ApiDataService,private global : GlobalAPIService, private toastrService: ToastrService,private formBuilder: FormBuilder,  private router:Router,public shareService:SharedDataService) { 
     
     
     this.shareService.selectedsignupValue.subscribe((res)=>{
@@ -123,7 +122,7 @@ this.shareService.loader(true)
       console.log(data);
      
 
-      if(data.isOK==true && data.oStat_Login ==2){
+      if(data.isOK==true && data.oStat_Login ==2 ){
        if(data.oStat_KYC ==3){
         Swal.fire({
           title: 'Rejected',
@@ -138,6 +137,7 @@ this.shareService.loader(true)
           }
         });
        }
+       
        else{
         this.response=data, 
         this.profileID=data.ProfileId,
@@ -151,12 +151,29 @@ this.shareService.loader(true)
        
         this.getUserInfo(),
         this.getUserStage()
+        this.loginToDashboard('9871')
+        this.chatLogin('9871')
         this.shareService.loginHeader(true)
-        this.inactive.myHeader= true
+    
        }
        
       }
-
+      else if(data.isOK==true && data.oStat_Login ==3 ){
+        if(data.oStat_KYC ==2){
+         Swal.fire({
+           title: 'Rejected',
+           text: 'Your login confirmation has been rejected from admin',
+           icon: 'warning',
+         }).then((result: any) => {
+           if (result.value) {
+             this.router.navigate(['/login'])
+             this.shareService.loader(false)
+           } else if (result.dismiss === Swal.DismissReason.cancel) {
+             
+           }
+         });
+        }
+      }
 
       else if(data.isOK==false ){
         this.shareService.loader(false),
@@ -194,6 +211,24 @@ this.shareService.loader(true)
   //     }
 
 
+  }
+
+
+  chatLogin(val:any){
+
+    let obj ={
+      "force":true,
+      "uid": val
+    }
+    this.global.chatLogin(obj).subscribe({
+      next: (res: any) => {
+      
+        localStorage.setItem("Chat_Token", JSON.stringify(res));
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
   }
 
   symbolIDToFilterAll: any =[]
@@ -316,11 +351,96 @@ this.services.GET_USER_STAGE(params).subscribe((data:any)=>{
     this.shareService.loader(false);
     this.router.navigate(['/p2p']);
     // this.getAllSymbolImg()
+    this.shareService.headerActiveitem('item1')
     localStorage.setItem('headerActive', "false");
-
 
   
    }
 })
+}
+
+//=======================================================chat ==========================================
+error: any
+inProgress:boolean= false
+// loginToDashboard(user: any) {
+//   this.error = ""
+//   if (user && user != ' ') {
+//     this.inProgress = true
+//     var UID = user
+   
+//     CometChatUIKit.login({ uid: UID }).then(
+//       (user:any) => {
+
+//         this.inProgress = false
+//         console.log("Login Successful:", { user });
+//         // this.redirect('conversations-with-messages')
+//       }, (error: any) => {
+//         this.inProgress = false
+//         this.error = error.message
+//       }
+//     )
+//       .catch((error: CometChat.CometChatException) => {
+//         this.inProgress = false
+//         console.log(error)
+//       })
+
+
+//   }
+//   else {
+//     this.inProgress = false
+//     this.error = "UID is required to login"
+//   }
+
+
+// }
+
+
+loginToDashboard(user:string) {
+  this.error = ""
+if(user && user != ' '){
+this.inProgress = true
+var UID = user
+CometChat.getLoggedinUser().then(
+  (user) => {
+    if (!user) {
+
+      CometChatUIKit.login({uid:UID}).then(
+        user => {
+console.log("useruseruseruser", user)
+        this.inProgress = false
+          console.log("Login Successful:", { user });
+          // this.router.navigate(['/home']);
+        }, error => {
+          this.inProgress = false
+          this.error = error.message
+        }
+      )
+      .catch((error:CometChat.CometChatException)=>{
+        this.inProgress = false
+        console.log(error)
+      })
+    }
+    else {
+      this.inProgress = false
+      this.router.navigate(['/home']);
+    }
+  }, error => {
+    this.inProgress = false
+    this.error = error.message
+
+  }
+).catch((err:any)=>{
+  this.inProgress = false
+  console.log(err)
+
+})
+
+}
+else{
+this.inProgress = false
+this.error = "UID is required to login"
+}
+
+
 }
 }

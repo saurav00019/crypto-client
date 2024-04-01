@@ -7,7 +7,6 @@ import { ApiDataService } from './services/dataservice/api-data.service';
 
 
 import { Router } from '@angular/router';
-import { InactiveTimerService } from './service/inactive-timer.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,10 +20,10 @@ export class AppComponent  {
   isLoader:boolean = false;
   isSidebarVisible: any=true;
   headerFlag: any
-
+  private idleTimeout: number = 6000; // in seconds
+  private timer: any;
   
-  constructor(private router: Router,private zone: NgZone,public api: ApiDataService, private cdr: ChangeDetectorRef,
-     public sharedData:SharedDataService, private toastrService: ToastrService, private inactivity: InactiveTimerService)
+  constructor(private router: Router,private zone: NgZone,public api: ApiDataService, private cdr: ChangeDetectorRef, public sharedData:SharedDataService, private toastrService: ToastrService)
   {
     this.isloggeding=this.api.isLogin();
 
@@ -86,40 +85,61 @@ if(this.headerFlag==undefined){
   }
 
 
-
+kyc:any
   getUserStage(){
-    console.log("TESTING LOGIN")
-     let params = {
-       ProfileId:localStorage.getItem("ProfileID"),
-       Key:''
-   }
+  //   console.log("TESTING LOGIN")
+  //    let params = {
+  //      ProfileId:localStorage.getItem("ProfileID"),
+  //      Key:''
+  //  }
   //  this.shar.loader(true);
-   // this.web.loginConnection()
-   this.api.GET_USER_STAGE(params).subscribe((data:any)=>{
+  //  this.web.loginConnection()
+  //  this.api.GET_USER_STAGE(params).subscribe((data:any)=>{
+this.kyc = localStorage.getItem('kycValue')
 
-
-if (data.Result <=5 ){
+if ((this.kyc) <=5 ){
 
 localStorage.clear()
-this.router.navigateByUrl("/login")
+// this.router.navigateByUrl("/login")
 this.headerFlag=""
 }
-   })
+  //  })
    }
 
+ngOnInit() {
+    this.startTimer();
+  }
 
-   @HostListener('window:mousemove')
-   @HostListener('window:click')
-   @HostListener('window:keydown')
+  @HostListener('document:mousemove', ['$event'])
+  @HostListener('document:keypress', ['$event'])
+  @HostListener('document:keydown', ['$event'])
+  handleUserActivity(event: MouseEvent | KeyboardEvent) {
+    this.resetTimer();
+  }
 
-   onUserActivity() {
-    this.inactivity.resetTimer()
-   if (this.inactivity.myHeader === true) {
-    return
-   } else if (this.inactivity.myHeader === false) {
-    this.headerFlag= false
-    
-   }
-  
-   }
+  startTimer() {
+    this.timer = setTimeout(() => {
+      console.log('Timeout Completed!');
+      this.logout();
+    }, this.idleTimeout * 1000);
+  }
+
+  resetTimer() {
+    clearTimeout(this.timer);
+    this.startTimer();
+  }
+
+  stopTimer() {
+    clearTimeout(this.timer);
+  }
+
+  logout() {
+
+    this.sharedData.inactiveLogout(1)
+    // // Perform logout actions (navigate, clear storage, etc.)
+    // this.router.navigateByUrl('login');
+    // sessionStorage.clear();
+    // localStorage.clear();
+    // // Additional logout logic
+  }
 }

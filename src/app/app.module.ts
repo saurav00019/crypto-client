@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NumberValidateDirective } from 'src/app/directory/number-validate.directive';
 import { ToastrModule } from 'ngx-toastr';
-import { ModalModule } from 'ngx-bootstrap/modal';
+// import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgOtpInputModule } from  'ng-otp-input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderPtwopComponent } from './common/header-ptwop/header-ptwop.component';
@@ -41,7 +41,7 @@ import { DatePipe } from '@angular/common';
       closeButton: true,
       progressBar: true,
     }),NgOtpInputModule,
-    ModalModule.forRoot(),
+    // ModalModule.forRoot(),
     NgbModule
    
   ],

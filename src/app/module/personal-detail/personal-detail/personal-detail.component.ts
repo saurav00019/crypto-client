@@ -5,9 +5,10 @@ import { ApiDataService } from 'src/app/services/dataservice/api-data.service';
 import { HttpClient } from '@angular/common/http';
 import { SharedDataService } from 'src/app/services/sharedData/shared-data.service';
 import { Options } from "@angular-slider/ngx-slider";
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+// import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-personal-detail',
@@ -23,7 +24,7 @@ export class PersonalDetailComponent {
   formData: any
   checkPolicy:boolean = false;
   AddressDetails: any;
-  modalRef:any = BsModalRef;
+  // modalRef:any = BsModalRef;
   checkDisable:boolean= true;
   value: any = 0;
   options: Options = {
@@ -66,20 +67,37 @@ export class PersonalDetailComponent {
     this.sharedData.kysStage(3)
    }
 
-    openModal(template: any,ev:any) {
-      // console.log("POPup Modal",ev.target.checked)
-      if(ev.target.checked){
-      this.modalRef = this.modalService.open(template, { size: 'm p-two-p-modal1 modal-lg0' });
-    }
+  //   openModal(template: any,ev:any) {
+      
+  //     if(ev.target.checked){
+  //     this.modalRef = this.modalService.open(template, { size: 'm p-two-p-modal1 modal-lg0' });
+  //   }
 
-  }
-  closeModal(){
-    this.modalRef.close();
-    this.myForm.patchValue({
-      addNomination:false
-    })
-  }
+  // }
+  // closeModal(){
+  //   this.modalRef.close();
+  //   this.myForm.patchValue({
+  //     addNomination:false
+  //   })
+  // }
+persN:any
+  openSm(template: any,ev:any) {
+    if(ev.target.checked){
+     
+	this.persN=	this.modalService.open(template, { size: 'lg p-two-p-modal1 modal-dialog-centered' });
+    }
+    
+	}
+
+  checkedNo: any = ''
   
+  closePerN(){
+    this.persN.close()
+    this.checkedNo = 'checkbox'
+    this.myForm.patchValue({
+          addNomination:false
+        })
+  }
   ngOnDestroy(): void{
     if(localStorage.getItem("kycValue")=="3"){
       this.router.navigateByUrl("/onboading-kyc/personal-detail")
@@ -156,13 +174,15 @@ export class PersonalDetailComponent {
     }
   }
 
+ 
+
   modalSubmit(){
     if (this.modalForm.valid){
       const newModalObject = Object.assign({}, this.modalValues, this.modalForm.value);
       this.modalValues = newModalObject;
       console.log("this.modalValues", this.modalValues);
-    
-      this.modalRef.close()
+    this.closePerN()
+      // this.modal.dismiss('Cross click')
   }
 }
   onAnnualIncomeChange(event: any) {

@@ -88,7 +88,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     
-   
+   this.start(3)
     // const formEl = this.myForm.nativeElement;
     // const inputs = formEl.querySelectorAll('input');
     
@@ -223,7 +223,7 @@ start(number: number) {
   const timer = (currentTime: number) => {
     const elapsedTime = currentTime - startTime;
     const remainingTime = Math.max(0, durationInSeconds - Math.floor(elapsedTime / 1000));
-    console.log("remaining timer out", remainingTime);
+    // console.log("remaining timer out", remainingTime);
     
     if (remainingTime >= 0) {
       const minutes = Math.floor(remainingTime / 60);

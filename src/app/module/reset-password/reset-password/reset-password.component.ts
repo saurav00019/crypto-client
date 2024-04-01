@@ -25,35 +25,23 @@ export class ResetPasswordComponent {
     private sharedData: SharedDataService
   ) {
     this.emailParam = this.rout.snapshot.paramMap.get('id');
-    // this.last6Digits = this.emailParam.slice(-6);
+    this.last6Digits = this.emailParam.slice(-6);
     console.log("this.emailParam: ",this.emailParam);
     console.log("this.last6Digits: ",this.last6Digits);
     // this.getUserCode(this.last6Digits);
-    
+   
   }
 
   ngOnInit(): void {
+  //  debugger
+  //   this.resetForm = this.formBuilder.group({
+  //     otp: ['', Validators.required]
+  //   });
+  
     this.resetPass();
-    this.resetForm = this.formBuilder.group({
-      otp: ['', Validators.required]
-    });
   }
 
-  // getUserCode(val: any) {
-    // this.sharedData.loader(true);
-    // this.services.VALIDATE_USER_RESET(val).subscribe((data: any) => {
-    //   console.log("resetDATA", data);
-    //   if (data.Result > 0) {
-    //     this.sharedData.loader(false);
-    //     this.profileID = data.Result;
-    //     this.toastrService.success('An OTP has been sent to your registered Email!', 'Please check!');
-    //   } else {
-    //     this.sharedData.loader(false);
-    //     this.toastrService.error('Something went Wrong. Please try again!', 'Error!');
-    //   }
-    // });
-  // }
-
+  
   goToLogin(){
     localStorage.clear();
   this.router.navigateByUrl('login')
@@ -65,6 +53,7 @@ export class ResetPasswordComponent {
       ResetCode:  this.emailParam,
       // Password: "aa"
     }
+    debugger
     this.services.USER_RESET_PASSWORD(obj).subscribe({
       next: (res: any) => {
         console.log('res', res);
@@ -76,25 +65,5 @@ export class ResetPasswordComponent {
     });
   }
 
-  // resetPassword() {
-   
-  //   this.sharedData.loader(true);
-  //   let obj = {
-  //     Key: "",
-  //     ProfileId: this.profileID,
-  //     Value: "",
-  //     Verify_Code: this.resetForm.value.otp
-  //   };
-  //   this.services.MAKE_CLNT_RESET_PWD(obj).subscribe((data: any) => {
-  //     console.log("data", data);
-  //     if (data.Result == true) {
-  //       this.sharedData.loader(false);
-  //       this.toastrService.success('Your Profile password changed successfully!', 'Success!');
-  //       this.router.navigate(['/login']);
-  //     } else {
-  //       this.sharedData.loader(false);
-  //       this.toastrService.error('Please enter Valid OTP.', 'Invalid OTP!');
-  //     }
-  //   });
-  // }
+
 }

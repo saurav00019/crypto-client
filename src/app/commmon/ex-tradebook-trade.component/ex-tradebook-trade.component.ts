@@ -56,7 +56,7 @@ export class ExTradebookTradeComponent {
       next: (res: any) => {
         this.symbolIDToFilterAll = res
     
-      },
+      },  
       error: (err: any) => {
         console.log(err);
       },

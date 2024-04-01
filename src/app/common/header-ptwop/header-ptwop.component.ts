@@ -55,11 +55,33 @@ else{
  
 }
 
+
+this.shared.inact$.subscribe((res:any)=>{
+  if(res ==1){
+    location.reload();
+    this.logoutInactive()
+  }
+  else{
+
+  }
+})
+
+this.shared.headerActiveitem1$.subscribe((res: any) =>{
+
+ if( res == 'item1'){
+  this.isActive = "item1"
+  this.router.navigate(["/p2p"])
+ }
+ else{
+
+ }
+})
+
   }
 
 ngOnInit(): void {
- 
-  this.toggleActive('item1')
+  this.isActive = "item1"
+  // this.toggleActive('item1')
 
 }
 
@@ -84,7 +106,13 @@ ngOnInit(): void {
   }
 
 closeSidePanel(){
-  this.modalRef.close()
+  // this.modalRef.close()
+
+  if (this.modalRef && typeof this.modalRef.close === 'function') {
+    this.modalRef.close();
+  } else {
+    console.warn('No modal to close.');
+  }
 }
 // globalsidebar
 
@@ -136,13 +164,32 @@ gblsdbarcloseNav() {
         sessionStorage.clear();
        this.closeSidePanel()
     this.router.navigate(['/login']);
-    this.toggleActive('item1')
+    location.reload()
+    // this.toggleActive('item1')
     this.shared.loginHeader('')
       }
     });
     
     
       }
+
+
+
+
+      logoutInactive(){
+   
+          this.headerActive=false
+          localStorage.clear();
+          sessionStorage.clear();
+          this.closeSidePanel()
+        this.router.navigate(['/login']);
+      
+        // this.toggleActive('item1')
+        this.shared.loginHeader('')
+  
+        
+        
+          }
 
       headerActive:boolean;
     
@@ -175,16 +222,17 @@ gblsdbarcloseNav() {
        }
           }
   
+          // itemActive: any ='item'
       toggleActive(item: string) {
+        
         if('item1' == item){
-          this.router.navigateByUrl('p2p')
+          
           this.isActive = item;
         }
         else{
           this.isActive = item;
         }
-      
-        this.closeSidePanel()
+    
         
       }
 

@@ -273,7 +273,7 @@
                 <div class="d-flex justify-content-end">
                   <div><label  for="flexSwitchCheckDefault" style="font-size: 13px; margin-right: 50px;">Want to add your nomination</label></div>
                         <div>
-                           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="addNomination" (change)="openModal(template,$event)">
+                           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="addNomination" [checked]="checkedNo == 'checkbox'" (change)="openSm(template, $event)">
                         </div>
                 </div>
 
@@ -336,16 +336,13 @@
   </div>
 </div>
 
-<ng-template #template>
-  <div class="modal-header nomination-modal">
-    <h4 class="modal-title pull-left">Add your Nominee</h4>
-    <button
-      type="button"
-      class="btn-close close pull-right"
-      aria-label="Close"
-      (click)="closeModal()"
-    >
-      <span aria-hidden="true" class="visually-hidden">&times;</span>
+<!-- <button class="btn btn-outline-primary mb-2 me-2" (click)="openSm(content)">Small modal</button> -->
+
+<ng-template #template let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add your Nominee</h4>
+    <button type="button" class="btn btn-sm" aria-label="Close" (click)="closePerN()" style="color:#ededed">
+      <i class="fa-solid fa-x"></i>
     </button>
   </div>
   <form [formGroup]="modalForm">
@@ -396,12 +393,7 @@
                   modalForm.get('Nominiemail').touched && modalForm.get('Nominiemail').invalid
               }"
               type="email"/>
-            <!-- <div *ngIf="modalForm.get('Nominiemail').touched && modalForm.get('Nominiemail').invalid" class="invalid-feedback"
-            >
-              <div *ngIf="modalForm.get('Nominiemail').errors.required">
-                Email is required.
-              </div>
-            </div> -->
+           
 
             <div class="invalid-feedback" *ngIf="modalForm.controls['Nominiemail'].invalid && (modalForm.controls)['Nominiemail'].dirty || modalForm.controls['Nominiemail'].touched "
            >
@@ -547,55 +539,224 @@
         </div>
       </div>
       <div class="row">
-        <!-- <div class="col-md-12">
-         <div class="form-floating-none mb-4">
-            <input formControlName="name" class="form-control ab-border-none" (blur)="onFieldBlur('name')" [ngClass]="{ 'is-invalid': modalForm.get('name').touched && modalForm.get('name').invalid }"  type="text" placeholder=".">
-            <label>Name</label>
-            <div *ngIf="modalForm.get('name').touched && modalForm.get('name').invalid" class="invalid-feedback">
-               <div *ngIf="modalForm.get('name').errors.required">Nominee Name is required.</div>
-             
-            </div>
-          </div>
-      </div> -->
+        
+      </div>
+    </div>
+    
+  </form>
+  <div class="modal-footer nomination-modal-footer">
+    <button type="button"        class="btn btn-sm btn-primary" style="background: #e1e1e1 !important ; color:#000 !important; border-color: #e1e1e1 !important;" (click)="modalSubmit()"
+    [disabled]="modalForm.invalid">Save Changes</button>
+  </div>
+</ng-template>
 
-        <!-- <div class="col-md-12">
-         <div class="form-floating-none width-64 mb-4">
-            <select style="font-size: 14px;" class="form-select ab-border-none" id="sel3" formControlName="relationship" (blur)="onFieldBlur('relationship')" [ngClass]="{ 'is-invalid': modalForm.get('relationship').touched && modalForm.get('relationship').invalid }">
-               <option value="">--Select--</option>
-               <option value="Son">Son</option>
-               <option value="Daughter">Daughter</option>
-               <option value="Father">Father</option>
-               <option value="Mother">Mother</option>
-               <option value="Grand Son">Grand Son</option>
-               <option value="Grand Daughter">Grand Daughter</option>
+<!-- <ng-template #template>
+  <div class="modal-header nomination-modal">
+    <h4 class="modal-title pull-left">Add your Nominee</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="modalForm">
+    <div class="modal-body nomination-modal-body">
+      <div class="row">
+        <div class="col-md-3"><label>Name</label></div>
+        <div class="col-md-9">
+          <div class="form-floating-none mb-4">
+            <input
+              formControlName="name"
+              class="form-control ab-border-none p-1"
+              (blur)="onFieldBlur('name')"
+              [ngClass]="{
+                'is-invalid':
+                  modalForm.get('name').touched && modalForm.get('name').invalid
+              }"
+              type="text"
+            />
+            <div
+              *ngIf="
+                modalForm.get('name').touched && modalForm.get('name').invalid
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="modalForm.get('name').errors.required">
+                Nominee Name is required.
+              </div>
+              <div *ngIf="modalForm.get('name').errors.pattern ">
+                Fill correct name.
+              </div>
+              <div class="my-error text-danger"></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="row">
+        <div class="col-md-3"><label>Email</label></div>
+        <div class="col-md-9">
+          <div class="form-floating-none mb-4">
+            <input
+              formControlName="Nominiemail"
+              class="form-control ab-border-none p-1"
+              (blur)="onFieldBlur('Nominiemail')"
+              [ngClass]="{
+                'is-invalid':
+                  modalForm.get('Nominiemail').touched && modalForm.get('Nominiemail').invalid
+              }"
+              type="email"/>
+           
+
+            <div class="invalid-feedback" *ngIf="modalForm.controls['Nominiemail'].invalid && (modalForm.controls)['Nominiemail'].dirty || modalForm.controls['Nominiemail'].touched "
+           >
+           <div *ngIf="modalForm.get('Nominiemail').errors.required">
+            Nominee Email is required.
+          </div>
+           <div *ngIf="modalForm.controls['Nominiemail'].errors['pattern'] ">Email should be correct format</div>
+          </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="sel3" class="form-label">Relationship</label>
+        </div>
+        <div class="col-md-9">
+          <div class="form-floating-none width-64 mb-4">
+            <select
+              style="font-size: 14px;background-color: transparent;"
+              class="form-select ab-border-none"
+              id="sel3"
+              formControlName="relationship"
+              (blur)="onFieldBlur('relationship')"
+              [ngClass]="{
+                'is-invalid':
+                  modalForm.get('relationship').touched &&
+                  modalForm.get('relationship').invalid
+              }"
+            >
+              <option value="">--Select--</option>
+              <option value="1">Son</option>
+              <option value="2">Daughter</option>
+              <option value="3">Father</option>
+              <option value="4">Mother</option>
+              <option value="5">Grand Son</option>
+              <option value="6">Grand Daughter</option>
             </select>
-            <label for="sel3" class="form-label">Relationship</label>
-            <div *ngIf="modalForm.get('relationship').touched && modalForm.get('relationship').invalid" class="invalid-feedback">
-               <div *ngIf="modalForm.get('relationship').errors.required">Relationship is required.</div>
-             
+            <div
+              *ngIf="
+                modalForm.get('relationship').touched &&
+                modalForm.get('relationship').invalid
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="modalForm.get('relationship').errors.required">
+                Relationship is required.
+              </div>
             </div>
           </div>
-      </div> -->
-        <!-- <div class="col-md-12">
-         <div class="form-floating-none mb-4">
-            <input  class="form-control ab-border-none" formControlName="dob" (blur)="onFieldBlur('dob')" [ngClass]="{ 'is-invalid': modalForm.get('dob').touched && modalForm.get('dob').invalid }" type="date" placeholder=".">
-            <label>Date of Birth</label>
-            <div *ngIf="modalForm.get('dob').touched && modalForm.get('dob').invalid" class="invalid-feedback">
-               <div *ngIf="modalForm.get('dob').errors.required">Date of Birth is required.</div>
-             
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3"><label>Date of Birth</label></div>
+        <div class="col-md-9">
+          <div class="form-floating-none mb-4">
+            <input
+              class="form-control ab-border-none p-1"
+              formControlName="dob"
+              (blur)="onFieldBlur('dob')"
+              [ngClass]="{
+                'is-invalid':
+                  modalForm.get('dob').touched && modalForm.get('dob').invalid
+              }"
+              type="date"
+            />
+            <div
+              *ngIf="
+                modalForm.get('dob').touched && modalForm.get('dob').invalid
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="modalForm.get('dob').errors.required">
+                Date of Birth is required.
+              </div>
             </div>
           </div>
-      </div> -->
-        <!-- <div class="col-md-12">
-         <div class="form-floating-none mb-4">
-            <input  class="form-control ab-border-none" formControlName="pan" (blur)="onFieldBlur('pan')" [ngClass]="{ 'is-invalid': modalForm.get('pan').touched && modalForm.get('pan').invalid }" maxlength="10" type="text" placeholder=".">
-            <label>Pan number</label>
-            <div *ngIf="modalForm.get('pan').touched && modalForm.get('pan').invalid" class="invalid-feedback">
-               <div *ngIf="modalForm.get('pan').errors.required">PAN is required.</div>
-             
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3"><label>PAN Number</label></div>
+        <div class="col-md-9">
+          <div class="form-floating-none mb-4 ">
+            <input
+              class="form-control ab-border-none p-1"
+              minlength="10"
+              (keypress)="numberOrLetterOnly($event)"
+              formControlName="pan"
+              (blur)="onFieldBlur('pan')"
+              [ngClass]="{
+                'is-invalid':
+                  modalForm.get('pan').touched && modalForm.get('pan').invalid
+              }"
+              maxlength="10"
+              type="text"
+            />
+            <div
+              *ngIf="
+                modalForm.get('pan').touched && modalForm.get('pan').invalid
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="modalForm.get('pan').errors.required">
+                PAN is required.
+              </div>
             </div>
           </div>
-      </div> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><label>Aadhaar Number</label></div>
+        <div class="col-md-9">
+          <div class="form-floating-none mb-4">
+            <input
+              class="form-control ab-border-none p-1"
+              minlength="12"
+              (keypress)="numberOnly($event)"
+              formControlName="adharNum"
+              (blur)="onFieldBlur('adharNum')"
+              [ngClass]="{
+                'is-invalid':
+                  modalForm.get('adharNum').touched && modalForm.get('adharNum').invalid
+              }"
+              maxlength="12"
+              type="text"
+            />
+            <div
+              *ngIf="
+                modalForm.get('adharNum').touched && modalForm.get('adharNum').invalid
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="modalForm.get('adharNum').errors.required">
+                Aadhaar is required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        
       </div>
     </div>
     <div class="modal-footer nomination-modal-footer">
@@ -613,4 +774,4 @@
       </div>
     </div>
   </form>
-</ng-template>
+</ng-template> -->

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 // import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { NgxSliderModule } from 'ngx-slider-v2';
 
+
 @NgModule({
   declarations: [
     PersonalDetailComponent

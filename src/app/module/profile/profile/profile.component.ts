@@ -128,7 +128,9 @@ export class ProfileComponent {
     this.getPersonalDetails();
     this.getBankDetails();
    
-
+    if(this.setTab == 'tab1'){  
+      this.router.navigateByUrl("profile/personal-detail")
+    }
   
   }
 
